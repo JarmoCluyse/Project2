@@ -10,10 +10,8 @@ var config = {
             debug: false
         }
     },
-    scale: {
-        mode: Phaser.Scale.FIT,
-        autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
-    },
+    width: 480,
+    height: 600,
     scene: {
         preload: preload,
         create: create,
@@ -32,9 +30,9 @@ var cars;
 
 function create ()
 {
-    this.background1 = this.add.tileSprite(window.innerWidth * window.devicePixelRatio /2,window.innerHeight * window.devicePixelRatio /2,480,window.innerHeight * window.devicePixelRatio -50, 'road').setScale(1);
+    this.background1 = this.add.tileSprite(240,300,480,600, 'road')
     cars = this.physics.add.staticGroup();
-    cars.create(window.innerWidth * window.devicePixelRatio /2 - 180,window.innerHeight * window.devicePixelRatio - 150 , 'car').setScale(2).refreshBody();
+    cars.create(60,550, 'car').setScale(1).refreshBody();
 }
 
 function update ()
