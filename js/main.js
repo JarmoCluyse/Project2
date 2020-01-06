@@ -18,7 +18,7 @@ function preload ()
 
 function create ()
 {
-    this.background1 = this.add.tileSprite(0,0,800,600, 'road')
+    this.background1 = this.add.tileSprite(400,300,960,600, 'road').setScale(1.6)
 }
 
 function update ()
