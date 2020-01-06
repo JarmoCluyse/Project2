@@ -13,12 +13,15 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
+    this.load.image('road', 'assets/road.png');
 }
 
 function create ()
 {
+    this.background1 = this.add.tileSprite(0,0,800,600, 'road')
 }
 
 function update ()
 {
+    this.background1.tilePositionY -= 0.5
 }
