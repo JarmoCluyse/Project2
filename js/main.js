@@ -32,9 +32,9 @@ var cars;
 
 function create ()
 {
-    this.background1 = this.add.tileSprite(window.innerWidth * window.devicePixelRatio /2,window.innerHeight * window.devicePixelRatio /2,480,700, 'road').setScale(2.5);
+    this.background1 = this.add.tileSprite(window.innerWidth * window.devicePixelRatio /2,window.innerHeight * window.devicePixelRatio /2,480,window.innerHeight * window.devicePixelRatio -50, 'road').setScale(1);
     cars = this.physics.add.staticGroup();
-    cars.create(window.innerWidth * window.devicePixelRatio /2+150,window.innerHeight * window.devicePixelRatio /2+700 , 'car').setScale(0.2).refreshBody();
+    cars.create(window.innerWidth * window.devicePixelRatio /2 - 180,window.innerHeight * window.devicePixelRatio - 150 , 'car').setScale(2).refreshBody();
 }
 
 function update ()
