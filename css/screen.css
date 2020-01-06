@@ -4,3 +4,7 @@ body {
     justify-content: center;
     background-color: black;
 }
+canvas {
+    max-height: 100vh;
+    width: auto;
+}
