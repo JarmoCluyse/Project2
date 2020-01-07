@@ -28,25 +28,35 @@ function preload ()
 }
 var car;
 var obstacles;
+var pickups;
+var score = 0;
+var gameOver = false;
+var scoreText;
 
 
 function create ()
 {
     this.background1 = this.add.tileSprite(240,300,480,600, 'road')
+    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     obstacles = this.physics.add.group();
-    obstacles.create(60,100, 'car').setScale(1);
+    obstacles.create(60,100, 'car').setScale(1).setTint(0xff0000);;
+    pickups = this.physics.add.group();
+    pickups.create(180,100, 'car').setScale(1);
     car = this.physics.add.sprite(60,550, 'car').setScale(1);
     this.physics.add.collider(car, obstacles, hitObstacle, null, this);
+    this.physics.add.overlap(car, pickups, hitPickup, null, this);
     this.input.keyboard.on('keydown-RIGHT', moveCar);
     this.input.keyboard.on('keydown-UP', moveCar);
     this.input.keyboard.on('keydown-DOWN', moveCar);
     this.input.keyboard.on('keydown-LEFT', moveCar);
+    
 }
 
 function update ()
 {
     this.background1.tilePositionY -= 0.5
     obstacles.children.entries[0].y +=0.5
+    pickups.children.entries[0].y +=0.5
 }
 function moveCar(e)
 {
@@ -72,4 +82,12 @@ function hitObstacle(car, obstacles){
     car.setTint(0xff0000);
 
 }
+function hitPickup(car, pickup){
+    console.log("pickup");
+    pickup.disableBody(true, true);
+    score += 10;
+    scoreText.setText('Score: ' + score);
+
+}
+
 
