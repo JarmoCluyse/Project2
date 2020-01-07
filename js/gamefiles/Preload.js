@@ -8,7 +8,6 @@ var preloadState = new Phaser.Class({
     // Preload images
     this.load.image('road', 'assets/road.png');
     this.load.image('car', 'assets/car.png');
-    this.load.image('startButton', 'assets/car.png');
     },
 
     create: function() {
