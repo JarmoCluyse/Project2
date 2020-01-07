@@ -43,9 +43,12 @@ var gamePlayState = new Phaser.Class({
             }
             for (i = 0; i < pickups.children.entries.length; i++) {
                 pickups.children.entries[i].y += speed
-            }
+            }         
             
-            
+        }
+        if(gameOver){
+            game.scene.stop('GamePlay');
+            game.scene.start('GameOver');
         }
     }
 });
@@ -79,10 +82,9 @@ function moveCar(e)
     }
 
 }
+
 function hitObstacle(car, obstacles){
     gameOver = true;
-    game.scene.stop('GamePlay');
-    game.scene.start('GameOver');
 }
 
 function hitPickup(car, pickup){
