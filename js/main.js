@@ -6,7 +6,7 @@ var config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 300 },
+            gravity: { y: 0 },
             debug: false
         }
     },
@@ -26,14 +26,17 @@ function preload ()
     this.load.image('road', 'assets/road.png');
     this.load.image('car', 'assets/car.png');
 }
-var cars;
+var car;
+var obstacles;
 
 
 function create ()
 {
     this.background1 = this.add.tileSprite(240,300,480,600, 'road')
-    cars = this.physics.add.staticGroup();
-    cars.create(60,550, 'car').setScale(1).refreshBody();
+    obstacles = this.physics.add.group();
+    obstacles.create(60,100, 'car').setScale(1);
+    car = this.physics.add.sprite(60,550, 'car').setScale(1);
+    this.physics.add.collider(car, obstacles, hitObstacle, null, this);
     this.input.keyboard.on('keydown-RIGHT', moveCar);
     this.input.keyboard.on('keydown-UP', moveCar);
     this.input.keyboard.on('keydown-DOWN', moveCar);
@@ -43,25 +46,30 @@ function create ()
 function update ()
 {
     this.background1.tilePositionY -= 0.5
+    obstacles.children.entries[0].y +=0.5
 }
 function moveCar(e)
 {
     console.log('move');
     console.log(e);
-    console.log(cars);
+    console.log(car);
+    console.log(obstacles);
     if (e.key == "ArrowLeft"){
-        cars.children.entries[0].x = 60;
+        car.x = 60;
     }
     if (e.key == "ArrowUp"){
-        cars.children.entries[0].x = 180;
+        car.x = 180;
     }
     if (e.key == "ArrowDown"){
-        cars.children.entries[0].x = 300;
+        car.x = 300;
     }
     if (e.key == "ArrowRight"){
-        cars.children.entries[0].x = 420;
+        car.x = 420;
     }
 
-    
+}
+function hitObstacle(car, obstacles){
+    car.setTint(0xff0000);
+
 }
 
