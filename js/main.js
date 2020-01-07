@@ -54,6 +54,10 @@ function create ()
 
 function update ()
 {
+    if (gameOver)
+    {
+        return;
+    }
     this.background1.tilePositionY -= 0.5
     obstacles.children.entries[0].y +=0.5
     pickups.children.entries[0].y +=0.5
@@ -80,6 +84,7 @@ function moveCar(e)
 }
 function hitObstacle(car, obstacles){
     car.setTint(0xff0000);
+    gameOver = true;
 
 }
 function hitPickup(car, pickup){
