@@ -11,10 +11,16 @@ var mainMenuState = new Phaser.Class({
     },
 
     create: function() {
-        console.log("GameOver");
+        // log the current scene
+        console.log("scene: GameOver");
+        // page
         Text = this.add.text(20, 300, 'score: ', { fontSize: '32px', fill: '#fff' });
         Text2 = this.add.text(20, 400, 'press an arrow ', { fontSize: '32px', fill: '#fff' });
         Text.setText('Score: ' + score);
+
+
+
+        // further
         this.input.keyboard.on('keydown-RIGHT', listener2);
         this.input.keyboard.on('keydown-UP', listener2);
         this.input.keyboard.on('keydown-DOWN', listener2);
@@ -28,9 +34,13 @@ var mainMenuState = new Phaser.Class({
 });
 
 function listener2 () {
+    // only listen if game is over
     if (gameStarted && gameOver){
+        // stop this scene start the begin scene
         game.scene.stop('GameOver');
         game.scene.start('MainMenu');
+        // put the gamestarted and gameover on false
+        score = 0
         gameStarted = false;
         gameOver = false;
     }

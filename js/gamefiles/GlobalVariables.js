@@ -18,4 +18,5 @@ var score = 0;
 var gameStarted = false;
 var gameOver = false;
 var gameStarted = false;
+//speed of the game
 var speed = 5;
