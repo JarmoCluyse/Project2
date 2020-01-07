@@ -16,4 +16,5 @@ var pickups;
 // rest
 var score = 0;
 var gameOver = false;
-var scoreText;
+var gameStarted = false;
+var speed = 1;

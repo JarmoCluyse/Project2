@@ -12,18 +12,25 @@ var mainMenuState = new Phaser.Class({
 
     create: function() {
         console.log("MainMenu");
-        game.scene.start('GamePlay');
+        Text = this.add.text(16, 300, 'press arrow to start', { fontSize: '32px', fill: '#fff' });
+        this.input.keyboard.on('keydown-RIGHT', next);
+        this.input.keyboard.on('keydown-UP', next);
+        this.input.keyboard.on('keydown-DOWN', next);
+        this.input.keyboard.on('keydown-LEFT', next);
+        
     },
 
     update: function() {
         // Update objects & variables
     },
-
-    startGame: function() {
-        console.log("MainMenu");
-        game.scene.start('GamePlay');
-      }
 });
+function next()
+{
+    gameStarted = true;
+    game.scene.stop('MainMenu');
+    game.scene.start('GamePlay');
+
+}
 
 // Add scene to list of scenes
 myGame.scenes.push(mainMenuState);
