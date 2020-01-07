@@ -24,6 +24,7 @@ var gamePlayState = new Phaser.Class({
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
+        // start the first cars
         //add callbacks for arrow key presses
         this.input.keyboard.on('keydown-RIGHT', moveCar);
         this.input.keyboard.on('keydown-UP', moveCar);
@@ -37,9 +38,13 @@ var gamePlayState = new Phaser.Class({
         if (!gameOver)
         {
             //move all moving items down by 0.5 px (game can be sped up or slowed down by changing this value)
-            this.background1.tilePositionY -= 0.5
-            obstacles.children.entries[0].y +=0.5
-            pickups.children.entries[0].y +=0.5
+            this.background1.tilePositionY -= speed
+            for (i = 0; i < obstacles.children.entries.length; i++) {
+                obstacles.children.entries[i].y += speed
+            }
+            for (i = 0; i < pickups.children.entries.length; i++) {
+                pickups.children.entries[i].y += speed
+            }         
         }
         if(gameOver){
             game.scene.stop('GamePlay');
@@ -89,7 +94,7 @@ function moveCar(e)
 
 function hitObstacle(car, obstacles){
     gameOver = true;
-
+}
 function hitPickup(car, pickup){
     console.log("pickup");
     pickup.disableBody(true, true);//remove the pickup from the screen
