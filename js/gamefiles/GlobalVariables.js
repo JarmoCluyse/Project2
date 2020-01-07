@@ -15,6 +15,7 @@ var obstacles;
 var pickups;
 // rest
 var score = 0;
+var gameStarted = false;
 var gameOver = false;
 var gameStarted = false;
 var speed = 5;

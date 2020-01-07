@@ -37,14 +37,9 @@ var gamePlayState = new Phaser.Class({
         if (!gameOver)
         {
             //move all moving items down by 0.5 px (game can be sped up or slowed down by changing this value)
-            this.background1.tilePositionY -= speed
-            for (i = 0; i < obstacles.children.entries.length; i++) {
-                obstacles.children.entries[i].y += speed
-            }
-            for (i = 0; i < pickups.children.entries.length; i++) {
-                pickups.children.entries[i].y += speed
-            }         
-            
+            this.background1.tilePositionY -= 0.5
+            obstacles.children.entries[0].y +=0.5
+            pickups.children.entries[0].y +=0.5
         }
         if(gameOver){
             game.scene.stop('GamePlay');
@@ -58,15 +53,27 @@ myGame.scenes.push(gamePlayState);
 
 function moveCar(e)
 {
-    //debugging
-    console.log('move');
-    console.log(e);
-    console.log(car);
-    console.log(obstacles);
+    if (!gameOver)
+    {
+        //debugging
+        console.log('move');
+        console.log(e);
+        console.log(car);
+        console.log(obstacles);
 
-    //move to right lane
-    if (e.key == "ArrowLeft"){
-        car.x = 60;
+        //move to right lane
+        if (e.key == "ArrowLeft"){
+            car.x = 60;
+        }
+        if (e.key == "ArrowUp"){
+            car.x = 180;
+        }
+        if (e.key == "ArrowDown"){
+            car.x = 300;
+        }
+        if (e.key == "ArrowRight"){
+            car.x = 420;
+        }
     }
     if (e.key == "ArrowUp"){
         car.x = 180;
@@ -77,15 +84,11 @@ function moveCar(e)
     if (e.key == "ArrowRight"){
         car.x = 420;
     }
-    if (e.key == " "){
-        car.x = 600;
-    }
 
 }
 
 function hitObstacle(car, obstacles){
     gameOver = true;
-}
 
 function hitPickup(car, pickup){
     console.log("pickup");
