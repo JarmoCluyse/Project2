@@ -965,10 +965,11 @@ input::placeholder {
 }
 
 .c-carColors{
-	margin-bottom: calc(var(--global-baseline) * 2);
+	margin-bottom: calc(var(--global-baseline) * 3);
 }
 
 .c-carColors2 {
+	margin-top: calc(var(--global-baseline));
 	display: none;
 }
 /*------------------------------------*\

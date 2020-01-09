@@ -72,6 +72,8 @@ const init = function() {
     playButton = document.querySelector('.c-button-play')
     carList = document.querySelector('.c-carColors2')
 
+    dropdownSelectValue = dropdownSelect.options[dropdownSelect.selectedIndex].value;
+
     dropdownSelect.onchange = function(){
         dropdownSelectValue = dropdownSelect.options[dropdownSelect.selectedIndex].value;
         
