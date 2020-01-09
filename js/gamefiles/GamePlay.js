@@ -20,7 +20,7 @@ var gamePlayState = new Phaser.Class({
         //creates an objects
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
-        car = this.physics.add.sprite(60,730, 'car').setScale(1).setTint(carColor);
+        car = this.physics.add.sprite(60,630, 'car').setScale(1).setTint(carColor);
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
@@ -41,7 +41,7 @@ var gamePlayState = new Phaser.Class({
             //move all moving items down by the speed variable
             this.background1.tilePositionY -= speed
             for (i = 0; i < obstacles.children.entries.length; i++) {
-                if (obstacles.children.entries[i].y >= 850){
+                if (obstacles.children.entries[i].y >= 750){
                     obstacles.remove(obstacles.children.entries[i], false);
                     //console.log(pickups.children.entries.length);
                     i--;
