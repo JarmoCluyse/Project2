@@ -14,13 +14,13 @@ var gamePlayState = new Phaser.Class({
         // Create objects
         console.log("scene: GamePlay");
         // set the background
-        this.background1 = this.add.tileSprite(240,300,480,600, 'road')
+        this.background1 = this.add.tileSprite(240,400,480,800, 'road')
         // set the text
         scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
         //creates an objects
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
-        car = this.physics.add.sprite(60,530, 'car').setScale(1).setTint(0x00ff00);
+        car = this.physics.add.sprite(60,730, 'car').setScale(1).setTint(0x00ff00);
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);

@@ -4,7 +4,7 @@
             type: Phaser.AUTO,
             // Width and height of the game
             width: 480,
-            height: 600,
+            height: 800,
             // Enable physics
             physics: {
                 default: 'arcade',
