@@ -20,7 +20,7 @@ var gamePlayState = new Phaser.Class({
         //creates an objects
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
-        car = this.physics.add.sprite(60,550, 'car').setScale(1).setTint(0x00ff00);
+        car = this.physics.add.sprite(60,530, 'car').setScale(1).setTint(0x00ff00);
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
@@ -109,12 +109,12 @@ function setcars(){
     
     for (i = 0; i < randomObstacles; i++) {
         
-        obstacles.create(arr[i],100, 'car').setScale(1).setTint(0xff0000);
+        obstacles.create(arr[i],-50, 'car').setScale(1).setTint(0xff0000);
     }
     for (i = 0; i < randomPickups; i++) {
         console.log(arr[i+randomObstacles]);
         
-        pickups.create(arr[i+randomObstacles],100, 'coin').setScale(.2);
+        pickups.create(arr[i+randomObstacles],-50, 'coin').setScale(.2);
     }
 }
 
