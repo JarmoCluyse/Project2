@@ -13,9 +13,10 @@ var mainMenuState = new Phaser.Class({
     create: function() {
         // log the current scene
         console.log("scene: GameOver");
+        this.background1 = this.add.tileSprite(240,400,480,800, 'white')
         // page
-        Text = this.add.text(20, 300, 'score: ', { fontSize: '32px', fill: '#fff' });
-        Text2 = this.add.text(20, 400, 'press an arrow ', { fontSize: '32px', fill: '#fff' });
+        Text = this.add.text(20, 300, 'score: ', { fontSize: '32px', fill: '#747474' });
+        Text2 = this.add.text(20, 400, 'press an arrow ', { fontSize: '32px', fill: '#747474' });
         Text.setText('Score: ' + score);
 
 
@@ -43,6 +44,7 @@ function listener2 () {
         score = 0
         gameStarted = false;
         gameOver = false;
+        gameDone = false;
     }
     
 
