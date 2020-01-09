@@ -14,13 +14,13 @@ var gamePlayState = new Phaser.Class({
         // Create objects
         console.log("scene: GamePlay");
         // set the background
-        this.background1 = this.add.tileSprite(240,300,480,600, 'road')
+        this.background1 = this.add.tileSprite(240,400,480,800, 'road')
         // set the text
         scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
         //creates an objects
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
-        car = this.physics.add.sprite(60,530, 'car').setScale(1).setTint(0x00ff00);
+        car = this.physics.add.sprite(60,730, 'car').setScale(1).setTint(carColor);
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
@@ -82,6 +82,9 @@ function moveCar(e)
         if (e.key == "ArrowRight"){
             car.x = 420;
         }
+        if (e.key == " "){
+            car.x = 540;
+        }
     }
 
 
@@ -108,14 +111,22 @@ function setcars(){
     arr = shuffle(arr);
     
     for (i = 0; i < randomObstacles; i++) {
-        
-        obstacles.create(arr[i],-50, 'car').setScale(1).setTint(0xff0000);
+
+        var ShuffleColorList = shuffle(ColorList)
+        if (ShuffleColorList[0] == carColor){
+            randomColor = ShuffleColorList[1]
+        }else {
+            randomColor = ShuffleColorList[0]
+        }
+        console.log(randomColor);  
+        obstacles.create(arr[i],-50, 'car').setScale(1).setTint(randomColor);
     }
     for (i = 0; i < randomPickups; i++) {
         console.log(arr[i+randomObstacles]);
         
         pickups.create(arr[i+randomObstacles],-50, 'coin').setScale(.2);
     }
+    pickups.create(540,-50, 'coin').setScale(.2);
 }
 
 function getRandomobstakels() {

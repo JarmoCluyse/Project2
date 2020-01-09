@@ -18,7 +18,7 @@ var preloadState = new Phaser.Class({
             if (!gameOver && gameStarted){
                 setcars();
                 }
-            }, 1 * 1000);
+            }, distance * 1000);
     },
     update: function() {
         // Update objects & variables

@@ -4,7 +4,7 @@
             type: Phaser.AUTO,
             // Width and height of the game
             width: 480,
-            height: 600,
+            height: 800,
             // Enable physics
             physics: {
                 default: 'arcade',
@@ -13,7 +13,7 @@
                     // Physics needded for collisions
                     gravity: { y: 0 },
                     // shows hitboxes
-                    debug: true
+                    debug: false
                 }
             },
             // id for html

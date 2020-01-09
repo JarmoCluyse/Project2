@@ -17,6 +17,12 @@ var pickups;
 var score = 0;
 var gameStarted = false;
 var gameOver = false;
-var gameStarted = false;
-//speed of the game
+// color of the car
+var carColor = '0xff77ff';
+// speed of the game
 var speed = 5;
+// distance in seconds between the cars
+var distance = 1;
+
+// list of colors
+var ColorList = ['0x0000ff', '0xff0000', '0x00ff00', '0xffff00', '0xff77ff', '0xff00ff'];
