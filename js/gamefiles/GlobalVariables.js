@@ -24,7 +24,8 @@ var carColor = '0xff77ff';
 var speed = 5;
 // distance in seconds between the cars
 var distance = 1
-
+var scoreDificulty = 5;
+var scoreCoint = 10;
 // list of colors
 var ColorList = ['0x0000ff', '0xff0000', '0x00ff00', '0xffff00', '0xff77ff', '0xff00ff'];
 

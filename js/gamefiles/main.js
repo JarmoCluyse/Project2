@@ -4,7 +4,7 @@ var config = {
 	type: Phaser.AUTO,
 	// Width and height of the game
 	width: 480,
-	height: 800,
+	height: 700,
 	// Enable physics
 	physics: {
 		default: 'arcade',
