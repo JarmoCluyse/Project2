@@ -967,6 +967,10 @@ input::placeholder {
 .c-carColors{
 	margin-bottom: calc(var(--global-baseline) * 2);
 }
+
+.c-carColors2 {
+	display: none;
+}
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/
