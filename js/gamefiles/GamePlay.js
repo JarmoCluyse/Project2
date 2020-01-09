@@ -94,6 +94,7 @@ function moveCar(e)
         // console.log(obstacles);
 
         //move the car
+        e.preventDefault();
         if (e.key == "ArrowLeft"){
             car.x = 60;
         }
