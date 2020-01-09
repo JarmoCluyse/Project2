@@ -44,16 +44,22 @@ var gamePlayState = new Phaser.Class({
                 if (obstacles.children.entries[i].y >= 850){
                     obstacles.remove(obstacles.children.entries[i], false);
                     //console.log(pickups.children.entries.length);
+                    i--;
                 }
-                obstacles.children.entries[i].y += speed
+                else{
+                    obstacles.children.entries[i].y += speed
+                }
 
             }
             for (i = 0; i < pickups.children.entries.length; i++) {
                 if (pickups.children.entries[i].y >= 850){
                     pickups.remove(pickups.children.entries[i], false);
                     //console.log(pickups.children.entries.length);
+                    i--;
                 }
-                pickups.children.entries[i].y += speed
+                else {
+                    pickups.children.entries[i].y += speed;
+                }
 
             }         
         }
