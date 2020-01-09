@@ -149,11 +149,13 @@ function hitPickup(car, pickup){
     // pickup the coin
     console.log("pickup");
     pickup.disableBody(true, true);//remove the pickup from the screen
-    score += 10;
+    score += scoreCoint;
     scoreText.setText('Score: ' + score);
 
 }
 function setcars(){
+    score += scoreDificulty;
+    scoreText.setText('Score: ' + score);
     let randomObstacles = getRandomobstakels();
     let randomPickups = getRandomInt(4 - randomObstacles);
     arr = [60,180,300,420];
