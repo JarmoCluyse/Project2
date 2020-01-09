@@ -41,16 +41,20 @@ var gamePlayState = new Phaser.Class({
             //move all moving items down by the speed variable
             this.background1.tilePositionY -= speed
             for (i = 0; i < obstacles.children.entries.length; i++) {
-                obstacles.children.entries[i].y += speed
                 if (obstacles.children.entries[i].y >= 850){
-                    obstacles.remove(obstacles.children.entries[i], true);
+                    obstacles.remove(obstacles.children.entries[i], false);
+                    //console.log(pickups.children.entries.length);
                 }
+                obstacles.children.entries[i].y += speed
+
             }
             for (i = 0; i < pickups.children.entries.length; i++) {
-                pickups.children.entries[i].y += speed
                 if (pickups.children.entries[i].y >= 850){
-                    pickups.remove(pickups.children.entries[i], true);
+                    pickups.remove(pickups.children.entries[i], false);
+                    //console.log(pickups.children.entries.length);
                 }
+                pickups.children.entries[i].y += speed
+
             }         
         }
         if(gameDone){
@@ -131,6 +135,7 @@ function continueGame(e)
 function hitObstacle(car, obstacles){
     gameOver = true;
     obstacles.disableBody(true, true);
+    
 }
 
 function hitPickup(car, pickup){
