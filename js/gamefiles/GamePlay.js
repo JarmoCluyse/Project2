@@ -47,10 +47,18 @@ var gamePlayState = new Phaser.Class({
                 pickups.children.entries[i].y += speed
             }         
         }
-        if(gameOver){
+        if(gameDone){
             // if gameover stop here to fix crash
             game.scene.stop('GamePlay');
             game.scene.start('GameOver');
+        }
+        if(gameOver){
+            this.input.keyboard.on('keydown-RIGHT', continueGame);
+            this.input.keyboard.on('keydown-UP', continueGame);
+            this.input.keyboard.on('keydown-DOWN', continueGame);
+            this.input.keyboard.on('keydown-LEFT', continueGame);
+            this.input.keyboard.on('keydown-SPACE', continueGame);
+
         }
     }
 });
@@ -89,9 +97,34 @@ function moveCar(e)
 
 
 }
+function continueGame(e)
+{
+    // if an arrowkey is pressed
+    if (gameOver)
+    {
+        if (e.key == "ArrowLeft"){
+            gameOver = false;
+        }
+        if (e.key == "ArrowUp"){
+            gameOver = false;
+        }
+        if (e.key == "ArrowDown"){
+            gameOver = false;
+        }
+        if (e.key == "ArrowRight"){
+            gameOver = false;
+        }
+        if (e.key == " "){
+            gameDone = true;
+        }
+    }
+
+
+}
 // if a collision happens
 function hitObstacle(car, obstacles){
     gameOver = true;
+    obstacles.disableBody(true, true);
 }
 
 function hitPickup(car, pickup){
@@ -104,9 +137,7 @@ function hitPickup(car, pickup){
 }
 function setcars(){
     let randomObstacles = getRandomobstakels();
-    console.log(randomObstacles);
     let randomPickups = getRandomInt(4 - randomObstacles);
-    console.log(randomPickups);
     arr = [60,180,300,420];
     arr = shuffle(arr);
     
@@ -117,12 +148,10 @@ function setcars(){
             randomColor = ShuffleColorList[1]
         }else {
             randomColor = ShuffleColorList[0]
-        }
-        console.log(randomColor);  
+        } 
         obstacles.create(arr[i],-50, 'car').setScale(1).setTint(randomColor);
     }
     for (i = 0; i < randomPickups; i++) {
-        console.log(arr[i+randomObstacles]);
         
         pickups.create(arr[i+randomObstacles],-50, 'coin').setScale(.2);
     }
@@ -135,25 +164,4 @@ function getRandomobstakels() {
     if(random < 50) return 1;
     if(random < 90) return 2;
     else return 3;
-}
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-}
-
-function shuffle(array) {
-    var ctr = array.length, temp, index;
-
-    // While there are elements in the array
-        while (ctr > 0) {
-    // Pick a random index
-            index = Math.floor(Math.random() * ctr);
-    // Decrease ctr by 1
-            ctr--;
-    // And swap the last element with it
-            temp = array[ctr];
-            array[ctr] = array[index];
-            array[index] = temp;
-        }
-        return array;
 }
