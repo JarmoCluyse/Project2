@@ -1,6 +1,3 @@
-const BASEURI = 'https://project2driveacar.azurewebsites.net/api/';
-const key = 'vwBZsIiU4FY7NbMR6HTpTy8BNiY/mI1NWldTb6GJfQuAaznpF7GCGw==';
-
 const getQuestions = function (lang) {
     handleData(`${BASEURI}questions?code=${key}`, showQuestions)
 };

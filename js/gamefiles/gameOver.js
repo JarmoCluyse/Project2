@@ -10,6 +10,7 @@ var mainMenuState = new Phaser.Class({
 	},
 
 	create: function() {
+		postGame();
 		// log the current scene
 		console.log('scene: GameOver');
 		this.background1 = this.add.tileSprite(240,400,800,900, 'white')
@@ -51,3 +52,14 @@ function listener2() {
 }
 // Add scene to list of scenes
 myGame.scenes.push(mainMenuState);
+
+const postGame = function(){
+	jsontext = `{"player": "${player}", "subject": "${subject}", "difficulty": "${difficulty}", "shortgameid": "${shortgameid}", "mode": "${mode}", "score": "${score}"}`;
+	json = JSON.parse(jsontext);
+	console.log(json);
+	console.log(jsontext);
+	sendData(`${BASEURI}game?code=${key}`, gamePosted, "POST",json);
+}
+const gamePosted = function(){
+	console.log("Game saved to db");
+}
