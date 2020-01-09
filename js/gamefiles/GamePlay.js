@@ -42,9 +42,15 @@ var gamePlayState = new Phaser.Class({
             this.background1.tilePositionY -= speed
             for (i = 0; i < obstacles.children.entries.length; i++) {
                 obstacles.children.entries[i].y += speed
+                if (obstacles.children.entries[i].y >= 850){
+                    obstacles.remove(obstacles.children.entries[i], true);
+                }
             }
             for (i = 0; i < pickups.children.entries.length; i++) {
                 pickups.children.entries[i].y += speed
+                if (pickups.children.entries[i].y >= 850){
+                    pickups.remove(pickups.children.entries[i], true);
+                }
             }         
         }
         if(gameDone){
