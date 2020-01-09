@@ -4,12 +4,14 @@ let newCodeBool, inputBoxBool, player2Bool, doYouHaveCodeBool
 
 const showPlayer2 = function(){
     player2.style.display = "block";
+    carList.style.display = "block";
 
     player2Bool = 1;
 };
 
 const removePlayer2 = function(){
     player2.style.display = "none";
+    carList.style.display = "none";
 
     player2Bool = 0;
 };
@@ -50,6 +52,12 @@ const removeNewcode = function(){
     newCodeBool = 0;
 }
 
+const startGame = function(){
+    window.location.href = "game.html";
+
+};
+
+
 
 const init = function() {
     console.log('Script geladen! 👍');
@@ -61,6 +69,10 @@ const init = function() {
     dropdownSelect = document.querySelector('.js-selectGameMode');
     radioButtonYes = document.querySelector('.js-codeYes');
     radioButtonNo = document.querySelector('.js-codeNo');
+    playButton = document.querySelector('.c-button-play')
+    carList = document.querySelector('.c-carColors2')
+
+    dropdownSelectValue = dropdownSelect.options[dropdownSelect.selectedIndex].value;
 
     dropdownSelect.onchange = function(){
         dropdownSelectValue = dropdownSelect.options[dropdownSelect.selectedIndex].value;
@@ -96,8 +108,6 @@ const init = function() {
             if (doYouHaveCodeBool == 1){
                 removeDoYouHaveCode();
             }
-
-
             showPlayer2();
         }
 
@@ -124,6 +134,12 @@ const init = function() {
             removeShowInputBox();
         }
         showNewCode();
+    });
+
+    playButton.addEventListener('click', function(){
+        if (dropdownSelectValue == "single-player"){
+            startGame();
+        }; 
     });
 
 
