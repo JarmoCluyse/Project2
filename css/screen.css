@@ -492,16 +492,35 @@ input::placeholder {
 	display: flex;
 }
 
+.c-card__players {
+	display: flex;
+}
+
+.c-card__dropdowns {
+	display: block;
+	margin-bottom: calc(var(--global-baseline) * 2);
+}
+
+
+
+
 .c-card__difficulty-title {
 	padding-top: var(--global-baseline);
-	padding-left: var(--global-baseline);
 	font-size: 24px;
 	line-height: var(--global-whitespace);
 	color: var(--global-color-alpha-light);
 	margin-right: calc(var(--global-baseline) * 3);
 	margin-top: calc(var(--global-baseline) * 2);
-	padding-left: calc(var(--global-baseline) * 4);
-	width: 20%;
+	display: block;
+}
+
+.c-card__players-title {
+	padding-top: var(--global-baseline);
+	font-size: 24px;
+	line-height: var(--global-whitespace);
+	color: var(--global-color-alpha-light);
+	margin-right: calc(var(--global-baseline) * 3);
+	margin-top: calc(var(--global-baseline) * 2);
 	display: block;
 }
 
@@ -535,6 +554,57 @@ input::placeholder {
 	margin-left: calc(var(--global-baseline) * 4);
 }
 
+.c-input-name {
+	width: 70%;
+	margin-left: calc(var(--global-baseline) * 4);
+}
+
+.c-players {
+	display: block;
+}
+
+.c-player1{
+	display: block;
+	
+}
+
+.c-gameId__title {
+	padding-top: var(--global-baseline);
+	padding-left: var(--global-baseline);
+	font-size: 28px;
+	line-height: var(--global-whitespace);
+	color: var(--global-color-alpha-light);
+	margin-bottom: var(--global-baseline);
+	margin-right: calc(var(--global-baseline) * 3);
+	padding-left: calc(var(--global-baseline) * 4);
+	display: flex;
+	justify-content: center;
+	align-self: center;
+}
+
+.c-gameIdAvailable {
+	display: none;
+	margin-bottom: calc(var(--global-baseline) * 2);
+}
+
+.c-hasNoGameId{
+	display: none;
+}
+
+.c-hasGameId{
+	display: none;
+}
+
+
+.c-gameId__input{
+	display: flex;
+	justify-content: center;
+}
+
+.c-player2{
+	display: none;
+}
+
 .c-input-answer{
 	margin-left: var(--global-baseline);
 }
@@ -558,6 +628,10 @@ input::placeholder {
 	right: calc(var(--global-whitespace) / 2);
 	pointer-events: none;
 	fill: var(--global-color-neutral-x-light);
+}
+
+.c-card__questions {
+	margin-top: calc(var(--global-baseline) * 2);
 }
 
 
@@ -654,6 +728,10 @@ input::placeholder {
 	box-shadow: none;
 }
 
+.c-button__play {
+	font-size: 36px;
+}
+
 .c-main-card {
 	opacity: 1;
 }
@@ -665,6 +743,12 @@ input::placeholder {
 
 .c-edit-card {
 	display: none;
+}
+
+.c-newGame-card{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .c-card__add-title {
@@ -679,6 +763,41 @@ input::placeholder {
 	display: block;
 }
 
+.c-card__player1-title {
+	padding-top: var(--global-baseline);
+	padding-left: var(--global-baseline);
+	font-size: 32px;
+	line-height: var(--global-whitespace);
+	color: var(--global-color-alpha-light);
+	margin-right: calc(var(--global-baseline) * 3);
+	margin-top: calc(var(--global-baseline) * 2);
+	padding-left: calc(var(--global-baseline) * 4);
+	margin-bottom: calc(var(--global-baseline) * 2);
+	display: block;
+}
+
+.c-card__carColor-title {
+	padding-top: var(--global-baseline);
+	padding-left: var(--global-baseline);
+	font-size: 32px;
+	line-height: var(--global-whitespace);
+	color: var(--global-color-alpha-light);
+	margin-right: calc(var(--global-baseline) * 3);
+	margin-top: calc(var(--global-baseline) * 2);
+	display: block;
+}
+
+.c-card__player1-name{
+	padding-top: var(--global-baseline);
+	padding-left: var(--global-baseline);
+	font-size: 24px;
+	line-height: var(--global-whitespace);
+	color: var(--global-color-alpha-light);
+	margin-right: calc(var(--global-baseline) * 3);
+	padding-left: calc(var(--global-baseline) * 4);
+	display: block;
+}
+
 .c-card__add-question{
 	padding-top: var(--global-baseline);
 	padding-left: var(--global-baseline);
@@ -689,6 +808,12 @@ input::placeholder {
 	padding-left: calc(var(--global-baseline) * 4);
 	display: block;
 }
+
+.c-label--options{
+	display: flex;
+	align-items: center;
+}
+
 
 .c-card__title {
 	justify-content: center;
@@ -732,11 +857,14 @@ input::placeholder {
 } 
 
 
+
+
 .c-custom-option {
 	--custom-option__symbol-Fill: var(--global-color-alpha);
-	width: 20%;
+	width: 100%;
 	margin-top: calc(var(--global-baseline) * 2);
 }
+
 
 .c-custom-option__fake-input {
 	display: flex;
@@ -769,6 +897,10 @@ input::placeholder {
 	border-radius: var(--global-borderRadius);
 }
 
+.c-custom-option__fake-input--radio {
+	border-radius: 100%;
+}
+
 .c-custom-option__symbol {
 	display: block;
 	opacity: 0; /* Hide the symbol initially */
@@ -783,6 +915,14 @@ input::placeholder {
 	fill: var(--global-color-alpha);
 }
 
+.c-custom-option__fake-input--radio .c-custom-option__symbol {
+	background-color: var(--custom-option__symbol-Fill);
+	border-radius: 100%;
+	width: 6px;
+	height: 6px;
+}
+
+
 
 .c-option--hidden:checked + .c-custom-option .c-custom-option__symbol {
 	opacity: 1; /* Show the symbol when the invisible checkbox/radio button is checked */
@@ -790,11 +930,42 @@ input::placeholder {
 }
 
 .c-phaser {
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+.c-card__carColor-select {
+	margin-top: 0;
+}
+
+.c-card__carColor-name {
+	margin-bottom: var(--global-baseline);
+}
+
+.c-input__gameId {
+	width: 50%;
+}
+
+.c-lists {
+	display: flex;
+}
+
+.c-color-input{
+	display: flex;
+}
+.c-colors__list-item{
+	margin-bottom: calc(var(--global-baseline));
+	margin-left: calc(var(--global-baseline));
+}
+
+.c-newGameId {
+	justify-content: center;
+	display: flex;
+}
+
+.c-carColors{
+	margin-bottom: calc(var(--global-baseline) * 2);
 }
 /*------------------------------------*\
 #UTILITIES
@@ -829,6 +1000,7 @@ input::placeholder {
 .u-grid-row__add-question{
 	grid-row: 3;
 }
+
 
 
 .u-pt-clear {
