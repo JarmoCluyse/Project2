@@ -1,3 +1,13 @@
+const BASEURI = 'https://project2driveacar.azurewebsites.net/api/';
+const key = 'vwBZsIiU4FY7NbMR6HTpTy8BNiY/mI1NWldTb6GJfQuAaznpF7GCGw==';
+
+const getQuestions = function (lang) {
+    handleData(`${BASEURI}questions?code=${key}`, showQuestions)
+};
+const showQuestions = function (data) {
+    console.log(data);
+};
+
 const showAddQuestionPage = function() {
 	mainCard.style.opacity = 0.2;
 	mainCard.style.pointerEvents = 'none';
@@ -19,7 +29,7 @@ const showMainPage = function() {
 
 const init = function() {
 	console.log('Script geladen! 👍');
-
+	getQuestions();
 	newQuestionButton = document.querySelector('.js-newQuestion');
 	editButton = document.querySelectorAll('.c-edit');
 	mainCard = document.querySelector('.c-main-card');
