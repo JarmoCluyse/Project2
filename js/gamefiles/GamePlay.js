@@ -119,19 +119,19 @@ function continueGame(e)
     if (gameOver)
     {
         if (e.key == "ArrowLeft"){
-            gameOver = false;
+            gameDone = true;
         }
         if (e.key == "ArrowUp"){
-            gameOver = false;
+            gameDone = true;
         }
         if (e.key == "ArrowDown"){
-            gameOver = false;
+            gameDone = true;
         }
         if (e.key == "ArrowRight"){
-            gameOver = false;
+            gameDone = true;
         }
         if (e.key == " "){
-            gameDone = true;
+            gameOver = false;
         }
     }
 
