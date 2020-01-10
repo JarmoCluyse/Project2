@@ -737,7 +737,9 @@ input::placeholder {
 }
 /* game allignement */
 .c-game-card {
-	height: 750px;
+	margin: 2.5vh 0;
+	height: 95vh;
+	width: 80vw;
 	display: grid;
 	grid:auto / 20% 60% 20%;
 	grid-gap: 10px;

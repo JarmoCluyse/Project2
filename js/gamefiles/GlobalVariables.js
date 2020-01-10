@@ -35,6 +35,6 @@ var speedIncrease = 3; // the rate of increasing
 var increaseValue = 0.5; // value that we increase with
 var DriveScore = 5; // score for driving
 var scoreCoin = 10; // score when you pickup something
-var carColor = '0xff77ff'; // color of the car
 // list of possible colors
-var ColorList = ['0x0000ff', '0xff0000', '0x00ff00', '0xffff00', '0xff77ff', '0xff00ff'];
+var ColorList = ['0x0000ff', '0xff0000', '0x00ff00', '0xffff00', '0xff77ff', '0xff00ff','0xffffff','0x101010' ];
+var carColor = ColorList[7]; // color of the car
