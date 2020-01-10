@@ -35,3 +35,17 @@ const sendData = function (url, callback, method, body) {
     console.error(`Error sending data: ${error}`);
   });
 };
+
+const idGenerator = function (type) {
+    let id = "";
+    if (type == "S"){
+      id += "S";
+    }
+    else{
+      id += "G";
+    }
+    id += Math.random().toString(36).substr(2, 6);
+    console.log(id);
+    return id;
+
+}
