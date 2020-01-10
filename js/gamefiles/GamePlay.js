@@ -124,6 +124,7 @@ function hitPickup(car, pickup){
 
 }
 function setcars(){
+    increasing();
     score += DriveScore;
     placeScore();
     let randomObstacles = getRandomobstakels();
@@ -154,4 +155,16 @@ function getRandomobstakels() {
     if(random < 50) return 1;
     if(random < 90) return 2;
     else return 3;
+}
+
+function increasing(){
+    if (increase){
+        if (waitIncrease >= speedIncrease){
+            speed += increaseValue;
+            console.log(speed);
+            
+            waitIncrease = 0;
+        }
+        waitIncrease ++;
+    }
 }

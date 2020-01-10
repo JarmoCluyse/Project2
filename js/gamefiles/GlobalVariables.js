@@ -18,6 +18,7 @@ var obstacles;
 var pickups;
 // score of the game
 var score = 0;
+var waitIncrease = 0;
 // game states
 var gameStarted = false;
 var gameOver = false;
@@ -28,7 +29,10 @@ var gameDone = false;
 //------------------------------- //
 
 var speed = 5;  // speed of cars
-var distance = 1 // distance between cars
+var distance = 1; // distance between cars
+var increase = true; // if you can increase the speed while playing the game
+var speedIncrease = 3; // the rate of increasing
+var increaseValue = 0.5; // value that we increase with
 var DriveScore = 5; // score for driving
 var scoreCoin = 10; // score when you pickup something
 var carColor = '0xff77ff'; // color of the car
