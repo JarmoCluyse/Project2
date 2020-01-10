@@ -25,29 +25,15 @@ var mainMenuState = new Phaser.Class({
 		Text.setText('Score: ' + score);
 
 		// further
-		this.input.keyboard.on('keydown-RIGHT', listener2);
-		this.input.keyboard.on('keydown-UP', listener2);
-		this.input.keyboard.on('keydown-DOWN', listener2);
-		this.input.keyboard.on('keydown-LEFT', listener2);
+		this.input.keyboard.on('keydown-RIGHT', keyListener);
+		this.input.keyboard.on('keydown-UP', keyListener);
+		this.input.keyboard.on('keydown-DOWN', keyListener);
+		this.input.keyboard.on('keydown-LEFT', keyListener);
 	},
 
 	update: function() {
 		// Update objects & variables
 	}
 });
-
-function listener2() {
-	// only listen if game is over
-	if (gameStarted && gameOver) {
-		// stop this scene start the begin scene
-		game.scene.stop('GameOver');
-		game.scene.start('MainMenu');
-		// put the gamestarted and gameover on false
-		score = 0;
-		gameStarted = false;
-		gameOver = false;
-		gameDone = false;
-	}
-}
 // Add scene to list of scenes
 myGame.scenes.push(mainMenuState);

@@ -15,10 +15,10 @@ var mainMenuState = new Phaser.Class({
         this.background1 = this.add.tileSprite(240,400,800,900, 'white')
         Text = this.add.text(16, 300, 'press arrow to start', { fontSize: '32px', fill: '#747474' });
         // look for key presses
-        this.input.keyboard.on('keydown-RIGHT', next);
-        this.input.keyboard.on('keydown-UP', next);
-        this.input.keyboard.on('keydown-DOWN', next);
-        this.input.keyboard.on('keydown-LEFT', next);
+        this.input.keyboard.on('keydown-RIGHT', keyListener);
+        this.input.keyboard.on('keydown-UP', keyListener);
+        this.input.keyboard.on('keydown-DOWN', keyListener);
+        this.input.keyboard.on('keydown-LEFT', keyListener);
         
     },
 
@@ -26,14 +26,5 @@ var mainMenuState = new Phaser.Class({
         // Update objects & variables
     },
 });
-function next()
-{
-    // start the game
-    gameStarted = true;
-    game.scene.stop('MainMenu');
-    game.scene.start('GamePlay');
-
-}
-
 // Add scene to list of scenes
 myGame.scenes.push(mainMenuState);

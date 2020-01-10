@@ -17,12 +17,13 @@
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/screen.css">
   <!-- link to javascript -->
-  <script src="./js/gamefiles/GlobalVariables.js"></script>
-  <script src="./js/gamefiles/Preload.js"></script>
-  <script src="./js/gamefiles/MainMenu.js"></script>
-  <script src="./js/gamefiles/gameOver.js"></script>
-  <script src="./js/gamefiles/GamePlay.js"></script>
-  <script src="./js/gamefiles/main.js"></script>
+  <script defer src="./js/gamefiles/GlobalVariables.js"></script>
+  <script defer src="./js/gamefiles/Preload.js"></script>
+  <script defer src="./js/gamefiles/MainMenu.js"></script>
+  <script defer src="./js/gamefiles/gameOver.js"></script>
+  <script defer src="./js/gamefiles/GamePlay.js"></script>
+  <script defer src="./js/gamefiles/Functions.js"></script>
+  <script defer src="./js/gamefiles/main.js"></script>
 </head>
 <body>
   <section class="c-mainpage c-section">
@@ -37,7 +38,10 @@
             </div>
         </div>
         <div class="c-grid__item u-grid-column__card u-grid-row__card">
-          <div class="c-card c-main-card">
+          <div class="c-card c-main-card c-game-card">
+            <div class="c-game-score">
+              <h2 class="js-score">score : 0</h2>
+            </div>
             <div class="c-phaser" id="phaser">
               <!-- here is game in -->
             </div>

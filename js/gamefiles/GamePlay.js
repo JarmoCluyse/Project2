@@ -14,9 +14,7 @@ var gamePlayState = new Phaser.Class({
         // Create objects
         console.log("scene: GamePlay");
         // set the background
-        this.background1 = this.add.tileSprite(240,400,480,800, 'road')
-        // set the text
-        scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+        this.background1 = this.add.tileSprite(240,400,480,800, 'road')    
         //creates an objects
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
@@ -65,15 +63,11 @@ var gamePlayState = new Phaser.Class({
         }
         if(gameDone){
             // if gameover stop here to fix crash
-            game.scene.stop('GamePlay');
-            game.scene.start('GameOver');
+
         }
         if(gameOver){
-            this.input.keyboard.on('keydown-RIGHT', continueGame);
-            this.input.keyboard.on('keydown-UP', continueGame);
-            this.input.keyboard.on('keydown-DOWN', continueGame);
-            this.input.keyboard.on('keydown-LEFT', continueGame);
-            this.input.keyboard.on('keydown-SPACE', continueGame);
+            this.input.keyboard.on('keydown-SPACE', keyListener);
+            this.input.keyboard.on('keydown_F', keyListener);
 
         }
     }
@@ -87,6 +81,7 @@ function moveCar(e)
     // if an arrowkey is pressed
     if (!gameOver)
     {
+        e.preventDefault();
         //debugging
         // console.log('move');
         // console.log(e);
@@ -94,7 +89,6 @@ function moveCar(e)
         // console.log(obstacles);
 
         //move the car
-        e.preventDefault();
         if (e.key == "ArrowLeft"){
             car.x = 60;
         }
@@ -114,30 +108,6 @@ function moveCar(e)
 
 
 }
-function continueGame(e)
-{
-    // if an arrowkey is pressed
-    if (gameOver)
-    {
-        if (e.key == "ArrowLeft"){
-            gameDone = true;
-        }
-        if (e.key == "ArrowUp"){
-            gameDone = true;
-        }
-        if (e.key == "ArrowDown"){
-            gameDone = true;
-        }
-        if (e.key == "ArrowRight"){
-            gameDone = true;
-        }
-        if (e.key == " "){
-            gameOver = false;
-        }
-    }
-
-
-}
 // if a collision happens
 function hitObstacle(car, obstacles){
     gameOver = true;
@@ -149,13 +119,13 @@ function hitPickup(car, pickup){
     // pickup the coin
     console.log("pickup");
     pickup.disableBody(true, true);//remove the pickup from the screen
-    score += scoreCoint;
-    scoreText.setText('Score: ' + score);
+    score += scoreCoin;
+    placeScore();
 
 }
 function setcars(){
-    score += scoreDificulty;
-    scoreText.setText('Score: ' + score);
+    score += DriveScore;
+    placeScore();
     let randomObstacles = getRandomobstakels();
     let randomPickups = getRandomInt(4 - randomObstacles);
     arr = [60,180,300,420];
