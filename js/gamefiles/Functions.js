@@ -27,7 +27,7 @@ var getRandomInt = function(max) {
   
   // set score in html
   var jsScore = document.querySelector(".js-score")
-  console.log(jsScore.innerHTML);
+  // console.log(jsScore.innerHTML);
   var placeScore = function () {
     jsScore.innerHTML = `score: ${score}`
   }
@@ -36,10 +36,11 @@ var getRandomInt = function(max) {
   function keyListener(e)
   {
     e.preventDefault();
-    console.log(e);
+    // console.log(e);
     if(!gameStarted && !gameDone && !gameOver && e.key != "f"){
       // start the game
       gameStarted = true;
+      speed = BeginSpeed;
       game.scene.stop('MainMenu');
       game.scene.start('GamePlay');
     }
