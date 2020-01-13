@@ -40,7 +40,7 @@ var mainMenuState = new Phaser.Class({
 myGame.scenes.push(mainMenuState);
 
 const postGame = function(){
-	jsontext = `{"player": "${player}", "subject": "${subject}", "difficulty": "${difficulty}", "shortgameid": "${shortgameid}", "mode": "${mode}", "score": "${score}"}`;
+	jsontext = `{"player": "${player}", "subject": "${subjectdink}", "difficulty": "${difficulty}", "shortgameid": "${shortgameid}", "mode": "${mode}", "score": "${score}"}`;
 	json = JSON.parse(jsontext);
 	console.log(json);
 	console.log(jsontext);

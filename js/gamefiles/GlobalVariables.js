@@ -57,7 +57,7 @@ var carColor = ColorList[7]; // color of the car
 
 //Variables needed for saving the game
 var player = "anoniem"; //default value
-var subject;
+var subjectdink;
 var difficulty = "makkelijk";
 var shortgameid;
 var mode = "SP";

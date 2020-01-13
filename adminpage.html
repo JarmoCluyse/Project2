@@ -11,9 +11,11 @@
 
         <link rel="stylesheet" href="./css/normalize.css">
         <link rel="stylesheet" href="./css/screen.css"> 
+        <script src="./js/gamefiles/GlobalVariables.js"></script> 
         <script src="./js/script/dataHandler.js"></script>     
         <script src="./js/script/adminPage.js"></script>     
-        <script src="./js/script/formValidation.js"></script>    
+        <script src="./js/script/formValidation.js"></script>   
+        <script src="./js/script/key.js"></script>
     </head>
     <body class="c-background-img">
         <section class="c-mainpage c-section">
@@ -45,7 +47,7 @@
                                     <h1 class="c-card__questions-title">
                                         Vragen voor extra levens:
                                     </h1>
-                                    <ul class="o-list">
+                                    <ul class="o-list" id="questionsList">
                                         <li class="c-list__item">
                                             <h3 class="c-list__item-question">Hoeveel continenten zijn er?</h3>
 
