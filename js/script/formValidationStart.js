@@ -50,12 +50,14 @@ const checkRadioButtons = function() {
         document.querySelector('.c-errormsg-radiobuttons').style.display = 'block';
 	} else {
         document.querySelector('.c-errormsg-radiobuttons').style.display = 'none';
-        document.querySelector('.c-errormsg-button').style.display = 'block';
-        if (startGameHasError == 0){
-            document.querySelector('.c-errormsg-button').style.display = 'none';
-            startGame();
-        }
 	}
+    if (startGameHasError == 0){
+        document.querySelector('.c-errormsg-button').style.display = 'none';
+        startGame();
+    }
+    else {
+        document.querySelector('.c-errormsg-button').style.display = 'block';
+    }
 };
 
 
