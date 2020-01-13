@@ -1,7 +1,5 @@
 let newCodeBool, inputBoxBool, player2Bool, doYouHaveCodeBool
 
-
-
 const showPlayer2 = function(){
     player2.style.display = "block";
     carList.style.display = "block";
@@ -147,7 +145,6 @@ const playButtonFunction = function(){
 
 const init = function() {
     console.log('Script geladen! 👍');
-
     player2 = document.querySelector('.c-player2');
     gameIdAvailable = document.querySelector('.c-gameIdAvailable');
     codeInputBox = document.querySelector('.c-hasGameId')
