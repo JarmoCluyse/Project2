@@ -1,5 +1,8 @@
 let newCodeBool, inputBoxBool, player2Bool, doYouHaveCodeBool
 
+const getQuestions = function(lang){
+    handleData(`${BASEURI}questions?code=${key}`, showQuestions)
+};
 
 
 const showPlayer2 = function(){
@@ -151,6 +154,7 @@ const init = function() {
     player2 = document.querySelector('.c-player2');
     gameIdAvailable = document.querySelector('.c-gameIdAvailable');
     codeInputBox = document.querySelector('.c-hasGameId')
+    getQuestions();
     newCode = document.querySelector('.c-hasNoGameId')
     dropdownSelect = document.querySelector('.js-selectGameMode');
     radioButtonYes = document.querySelector('.js-codeYes');
