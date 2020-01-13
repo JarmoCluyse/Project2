@@ -14,8 +14,8 @@ let subject = {},
     checkboxEdit = {},
     isChecked = 0,
     isCheckedEdit = 0,
-    addQuestionHasError = 0,
-    editQuestionHasError = 0;
+    addQuestionHasError = 1,
+    editQuestionHasError = 1;
 
 const isEmpty = function(fieldValue) {
 	return !fieldValue || !fieldValue.length;
