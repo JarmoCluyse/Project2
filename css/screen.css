@@ -561,6 +561,7 @@ input::placeholder {
 	display: block;
 }
 
+
 .c-card__players-title {
 	padding-top: var(--global-baseline);
 	font-size: 24px;
@@ -919,12 +920,14 @@ input::placeholder {
 	align-content: center;
 } 
 
-
+.c-goQuicker{
+	display: flex;
+}
 
 
 .c-custom-option {
 	--custom-option__symbol-Fill: var(--global-color-alpha);
-	width: 100%;
+	width: 0%;
 	margin-top: calc(var(--global-baseline) * 2);
 }
 
