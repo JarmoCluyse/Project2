@@ -488,9 +488,6 @@ input::placeholder {
 	position: relative;
 }
 
-.c-card__difficulty {
-	display: flex;
-}
 
 .c-card__players {
 	display: flex;
@@ -501,6 +498,47 @@ input::placeholder {
 	margin-bottom: calc(var(--global-baseline) * 2);
 }
 
+.c-carSpeed {
+	display: flex;
+}
+
+.c-obstacles {
+	display: flex;
+}
+
+.c-slider {
+	padding-top: calc(var(--global-baseline));
+}
+
+.c-slider-input {
+	-webkit-appearance: none;
+	appearance: none;
+	height: 6px;
+	background: var(--global-color-neutral-x-light); 
+	outline: none;
+	border-radius: 5px;
+  }
+
+  .c-slider-input:hover {
+	opacity: 1; 
+  }
+
+  .c-slider-input::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 15px;
+	height: 15px;
+	border-radius: 10px;
+	background: var(--global-color-alpha-lighter);
+	border: solid 1px var(--global-color-alpha-x-dark);
+	cursor: pointer;
+  }
+
+  .c-slider-output{
+	  display: flex;
+	  justify-content: center;
+	  padding-top: calc(var(--global-baseline) / 2);
+  }
 
 
 
@@ -511,6 +549,15 @@ input::placeholder {
 	color: var(--global-color-alpha-light);
 	margin-right: calc(var(--global-baseline) * 3);
 	margin-top: calc(var(--global-baseline) * 2);
+	display: block;
+}
+
+
+.c-card__difficulty-subtitle {
+	font-size: 18px;
+	line-height: var(--global-whitespace);
+	color: var(--global-color-alpha-light);
+	margin-right: calc(var(--global-baseline) * 3);
 	display: block;
 }
 
@@ -554,6 +601,10 @@ input::placeholder {
 	margin-left: calc(var(--global-baseline) * 4);
 }
 
+.c-input-subject {
+	width: 65%;
+}
+
 .c-input-name {
 	width: 70%;
 	margin-left: calc(var(--global-baseline) * 4);
@@ -566,6 +617,10 @@ input::placeholder {
 .c-player1{
 	display: block;
 	
+}
+
+.c-subject {
+	display: flex;
 }
 
 .c-gameId__title {
@@ -696,7 +751,7 @@ input::placeholder {
 
 .c-buttons{
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
 	margin-left: calc(var(--global-baseline) * 4);
 	margin-right: calc(var(--global-baseline) * 4);
 }
@@ -836,6 +891,14 @@ input::placeholder {
 	font-size: 20px;
 	margin-left: calc(var(--global-baseline) * 3);
 	color: var(--global-color-alpha);
+	display: none;
+}
+
+.c-warning-edit {
+	font-size: 20px;
+	margin-left: calc(var(--global-baseline) * 3);
+	color: var(--global-color-alpha);
+	display: none;
 }
 
 .c-add__vragenlijst{
@@ -922,6 +985,25 @@ input::placeholder {
 	height: 6px;
 }
 
+.c-editQuestion__answer-errormsg1{
+	margin-left: calc(var(--global-baseline));
+	display: none;
+}
+
+.c-editQuestion__answer-errormsg2{
+	margin-left: calc(var(--global-baseline));
+	display: none;
+}
+
+.c-editQuestion__answer-errormsg3{
+	margin-left: calc(var(--global-baseline));
+	display: none;
+}
+
+.c-editQuestion__answer-errormsg4{
+	margin-left: calc(var(--global-baseline));
+	display: none;
+}
 
 
 .c-option--hidden:checked + .c-custom-option .c-custom-option__symbol {
@@ -970,6 +1052,44 @@ input::placeholder {
 
 .c-carColors2 {
 	margin-top: calc(var(--global-baseline));
+	display: none;
+}
+
+.c-errormsg {
+	color: var(--global-color-alpha);
+}
+
+.c-subject-errormsg {
+	display: none;
+}
+
+.c-newQuestion-errormsg {
+	display: none;
+	margin-left: calc(var(--global-baseline) * 4);
+}
+
+.c-editQuestion-errormsg {
+	display: none;
+	margin-left: calc(var(--global-baseline) * 4);
+}
+
+.c-newQuestion__answer-errormsg1{
+	margin-left: calc(var(--global-baseline));
+	display: none;
+}
+
+.c-newQuestion__answer-errormsg2{
+	margin-left: calc(var(--global-baseline));
+	display: none;
+}
+
+.c-newQuestion__answer-errormsg3{
+	margin-left: calc(var(--global-baseline));
+	display: none;
+}
+
+.c-newQuestion__answer-errormsg4{
+	margin-left: calc(var(--global-baseline));
 	display: none;
 }
 /*------------------------------------*\
