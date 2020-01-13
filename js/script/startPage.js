@@ -60,6 +60,7 @@ const dropdownFunction = function() {
 			dropdownSelect.options[dropdownSelect.selectedIndex].value;
 
 		if (dropdownSelectValue == 'single-player') {
+            startGameHasError = 2;
 			if (newCodeBool == 1) {
 				removeNewcode();
 			}
@@ -78,6 +79,7 @@ const dropdownFunction = function() {
 		}
 
 		if (dropdownSelectValue == 'co-op') {
+            startGameHasError = 4;
 			if (newCodeBool == 1) {
 				removeNewcode();
 			}
@@ -104,7 +106,7 @@ const dropdownFunction = function() {
 
 const sliderFunction = function() {
 	sliderCarspeed.oninput = function() {
-		outputCar.innerHTML = this.value;
+        outputCar.innerHTML = this.value;
 	};
 
 	sliderObstacle.oninput = function() {

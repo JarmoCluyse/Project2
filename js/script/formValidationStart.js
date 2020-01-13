@@ -1,4 +1,4 @@
-let namePlayer1 = {}, namePlayer2 = {}, sessieId = {}, gameId = {}, startGameHasError = 1, radioChecked = 0, radioButtons = {};
+let namePlayer1 = {}, namePlayer2 = {}, sessieId = {}, gameId = {}, startGameHasError = 2, radioChecked = 0, radioButtons = {};
 
 const isEmpty = function(fieldValue) {
 	return !fieldValue || !fieldValue.length;
@@ -6,42 +6,36 @@ const isEmpty = function(fieldValue) {
 
 const showName1ErrorMsg = function() {
     document.querySelector('.c-errormsg-name1').style.display = 'block';
-    startGameHasError = 1;
+    console.log(startGameHasError)
 };
 
 const removeName1ErrorMsg = function() {
     document.querySelector('.c-errormsg-name1').style.display = 'none';
-    startGameHasError = 0;
+    startGameHasError -= 2;
+    console.log(startGameHasError)
 };
 
 const showName2ErrorMsg = function() {
     document.querySelector('.c-errormsg-name2').style.display = 'block';
-    startGameHasError = 1;
+    console.log(startGameHasError)
 };
 
 const removeName2ErrorMsg = function() {
     document.querySelector('.c-errormsg-name2').style.display = 'none';
-    startGameHasError = 0;
+    console.log(startGameHasError)
+    startGameHasError -= 2;
 };
 
-const showSessieIdErrorMsg = function() {
-    document.querySelector('.c-errormsg-sessieId').style.display = 'flex';
-    startGameHasError = 1;
-};
-
-const removeSessieIdErrorMsg = function() {
-    document.querySelector('.c-errormsg-sessieId').style.display = 'none';
-    startGameHasError = 0;
-};
 
 const showGameIdErrorMsg = function() {
     document.querySelector('.c-errormsg-gameId').style.display = 'flex';
-    startGameHasError = 1;
+    console.log(startGameHasError)
 };
 
 const removeGameIdErrorMsg = function() {
     document.querySelector('.c-errormsg-gameId').style.display = 'none';
-    startGameHasError = 0;
+    console.log(startGameHasError)
+    startGameHasError -= 2;
 };
 
 
@@ -51,12 +45,23 @@ const checkRadioButtons = function() {
 	} else {
         document.querySelector('.c-errormsg-radiobuttons').style.display = 'none';
 	}
-    if (startGameHasError == 0){
+    if (startGameHasError <= 0){
         document.querySelector('.c-errormsg-button').style.display = 'none';
+        document.getElementById('Name1').value = '';
+        document.getElementById('Name2').value = '';
+        document.getElementById('gameId').value = '';
+        document.getElementById('sessieId').value = '';
+        document.getElementById('carSlider').value = '';
+        document.getElementById('obstacleSlider').value = '';
+        document.getElementById('selectCar1').value = '';
+        document.getElementById('selectCar2').value = '';
+        radioNo.checked = false;
+        radioYes.checked = false;
         startGame();
     }
     else {
         document.querySelector('.c-errormsg-button').style.display = 'block';
+        console.log(startGameHasError)
     }
 };
 
@@ -82,7 +87,7 @@ const getDOMContent = function(){
 const enableValidation = function(){
     namePlayer1.input.addEventListener('blur', function(event) {
 		const typedInput = event.target.value;
-
+        namePlayer1 = typedInput;
 		if (isEmpty(typedInput)) {
 			showName1ErrorMsg();
 		} else {
@@ -97,16 +102,6 @@ const enableValidation = function(){
 			showName2ErrorMsg();
 		} else {
 			removeName2ErrorMsg();
-		}
-    });
-
-    sessieId.input.addEventListener('blur', function(event) {
-		const typedInput = event.target.value;
-
-		if (isEmpty(typedInput)) {
-			showSessieIdErrorMsg();
-		} else {
-			removeSessieIdErrorMsg();
 		}
     });
 
@@ -140,7 +135,8 @@ const enableValidation = function(){
         });
         
 
-		radioChecked = 0;
+        radioChecked = 0;
+        startGameHasError = 2;
     });
 
 }
