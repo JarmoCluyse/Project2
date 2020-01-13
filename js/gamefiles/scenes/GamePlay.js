@@ -23,6 +23,9 @@ var gamePlayState = new Phaser.Class({
         pickups = this.physics.add.group();
         car = this.physics.add.sprite(400,630, 'car').setTint(carColor);
 
+        console.log(BeginSpeed);
+        speed = BeginSpeed;
+
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);

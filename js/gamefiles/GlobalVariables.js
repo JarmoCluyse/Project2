@@ -1,7 +1,8 @@
 //------------------------------- //
 // Things to Edit
 //------------------------------- //
-var BeginSpeed = 5;  // speed of cars
+var BeginSpeed = parseInt(localStorage.getItem("BeginSpeed"));
+// var BeginSpeed = 10;  // speed of cars
 var distance = 1; // distance between cars
 var increase = true; // if you can increase the speed while playing the game
 var speedIncrease = 3; // the rate of increasing
