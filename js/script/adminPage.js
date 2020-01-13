@@ -1,3 +1,7 @@
+const getQuestions = function(lang){
+    handleData(`${BASEURI}questions?code=${key}`, showQuestions)
+};
+
 
 const showQuestions = function (data) {
 	console.log(data);
@@ -57,6 +61,7 @@ const checkedState = function(checkboxElement){
 
 const init = function() {
 	console.log('Script geladen! 👍');
+	getQuestions();
 	newQuestionButton = document.querySelector('.js-newQuestion');
 	editButton = document.querySelectorAll('.c-edit');
 	mainCard = document.querySelector('.c-main-card');
