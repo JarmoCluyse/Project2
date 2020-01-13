@@ -48,6 +48,15 @@ const showMainPage = function() {
 	editCard.style.display = 'none';
 };
 
+const checkedState = function(checkboxElement){
+	if (checkboxElement.checked){
+		checkboxElement.checked = true;
+	}
+	else {
+		checkboxElement.checked = false;
+	}
+};
+
 const init = function() {
 	console.log('Script geladen! 👍');
 	getQuestions();
@@ -59,6 +68,13 @@ const init = function() {
 	submitQuestion = document.querySelector('.js-addQuestion');
 	submitEdit = document.querySelector('.js-editQuestion');
 	closeWindowButton = document.querySelectorAll('.c-close__button');
+	checkboxInputs = document.querySelectorAll('.js-checkbox');
+	
+	checkboxInputs.forEach(element =>{
+		element.addEventListener('click', function(){
+			checkedState(element);
+		});
+	});
 
 	newQuestionButton.addEventListener('click', function() {
 		showAddQuestionPage();
@@ -70,13 +86,6 @@ const init = function() {
 		});
 	});
 
-	submitQuestion.addEventListener('click', function() {
-		showMainPage();
-	});
-
-	submitEdit.addEventListener('click', function() {
-		showMainPage();
-	});
 
 	closeWindowButton.forEach(element => {
 		element.addEventListener('click', function() {
