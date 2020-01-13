@@ -50,3 +50,19 @@ var scoreCoin = 10; // score when you pickup something
 // list of possible colors
 var ColorList = ['0x0000ff', '0xff0000', '0x00ff00', '0xffff00', '0xff77ff', '0xff00ff','0xffffff','0x101010' ];
 var carColor = ColorList[7]; // color of the car
+
+
+
+
+
+//Variables needed for saving the game
+var player = "anoniem"; //default value
+var subjectdink;
+var difficulty = "makkelijk";
+var shortgameid;
+var mode = "SP";
+
+// methodes
+var getRandomInt = function(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
