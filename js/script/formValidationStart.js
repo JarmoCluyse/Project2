@@ -87,7 +87,8 @@ const enableValidation = function(){
 		if (isEmpty(typedInput)) {
 			showName1ErrorMsg();
 		} else {
-			removeName1ErrorMsg();
+            removeName1ErrorMsg();
+            localStorage.setItem("player", typedInput);
 		}
     });
 
