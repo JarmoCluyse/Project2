@@ -13,6 +13,9 @@ var gamePlayState = new Phaser.Class({
     create: function() {
         // Create objects
         console.log("scene: GamePlay");
+        // show game
+        jsScore.classList.remove('hide');
+        jsGame.classList.remove('hide');
         // set the background
         this.background1 = this.add.tileSprite(400,400,800,800, 'road')
         //creates an objects

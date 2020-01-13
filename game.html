@@ -17,23 +17,25 @@
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/screen.css">
   <!-- link to javascript -->
+  <script defer src="./js/script/dataHandler.js"></script>
+  <script defer src="./js/script/key.js"></script>
+  <script defer src="./js/gamefiles/GlobalVariables.js"></script>
   <script defer src="./js/gamefiles/Functions.js"></script>
-  <script src="./js/script/dataHandler.js"></script>
-  <script src="./js/script/key.js"></script>
-  <script src="./js/gamefiles/GlobalVariables.js"></script>
-  <script src="./js/gamefiles/Preload.js"></script>
-  <script src="./js/gamefiles/MainMenu.js"></script>
-  <script src="./js/gamefiles/gameOver.js"></script>
-  <script src="./js/gamefiles/GamePlay.js"></script>
-  <script src="./js/gamefiles/main.js"></script>
+  <script defer src="./js/gamefiles/Preload.js"></script>
+  <!-- scenes -->
+  <script defer src="./js/gamefiles/scenes/MainMenu.js"></script>
+  <script defer src="./js/gamefiles/scenes/GameOver.js"></script>
+  <script defer src="./js/gamefiles/scenes/GamePlay.js"></script>
+  <!-- start game -->
+  <script defer src="./js/gamefiles/main.js"></script>
 </head>
 <body>
   <section class="c-mainpage c-section">
           <div class="c-card c-main-card c-game-card">
             <div class="c-game-score">
-              <h2 class="js-score">score : 0</h2>
+              <h2 class="js-score hide">score : 0</h2>
             </div>
-            <div class="c-phaser" id="phaser">
+            <div class="c-phaser hide" id="phaser">
               <!-- here is game in -->
             </div>
         </div>
