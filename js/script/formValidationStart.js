@@ -62,6 +62,7 @@ const checkRadioButtons = function() {
 
 
 const startGame = function() {
+    localStorage.setItem("speed", document.getElementById('carSlider').value);
 	window.location.href = 'game.html';
 };
 
@@ -86,7 +87,8 @@ const enableValidation = function(){
 		if (isEmpty(typedInput)) {
 			showName1ErrorMsg();
 		} else {
-			removeName1ErrorMsg();
+            removeName1ErrorMsg();
+            localStorage.setItem("player", typedInput);
 		}
     });
 
