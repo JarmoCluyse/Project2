@@ -124,7 +124,7 @@ function hitObstacle(car, obstacle){
 
 function hitPickup(car, pickup){
     // pickup the coin
-    console.log("pickup");
+    // console.log("pickup");
     pickup.disableBody(true, true);//remove the pickup from the screen
     score += scoreCoin;
     placeScore();
@@ -169,7 +169,7 @@ function increasing(){
     if (increase){
         if (waitIncrease >= speedIncrease){
             speed += increaseValue;
-            console.log(speed);
+            // console.log(speed);
             
             waitIncrease = 0;
         }
