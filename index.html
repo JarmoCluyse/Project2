@@ -13,8 +13,9 @@
         <link rel="stylesheet" href="./css/screen.css"> 
         <script src="./js/script/dataHandler.js"></script>  
         <script src="./js/script/key.js"></script>
-        <script src="./js/gamefiles/GlobalVariables.js"></script>   
-        <script src="./js/script/adminPage.js"></script>     
+        <script src="./js/gamefiles/GlobalVariables.js"></script>
+        <script src="./js/script/startPage.js"></script>
+             
     </head>
     <body class="c-background-img">
         <section class="c-mainpage c-section">
@@ -35,10 +36,15 @@
                                     <h1 class="c-card__difficulty-title">
                                         Moeilijkheidsgraad instellen:
                                     </h1>
-                                    <ul class="o-list">
-                                        <li class="c-list__item">
-                                            <h3 class="c-list__item-question">Hoeveel continenten zijn er?</h3>
-
+                                    <div class="c-carSpeed">
+                                        <h2 class="c-card__difficulty-subtitle">
+                                            Snelheid van de auto:
+                                        </h2>
+                                        <div class="c-slider">
+                                            <input class="c-slider-input js-sliderCar" type="range" min="0" max="10" value="5" id="carSlider">
+                                            <output class="c-slider-output js-outputCar" id="carOutput">5</output>
+                                        </div>
+                                    </div>
                                     <div class="c-obstacles">
                                         <h2 class="c-card__difficulty-subtitle">
                                             Afstand tussen obstakels:
