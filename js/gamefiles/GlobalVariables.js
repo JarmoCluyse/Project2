@@ -40,7 +40,7 @@ var ColorList = ['0x0000ff', '0xff0000', '0x00ff00', '0xffff00', '0xff77ff', '0x
 // things we can edit 
 //------------------------------- //
 
-var speed = 5;  // speed of cars
+var BeginSpeed = 5;  // speed of cars
 var distance = 1; // distance between cars
 var increase = true; // if you can increase the speed while playing the game
 var speedIncrease = 3; // the rate of increasing

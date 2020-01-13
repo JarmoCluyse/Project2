@@ -40,6 +40,7 @@ var getRandomInt = function(max) {
     if(!gameStarted && !gameDone && !gameOver && e.key != "f"){
       // start the game
       gameStarted = true;
+      speed = BeginSpeed;
       game.scene.stop('MainMenu');
       game.scene.start('GamePlay');
     }

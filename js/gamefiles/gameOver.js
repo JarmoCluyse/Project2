@@ -13,7 +13,7 @@ var mainMenuState = new Phaser.Class({
 		postGame();
 		// log the current scene
 		console.log('scene: GameOver');
-		this.background1 = this.add.tileSprite(240,400,800,900, 'white')
+		this.background1 = this.add.tileSprite(400,400,900,900, 'white')
 		// page
 		Text = this.add.text(20, 300, 'score: ', {
 			fontSize: '32px',

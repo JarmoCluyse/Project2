@@ -14,11 +14,12 @@ var gamePlayState = new Phaser.Class({
         // Create objects
         console.log("scene: GamePlay");
         // set the background
-        this.background1 = this.add.tileSprite(240,400,480,800, 'road')    
+        this.background1 = this.add.tileSprite(400,400,800,800, 'road')
         //creates an objects
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
-        car = this.physics.add.sprite(60,630, 'car').setScale(1).setTint(carColor);
+        car = this.physics.add.sprite(400,630, 'car').setTint(carColor);
+
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
@@ -39,8 +40,8 @@ var gamePlayState = new Phaser.Class({
             //move all moving items down by the speed variable
             this.background1.tilePositionY -= speed
             for (i = 0; i < obstacles.children.entries.length; i++) {
-                if (obstacles.children.entries[i].y >= 750){
-                    obstacles.remove(obstacles.children.entries[i], false);
+                if (obstacles.children.entries[i].y >= 850){
+                    obstacles.remove(obstacles.children.entries[i], true);
                     //console.log(pickups.children.entries.length);
                     i--;
                 }
@@ -51,7 +52,7 @@ var gamePlayState = new Phaser.Class({
             }
             for (i = 0; i < pickups.children.entries.length; i++) {
                 if (pickups.children.entries[i].y >= 850){
-                    pickups.remove(pickups.children.entries[i], false);
+                    pickups.remove(pickups.children.entries[i], true);
                     //console.log(pickups.children.entries.length);
                     i--;
                 }
@@ -90,28 +91,34 @@ function moveCar(e)
 
         //move the car
         if (e.key == "ArrowLeft"){
-            car.x = 60;
+            car.x = 250;
         }
         if (e.key == "ArrowUp"){
-            car.x = 180;
+            car.x = 350;
         }
         if (e.key == "ArrowDown"){
-            car.x = 300;
+            car.x = 450;
         }
         if (e.key == "ArrowRight"){
-            car.x = 420;
+            car.x = 550;
         }
         if (e.key == " "){
-            car.x = 540;
+            car.x = 650;
         }
     }
 
 
 }
 // if a collision happens
-function hitObstacle(car, obstacles){
+function hitObstacle(car, obstacle){
     gameOver = true;
-    obstacles.disableBody(true, true);
+    for (i = obstacles.children.entries.length; i >= 0; i--) {
+        obstacles.remove(obstacles.children.entries[i], true);
+    }
+    for (i = pickups.children.entries.length; i >= 0; i--) {
+        pickups.remove(pickups.children.entries[i], true);
+    }
+
     
 }
 
@@ -123,13 +130,14 @@ function hitPickup(car, pickup){
     placeScore();
 
 }
+
 function setcars(){
     increasing();
     score += DriveScore;
     placeScore();
     let randomObstacles = getRandomobstakels();
     let randomPickups = getRandomInt(4 - randomObstacles);
-    arr = [60,180,300,420];
+    arr = [250,350,450, 550];
     arr = shuffle(arr);
     
     for (i = 0; i < randomObstacles; i++) {
@@ -146,7 +154,7 @@ function setcars(){
         
         pickups.create(arr[i+randomObstacles],-50, 'coin').setScale(.2);
     }
-    pickups.create(540,-50, 'coin').setScale(.2);
+    pickups.create(650,-50, 'coin').setScale(.2);
 }
 
 function getRandomobstakels() {

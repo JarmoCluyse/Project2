@@ -794,7 +794,7 @@ input::placeholder {
 .c-game-card {
 	margin: 2.5vh 0;
 	height: 95vh;
-	width: 80vw;
+	width: 95vw;
 	display: grid;
 	grid:auto / 20% 60% 20%;
 	grid-gap: 10px;

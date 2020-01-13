@@ -12,7 +12,7 @@ var mainMenuState = new Phaser.Class({
 
     create: function() {
         console.log("MainMenu");
-        this.background1 = this.add.tileSprite(240,400,800,900, 'white')
+        this.background1 = this.add.tileSprite(400,400,900,900, 'white')
         Text = this.add.text(16, 300, 'press arrow to start', { fontSize: '32px', fill: '#747474' });
         // look for key presses
         this.input.keyboard.on('keydown-RIGHT', keyListener);

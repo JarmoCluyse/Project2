@@ -3,8 +3,8 @@ var config = {
 	// Rendering auto
 	type: Phaser.AUTO,
 	// Width and height of the game
-	width: 480,
-	height: 700,
+	width: 800,
+	height: 800,
 	// Enable physics
 	physics: {
 		default: 'arcade',
