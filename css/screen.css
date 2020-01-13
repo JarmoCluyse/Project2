@@ -508,6 +508,7 @@ input::placeholder {
 
 .c-slider {
 	padding-top: calc(var(--global-baseline));
+	margin-top: var(--global-baseline);
 }
 
 .c-slider-input {
@@ -558,8 +559,10 @@ input::placeholder {
 	line-height: var(--global-whitespace);
 	color: var(--global-color-alpha-light);
 	margin-right: calc(var(--global-baseline) * 3);
+	margin-top: var(--global-baseline);
 	display: block;
 }
+
 
 .c-card__players-title {
 	padding-top: var(--global-baseline);
@@ -785,6 +788,7 @@ input::placeholder {
 
 .c-button__play {
 	font-size: 36px;
+	margin-top: calc(var(--global-baseline) * 3)
 }
 
 .c-main-card {
@@ -938,6 +942,9 @@ input::placeholder {
 	align-content: center;
 } 
 
+.c-goQuicker{
+	display: flex;
+}
 
 
 
@@ -947,6 +954,11 @@ input::placeholder {
 	margin-top: calc(var(--global-baseline) * 2);
 }
 
+.c-custom-options {
+	--custom-option__symbol-Fill: var(--global-color-alpha);
+	width: 0%;
+	margin-top: calc(var(--global-baseline) * 2);
+}
 
 .c-custom-option__fake-input {
 	display: flex;
@@ -1106,6 +1118,27 @@ input::placeholder {
 	margin-left: calc(var(--global-baseline));
 	display: none;
 }
+
+.c-goQuicker-subtitle {
+	margin-top: calc(var(--global-baseline) * 1.2);
+	margin-bottom: var(--global-baseline);
+}
+
+.c-errormsg-name1 {
+	margin-left: calc(var(--global-baseline) * 4);
+	display: none;
+}
+
+.c-errormsg-name2 {
+	margin-left: calc(var(--global-baseline) * 4);
+	display: none;
+}
+
+.c-errormsg-sessieId{
+	display: none;
+	justify-content: center;
+}
+
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/
