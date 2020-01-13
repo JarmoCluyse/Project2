@@ -58,20 +58,7 @@ const startGame = function(){
 };
 
 
-
-const init = function() {
-    console.log('Script geladen! 👍');
-
-    player2 = document.querySelector('.c-player2');
-    gameIdAvailable = document.querySelector('.c-gameIdAvailable');
-    codeInputBox = document.querySelector('.c-hasGameId')
-    newCode = document.querySelector('.c-hasNoGameId')
-    dropdownSelect = document.querySelector('.js-selectGameMode');
-    radioButtonYes = document.querySelector('.js-codeYes');
-    radioButtonNo = document.querySelector('.js-codeNo');
-    playButton = document.querySelector('.c-button-play')
-    carList = document.querySelector('.c-carColors2')
-
+const dropdownFunction = function(){
     dropdownSelectValue = dropdownSelect.options[dropdownSelect.selectedIndex].value;
 
     dropdownSelect.onchange = function(){
@@ -121,7 +108,20 @@ const init = function() {
 
 
     };
+};
 
+
+const sliderFunction = function(){
+    sliderCarspeed.oninput = function(){
+        outputCar.innerHTML = this.value;
+    };
+
+    sliderObstacle.oninput = function(){
+        outputObstacle.innerHTML = this.value;
+    };
+};
+
+const radioButtonFunction = function(){
     radioButtonYes.addEventListener('click', function(){
         if (newCodeBool == 1){
             removeNewcode();
@@ -135,15 +135,38 @@ const init = function() {
         }
         showNewCode();
     });
+};
 
+const playButtonFunction = function(){
     playButton.addEventListener('click', function(){
         if (dropdownSelectValue == "single-player"){
             startGame();
         }; 
     });
+};
 
+const init = function() {
+    console.log('Script geladen! 👍');
 
-    
+    player2 = document.querySelector('.c-player2');
+    gameIdAvailable = document.querySelector('.c-gameIdAvailable');
+    codeInputBox = document.querySelector('.c-hasGameId')
+    newCode = document.querySelector('.c-hasNoGameId')
+    dropdownSelect = document.querySelector('.js-selectGameMode');
+    radioButtonYes = document.querySelector('.js-codeYes');
+    radioButtonNo = document.querySelector('.js-codeNo');
+    playButton = document.querySelector('.c-button-play');
+    carList = document.querySelector('.c-carColors2');
+    sliderCarspeed = document.querySelector('.js-sliderCar');
+    sliderObstacle = document.querySelector('.js-sliderObstacle');
+    outputCar = document.querySelector('.js-outputCar');
+    outputObstacle = document.querySelector('.js-outputObstacle');
+
+    sliderFunction();
+    dropdownFunction();
+    radioButtonFunction();
+    playButtonFunction();
+
 };
 
 document.addEventListener('DOMContentLoaded', function() {
