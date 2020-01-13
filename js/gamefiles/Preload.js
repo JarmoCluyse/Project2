@@ -1,3 +1,6 @@
+//------------------------------- //
+// Preloads of the game
+//------------------------------- //
 var preloadState = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize:
@@ -10,8 +13,9 @@ var preloadState = new Phaser.Class({
     this.load.image('car', 'assets/car.png');
     this.load.image('coin', 'assets/coin.png');
     this.load.image('white', 'assets/white.png');
+    player = localStorage.getItem("player");
+    
     },
-
     create: function() {
         console.log("Preload");
         game.scene.start('MainMenu');

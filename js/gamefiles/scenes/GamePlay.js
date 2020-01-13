@@ -13,12 +13,18 @@ var gamePlayState = new Phaser.Class({
     create: function() {
         // Create objects
         console.log("scene: GamePlay");
+        // show game
+        jsScore.classList.remove('hide');
+        jsGame.classList.remove('hide');
         // set the background
         this.background1 = this.add.tileSprite(400,400,800,800, 'road')
         //creates an objects
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
         car = this.physics.add.sprite(400,630, 'car').setTint(carColor);
+
+        console.log(BeginSpeed);
+        speed = BeginSpeed;
 
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
