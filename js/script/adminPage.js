@@ -1,6 +1,8 @@
-const getQuestions = function (lang) {
+const getQuestions = function(lang){
     handleData(`${BASEURI}questions?code=${key}`, showQuestions)
 };
+
+
 const showQuestions = function (data) {
 	console.log(data);
 	let listElement = document.getElementById("questionsList");

@@ -1,7 +1,5 @@
 let newCodeBool, inputBoxBool, player2Bool, doYouHaveCodeBool
 
-
-
 const showPlayer2 = function(){
     player2.style.display = "block";
     carList.style.display = "block";
