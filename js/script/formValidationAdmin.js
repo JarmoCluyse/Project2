@@ -14,8 +14,8 @@ let subject = {},
     checkboxEdit = {},
     isChecked = 0,
     isCheckedEdit = 0,
-    addQuestionHasError = 0,
-    editQuestionHasError = 0;
+    addQuestionHasError = 1,
+    editQuestionHasError = 1;
 
 const isEmpty = function(fieldValue) {
 	return !fieldValue || !fieldValue.length;
@@ -141,13 +141,7 @@ const checkCheckboxes = function() {
 	} else {
         document.querySelector('.c-warning').style.display = 'none';
         if (addQuestionHasError == 0){
-            showMainPage();
-            let newQuestionValue = newQuestion.input.value;
-            let newQuestionAnswer1Value = newQuestionAnswer1.input.value;
-            let newQuestionAnswer2Value = newQuestionAnswer2.input.value;
-            let newQuestionAnswer3Value = newQuestionAnswer3.input.value;
-            let newQuestionAnswer4Value = newQuestionAnswer4.input.value;
-            
+            startGame();   
         }
 	}
 };
