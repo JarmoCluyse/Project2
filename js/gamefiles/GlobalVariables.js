@@ -1,3 +1,4 @@
+const BASEURI = 'https://project2driveacar.azurewebsites.net/api/';
 // Declare myGame, the object that contains our game's states
 var myGame = {
     //Define our game states
@@ -28,7 +29,11 @@ var scoreDificulty = 5;
 var scoreCoint = 10;
 // list of colors
 var ColorList = ['0x0000ff', '0xff0000', '0x00ff00', '0xffff00', '0xff77ff', '0xff00ff'];
-
+var player = "anoniem"; //default value
+var subject;
+var difficulty = "makkelijk";
+var shortgameid;
+var mode = "SP";
 
 // methodes
 var getRandomInt = function(max) {
