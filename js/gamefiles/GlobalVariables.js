@@ -1,21 +1,27 @@
+//------------------------------- //
+// Declare Game
+//------------------------------- //
+
 const BASEURI = 'https://project2driveacar.azurewebsites.net/api/';
 // Declare myGame, the object that contains our game's states
 var myGame = {
     //Define our game states
     scenes: [],
-  
     // Define common framerate to be referenced in animations
-    frameRate: 10
+    frameRate: 60
   };
 
-// The player - car
+//------------------------------- //
+// variables of the game
+//------------------------------- //
+
 var car;
-//contains the obstacles
 var obstacles;
-//contains the pickups
 var pickups;
-// rest
+// score of the game
 var score = 0;
+var waitIncrease = 0;
+// game states
 var gameStarted = false;
 var gameOver = false;
 var gameDone = false;
@@ -29,30 +35,18 @@ var scoreDificulty = 5;
 var scoreCoint = 10;
 // list of colors
 var ColorList = ['0x0000ff', '0xff0000', '0x00ff00', '0xffff00', '0xff77ff', '0xff00ff'];
-var player = "anoniem"; //default value
-var subject;
-var difficulty = "makkelijk";
-var shortgameid;
-var mode = "SP";
 
-// methodes
-var getRandomInt = function(max) {
-  return Math.floor(Math.random() * Math.floor(max));
-}
+//------------------------------- //
+// things we can edit 
+//------------------------------- //
 
-var shuffle = function(array) {
-  var ctr = array.length, temp, index;
-
-  // While there are elements in the array
-      while (ctr > 0) {
-  // Pick a random index
-          index = Math.floor(Math.random() * ctr);
-  // Decrease ctr by 1
-          ctr--;
-  // And swap the last element with it
-          temp = array[ctr];
-          array[ctr] = array[index];
-          array[index] = temp;
-      }
-      return array;
-}
+var speed = 5;  // speed of cars
+var distance = 1; // distance between cars
+var increase = true; // if you can increase the speed while playing the game
+var speedIncrease = 3; // the rate of increasing
+var increaseValue = 0.5; // value that we increase with
+var DriveScore = 5; // score for driving
+var scoreCoin = 10; // score when you pickup something
+// list of possible colors
+var ColorList = ['0x0000ff', '0xff0000', '0x00ff00', '0xffff00', '0xff77ff', '0xff00ff','0xffffff','0x101010' ];
+var carColor = ColorList[7]; // color of the car

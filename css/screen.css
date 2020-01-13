@@ -735,6 +735,25 @@ input::placeholder {
 .c-main-card {
 	opacity: 1;
 }
+/* game allignement */
+.c-game-card {
+	margin: 2.5vh 0;
+	height: 95vh;
+	width: 80vw;
+	display: grid;
+	grid:auto / 20% 60% 20%;
+	grid-gap: 10px;
+}
+.c-game-score {
+	padding: 20px;
+	grid-column: 0;
+	grid-row: 0;
+}
+.c-phaser {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .c-add-card {
 	display: none;
@@ -929,11 +948,6 @@ input::placeholder {
 	transform: scale(1);
 }
 
-.c-phaser {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .c-card__carColor-select {
 	margin-top: 0;
@@ -1289,6 +1303,9 @@ input::placeholder {
 	.u-5-of-6-bp4 {
 		width: 83.3333333333% !important;
 	}
+}
+.hide {
+    display: none
 }
 
 /*------------------------------------*\
