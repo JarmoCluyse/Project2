@@ -20,9 +20,17 @@ const checkRadioButtons = function() {
 
 const startGame = function() {
     localStorage.setItem("BeginSpeed", document.getElementById('carSlider').value);
-    localStorage.setItem("Distance", document.getElementById('carSlider').value);
-    localStorage.setItem("increase", document.getElementById('carSlider').value);
-    localStorage.setItem("color", document.getElementById('carSlider').value);
+	localStorage.setItem("Distance", document.getElementById('obstacleSlider').value);
+	localStorage.setItem("Player", document.getElementById('Name1').value);
+	console.log(document.getElementById('Name1').value);
+	
+	if (document.getElementById("checkbox1").checked){
+		localStorage.setItem("increase", true);
+	} 
+	else {
+		localStorage.setItem("increase", false);
+	}
+    localStorage.setItem("color", document.getElementById('selectCarColorPlayer1').value);
     if (startGameBool == 1){
         window.location.href = 'game.html';
     }
