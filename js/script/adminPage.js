@@ -78,10 +78,10 @@ const showEditQuestionPage = function(qid) {
 };
 
 const showMainPage = function() {
+	editCard.style.display = 'none';
+	addCard.style.display = 'none';
 	mainCard.style.opacity = 1;
 	mainCard.style.pointerEvents = 'auto';
-	addCard.style.display = 'none';
-	editCard.style.display = 'none';
 };
 
 const checkedState = function(checkboxElement){
