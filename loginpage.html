@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Drive a car musician - login</title>
+        <meta name="description" content="This is my HTML5 boilerplate.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="msapplication-TileColor" content="#091C2A">
+        <meta name="theme-color" content="#091C2A">
+
+        <link rel="stylesheet" href="./css/normalize.css">
+        <link rel="stylesheet" href="./css/screen.css"> 
+        <script src="./js/script/dataHandler.js"></script>  
+        <script src="./js/script/key.js"></script>
+        <script src="./js/gamefiles/GlobalVariables.js"></script>
+        <script src="./js/script/formValidationLogin.js"></script>
+        <script src="./js/script/loginPage.js"></script>        
+    </head>
+    <body class="c-background-img">
+        <section class="c-mainpage c-section">
+            <div class="o-row o-row--lg">
+                <div class="c-grid">
+                    <div class="c-grid__item u-grid-column__title u-grid-row__title-login">
+                        <div class="c-header">
+                            <h1 class="c-title">
+                                Login
+                            </h1>
+                        </div>
+                    </div>
+                    <form class="c-grid__item u-grid-column__login u-grid-row__login" action="#" method="POST">
+                        <div class="c-card c-login-card">
+                            <h1 class="c-card__add-title c-login__title">
+                                Login op je account
+                            </h1>
+
+                            <h2 class="c-login__input-titles">
+                                e-mailadres
+                            </h2>
+                            <p class="c-form-field c-form__login-email">
+                                <input class="c-input-email c-input" type="email" name="email" id="email" placeholder="vb. john@doe.com" required>
+                            </p>
+
+                            <h2 class="c-login__input-titles">
+                                wachtwoord
+                            </h2>
+                            <p class="c-form-field c-form__login-email">
+                                <input class="c-input-email c-input" type="password" name="password" id="password" required>
+                            </p>
+
+                            <p class="c-login-button">
+                                <button class="o-button-reset c-button c-button__login" type="button">aanmelden</button>
+                            </p>
+                            <a href="#" class="c-forgot__pass">Wachtwoord vergeten?</a>
+
+                            <div class="c-login__footer">
+                                <p class="c-login__footer-content">
+                                    Nog geen account? <a class="js-makeAccount" href="#">Maak een account</a> 
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+
+                    <form class="c-grid__item u-grid-column__login u-grid-row__login" action="#" method="POST">
+                        <div class="c-card c-new-account-card">
+                            <h1 class="c-card__add-title c-login__title">
+                                Maak een nieuw account aan
+                            </h1>
+
+                            <h2 class="c-login__input-titles">
+                                voornaam
+                            </h2>
+                            <p class="c-form-field c-form__login-email">
+                                <input class="c-input-email c-input" type="text" name="newAccountName" id="newAccountName" required>
+                            </p>
+
+                            <h2 class="c-login__input-titles">
+                                naam
+                            </h2>
+                            <p class="c-form-field c-form__login-email">
+                                <input class="c-input-email c-input" type="text" name="newAccountFirstName" id="newAccountFirstName" required>
+                            </p>
+
+                            <h2 class="c-login__input-titles">
+                                e-mailadres
+                            </h2>
+                            <p class="c-form-field c-form__login-email">
+                                <input class="c-input-email c-input" type="email" name="newEmail" id="newEmail" placeholder="vb. john@doe.com" required>
+                            </p>
+
+                            <h2 class="c-login__input-titles">
+                                wachtwoord
+                            </h2>
+                            <p class="c-form-field c-form__login-email">
+                                <input class="c-input-email c-input" type="password" name="newPassword" id="newPassword" required>
+                            </p>
+
+                            <h2 class="c-login__input-titles">
+                                herhaal wachtwoord
+                            </h2>
+                            <p class="c-form-field c-form__login-email">
+                                <input class="c-input-email c-input" type="password" name="repeatNewPassword" id="repeatNewPassword" required>
+                            </p>
+
+                            <p class="c-login-button">
+                                <button class="o-button-reset c-button c-button__login js-createAccount" type="button">maak account</button>
+                            </p>
+
+                            <div class="c-login__footer">
+                                <p class="c-login__footer-content">
+                                    Al een account? <a class="js-login" href="#">Meld je hier aan</a> 
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
