@@ -14,8 +14,9 @@ var gamePlayState = new Phaser.Class({
         // Create objects
         console.log("scene: GamePlay");
         // show game
-        jsScore.classList.remove('hide');
+        jsGameStart.classList.add('hide');
         jsGamePlay.classList.remove('hide');
+        jsGameEnd.classList.add('hide');
         // set the background
         this.background1 = this.add.tileSprite(400,400,800,800, 'road')
         //creates an objects
@@ -30,12 +31,6 @@ var gamePlayState = new Phaser.Class({
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
 
-        setInterval(function() {
-            if (!gameOver && gameStarted){
-                setcars();
-                }
-            }, distance * 1000);
-
         //add callbacks for arrow key presses
         this.input.keyboard.on('keydown-RIGHT', moveCar);
         this.input.keyboard.on('keydown-UP', moveCar);
@@ -45,7 +40,7 @@ var gamePlayState = new Phaser.Class({
     
     },
 
-    update: function() {
+    update: function() {        
         if (!gameOver)
         {
             //move all moving items down by the speed variable
@@ -143,7 +138,6 @@ function hitPickup(car, pickup){
 }
 
 function setcars(){
-    console.log('ok');
     increasing();
     score += DriveScore;
     placeScore();

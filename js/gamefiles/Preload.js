@@ -18,6 +18,11 @@ var preloadState = new Phaser.Class({
     create: function() {
         console.log("Preload");
         game.scene.start('MainMenu');
+        setInterval(function() {
+            if (!gameOver && gameStarted){
+                setcars();
+                }
+            }, distance * 1000);
     },
     update: function() {
         // Update objects & variables

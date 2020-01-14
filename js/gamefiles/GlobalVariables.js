@@ -31,7 +31,9 @@ var myGame = {// Declare myGame
 // variables of the game
 //------------------------------- //
 var jsScore = document.querySelector(".js-score") // score html
-var jsGamePlay = document.querySelector(".js-gamePlay") // score html
+var jsGamePlay = document.querySelector(".js-gamePlay") // game html
+var jsGameStart = document.querySelector(".js-gameStart") // gamestart html
+var jsGameEnd = document.querySelector(".js-gameEnd") // gamestart html
 console.log(jsGamePlay);
 
 var car; // users
