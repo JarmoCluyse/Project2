@@ -60,7 +60,6 @@ const dropdownFunction = function() {
 			dropdownSelect.options[dropdownSelect.selectedIndex].value;
 
 		if (dropdownSelectValue == 'single-player') {
-            startGameHasError = 2;
 			if (newCodeBool == 1) {
 				removeNewcode();
 			}
@@ -79,7 +78,6 @@ const dropdownFunction = function() {
 		}
 
 		if (dropdownSelectValue == 'co-op') {
-            startGameHasError = 4;
 			if (newCodeBool == 1) {
 				removeNewcode();
 			}
@@ -94,14 +92,16 @@ const dropdownFunction = function() {
 			showPlayer2();
 		}
 
-		if (dropdownSelectValue == 'multiplayer') {
-			startGameBool = 0;
-			if (player2Bool == 1) {
-				removePlayer2();
-			}
+		// ------  Multiplayer  -----------
+		
+		// if (dropdownSelectValue == 'multiplayer') {
+		// 	startGameBool = 0;
+		// 	if (player2Bool == 1) {
+		// 		removePlayer2();
+		// 	}
 
-			showDoYouHaveCode();
-		}
+		// 	showDoYouHaveCode();
+		// }
 	};
 };
 

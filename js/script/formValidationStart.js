@@ -1,22 +1,24 @@
 let gameId = {};
-    radioChecked = 0,
-	radioButtons = {};
+// ------  Multiplayer  -----------
+    // radioChecked = 0,
+	// radioButtons = {};
 
 const isEmpty = function(fieldValue) {
 	return !fieldValue || !fieldValue.length;
 };
 
+// ------  Multiplayer  -----------
 
-const checkRadioButtons = function() {
-	if (radioChecked == 0) {
-		document.querySelector('.c-errormsg-radiobuttons').style.display = 'block';
-	} else {
-        if (radioNo.checked == true){
-            startGameBool = 1;
-        }
-        document.querySelector('.c-errormsg-radiobuttons').style.display = 'none';
-	}
-};
+// const checkRadioButtons = function() {
+// 	if (radioChecked == 0) {
+// 		document.querySelector('.c-errormsg-radiobuttons').style.display = 'block';
+// 	} else {
+//         if (radioNo.checked == true){
+//             startGameBool = 1;
+//         }
+//         document.querySelector('.c-errormsg-radiobuttons').style.display = 'none';
+// 	}
+// };
 
 const resetInputs = function(){
     document.querySelector('.js-sliderCar').value = 5;
@@ -30,6 +32,11 @@ const resetInputs = function(){
     });
     document.getElementById('Name1').value = "";
     document.getElementById('Name2').value = "";
+    radioNo.checked = false;
+    radioYes.checked = false;
+    gameId.value = "";
+    document.getElementById('sessieId').value = "";
+
 };
 
 const startGame = function() {
@@ -55,26 +62,24 @@ const startGame = function() {
 };
 
 const getDOMContent = function() {
-	console.log('formValidation geladen! 👍');
-	gameId.input = document.getElementById('gameId');
-	radioButtons.input = document.getElementsByName('radios');
-	radioNo = document.getElementById('radioNo');
-    radioYes = document.getElementById('radioYes');
-    gameId.input = document.getElementById('gameId');
+    console.log('formValidation geladen! 👍');
+    // ------  Multiplayer  -----------
+	// radioButtons.input = document.getElementsByName('radios');
+	// radioNo = document.getElementById('radioNo');
+    // radioYes = document.getElementById('radioYes');
+    // gameId.input = document.getElementById('gameId');
 	startGameButton = document.querySelector('.js-play');
 };
 
 const enableValidation = function() {
 
-    gameId.input.addEventListener('blur', function(){
-        if (gameId.input.value != ""){
-            startGameBool = 1;
-        }
+    // ------  Multiplayer  -----------
 
-        else {
-            startGameBool = 0;
-        }
-    })
+    // gameId.input.addEventListener('blur', function(){
+    //     if (gameId.input.value != ""){
+    //         startGameBool = 1;
+    //     }
+    // })
 
 	radioNo.addEventListener('click', function() {
 		document.querySelector('.c-errormsg-radiobuttons').style.display =
@@ -87,18 +92,20 @@ const enableValidation = function() {
 	});
 
 	startGameButton.addEventListener('click', function() {
-		radioButtons.input.forEach(element => {
-			if (element.checked) {
-				radioChecked += 1;
-				checkRadioButtons();
-			} else {
-				checkRadioButtons();
-			}
-        });
+        // ------  Multiplayer  -----------
+
+		// radioButtons.input.forEach(element => {
+		// 	if (element.checked) {
+		// 		radioChecked += 1;
+		// 		checkRadioButtons();
+		// 	} else {
+		// 		checkRadioButtons();
+		// 	}
+        // });
 
         startGame();
 
-		radioChecked = 0;
+		// radioChecked = 0;
 	});
 };
 
