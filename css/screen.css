@@ -796,12 +796,27 @@ input::placeholder {
 	opacity: 1;
 }
 /* game allignement */
+.c-gameStart{
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}
 .c-game {
 	display: grid;
 	width: 100%;
 	height: 100%;
 	grid:auto / 20% 60% 20%;
 	grid-gap: 10px;
+}
+.c-gameEnd{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
 }
 .c-game-card {
 	margin: 2.5vh 0;
@@ -1484,7 +1499,7 @@ input::placeholder {
 	}
 }
 .hide {
-    display: none
+    display: none;
 }
 
 /*------------------------------------*\

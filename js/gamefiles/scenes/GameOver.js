@@ -13,6 +13,9 @@ var mainMenuState = new Phaser.Class({
 	},
 
 	create: function() {
+		jsGameStart.classList.add('hide');
+        jsGamePlay.classList.add('hide');
+        jsGameEnd.classList.remove('hide');
 		// log the current scene
 		console.log('scene: GameOver');
 		// send to database
