@@ -14,7 +14,6 @@
         <script src="./js/gamefiles/GlobalVariables.js"></script> 
         <script src="./js/script/dataHandler.js"></script>     
         <script src="./js/script/adminPage.js"></script>     
-        <script src="./js/script/formValidation.js"></script>   
         <script src="./js/script/key.js"></script>
         <script src="./js/script/formValidationAdmin.js"></script>    
     </head>
@@ -35,14 +34,18 @@
                                 <div class="c-card__questions">
                                     <div class="c-subject">
                                         <h1 class="c-card__questions-title">
-                                            Geef een onderwerp in voor deze lijst:
+                                            Kies een onderwerp waarover de vragen zullen gaan:
                                         </h1>
-                                        <p class="c-form-field">
-                                            <input class="c-input-subject c-input" type="text" name="Subject" id="Subject" placeholder="vb. Wiskunde" required>
-                                            <span class="c-errormsg c-subject-errormsg">
-                                                Gelieve een onderwerp in te vullen.
-                                            </span>
-                                        </p>
+                                        <span class="c-custom-select c-card__carColor-select">
+                                            <select class="c-input" name="select" id="select">
+                                                <option value="wiskunde">Wiskunde</option>
+                                                <option value="aardrijkskunde">Aardrijkskunde</option>
+                                                <option value="spelling">Spelling</option>
+                                            </select>
+                                            <svg class="c-custom-select__symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M7,10l5,5,5-5Z"/>
+                                            </svg>
+                                        </span>    
                                     </div>
 
                                     <h1 class="c-card__questions-title">
@@ -155,7 +158,7 @@
                         </div>
 
                         <div class="c-grid__item u-grid-column__add-question u-grid-row__add-question">
-                            <div class="c-card c-card__add c-add-card">
+                            <form class="c-card c-card__add c-add-card" action="#"  onsubmit="return showMainPage()">
                                 <div class="c-card__title">
                                     <h1 class="c-card__add-title">
                                         Vraag aanmaken
@@ -172,9 +175,14 @@
 
                                 <p class="c-form-field">
                                     <input class="c-input-question c-input" type="text" name="newQuestion" id="newQuestion" placeholder="vb. Wat is de som van 27 + 41?" required>
-                                    <span class="c-errormsg c-newQuestion-errormsg">
-                                        Je kan de vraag niet leeg laten!
-                                    </span>
+                                </p>
+
+                                <h2 class="c-card__add-question">
+                                    Onderwerp van de vraag:
+                                </h2>
+
+                                <p class="c-form-field">
+                                    <input class="c-input-question c-input" type="text" name="newSubject" id="newSubject" placeholder="vb. Wiskunde" required>
                                 </p>
 
                                 <h2 class="c-card__add-question">
@@ -186,12 +194,9 @@
                                         <div class="c-list__item-answer">
                                             <p class="c-form-field__answers">
                                                 <input class="c-input c-input-answer js-newQuestionAnswer" type="text" name="newQuestionAnswer1" id="newQuestionAnswer1" placeholder="vb. 78" required>
-                                                <span class="c-errormsg c-newQuestion__answer-errormsg1">
-                                                    Je kan dit niet leeg laten!
-                                                </span>
                                             </p>
                                             
-                                            <input class="o-hide-accessible  c-option--hidden js-checkbox" type="checkbox" id="checkbox1" checked>
+                                            <input class="o-hide-accessible  c-option--hidden js-checkbox" type="checkbox" id="checkbox1">
                                             <label class="c-custom-option" for="checkbox1">
                                                 <span class="c-custom-option__fake-input c-custom-option__fake-input--checkbox">
                                                     <svg class="c-custom-option__symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 6.75">
@@ -205,9 +210,6 @@
                                         <div class="c-list__item-answer">
                                             <p class="c-form-field__answers">
                                                 <input class="c-input c-input-answer js-newQuestionAnswer" type="text" name="newQuestionAnswer2" id="newQuestionAnswer2" placeholder="vb. 78" required>
-                                                <span class="c-errormsg c-newQuestion__answer-errormsg2">
-                                                    Je kan dit niet leeg laten!
-                                                </span>
                                             </p>
                                             
                                             <input class="o-hide-accessible  c-option--hidden js-checkbox" type="checkbox" id="checkbox2">
@@ -224,9 +226,6 @@
                                         <div class="c-list__item-answer">
                                             <p class="c-form-field__answers">
                                                 <input class="c-input c-input-answer js-newQuestionAnswer" type="text" name="newQuestionAnswer3" id="newQuestionAnswer3" placeholder="vb. 78" required>
-                                                <span class="c-errormsg c-newQuestion__answer-errormsg3">
-                                                    Je kan dit niet leeg laten!
-                                                </span>
                                             </p>
                                             
                                             <input class="o-hide-accessible  c-option--hidden js-checkbox" type="checkbox" id="checkbox3">
@@ -243,9 +242,6 @@
                                         <div class="c-list__item-answer">
                                             <p class="c-form-field__answers">
                                                 <input class="c-input c-input-answer js-newQuestionAnswer" type="text" name="newQuestionAnswer4" id="newQuestionAnswer4" placeholder="vb. 78" required>
-                                                <span class="c-errormsg c-newQuestion__answer-errormsg4">
-                                                    Je kan dit niet leeg laten!
-                                                </span>
                                             </p>
                                             
                                             <input class="o-hide-accessible  c-option--hidden js-checkbox" type="checkbox" id="checkbox4">
@@ -268,12 +264,12 @@
                                         <button class="o-button-reset c-button">Voeg toe aan vragenlijst</button>
                                     </p>
                                 </div>
-                            </div>
+                            </form>
                         </div>
 
 
                         <div class="c-grid__item u-grid-column__add-question u-grid-row__add-question">
-                            <div class="c-card c-card__add c-edit-card">
+                            <form class="c-card c-card__add c-edit-card" action="#" onsubmit="return showMainPage()">
                                 <div class="c-card__title">
                                     <h1 class="c-card__add-title">
                                         Vraag bewerken
@@ -290,9 +286,14 @@
 
                                 <p class="c-form-field">
                                     <input class="c-input-question c-input" type="text" name="editQuestion" id="editQuestion" value="Hoeveel continenten zijn er?" placeholder="vb. Wat is de som van 27 + 41?" required>
-                                    <span class="c-errormsg c-editQuestion-errormsg">
-                                        Je kan de vraag niet leeg laten!
-                                    </span>
+                                </p>
+
+                                <h2 class="c-card__add-question">
+                                    Onderwerp van de vraag:
+                                </h2>
+
+                                <p class="c-form-field">
+                                    <input class="c-input-question c-input" type="text" name="editSubject" id="editSubject" value="Wiskunde" placeholder="vb. Wiskunde" required>
                                 </p>
 
                                 <h2 class="c-card__add-question">
@@ -304,9 +305,6 @@
                                         <div class="c-list__item-answer">
                                             <p class="c-form-field__answers">
                                                 <input class="c-input c-input-answer" type="text" name="editQuestionAnswer1" id="editQuestionAnswer1" value="5" placeholder="vb. 78" required>
-                                                <span class="c-errormsg c-editQuestion__answer-errormsg1">
-                                                    Je kan dit niet leeg laten!
-                                                </span>
                                             </p>
                                             
                                             <input class="o-hide-accessible  c-option--hidden js-checkboxEdit" type="checkbox" id="checkbox5" checked>
@@ -323,9 +321,6 @@
                                         <div class="c-list__item-answer">
                                             <p class="c-form-field__answers">
                                                 <input class="c-input c-input-answer" type="text" name="editQuestionAnswer2" id="editQuestionAnswer2" value="2" placeholder="vb. 78" required>
-                                                <span class="c-errormsg c-editQuestion__answer-errormsg2">
-                                                    Je kan dit niet leeg laten!
-                                                </span>
                                             </p>
                                             
                                             <input class="o-hide-accessible  c-option--hidden js-checkboxEdit" type="checkbox" id="checkbox6">
@@ -342,9 +337,6 @@
                                         <div class="c-list__item-answer">
                                             <p class="c-form-field__answers">
                                                 <input class="c-input c-input-answer" type="text" name="editQuestionAnswer3" id="editQuestionAnswer3" value="7" placeholder="vb. 78" required>
-                                                <span class="c-errormsg c-editQuestion__answer-errormsg3">
-                                                    Je kan dit niet leeg laten!
-                                                </span>
                                             </p>
                                             
                                             <input class="o-hide-accessible  c-option--hidden js-checkboxEdit" type="checkbox" id="checkbox7">
@@ -361,9 +353,6 @@
                                         <div class="c-list__item-answer">
                                             <p class="c-form-field__answers">
                                                 <input class="c-input c-input-answer" type="text" name="editQuestionAnswer4" id="editQuestionAnswer4" value="9" placeholder="vb. 78" required>
-                                                <span class="c-errormsg c-editQuestion__answer-errormsg4">
-                                                    Je kan dit niet leeg laten!
-                                                </span>
                                             </p>
                                             
                                             <input class="o-hide-accessible  c-option--hidden js-checkboxEdit" type="checkbox" id="checkbox8">
@@ -386,7 +375,7 @@
                                         <button class="o-button-reset c-button">Bewerk vraag</button>
                                     </p>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

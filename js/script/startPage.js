@@ -1,4 +1,4 @@
-let newCodeBool, inputBoxBool, player2Bool, doYouHaveCodeBool;
+let newCodeBool, inputBoxBool, player2Bool, doYouHaveCodeBool, startGameBool = 1;
 
 const showPlayer2 = function() {
 	player2.style.display = 'block';
@@ -93,6 +93,7 @@ const dropdownFunction = function() {
 		}
 
 		if (dropdownSelectValue == 'multiplayer') {
+			startGameBool = 0;
 			if (player2Bool == 1) {
 				removePlayer2();
 			}

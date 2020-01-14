@@ -28,9 +28,8 @@
                             </h1>
                         </div>
                     </div>
-
-                    <div class="c-grid__item u-grid-column__card u-grid-row__card">
-                        <li class="c-card c-newGame-card">
+                    <form class="c-grid__item u-grid-column__card u-grid-row__card" action="#">
+                        <div class="c-card c-newGame-card">
                             <div class="c-card__dropdowns">
                                 <div class="c-card__difficulty">
                                     <h1 class="c-card__difficulty-title">
@@ -41,7 +40,7 @@
                                             Snelheid van de auto:
                                         </h2>
                                         <div class="c-slider">
-                                            <input class="c-slider-input js-sliderCar" type="range" min="0" max="10" value="5" id="carSlider">
+                                            <input class="c-slider-input js-sliderCar" type="range" min="1" max="10" value="5" id="carSlider">
                                             <output class="c-slider-output js-outputCar" id="carOutput">5</output>
                                         </div>
                                     </div>
@@ -50,7 +49,7 @@
                                             Afstand tussen obstakels:
                                         </h2>
                                         <div class="c-slider">
-                                            <input class="c-slider-input js-sliderObstacle" type="range" min="0" max="10" value="5" id="obstacleSlider">
+                                            <input class="c-slider-input js-sliderObstacle" type="range" min="1" max="10" value="5" id="obstacleSlider">
                                             <output class="c-slider-output js-outputObstacle" id="obstacleOutput">5</output>
                                         </div>
                                     </div>
@@ -76,7 +75,7 @@
                                     </h1>
                                     <p class="c-form-field">
                                         <span class="c-custom-select">
-                                            <select class="c-input  js-selectGameMode" name="select" id="select">
+                                            <select class="c-input  js-selectGameMode" name="select" id="selectGameMode">
                                                 <option value="single-player">Alleen</option>
                                                 <option value="co-op">Samen spelen</option>
                                                 <option value="multiplayer">Tegen elkaar</option>
@@ -98,7 +97,7 @@
                                             Naam:
                                         </h2>
                                         <p class="c-form-field">
-                                            <input class="c-input-name c-input" type="text" name="Name1" id="Name1" placeholder="vb. Tommy" required>
+                                            <input class="c-input-name c-input" type="text" name="Name1" id="Name1" placeholder="vb. Tommy">
                                             <span class="c-errormsg c-errormsg-name1">
                                                 Vergeet niet je naam in te vullen!
                                             </span>
@@ -113,7 +112,7 @@
                                             Naam:
                                         </h2>
                                         <p class="c-form-field">
-                                            <input class="c-input-name c-input" type="text" name="Name2" id="Name2" placeholder="vb. Eline" required>
+                                            <input class="c-input-name c-input" type="text" name="Name2" id="Name2" placeholder="vb. Eline">
                                             <span class="c-errormsg c-errormsg-name2">
                                                 Vergeet niet je naam in te vullen!
                                             </span>
@@ -131,7 +130,7 @@
                                         </h2>
     
                                         <span class="c-custom-select c-card__carColor-select">
-                                            <select class="c-input" name="select" id="select">
+                                            <select class="c-input" name="select" id="selectCarColorPlayer1">
                                                 <option value="blauw">Blauw</option>
                                                 <option value="groen">Groen</option>
                                                 <option value="wit">Wit</option>
@@ -156,7 +155,7 @@
                                         </h2>
     
                                         <span class="c-custom-select c-card__carColor-select">
-                                            <select class="c-input" name="select" id="select">
+                                            <select class="c-input" name="select" id="selectCarColorPlayer2">
                                                 <option value="blauw">Blauw</option>
                                                 <option value="groen">Groen</option>
                                                 <option value="wit">Wit</option>
@@ -230,7 +229,7 @@
                                         Geef een sessie-id in:
                                     </h1>
                                     <div class="c-form-field c-gameId__input">
-                                        <input class="c-input c-input__gameId" type="text" name="sessieId" id="sessieId" placeholder="vb. S-6865" required>
+                                        <input class="c-input c-input__gameId" type="text" name="sessieId" id="sessieId" placeholder="vb. S-6865">
                                     </div>
                                     <span class="c-errormsg c-errormsg-sessieId">
                                         Vergeet niet je sessie-id in te vullen!
@@ -245,7 +244,7 @@
                                 Controleer of je alles wel hebt ingevuld!
                             </span>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </section>
