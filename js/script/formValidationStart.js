@@ -18,13 +18,40 @@ const checkRadioButtons = function() {
 	}
 };
 
+const resetInputs = function(){
+    document.querySelector('.js-sliderCar').value = 5;
+    document.querySelector('.js-outputCar').innerHTML = 5;
+	document.querySelector('.js-sliderObstacle').value = 5;
+    document.querySelector('.js-outputObstacle').innerHTML = 5;
+    document.querySelector('.js-goQuicker').checked = false;
+    dropdowns = document.getElementsByName('select');
+    dropdowns.forEach(element => {
+        element.selectedIndex = 0;
+    });
+    document.getElementById('Name1').value = "";
+    document.getElementById('Name2').value = "";
+};
+
 const startGame = function() {
+    localStorage.setItem("BeginSpeed", document.getElementById('carSlider').value);
+	localStorage.setItem("Distance", document.getElementById('obstacleSlider').value);
+	localStorage.setItem("Player", document.getElementById('Name1').value);
+	console.log(document.getElementById('Name1').value);
+	
+	if (document.getElementById("checkbox1").checked){
+		localStorage.setItem("increase", true);
+	} 
+	else {
+		localStorage.setItem("increase", false);
+	}
+    localStorage.setItem("color", document.getElementById('selectCarColorPlayer1').value);
+    localStorage.setItem("color2", document.getElementById('selectCarColorPlayer2').value);
+    
     if (startGameBool == 1){
+        resetInputs();
         window.location.href = 'game.html';
     }
-    else{
-        console.log("partytime")
-    }
+
 };
 
 const getDOMContent = function() {
