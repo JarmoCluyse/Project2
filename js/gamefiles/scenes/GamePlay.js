@@ -30,6 +30,11 @@ var gamePlayState = new Phaser.Class({
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
 
+        setInterval(function() {
+            if (!gameOver && gameStarted){
+                setcars();
+                }
+            }, distance * 1000);
 
         //add callbacks for arrow key presses
         this.input.keyboard.on('keydown-RIGHT', moveCar);
@@ -138,6 +143,7 @@ function hitPickup(car, pickup){
 }
 
 function setcars(){
+    console.log('ok');
     increasing();
     score += DriveScore;
     placeScore();
@@ -145,7 +151,6 @@ function setcars(){
     let randomPickups = getRandomInt(4 - randomObstacles);
     arr = [250,350,450, 550];
     arr = shuffle(arr);
-    
     for (i = 0; i < randomObstacles; i++) {
 
         var ShuffleColorList = shuffle(ColorList)
@@ -175,6 +180,9 @@ function increasing(){
     if (increase){
         if (waitIncrease >= speedIncrease){
             speed += increaseValue;
+            console.log(speed);
+            console.log(waitIncrease);
+            
             // console.log(speed);
             
             waitIncrease = 0;
