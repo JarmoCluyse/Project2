@@ -19,11 +19,12 @@ const checkRadioButtons = function() {
 };
 
 const startGame = function() {
+    localStorage.setItem("BeginSpeed", document.getElementById('carSlider').value);
+    localStorage.setItem("Distance", document.getElementById('carSlider').value);
+    localStorage.setItem("increase", document.getElementById('carSlider').value);
+    localStorage.setItem("color", document.getElementById('carSlider').value);
     if (startGameBool == 1){
         window.location.href = 'game.html';
-    }
-    else{
-        console.log("partytime")
     }
 };
 

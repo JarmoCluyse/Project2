@@ -15,7 +15,7 @@ var carColor = ColorList[7]; // current color of the car
 // DB
 //------------------------------- //
 const BASEURI = 'https://project2driveacar.azurewebsites.net/api/';
-var player = localStorage.getItem("Name");
+var player = localStorage.getItem("player");
 var subjectdink;
 var difficulty = "makkelijk";
 var shortgameid;
