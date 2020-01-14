@@ -220,7 +220,7 @@ a:visited {
 
 a:hover,
 a:focus {
-	color: var(--global-color-alpha-light);
+	color: var(--global-color-alpha-lightest);
 }
 
 a:active {
@@ -850,6 +850,7 @@ input::placeholder {
 	align-items: center;
 }
 
+
 .c-card__add-title {
 	padding-top: var(--global-baseline);
 	padding-left: var(--global-baseline);
@@ -1102,84 +1103,70 @@ input::placeholder {
 	display: none;
 }
 
-.c-errormsg {
-	color: var(--global-color-alpha);
-}
-
-.c-subject-errormsg {
-	display: none;
-}
-
-.c-newQuestion-errormsg {
-	display: none;
-	margin-left: calc(var(--global-baseline) * 4);
-}
-
-.c-editQuestion-errormsg {
-	display: none;
-	margin-left: calc(var(--global-baseline) * 4);
-}
-
-.c-newQuestion__answer-errormsg1{
-	margin-left: calc(var(--global-baseline));
-	display: none;
-}
-
-.c-newQuestion__answer-errormsg2{
-	margin-left: calc(var(--global-baseline));
-	display: none;
-}
-
-.c-newQuestion__answer-errormsg3{
-	margin-left: calc(var(--global-baseline));
-	display: none;
-}
-
-.c-newQuestion__answer-errormsg4{
-	margin-left: calc(var(--global-baseline));
-	display: none;
-}
-
 .c-goQuicker-subtitle {
 	margin-top: calc(var(--global-baseline) * 1.2);
 	margin-bottom: var(--global-baseline);
-}
-
-.c-errormsg-name1 {
-	margin-left: calc(var(--global-baseline) * 4);
-	display: none;
-}
-
-.c-errormsg-name2 {
-	margin-left: calc(var(--global-baseline) * 4);
-	display: none;
-}
-
-.c-errormsg-sessieId{
-	display: none;
-	justify-content: center;
-}
-
-.c-errormsg-gameId{
-	display: none;
-	justify-content: center;
-}
-
-.c-errormsg-radiobuttons{
-	display: none;
 }
 
 .c-session-id {
 	margin-top: calc(var(--global-baseline) * 3);
 }
 
-.c-errormsg-button{
-	margin-bottom: calc(var(--global-baseline) * 3);
-	display: none;
+.c-login__title {
+	font-size: 24px;
+	display: flex;
+	justify-content: center;
+	color: var(--global-color-alpha-x-dark)
+}
+
+.c-login__input-titles{
+	font-size: 18px;
+	padding-left: calc(var(--global-baseline) * 4);
+	color: var(--global-color-alpha-light);
+	margin-bottom: 0;
 }
 
 
+.c-input-email{
+	width: 86%;
+	margin-left: calc(var(--global-baseline) * 4);
+}
 
+.c-login-button {
+	display: flex;
+	justify-content: center;
+	padding-top: calc(var(--global-baseline) * 2);
+	margin-bottom: 0;
+	padding-bottom: calc(var(--global-baseline) * 2);
+}
+
+.c-button__login {
+	font-size: 18px;
+}
+
+.c-login__footer {
+	border-top: 1px solid var(--global-color-neutral-xxx-light);
+	display: flex;
+	justify-content: center;
+}
+
+.c-login__footer-content {
+	padding-top: calc(var(--global-baseline) * 3);
+}
+
+.c-forgot__pass {
+	display: flex;
+	justify-content: center;
+	padding-bottom: calc(var(--global-baseline) * 3);
+}
+
+.c-login-card {
+	display: block;
+}
+
+.c-new-account-card {
+	display: none;
+}
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/
@@ -1200,6 +1187,18 @@ input::placeholder {
 
 .u-grid-column__card {
 	grid-column: span 14 / 18;
+}
+
+.u-grid-column__login{
+	grid-column: span 6 / 14;
+}
+
+.u-grid-row__login {
+	grid-row: 3;
+}
+
+.u-grid-row__title-login{
+	grid-row: 2;
 }
 
 .u-grid-row__card {

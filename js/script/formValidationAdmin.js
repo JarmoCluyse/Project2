@@ -11,7 +11,8 @@ const checkCheckboxes = function() {
 	if (isChecked == 0) {
 		document.querySelector('.c-warning').style.display = 'block';
 	} else {
-        document.querySelector('.c-warning').style.display = 'none';
+		document.querySelector('.c-warning').style.display = 'none';
+		showMainPage();
 	}
 };
 
@@ -19,7 +20,8 @@ const checkCheckboxesEdit = function() {
 	if (isCheckedEdit == 0) {
         document.querySelector('.c-warning-edit').style.display = 'block';
 	} else {
-        document.querySelector('.c-warning-edit').style.display = 'none';
+		document.querySelector('.c-warning-edit').style.display = 'none';
+		showMainPage();
 	}
 };
 
