@@ -92,20 +92,22 @@ const dropdownFunction = function() {
 			showPlayer2();
 		}
 
-		if (dropdownSelectValue == 'multiplayer') {
-			startGameBool = 0;
-			if (player2Bool == 1) {
-				removePlayer2();
-			}
+		// ------  Multiplayer  -----------
+		
+		// if (dropdownSelectValue == 'multiplayer') {
+		// 	startGameBool = 0;
+		// 	if (player2Bool == 1) {
+		// 		removePlayer2();
+		// 	}
 
-			showDoYouHaveCode();
-		}
+		// 	showDoYouHaveCode();
+		// }
 	};
 };
 
 const sliderFunction = function() {
 	sliderCarspeed.oninput = function() {
-		outputCar.innerHTML = this.value;
+        outputCar.innerHTML = this.value;
 	};
 
 	sliderObstacle.oninput = function() {

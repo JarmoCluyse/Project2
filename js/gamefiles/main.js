@@ -1,12 +1,12 @@
-//On page load, create game config
+//------------------------------- //
+// making the game
+//------------------------------- //
 var config = {
-	// Rendering auto
-	type: Phaser.AUTO,
+	type: Phaser.AUTO, 	// Rendering auto
 	// Width and height of the game
 	width: 800,
 	height: 800,
-	// Enable physics
-	physics: {
+	physics: { 	// Enable physics
 		default: 'arcade',
 		arcade: {
 			// Disable gravity
@@ -16,8 +16,7 @@ var config = {
 			debug: false
 		}
 	},
-	// id for html
-	parent: 'phaser',
+	parent: 'phaser', 	// id for html
 	scene: myGame.scenes
 };
 //Instantiate the game with the config
