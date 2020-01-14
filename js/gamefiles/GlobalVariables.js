@@ -32,8 +32,8 @@ var myGame = {// Declare myGame
 // variables of the game
 //------------------------------- //
 var jsScore = document.querySelector(".js-score") // score html
-var jsGame = document.querySelector("#phaser") // score html
-console.log(jsGame);
+var jsGamePlay = document.querySelector(".js-gamePlay") // score html
+console.log(jsGamePlay);
 
 var car; // users
 var obstacles; // obstacles

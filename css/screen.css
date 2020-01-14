@@ -796,13 +796,18 @@ input::placeholder {
 	opacity: 1;
 }
 /* game allignement */
+.c-game {
+	display: grid;
+	width: 100%;
+	height: 100%;
+	grid:auto / 20% 60% 20%;
+	grid-gap: 10px;
+}
 .c-game-card {
 	margin: 2.5vh 0;
 	height: 95vh;
 	width: 95vw;
-	display: grid;
-	grid:auto / 20% 60% 20%;
-	grid-gap: 10px;
+	align-items: center;
 }
 .c-game-score {
 	padding: 20px;

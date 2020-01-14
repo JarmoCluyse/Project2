@@ -32,7 +32,7 @@ function keyListener(e){ // listen to keypress
   else if (gameStarted && gameOver && !gameDone) { // when car is hit
     if (e.key == "f"){ // if F is pressed stop the game
       gameDone = true;
-      jsGame.classList.add('hide')
+      jsGamePlay.classList.add('hide')
       jsScore.classList.add('hide')
       game.scene.stop('GamePlay');
       game.scene.start('GameOver');
