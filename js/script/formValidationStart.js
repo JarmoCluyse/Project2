@@ -68,6 +68,9 @@ const checkRadioButtons = function() {
 
 const startGame = function() {
     localStorage.setItem("BeginSpeed", document.getElementById('carSlider').value);
+    localStorage.setItem("Distance", document.getElementById('carSlider').value);
+    localStorage.setItem("increase", document.getElementById('carSlider').value);
+    localStorage.setItem("color", document.getElementById('carSlider').value);
     window.location.href = 'game.html';
 };
 
