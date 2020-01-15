@@ -46,4 +46,20 @@ const postGame = function(){
 }
 const gamePosted = function(){
 	console.log("Game saved to db");
+	getHighscores();
+}
+
+const getHighscores = function(){
+	handleData(`${BASEURI}games?code=${key}`, showHighscores, "GET",null)
+}
+const showHighscores = function(data){
+	console.log(data);
+	data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
+	let scoreList = document.getElementById("highscoreList");
+	let str = "";
+	data.forEach(element => {
+		str+= `<li>${element.score}		${element.player}</li>`;
+	});
+	scoreList.innerHTML = str;
+
 }
