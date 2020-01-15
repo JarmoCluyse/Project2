@@ -1,3 +1,4 @@
+let editing;
 let questionBox;
 let subjectBox;
 let answer1;
@@ -17,8 +18,26 @@ const addQuestion = function () {
 	console.log(json);
 	sendData(`${BASEURI}question?code=${key}`, questionPosted, "POST", json);
 };
+const updateQuestion = function(){
+	editing.questionText = questionBox.value;
+	editing.subject = subjectBox.value;
+	editing.answers[0].answerText = answer1.value;
+	editing.answers[1].answerText = answer2.value;
+	editing.answers[2].answerText = answer3.value;
+	editing.answers[3].answerText = answer4.value;
+	editing.answers[0].isCorrect = cb1.checked;
+	editing.answers[1].isCorrect = cb2.checked;
+	editing.answers[2].isCorrect = cb3.checked;
+	editing.answers[3].isCorrect = cb4.checked;
+	console.log(editing);
+	//json = JSON.parse(editing);
+	//console.log(json);
+	sendData(`${BASEURI}question?code=${key}`, questionPosted, "PUT", editing);
+	return false;
+};
 const questionPosted = function () {
 	console.log("question posted");
+	location.reload();
 };
 var questionsObject;
 const showQuestions = function (data) {
@@ -77,8 +96,6 @@ const showAddQuestionPage = function () {
 
 const showEditQuestionPage = function (qid) {
 	console.log(qid);
-	let editing;
-	console.log(questionsObject);
 	for (var q in questionsObject) {
 		if (questionsObject[q].questionId == qid) {
 			editing = questionsObject[q];
@@ -89,6 +106,7 @@ const showEditQuestionPage = function (qid) {
 	mainCard.style.pointerEvents = 'none';
 	editCard.style.display = 'block';
 	questionBox = document.getElementById("editQuestion");
+	subjectBox = document.getElementById("editSubject");
 	answer1 = document.getElementById('editQuestionAnswer1');
 	answer2 = document.getElementById('editQuestionAnswer2');
 	answer3 = document.getElementById('editQuestionAnswer3');
@@ -98,6 +116,7 @@ const showEditQuestionPage = function (qid) {
 	cb3 = document.getElementById('checkbox7');
 	cb4 = document.getElementById('checkbox8');
 	questionBox.value = editing.questionText;
+	subjectBox.value = editing.subject;
 	answer1.value = editing.answers[0].answerText;
 	answer2.value = editing.answers[1].answerText;
 	answer3.value = editing.answers[2].answerText;
@@ -106,6 +125,9 @@ const showEditQuestionPage = function (qid) {
 	cb2.checked = editing.answers[1].isCorrect;
 	cb3.checked = editing.answers[2].isCorrect;
 	cb4.checked = editing.answers[3].isCorrect;
+	document.getElementById("editSubmit").addEventListener('submit', function () {
+		updateQuestion();
+	});
 };
 
 const showMainPage = function () {
