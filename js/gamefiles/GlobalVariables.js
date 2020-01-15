@@ -14,12 +14,14 @@ var carColor = ColorList[7]; // current color of the car
 //------------------------------- //
 // DB
 //------------------------------- //
-const BASEURI = 'https://project2driveacar.azurewebsites.net/api/';
-var player = localStorage.getItem("player");
-var subjectdink;
-var difficulty = "makkelijk";
-var shortgameid;
+const BASEURI = 'https://project2driveacar.azurewebsites.net/api/v2/';
+var player = localStorage.getItem("Player");
+var questionsSubject;
 var mode = "SP";
+var coinsCollected = 0;
+var questionsAnswered = 0;
+var noLaneChanges = 0;
+var session;
 //------------------------------- //
 // Declare Game
 //------------------------------- //
