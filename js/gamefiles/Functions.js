@@ -33,7 +33,6 @@ function keyListener(e){ // listen to keypress
     if (e.key == "f"){ // if F is pressed stop the game
       gameDone = true;
       jsGamePlay.classList.add('hide')
-      jsScore.classList.add('hide')
       game.scene.stop('GamePlay');
       game.scene.start('GameOver');
     }
