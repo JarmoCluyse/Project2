@@ -1,4 +1,3 @@
-let editQuestionBool = 1;
 let editing;
 let questionBox;
 let subjectBox;
@@ -13,12 +12,14 @@ let cb4;
 const getQuestions = function () {
 	handleData(`${BASEURI}questions?code=${key}`, showQuestions)
 };
+
 const addQuestion = function () {
 	jsontext = `{"questiontext": "${questionBox.value}", "subject": "${subjectBox.value}", "teacheremail": "leraar@school.be", "answers": [{"answertext": "${answer1.value}", "iscorrect": ${cb1.checked}}, {"answertext": "${answer2.value}", "iscorrect": ${cb2.checked}}, {"answertext": "${answer3.value}", "iscorrect": ${cb3.checked}}, {"answertext": "${answer4.value}", "iscorrect": ${cb4.checked}}]}`;
 	json = JSON.parse(jsontext);
 	console.log(json);
 	sendData(`${BASEURI}question?code=${key}`, questionPosted, "POST", json);
 };
+
 const updateQuestion = function(){
 	editing.questionText = questionBox.value;
 	editing.subject = subjectBox.value;
@@ -76,11 +77,7 @@ const showQuestions = function (data) {
 	})
 };
 
-const editQuestionForm = function(){
-	console.log("ik doe dit")
-	editQuestionBool = 0;
-	showMainPage();
-};
+
 const showAddQuestionPage = function () {
 	mainCard.style.opacity = 0.2;
 	mainCard.style.pointerEvents = 'none';
@@ -95,9 +92,10 @@ const showAddQuestionPage = function () {
 	cb2 = document.getElementById('checkbox2');
 	cb3 = document.getElementById('checkbox3');
 	cb4 = document.getElementById('checkbox4');
-	document.getElementById("newSubmit").addEventListener('submit', function () {
-		addQuestion();
-	});
+
+	// document.getElementById("newSubmit").addEventListener('submit', function () {
+	// 	addQuestion();
+	// });
 };
 
 const showEditQuestionPage = function (qid) {
@@ -131,9 +129,9 @@ const showEditQuestionPage = function (qid) {
 	cb2.checked = editing.answers[1].isCorrect;
 	cb3.checked = editing.answers[2].isCorrect;
 	cb4.checked = editing.answers[3].isCorrect;
-	document.getElementById("editSubmit").addEventListener('submit', function () {
-		updateQuestion();
-	});
+	// document.getElementById("editSubmit").addEventListener('submit', function () {
+	// 	updateQuestion();
+	// });
 };
 
 const showMainPage = function() {
@@ -167,6 +165,7 @@ const init = function () {
 	submitEdit = document.querySelector('.js-editQuestion');
 	closeWindowButton = document.querySelectorAll('.c-close__button');
 	checkboxInputs = document.querySelectorAll('.js-checkbox');
+
 
 	checkboxInputs.forEach(element => {
 		element.addEventListener('click', function () {
