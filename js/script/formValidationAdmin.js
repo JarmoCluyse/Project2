@@ -12,7 +12,7 @@ const checkCheckboxes = function() {
 		document.querySelector('.c-warning').style.display = 'block';
 	} else {
 		document.querySelector('.c-warning').style.display = 'none';
-		showMainPage();
+		//showMainPage();
 	}
 };
 
@@ -21,7 +21,7 @@ const checkCheckboxesEdit = function() {
         document.querySelector('.c-warning-edit').style.display = 'block';
 	} else {
 		document.querySelector('.c-warning-edit').style.display = 'none';
-		showMainPage();
+		//showMainPage();
 	}
 };
 
