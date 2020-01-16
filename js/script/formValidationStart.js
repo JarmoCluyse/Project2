@@ -37,7 +37,7 @@ const startGame = function() {
     localStorage.setItem("Color2", document.getElementById('selectCarColorPlayer2').value);
     
     if (startGameBool == 1){
-        //window.location.href = 'game.html';
+        window.location.href = 'game.html';
         console.log("ik doe dit")
     }
 

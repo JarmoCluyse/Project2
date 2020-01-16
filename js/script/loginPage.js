@@ -1,4 +1,5 @@
 
+
 const showAdminPage = function(){
 	window.location.href = 'adminpage.html';
 };
@@ -15,6 +16,47 @@ const showMakeAccountPage = function(){
 	makeAccountCard.style.display = "block";
 };
 
+const checkValidityLogin = function(){
+	if (!document.getElementById('email').checkValidity()){
+		return false;
+	}
+	else if (!document.getElementById('password').checkValidity()){
+		return false;
+	}
+	else {
+		return true;
+	}
+};
+
+const checkValidityCreateAccount = function(){
+	if (!document.getElementById('newAccountName').checkValidity()){
+		return false;
+	}
+	else if (!document.getElementById('newAccountFirstName').checkValidity()){
+		return false;
+	}
+
+	else if (!document.getElementById('newEmail').checkValidity()){
+		return false;
+	}
+	else if (!document.getElementById('newPassword').checkValidity()){
+		return false;
+	}
+	else if (!document.getElementById('repeatNewPassword').checkValidity()){
+		return false;
+	}
+
+	else if (document.getElementById('newPassword').value != document.getElementById('repeatNewPassword').value){
+		passError.style.display = 'block';
+		return false;
+	}
+
+	else {
+		passError.style.display = 'none';
+		return true;
+	}
+};
+
 
 const init = function(){
 	console.log('Script geladen! 👍')
@@ -24,17 +66,23 @@ const init = function(){
 	makeAccountCard = document.querySelector('.c-new-account-card');
 	createAccountButton = document.querySelector('.js-createAccount');
 	loginCard = document.querySelector('.c-login-card');
+	passError = document.querySelector('.c-passDontMatch');
 
 	goBackToLoginButton.addEventListener('click', function(){
 		showLoginPage();
 	});
 
 	createAccountButton.addEventListener('click', function(){
-		showAdminPage();
+		if(checkValidityCreateAccount() == true){
+			showAdminPage();
+		}
+
 	});
 
 	loginButton.addEventListener('click', function(){
-		showAdminPage(); 
+		if(checkValidityLogin() == true){
+			showAdminPage();
+		}
 	});	
 
 	makeAccountButton.addEventListener('click', function(){

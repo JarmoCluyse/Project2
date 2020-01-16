@@ -28,7 +28,7 @@
                             </h1>
                         </div>
                     </div>
-                    <form class="c-grid__item u-grid-column__login u-grid-row__login" action="#" method="POST">
+                    <form class="c-grid__item u-grid-column__login u-grid-row__login" action="#" onsubmit="return false">
                         <div class="c-card c-login-card">
                             <h1 class="c-card__add-title c-login__title">
                                 Login op je account
@@ -49,7 +49,7 @@
                             </p>
 
                             <p class="c-login-button">
-                                <button class="o-button-reset c-button c-button__login" type="button">aanmelden</button>
+                                <button class="o-button-reset c-button c-button__login" type="submit">aanmelden</button>
                             </p>
                             <a href="#" class="c-forgot__pass">Wachtwoord vergeten?</a>
 
@@ -61,7 +61,7 @@
                         </div>
                     </form>
 
-                    <form class="c-grid__item u-grid-column__login u-grid-row__login" action="#" method="POST">
+                    <form class="c-grid__item u-grid-column__login u-grid-row__login" action="#" onsubmit="return false">
                         <div class="c-card c-new-account-card">
                             <h1 class="c-card__add-title c-login__title">
                                 Maak een nieuw account aan
@@ -101,9 +101,12 @@
                             <p class="c-form-field c-form__login-email">
                                 <input class="c-input-email c-input" type="password" name="repeatNewPassword" id="repeatNewPassword" required>
                             </p>
+                            <h3 class="c-passDontMatch">
+                                Je wachtwoorden komen niet overeen!
+                            </h3>
 
                             <p class="c-login-button">
-                                <button class="o-button-reset c-button c-button__login js-createAccount" type="button">maak account</button>
+                                <button class="o-button-reset c-button c-button__login js-createAccount" type="submit">maak account</button>
                             </p>
 
                             <div class="c-login__footer">
