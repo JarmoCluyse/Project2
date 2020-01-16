@@ -1,7 +1,7 @@
 let checkbox = {},
     checkboxEdit = {},
     isChecked = 0,
-    isCheckedEdit = 0;
+	isCheckedEdit = 0;
 
 const isEmpty = function(fieldValue) {
 	return !fieldValue || !fieldValue.length;
@@ -12,7 +12,7 @@ const checkCheckboxes = function() {
 		document.querySelector('.c-warning').style.display = 'block';
 	} else {
 		document.querySelector('.c-warning').style.display = 'none';
-		showMainPage();
+		//showMainPage();
 	}
 };
 
@@ -21,9 +21,11 @@ const checkCheckboxesEdit = function() {
         document.querySelector('.c-warning-edit').style.display = 'block';
 	} else {
 		document.querySelector('.c-warning-edit').style.display = 'none';
-		showMainPage();
+		//showMainPage();
 	}
 };
+
+
 
 const getDOM = function() {
 	console.log('formValidation geladen! 👍');

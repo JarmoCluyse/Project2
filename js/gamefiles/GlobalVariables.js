@@ -14,12 +14,14 @@ var carColor = ColorList[localStorage.getItem("Color")]; // current color of the
 //------------------------------- //
 // DB
 //------------------------------- //
-const BASEURI = 'https://project2driveacar.azurewebsites.net/api/';
-var player = localStorage.getItem("player");
-var subjectdink;
-var difficulty = "makkelijk";
-var shortgameid;
+const BASEURI = 'https://project2driveacar.azurewebsites.net/api/v2/';
+var player = localStorage.getItem("Player");
+var questionsSubject;
 var mode = "SP";
+var coinsCollected = 0;
+var questionsAnswered = 0;
+var noLaneChanges = 0;
+var session;
 //------------------------------- //
 // Declare Game
 //------------------------------- //
@@ -34,7 +36,6 @@ var jsScore = document.querySelector(".js-score") // score html
 var jsGamePlay = document.querySelector(".js-gamePlay") // game html
 var jsGameStart = document.querySelector(".js-gameStart") // gamestart html
 var jsGameEnd = document.querySelector(".js-gameEnd") // gamestart html
-console.log(jsGamePlay);
 
 var car; // users
 var obstacles; // obstacles
