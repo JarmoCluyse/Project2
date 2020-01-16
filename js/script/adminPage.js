@@ -1,4 +1,5 @@
 let editing;
+let deleting;
 let questionBox;
 let subjectBox;
 let answer1;
@@ -13,6 +14,11 @@ const getQuestions = function () {
 	handleData(`${BASEURI}questions?code=${key}`, showQuestions)
 };
 
+const deleteQuestion = function() {
+	sendData(`${BASEURI}question?code=${key}`, questionPosted, "DELETE", deleting);
+	return false;
+}
+
 const addQuestion = function () {
 	jsontext = `{"questiontext": "${questionBox.value}", "subject": "${subjectBox.value}", "teacheremail": "leraar@school.be", "answers": [{"answertext": "${answer1.value}", "iscorrect": ${cb1.checked}}, {"answertext": "${answer2.value}", "iscorrect": ${cb2.checked}}, {"answertext": "${answer3.value}", "iscorrect": ${cb3.checked}}, {"answertext": "${answer4.value}", "iscorrect": ${cb4.checked}}]}`;
 	json = JSON.parse(jsontext);
@@ -20,7 +26,7 @@ const addQuestion = function () {
 	sendData(`${BASEURI}question?code=${key}`, questionPosted, "POST", json);
 };
 
-const updateQuestion = function(){
+const updateQuestion = function () {
 	editing.questionText = questionBox.value;
 	editing.subject = subjectBox.value;
 	editing.answers[0].answerText = answer1.value;
@@ -77,12 +83,12 @@ const showQuestions = function (data) {
 	})
 	questionsObject.forEach(element => {
 		document.getElementById(`D${element.questionId}`).addEventListener('click', function () {
-			deleteQuestionConfirmation();
+			deleteQuestionConfirmation(element.questionId);
 		});
 	})
 };
 
-const deleteQuestionConfirmation = function(){
+const deleteQuestionConfirmation = function (qid) {
 	jaButton = document.querySelector('.js-ja');
 	neeButton = document.querySelector('.js-neen');
 	mainCard.style.opacity = 0.2;
@@ -90,14 +96,22 @@ const deleteQuestionConfirmation = function(){
 	deleteCard.style.display = 'block';
 
 
-	jaButton.addEventListener('click', function(){
+	jaButton.addEventListener('click', function () {
 		mainCard.style.opacity = 1;
 		mainCard.style.pointerEvents = 'auto';
 		deleteCard.style.display = 'none';
 		// delete de vraag hier
+		console.log(qid);
+		for (var q in questionsObject) {
+			if (questionsObject[q].questionId == qid) {
+				deleting = questionsObject[q];
+			}
+		}
+		console.log(deleting);
+		deleteQuestion();
 	});
 
-	neeButton.addEventListener('click', function(){
+	neeButton.addEventListener('click', function () {
 		mainCard.style.opacity = 1;
 		mainCard.style.pointerEvents = 'auto';
 		deleteCard.style.display = 'none';
@@ -161,7 +175,7 @@ const showEditQuestionPage = function (qid) {
 	// });
 };
 
-const showMainPage = function() {
+const showMainPage = function () {
 	editCard.style.display = 'none';
 	addCard.style.display = 'none';
 	mainCard.style.opacity = 1;
@@ -171,8 +185,7 @@ const showMainPage = function() {
 const checkedState = function (checkboxElement) {
 	if (checkboxElement.checked) {
 		checkboxElement.checked = true;
-	}
-	else {
+	} else {
 		checkboxElement.checked = false;
 	}
 };
@@ -204,7 +217,7 @@ const init = function () {
 	});
 
 	closeWindowButton.forEach(element => {
-		element.addEventListener('click', function() {
+		element.addEventListener('click', function () {
 			showMainPage();
 		});
 	});
