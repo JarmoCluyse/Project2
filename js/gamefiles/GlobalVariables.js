@@ -36,7 +36,9 @@ var jsScore = document.querySelector(".js-score") // score html
 var jsGamePlay = document.querySelector(".js-gamePlay") // game html
 var jsGameStart = document.querySelector(".js-gameStart") // gamestart html
 var jsGameEnd = document.querySelector(".js-gameEnd") // gamestart html
-
+var jsGameQuestion = document.querySelector(".js-gameQuestion") // gamestart html
+var CurrentQuestion;
+var ShuffledAnswers;
 var car; // users
 var obstacles; // obstacles
 var pickups; // pickups
@@ -52,12 +54,12 @@ for (var keys in ColorList) {
 // default values 
 //-------------//
 if (typeof BeginSpeed === 'undefined' || !BeginSpeed) {
-  BeginSpeed = 3;
+  BeginSpeed = 5;
 } else {
   BeginSpeed = parseInt(BeginSpeed);
 }
   if (typeof distance === 'undefined' || !distance) {
-  distance = 3;
+  distance = 1;
 } else {
   distance = parseInt(distance);
 }
