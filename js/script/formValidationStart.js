@@ -20,24 +20,6 @@ const isEmpty = function(fieldValue) {
 // 	}
 // };
 
-const resetInputs = function(){
-    document.querySelector('.js-sliderCar').value = 5;
-    document.querySelector('.js-outputCar').innerHTML = 5;
-	document.querySelector('.js-sliderObstacle').value = 5;
-    document.querySelector('.js-outputObstacle').innerHTML = 5;
-    document.querySelector('.js-goQuicker').checked = false;
-    dropdowns = document.getElementsByName('select');
-    dropdowns.forEach(element => {
-        element.selectedIndex = 0;
-    });
-    document.getElementById('Name1').value = "";
-    document.getElementById('Name2').value = "";
-    radioNo.checked = false;
-    radioYes.checked = false;
-    gameId.value = "";
-    document.getElementById('sessieId').value = "";
-
-};
 
 const startGame = function() {
     localStorage.setItem("BeginSpeed", document.getElementById('carSlider').value);
@@ -55,8 +37,8 @@ const startGame = function() {
     localStorage.setItem("color2", document.getElementById('selectCarColorPlayer2').value);
     
     if (startGameBool == 1){
-        resetInputs();
-        window.location.href = 'game.html';
+        //window.location.href = 'game.html';
+        console.log("ik doe dit")
     }
 
 };
