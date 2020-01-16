@@ -14,8 +14,9 @@ var gamePlayState = new Phaser.Class({
         // Create objects
         console.log("scene: GamePlay");
         // show game
-        jsScore.classList.remove('hide');
-        jsGame.classList.remove('hide');
+        jsGameStart.classList.add('hide');
+        jsGamePlay.classList.remove('hide');
+        jsGameEnd.classList.add('hide');
         // set the background
         this.background1 = this.add.tileSprite(400,400,800,800, 'road')
         //creates an objects
@@ -30,7 +31,6 @@ var gamePlayState = new Phaser.Class({
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
 
-
         //add callbacks for arrow key presses
         this.input.keyboard.on('keydown-RIGHT', moveCar);
         this.input.keyboard.on('keydown-UP', moveCar);
@@ -40,7 +40,7 @@ var gamePlayState = new Phaser.Class({
     
     },
 
-    update: function() {
+    update: function() {        
         if (!gameOver)
         {
             //move all moving items down by the speed variable
@@ -145,10 +145,9 @@ function setcars(){
     let randomPickups = getRandomInt(4 - randomObstacles);
     arr = [250,350,450, 550];
     arr = shuffle(arr);
-    
     for (i = 0; i < randomObstacles; i++) {
 
-        var ShuffleColorList = shuffle(ColorList)
+        var ShuffleColorList = shuffle(Colors)
         if (ShuffleColorList[0] == carColor){
             randomColor = ShuffleColorList[1]
         }else {
@@ -175,6 +174,9 @@ function increasing(){
     if (increase){
         if (waitIncrease >= speedIncrease){
             speed += increaseValue;
+            console.log(speed);
+            console.log(waitIncrease);
+            
             // console.log(speed);
             
             waitIncrease = 0;

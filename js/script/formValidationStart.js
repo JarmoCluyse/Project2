@@ -1,152 +1,113 @@
-let namePlayer1 = {}, namePlayer2 = {}, sessieId = {}, gameId = {}, startGameHasError = 1, radioChecked = 0, radioButtons = {};
+let gameId = {};
+// ------  Multiplayer  -----------
+    // radioChecked = 0,
+	// radioButtons = {};
 
 const isEmpty = function(fieldValue) {
 	return !fieldValue || !fieldValue.length;
 };
 
-const showName1ErrorMsg = function() {
-    document.querySelector('.c-errormsg-name1').style.display = 'block';
-    startGameHasError = 1;
+// ------  Multiplayer  -----------
+
+// const checkRadioButtons = function() {
+// 	if (radioChecked == 0) {
+// 		document.querySelector('.c-errormsg-radiobuttons').style.display = 'block';
+// 	} else {
+//         if (radioNo.checked == true){
+//             startGameBool = 1;
+//         }
+//         document.querySelector('.c-errormsg-radiobuttons').style.display = 'none';
+// 	}
+// };
+
+const resetInputs = function(){
+    document.querySelector('.js-sliderCar').value = 5;
+    document.querySelector('.js-outputCar').innerHTML = 5;
+	document.querySelector('.js-sliderObstacle').value = 5;
+    document.querySelector('.js-outputObstacle').innerHTML = 5;
+    document.querySelector('.js-goQuicker').checked = false;
+    dropdowns = document.getElementsByName('select');
+    dropdowns.forEach(element => {
+        element.selectedIndex = 0;
+    });
+    document.getElementById('Name1').value = "";
+    document.getElementById('Name2').value = "";
+    radioNo.checked = false;
+    radioYes.checked = false;
+    gameId.value = "";
+    document.getElementById('sessieId').value = "";
+
 };
-
-const removeName1ErrorMsg = function() {
-    document.querySelector('.c-errormsg-name1').style.display = 'none';
-    startGameHasError = 0;
-};
-
-const showName2ErrorMsg = function() {
-    document.querySelector('.c-errormsg-name2').style.display = 'block';
-    startGameHasError = 1;
-};
-
-const removeName2ErrorMsg = function() {
-    document.querySelector('.c-errormsg-name2').style.display = 'none';
-    startGameHasError = 0;
-};
-
-const showSessieIdErrorMsg = function() {
-    document.querySelector('.c-errormsg-sessieId').style.display = 'flex';
-    startGameHasError = 1;
-};
-
-const removeSessieIdErrorMsg = function() {
-    document.querySelector('.c-errormsg-sessieId').style.display = 'none';
-    startGameHasError = 0;
-};
-
-const showGameIdErrorMsg = function() {
-    document.querySelector('.c-errormsg-gameId').style.display = 'flex';
-    startGameHasError = 1;
-};
-
-const removeGameIdErrorMsg = function() {
-    document.querySelector('.c-errormsg-gameId').style.display = 'none';
-    startGameHasError = 0;
-};
-
-
-const checkRadioButtons = function() {
-	if (radioChecked == 0) {
-        document.querySelector('.c-errormsg-radiobuttons').style.display = 'block';
-	} else {
-        document.querySelector('.c-errormsg-radiobuttons').style.display = 'none';
-	}
-    if (startGameHasError == 0){
-        document.querySelector('.c-errormsg-button').style.display = 'none';
-        startGame();
-    }
-    else {
-        document.querySelector('.c-errormsg-button').style.display = 'block';
-    }
-};
-
 
 const startGame = function() {
     localStorage.setItem("BeginSpeed", document.getElementById('carSlider').value);
-    window.location.href = 'game.html';
-};
-
-const getDOMContent = function(){
-    console.log('formValidation geladen! 👍')
-    namePlayer1.input = document.getElementById('Name1');
-    namePlayer2.input = document.getElementById('Name2');
-    sessieId.input = document.getElementById('sessieId');
-    gameId.input = document.getElementById('gameId');
-    radioButtons.input = document.getElementsByName('radios');
-    radioNo = document.getElementById('radioNo');
-    radioYes = document.getElementById('radioYes');
-    startGameButton = document.querySelector('.js-play');
-
-};
-
-
-const enableValidation = function(){
-    namePlayer1.input.addEventListener('blur', function(event) {
-		const typedInput = event.target.value;
-
-		if (isEmpty(typedInput)) {
-			showName1ErrorMsg();
-		} else {
-            removeName1ErrorMsg();
-            localStorage.setItem("player", typedInput);
-		}
-    });
-
-    namePlayer2.input.addEventListener('blur', function(event) {
-		const typedInput = event.target.value;
-
-		if (isEmpty(typedInput)) {
-			showName2ErrorMsg();
-		} else {
-			removeName2ErrorMsg();
-		}
-    });
-
-    sessieId.input.addEventListener('blur', function(event) {
-		const typedInput = event.target.value;
-
-		if (isEmpty(typedInput)) {
-			showSessieIdErrorMsg();
-		} else {
-			removeSessieIdErrorMsg();
-		}
-    });
-
+	localStorage.setItem("Distance", document.getElementById('obstacleSlider').value);
+	localStorage.setItem("Player", document.getElementById('Name1').value);
+	console.log(document.getElementById('Name1').value);
+	
+	if (document.getElementById("checkbox1").checked){
+		localStorage.setItem("Increase", true);
+	} 
+	else {
+		localStorage.setItem("Increase", false);
+	}
+    localStorage.setItem("Color", document.getElementById('selectCarColorPlayer1').value);
+    localStorage.setItem("Color2", document.getElementById('selectCarColorPlayer2').value);
     
-    gameId.input.addEventListener('blur', function(event) {
-		const typedInput = event.target.value;
+    if (startGameBool == 1){
+        resetInputs();
+        window.location.href = 'game.html';
+    }
 
-		if (isEmpty(typedInput)) {
-			showGameIdErrorMsg();
-		} else {
-			removeGameIdErrorMsg();
-		}
-    });
+};
 
-    radioNo.addEventListener('click', function(){
-        document.querySelector('.c-errormsg-radiobuttons').style.display = 'none';
-    });
+const getDOMContent = function() {
+    console.log('formValidation geladen! 👍');
+    // ------  Multiplayer  -----------
+	// radioButtons.input = document.getElementsByName('radios');
+	// radioNo = document.getElementById('radioNo');
+    // radioYes = document.getElementById('radioYes');
+    // gameId.input = document.getElementById('gameId');
+	startGameButton = document.querySelector('.js-play');
+};
 
-    radioYes.addEventListener('click', function(){
-        document.querySelector('.c-errormsg-radiobuttons').style.display = 'none';
-    });
+const enableValidation = function() {
 
-    startGameButton.addEventListener('click', function() {
-		radioButtons.input.forEach(element => {
-			if (element.checked) {
-				radioChecked += 1;
-				checkRadioButtons();
-			} else {
-				checkRadioButtons();
-			}
-        });
-        
+    // ------  Multiplayer  -----------
 
-		radioChecked = 0;
-    });
+    // gameId.input.addEventListener('blur', function(){
+    //     if (gameId.input.value != ""){
+    //         startGameBool = 1;
+    //     }
+    // })
 
-}
+	radioNo.addEventListener('click', function() {
+		document.querySelector('.c-errormsg-radiobuttons').style.display =
+			'none';
+	});
 
+	radioYes.addEventListener('click', function() {
+		document.querySelector('.c-errormsg-radiobuttons').style.display =
+			'none';
+	});
+
+	startGameButton.addEventListener('click', function() {
+        // ------  Multiplayer  -----------
+
+		// radioButtons.input.forEach(element => {
+		// 	if (element.checked) {
+		// 		radioChecked += 1;
+		// 		checkRadioButtons();
+		// 	} else {
+		// 		checkRadioButtons();
+		// 	}
+        // });
+
+        startGame();
+
+		// radioChecked = 0;
+	});
+};
 
 document.addEventListener('DOMContentLoaded', function() {
 	getDOMContent();
