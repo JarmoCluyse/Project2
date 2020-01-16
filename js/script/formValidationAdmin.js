@@ -1,7 +1,7 @@
 let checkbox = {},
     checkboxEdit = {},
     isChecked = 0,
-    isCheckedEdit = 0;
+	isCheckedEdit = 0;
 
 const isEmpty = function(fieldValue) {
 	return !fieldValue || !fieldValue.length;
@@ -24,6 +24,8 @@ const checkCheckboxesEdit = function() {
 		showMainPage();
 	}
 };
+
+
 
 const getDOM = function() {
 	console.log('formValidation geladen! 👍');

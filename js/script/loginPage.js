@@ -15,6 +15,7 @@ const showMakeAccountPage = function(){
 	makeAccountCard.style.display = "block";
 };
 
+
 const init = function(){
 	console.log('Script geladen! 👍')
 	loginButton = document.querySelector('.c-button__login');

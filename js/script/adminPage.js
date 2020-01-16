@@ -1,3 +1,5 @@
+let editQuestionBool = 1;
+
 const getQuestions = function(lang){
     handleData(`${BASEURI}questions?code=${key}`, showQuestions)
 };
@@ -37,6 +39,13 @@ const showQuestions = function (data) {
 		});
 	})
 };
+
+const editQuestionForm = function(){
+	console.log("ik doe dit")
+	editQuestionBool = 0;
+	showMainPage();
+};
+
 
 const showAddQuestionPage = function() {
 	mainCard.style.opacity = 0.2;
@@ -78,10 +87,13 @@ const showEditQuestionPage = function(qid) {
 };
 
 const showMainPage = function() {
-	editCard.style.display = 'none';
-	addCard.style.display = 'none';
-	mainCard.style.opacity = 1;
-	mainCard.style.pointerEvents = 'auto';
+	if(editQuestionBool == 0) {
+		editCard.style.display = 'none';
+		addCard.style.display = 'none';
+		mainCard.style.opacity = 1;
+		mainCard.style.pointerEvents = 'auto';
+	}
+	editQuestionBool = 1
 };
 
 const checkedState = function(checkboxElement){
@@ -125,6 +137,7 @@ const init = function() {
 
 	closeWindowButton.forEach(element => {
 		element.addEventListener('click', function() {
+			editQuestionBool = 0;
 			showMainPage();
 		});
 	});
