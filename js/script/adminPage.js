@@ -89,8 +89,8 @@ const showQuestions = function (data) {
 };
 
 const deleteQuestionConfirmation = function (qid) {
-	yesButton = document.querySelector('.js-ja');
-	noButton = document.querySelector('.js-neen');
+	yesButton = document.querySelector('.js-yes');
+	noButton = document.querySelector('.js-no');
 	mainCard.style.opacity = 0.2;
 	mainCard.style.pointerEvents = 'none';
 	deleteCard.style.display = 'block';
