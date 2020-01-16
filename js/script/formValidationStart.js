@@ -46,13 +46,13 @@ const startGame = function() {
 	console.log(document.getElementById('Name1').value);
 	
 	if (document.getElementById("checkbox1").checked){
-		localStorage.setItem("increase", true);
+		localStorage.setItem("Increase", true);
 	} 
 	else {
-		localStorage.setItem("increase", false);
+		localStorage.setItem("Increase", false);
 	}
-    localStorage.setItem("color", document.getElementById('selectCarColorPlayer1').value);
-    localStorage.setItem("color2", document.getElementById('selectCarColorPlayer2').value);
+    localStorage.setItem("Color", document.getElementById('selectCarColorPlayer1').value);
+    localStorage.setItem("Color2", document.getElementById('selectCarColorPlayer2').value);
     
     if (startGameBool == 1){
         resetInputs();

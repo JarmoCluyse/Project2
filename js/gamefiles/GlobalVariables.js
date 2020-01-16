@@ -9,8 +9,8 @@ var speedIncrease = 4; // the rate of increasing
 var increaseValue = 0.5; // value that we increase with
 var DriveScore = 5; // score for driving
 var scoreCoin = 10; // score when you pickup something
-var ColorList = ['0x0000ff', '0xff0000', '0x00ff00', '0xffff00', '0xff77ff', '0xff00ff','0xffffff','0x101010' ]; // list of possible colors
-var carColor = ColorList[7]; // current color of the car
+var ColorList = {'blue':'0x0000ff','red': '0xff0000','green': '0x00ff00','yellow': '0xffff00','pink': '0xff77ff','purple': '0xff00ff','white':'0xffffff','black':'0x101010' }
+var carColor = ColorList[localStorage.getItem("Color")]; // current color of the car
 //------------------------------- //
 // DB
 //------------------------------- //
@@ -42,6 +42,10 @@ var pickups; // pickups
 var score = 0; // score of the game
 var waitIncrease = 0; // variable to count the waiting
 var speed = 5; // current speed of the game
+var Colors = [];
+for (var keys in ColorList) {
+  Colors.push(ColorList[keys])
+}
 
 //-------------//
 // default values 
