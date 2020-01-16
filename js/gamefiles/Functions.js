@@ -62,4 +62,7 @@ const showQuestion = function (data) {
   `;
   
 }
-getQuestions();
+
+var sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}

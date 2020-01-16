@@ -77,5 +77,6 @@ if (typeof player === 'undefined' || !player) {
 //-------------//
 var gameStarted = false;
 var gameOver = false;
+var answer = false
 var gameDone = false;
 

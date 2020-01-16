@@ -73,8 +73,6 @@ var gamePlayState = new Phaser.Class({
 
         }
         if(gameOver){
-            jsGamePlay.classList.add('hide');
-            jsGameQuestion.classList.remove('hide');
         }
     }
 });
@@ -111,18 +109,17 @@ function moveCar(e)
             car.x = 650;
         }
     }
-    else if (gameStarted && gameOver && !gameDone) { // when car is hit
-        console.log(e.key);
+    else if (gameStarted && gameOver && !gameDone && answer) { // when car is hit
         if (e.key == "ArrowLeft"){
           if(CurrentQuestion.answers[ShuffledAnswers[0]].isCorrect){
-            console.log('antwoord ok');
-            
             jsGamePlay.classList.remove('hide');
             jsGameQuestion.classList.add('hide');
             gameOver = false;
+            answer = false;
           }
           else{
             gameDone = true;
+            answer = false;
             jsGamePlay.classList.add('hide')
             jsGameQuestion.classList.add('hide');
             game.scene.stop('GamePlay');
@@ -131,13 +128,14 @@ function moveCar(e)
         }
         if (e.key == "ArrowUp"){
           if(CurrentQuestion.answers[ShuffledAnswers[1]].isCorrect){
-            console.log('antwoord ok');
             jsGamePlay.classList.remove('hide');
             jsGameQuestion.classList.add('hide');
             gameOver = false;
+            answer = false;
           }
           else{
             gameDone = true;
+            answer = false;
             jsGamePlay.classList.add('hide')
             jsGameQuestion.classList.add('hide');
             game.scene.stop('GamePlay');
@@ -146,13 +144,14 @@ function moveCar(e)
         }
         if (e.key == "ArrowDown"){
           if(CurrentQuestion.answers[ShuffledAnswers[2]].isCorrect){
-            console.log('antwoord ok');
             jsGamePlay.classList.remove('hide');
             jsGameQuestion.classList.add('hide');
             gameOver = false;
+            answer = false;
           }
           else{
             gameDone = true;
+            answer = false;
             jsGamePlay.classList.add('hide')
             jsGameQuestion.classList.add('hide');
             game.scene.stop('GamePlay');
@@ -161,31 +160,36 @@ function moveCar(e)
         }
         if (e.key == "ArrowRight"){
           if(CurrentQuestion.answers[ShuffledAnswers[3]].isCorrect){
-            console.log('antwoord ok');
             jsGamePlay.classList.remove('hide');
             jsGameQuestion.classList.add('hide');
             gameOver = false;
+            answer = false;
           }
           else{
             gameDone = true;
+            answer = false;
             jsGamePlay.classList.add('hide')
             jsGameQuestion.classList.add('hide');
             game.scene.stop('GamePlay');
             game.scene.start('GameOver');
           } 
         }
+        jsGameQuestion.innerHTML = ``;
       }
 }
 // if a collision happens
 function hitObstacle(car, obstacle){
     getQuestions()
-    gameOver = true;
+    jsGamePlay.classList.add('hide');
+    jsGameQuestion.classList.remove('hide');
     for (i = obstacles.children.entries.length; i >= 0; i--) {
         obstacles.remove(obstacles.children.entries[i], true);
     }
     for (i = pickups.children.entries.length; i >= 0; i--) {
         pickups.remove(pickups.children.entries[i], true);
     }
+    gameOver = true;
+    sleep(2000).then(() => {answer = true;});
 
     
 }
