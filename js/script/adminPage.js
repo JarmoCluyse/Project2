@@ -89,14 +89,14 @@ const showQuestions = function (data) {
 };
 
 const deleteQuestionConfirmation = function (qid) {
-	jaButton = document.querySelector('.js-ja');
-	neeButton = document.querySelector('.js-neen');
+	yesButton = document.querySelector('.js-ja');
+	noButton = document.querySelector('.js-neen');
 	mainCard.style.opacity = 0.2;
 	mainCard.style.pointerEvents = 'none';
 	deleteCard.style.display = 'block';
 
 
-	jaButton.addEventListener('click', function () {
+	yesButton.addEventListener('click', function () {
 		mainCard.style.opacity = 1;
 		mainCard.style.pointerEvents = 'auto';
 		deleteCard.style.display = 'none';
@@ -111,7 +111,7 @@ const deleteQuestionConfirmation = function (qid) {
 		deleteQuestion();
 	});
 
-	neeButton.addEventListener('click', function () {
+	noButton.addEventListener('click', function () {
 		mainCard.style.opacity = 1;
 		mainCard.style.pointerEvents = 'auto';
 		deleteCard.style.display = 'none';
