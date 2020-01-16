@@ -22,10 +22,7 @@ var mainMenuState = new Phaser.Class({
 		postGame();
 
 		// to next scene
-		this.input.keyboard.on('keydown-RIGHT', keyListener);
-		this.input.keyboard.on('keydown-UP', keyListener);
-		this.input.keyboard.on('keydown-DOWN', keyListener);
-		this.input.keyboard.on('keydown-LEFT', keyListener);
+		this.input.keyboard.on('keydown-SPACE', keyListener);
 	},
 
 	update: function() {
