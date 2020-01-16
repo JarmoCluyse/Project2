@@ -147,7 +147,7 @@ function setcars(){
     arr = shuffle(arr);
     for (i = 0; i < randomObstacles; i++) {
 
-        var ShuffleColorList = shuffle(ColorList)
+        var ShuffleColorList = shuffle(Colors)
         if (ShuffleColorList[0] == carColor){
             randomColor = ShuffleColorList[1]
         }else {
