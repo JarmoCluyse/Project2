@@ -796,13 +796,6 @@ input::placeholder {
 	opacity: 1;
 }
 /* game allignement */
-.c-gameStart{
-	display: flex;
-	width: 100%;
-	height: 100%;
-	justify-content: center;
-	align-items: center;
-}
 .c-game {
 	display: grid;
 	width: 100%;
@@ -810,13 +803,22 @@ input::placeholder {
 	grid:auto / 20% 60% 20%;
 	grid-gap: 10px;
 }
-.c-gameEnd{
+.c-gamePage{
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 	height: 100%;
 	justify-content: center;
 	align-items: center;
+}
+.c-gameQuestion ul {
+	display: flex;
+}
+.c-gameQuestion li {
+	padding: 16px;
+	margin: 16px;
+	background-color: var(--global-color-alpha);
+	color: var(--global-color-neutral-xxxx-light);
 }
 .c-game-card {
 	margin: 2.5vh 0;

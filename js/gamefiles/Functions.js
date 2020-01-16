@@ -29,17 +29,6 @@ function keyListener(e){ // listen to keypress
     game.scene.stop('MainMenu'); // stop this screen
     game.scene.start('GamePlay'); // start the game
   }
-  else if (gameStarted && gameOver && !gameDone) { // when car is hit
-    if (e.key == "f"){ // if F is pressed stop the game
-      gameDone = true;
-      jsGamePlay.classList.add('hide')
-      game.scene.stop('GamePlay');
-      game.scene.start('GameOver');
-    }
-    if (e.key == " "){ // continue
-      gameOver = false;
-    }
-  }
   else if (gameStarted && gameOver && gameDone && e.key != "f") { // when game is done
         game.scene.stop('GameOver');
         game.scene.start('MainMenu');
@@ -52,3 +41,25 @@ function keyListener(e){ // listen to keypress
   }
 
 }
+var getQuestions = function () {
+	handleData(`${BASEURI}questions?code=${key}`, showQuestion)
+};
+const showQuestion = function (data) {
+  let ans = [0,1,2, 3];
+  ShuffledAnswers = ans;
+  ans = shuffle(ans);
+  let question = data[getRandomInt(data.length)];
+  CurrentQuestion = question;
+  console.log(question);
+  jsGameQuestion.innerHTML = `
+  <h1>${question.questionText}</h1>
+  <ul class="o-list">
+    <li>${question.answers[ans[0]].answerText}</li>
+    <li>${question.answers[ans[1]].answerText}</li>
+    <li>${question.answers[ans[2]].answerText}</li>
+    <li>${question.answers[ans[3]].answerText}</li>
+  </ul>
+  `;
+  
+}
+getQuestions();
