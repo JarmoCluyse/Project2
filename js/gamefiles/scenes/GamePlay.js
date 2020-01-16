@@ -225,7 +225,7 @@ function setcars(){
         
         pickups.create(arr[i+randomObstacles],-50, 'coin').setScale(.2);
     }
-    pickups.create(650,-50, 'coin').setScale(.2);
+    // pickups.create(650,-50, 'coin').setScale(.2);
 }
 
 function getRandomobstakels() {
