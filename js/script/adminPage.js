@@ -1,10 +1,46 @@
 let editQuestionBool = 1;
-
-const getQuestions = function(lang){
-    handleData(`${BASEURI}questions?code=${key}`, showQuestions)
+let editing;
+let questionBox;
+let subjectBox;
+let answer1;
+let answer2;
+let answer3;
+let answer4;
+let cb1;
+let cb2;
+let cb3;
+let cb4;
+const getQuestions = function () {
+	handleData(`${BASEURI}questions?code=${key}`, showQuestions)
+};
+const addQuestion = function () {
+	jsontext = `{"questiontext": "${questionBox.value}", "subject": "${subjectBox.value}", "teacheremail": "leraar@school.be", "answers": [{"answertext": "${answer1.value}", "iscorrect": ${cb1.checked}}, {"answertext": "${answer2.value}", "iscorrect": ${cb2.checked}}, {"answertext": "${answer3.value}", "iscorrect": ${cb3.checked}}, {"answertext": "${answer4.value}", "iscorrect": ${cb4.checked}}]}`;
+	json = JSON.parse(jsontext);
+	console.log(json);
+	sendData(`${BASEURI}question?code=${key}`, questionPosted, "POST", json);
+};
+const updateQuestion = function(){
+	editing.questionText = questionBox.value;
+	editing.subject = subjectBox.value;
+	editing.answers[0].answerText = answer1.value;
+	editing.answers[1].answerText = answer2.value;
+	editing.answers[2].answerText = answer3.value;
+	editing.answers[3].answerText = answer4.value;
+	editing.answers[0].isCorrect = cb1.checked;
+	editing.answers[1].isCorrect = cb2.checked;
+	editing.answers[2].isCorrect = cb3.checked;
+	editing.answers[3].isCorrect = cb4.checked;
+	console.log(editing);
+	//json = JSON.parse(editing);
+	//console.log(json);
+	sendData(`${BASEURI}question?code=${key}`, questionPosted, "PUT", editing);
+	return false;
+};
+const questionPosted = function () {
+	console.log("question posted");
+	location.reload();
 };
 var questionsObject;
-
 const showQuestions = function (data) {
 	console.log(data);
 	questionsObject = data;
@@ -34,7 +70,7 @@ const showQuestions = function (data) {
 	listElement.innerHTML = htmlString;
 
 	questionsObject.forEach(element => {
-		document.getElementById(element.questionId).addEventListener('click', function() {
+		document.getElementById(element.questionId).addEventListener('click', function () {
 			showEditQuestionPage(element.questionId);
 		});
 	})
@@ -45,20 +81,29 @@ const editQuestionForm = function(){
 	editQuestionBool = 0;
 	showMainPage();
 };
-
-
-const showAddQuestionPage = function() {
+const showAddQuestionPage = function () {
 	mainCard.style.opacity = 0.2;
 	mainCard.style.pointerEvents = 'none';
 	addCard.style.display = 'block';
+	questionBox = document.getElementById("newQuestion");
+	subjectBox = document.getElementById("newSubject");
+	answer1 = document.getElementById('newQuestionAnswer1');
+	answer2 = document.getElementById('newQuestionAnswer2');
+	answer3 = document.getElementById('newQuestionAnswer3');
+	answer4 = document.getElementById('newQuestionAnswer4');
+	cb1 = document.getElementById('checkbox1');
+	cb2 = document.getElementById('checkbox2');
+	cb3 = document.getElementById('checkbox3');
+	cb4 = document.getElementById('checkbox4');
+	document.getElementById("newSubmit").addEventListener('submit', function () {
+		addQuestion();
+	});
 };
 
-const showEditQuestionPage = function(qid) {
+const showEditQuestionPage = function (qid) {
 	console.log(qid);
-	let editing;
-	console.log(questionsObject);
-	for(var q in questionsObject){
-		if (questionsObject[q].questionId == qid){
+	for (var q in questionsObject) {
+		if (questionsObject[q].questionId == qid) {
 			editing = questionsObject[q];
 		}
 	}
@@ -66,16 +111,18 @@ const showEditQuestionPage = function(qid) {
 	mainCard.style.opacity = 0.2;
 	mainCard.style.pointerEvents = 'none';
 	editCard.style.display = 'block';
-	let questionBox = document.getElementById("editQuestion");
-	let answer1 = document.getElementById('editQuestionAnswer1');
-	let answer2 = document.getElementById('editQuestionAnswer2');
-	let answer3 = document.getElementById('editQuestionAnswer3');
-	let answer4 = document.getElementById('editQuestionAnswer4');
-	let cb1 = document.getElementById('checkbox5');
-	let cb2 = document.getElementById('checkbox6');
-	let cb3 = document.getElementById('checkbox7');
-	let cb4 = document.getElementById('checkbox8');
+	questionBox = document.getElementById("editQuestion");
+	subjectBox = document.getElementById("editSubject");
+	answer1 = document.getElementById('editQuestionAnswer1');
+	answer2 = document.getElementById('editQuestionAnswer2');
+	answer3 = document.getElementById('editQuestionAnswer3');
+	answer4 = document.getElementById('editQuestionAnswer4');
+	cb1 = document.getElementById('checkbox5');
+	cb2 = document.getElementById('checkbox6');
+	cb3 = document.getElementById('checkbox7');
+	cb4 = document.getElementById('checkbox8');
 	questionBox.value = editing.questionText;
+	subjectBox.value = editing.subject;
 	answer1.value = editing.answers[0].answerText;
 	answer2.value = editing.answers[1].answerText;
 	answer3.value = editing.answers[2].answerText;
@@ -84,6 +131,9 @@ const showEditQuestionPage = function(qid) {
 	cb2.checked = editing.answers[1].isCorrect;
 	cb3.checked = editing.answers[2].isCorrect;
 	cb4.checked = editing.answers[3].isCorrect;
+	document.getElementById("editSubmit").addEventListener('submit', function () {
+		updateQuestion();
+	});
 };
 
 const showMainPage = function() {
@@ -96,8 +146,8 @@ const showMainPage = function() {
 	editQuestionBool = 1
 };
 
-const checkedState = function(checkboxElement){
-	if (checkboxElement.checked){
+const checkedState = function (checkboxElement) {
+	if (checkboxElement.checked) {
 		checkboxElement.checked = true;
 	}
 	else {
@@ -105,7 +155,7 @@ const checkedState = function(checkboxElement){
 	}
 };
 
-const init = function() {
+const init = function () {
 	console.log('Script geladen! 👍');
 	getQuestions();
 	newQuestionButton = document.querySelector('.js-newQuestion');
@@ -117,19 +167,19 @@ const init = function() {
 	submitEdit = document.querySelector('.js-editQuestion');
 	closeWindowButton = document.querySelectorAll('.c-close__button');
 	checkboxInputs = document.querySelectorAll('.js-checkbox');
-	
-	checkboxInputs.forEach(element =>{
-		element.addEventListener('click', function(){
+
+	checkboxInputs.forEach(element => {
+		element.addEventListener('click', function () {
 			checkedState(element);
 		});
 	});
 
-	newQuestionButton.addEventListener('click', function() {
+	newQuestionButton.addEventListener('click', function () {
 		showAddQuestionPage();
 	});
 
 	editButton.forEach(element => {
-		element.addEventListener('click', function() {
+		element.addEventListener('click', function () {
 			showEditQuestionPage();
 		});
 	});
@@ -143,6 +193,6 @@ const init = function() {
 	});
 };
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 	init();
 });
