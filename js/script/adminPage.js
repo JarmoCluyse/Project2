@@ -77,9 +77,31 @@ const showQuestions = function (data) {
 	})
 	questionsObject.forEach(element => {
 		document.getElementById(`D${element.questionId}`).addEventListener('click', function () {
-			console.log("Deletespel");
+			deleteQuestionConfirmation();
 		});
 	})
+};
+
+const deleteQuestionConfirmation = function(){
+	jaButton = document.querySelector('.js-ja');
+	neeButton = document.querySelector('.js-neen');
+	mainCard.style.opacity = 0.2;
+	mainCard.style.pointerEvents = 'none';
+	deleteCard.style.display = 'block';
+
+
+	jaButton.addEventListener('click', function(){
+		mainCard.style.opacity = 1;
+		mainCard.style.pointerEvents = 'auto';
+		deleteCard.style.display = 'none';
+		// delete de vraag hier
+	});
+
+	neeButton.addEventListener('click', function(){
+		mainCard.style.opacity = 1;
+		mainCard.style.pointerEvents = 'auto';
+		deleteCard.style.display = 'none';
+	});
 };
 
 
@@ -160,18 +182,14 @@ const init = function () {
 	console.log('Script geladen! 👍');
 	getQuestions();
 	newQuestionButton = document.querySelector('.js-newQuestion');
-	editButton = document.querySelectorAll('.c-edit');
-	deleteButton = document.querySelectorAll('.c-delete');
 	mainCard = document.querySelector('.c-main-card');
 	addCard = document.querySelector('.c-add-card');
 	editCard = document.querySelector('.c-edit-card');
+	deleteCard = document.querySelector('.c-delete-card');
 	submitQuestion = document.querySelector('.js-addQuestion');
 	submitEdit = document.querySelector('.js-editQuestion');
 	closeWindowButton = document.querySelectorAll('.c-close__button');
 	checkboxInputs = document.querySelectorAll('.js-checkbox');
-
-	deleteButton1 = document.querySelector('.js-delete1');
-
 
 	checkboxInputs.forEach(element => {
 		element.addEventListener('click', function () {
@@ -180,11 +198,10 @@ const init = function () {
 	});
 
 
+
 	newQuestionButton.addEventListener('click', function () {
 		showAddQuestionPage();
 	});
-
-
 
 	closeWindowButton.forEach(element => {
 		element.addEventListener('click', function() {
