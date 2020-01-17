@@ -32,7 +32,7 @@
 <body>
   <section class="c-mainpage c-section">
           <div class="c-card c-main-card c-game-card">
-            <div class="js-gameStart c-gameStart hide">
+            <div class="js-gameStart c-gamePage hide">
               <h1>
                 stap op een mat om te beginnen
               </h1>
@@ -45,14 +45,23 @@
                 <!-- here is game in -->
               </div>
             </div>
-            <div class="js-gameEnd c-gameEnd hide">
+            <div class="js-gameQuestion c-gamePage c-gameQuestion hide">
+              <h1></h1>
+              <ul class="o-list">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
+            <div class="js-gameEnd c-gamePage hide">
               <h1>
                 Game Over
               </h1>
               <h2>
                 Highscore:
               </h2>
-              <ol>
+              <ol id="highscoreList">
                 <li>25</li>
                 <li>20</li>
                 <li>15</li>

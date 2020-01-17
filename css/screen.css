@@ -717,6 +717,9 @@ input::placeholder {
 
 }
 
+
+
+
 .c-list__item-question{
 	padding-top: var(--global-baseline);
 	padding-left: var(--global-baseline);
@@ -732,6 +735,7 @@ input::placeholder {
 .c-list__logos{
 	padding-right: calc(var(--global-baseline) * 2);
 	padding-top: calc(var(--global-baseline) / 2);
+
 }
 
 .c-list__question-answers{
@@ -796,13 +800,6 @@ input::placeholder {
 	opacity: 1;
 }
 /* game allignement */
-.c-gameStart{
-	display: flex;
-	width: 100%;
-	height: 100%;
-	justify-content: center;
-	align-items: center;
-}
 .c-game {
 	display: grid;
 	width: 100%;
@@ -810,13 +807,22 @@ input::placeholder {
 	grid:auto / 20% 60% 20%;
 	grid-gap: 10px;
 }
-.c-gameEnd{
+.c-gamePage{
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 	height: 100%;
 	justify-content: center;
 	align-items: center;
+}
+.c-gameQuestion ul {
+	display: flex;
+}
+.c-gameQuestion li {
+	padding: 16px;
+	margin: 16px;
+	background-color: var(--global-color-alpha);
+	color: var(--global-color-neutral-xxxx-light);
 }
 .c-game-card {
 	margin: 2.5vh 0;
@@ -909,11 +915,28 @@ input::placeholder {
 	display: block;
 }
 
+.c-card__delete-title{
+	padding-top: var(--global-baseline);
+	padding-left: var(--global-baseline);
+	font-size: 24px;
+	line-height: var(--global-whitespace);
+	color: var(--global-color-alpha-light);
+	margin-right: calc(var(--global-baseline) * 3);
+	margin-top: calc(var(--global-baseline) * 4);
+	margin-bottom: calc(var(--global-baseline) * 4);
+	padding-left: calc(var(--global-baseline) * 4);
+	display: flex;
+	justify-content: center;
+}
+
 .c-label--options{
 	display: flex;
 	align-items: center;
 }
 
+.c-delete-card {
+	display: none;
+}
 
 .c-card__title {
 	justify-content: center;
@@ -952,6 +975,14 @@ input::placeholder {
 	margin-right: clac(var(--global-baseline) * 3);
 	width: 93%;
 	justify-content: flex-end;
+}
+
+.c-delete__buttons{
+	display: flex;
+	margin-left: calc(var(--global-baseline) * 3);
+	margin-right: clac(var(--global-baseline) * 3);
+	width: 93%;
+	justify-content: space-between;
 }
 
 .c-form-field__answers {
@@ -1165,6 +1196,13 @@ input::placeholder {
 }
 
 .c-new-account-card {
+	display: none;
+}
+
+.c-passDontMatch {
+	font-size: 20px;
+	margin-left: calc(var(--global-baseline) * 4);
+	color: var(--global-color-alpha);
 	display: none;
 }
 /*------------------------------------*\

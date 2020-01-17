@@ -12,7 +12,6 @@ var preloadState = new Phaser.Class({
     this.load.image('road', 'assets/road.png');
     this.load.image('car', 'assets/car.png');
     this.load.image('coin', 'assets/coin.png');
-    player = localStorage.getItem("player");
     
     },
     create: function() {

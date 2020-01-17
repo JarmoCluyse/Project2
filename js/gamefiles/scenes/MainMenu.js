@@ -17,6 +17,7 @@ var mainMenuState = new Phaser.Class({
     create: function() {
         jsGameStart.classList.remove('hide');
         jsGamePlay.classList.add('hide');
+        jsGameQuestion.classList.remove('hide');
         jsGameEnd.classList.add('hide');
         // log the current scene
         console.log("MainMenu");
