@@ -37,28 +37,77 @@ const checkCheckboxesEdit = function() {
 
 // check if everything is filled in correctly in the form 'edit card'
 const checkValidityEdit = function(){
+	editQuestion = document.getElementById('editQuestion');
+	editSubject = document.getElementById('editSubject');
+	editQuestionAnswer1 = document.getElementById('editQuestionAnswer1');
+	editQuestionAnswer2 = document.getElementById('editQuestionAnswer2');
+	editQuestionAnswer3 = document.getElementById('editQuestionAnswer3');
+	editQuestionAnswer4 = document.getElementById('editQuestionAnswer4');
+
+	// if there is input we clear the errormessage
+	editQuestion.oninput = function(){
+		editQuestion.setCustomValidity('');
+	};
+
+	// if there is input we clear the errormessage
+	editSubject.oninput = function(){
+		editSubject.setCustomValidity('');
+	};
+
+	// if there is input we clear the errormessage
+	editQuestionAnswer1.oninput = function(){
+		editQuestionAnswer1.setCustomValidity('');
+	};
+
+	// if there is input we clear the errormessage
+	editQuestionAnswer2.oninput = function(){
+		editQuestionAnswer2.setCustomValidity('');
+	};
+
+	// if there is input we clear the errormessage
+	editQuestionAnswer3.oninput = function(){
+		editQuestionAnswer3.setCustomValidity('');
+	};
+
+	// if there is input we clear the errormessage
+	editQuestionAnswer4.oninput = function(){
+		editQuestionAnswer4.setCustomValidity('');
+	};
+
 	// check each input for errors
-	if (!document.getElementById('editQuestion').checkValidity()){
+	if (!editQuestion.checkValidity()){
+		// custom validity message
+		editQuestion.setCustomValidity("Gelieve een vraag in te vullen.")
 		return false;
 	}
 	
-	else if (!document.getElementById('editSubject').checkValidity()){
+	else if (!editSubject.checkValidity()){
+		// custom validity message
+		editSubject.setCustomValidity("Gelieve een onderwerp in te geven.")
 		return false;
 	}
 
-	else if (!document.getElementById('editQuestionAnswer1').checkValidity()){
+	else if (!editQuestionAnswer1.checkValidity()){
+		// custom validity message
+		editQuestionAnswer1.setCustomValidity("Gelieve een eerste mogelijk antwoord in te vullen.")
 		return false;
 	}
 
-	else if (!document.getElementById('editQuestionAnswer2').checkValidity()){
+	else if (!editQuestionAnswer2.checkValidity()){
+		// custom validity message
+		editQuestionAnswer2.setCustomValidity("Gelieve een tweede mogelijk antwoord in te vullen.")
 		return false;
 	}
 
-	else if (!document.getElementById('editQuestionAnswer3').checkValidity()){
+	else if (!editQuestionAnswer3.checkValidity()){
+		// custom validity message
+		editQuestionAnswer3.setCustomValidity("Gelieve een derde mogelijk antwoord in te vullen.")
 		return false;
 	}
 
-	else if (!document.getElementById('editQuestionAnswer4').checkValidity()){
+	else if (!editQuestionAnswer4.checkValidity()){
+		// custom validity message
+		editQuestionAnswer4.setCustomValidity("Gelieve een vierde mogelijk antwoord in te vullen.")
 		return false;
 	}
 
@@ -70,28 +119,77 @@ const checkValidityEdit = function(){
 
 // check if everything is filled in correctly in the form 'add card'
 const checkValidityAdd = function(){
+	newQuestion = document.getElementById('newQuestion');
+	newSubject = document.getElementById('newSubject');
+	newQuestionAnswer1 = document.getElementById('newQuestionAnswer1');
+	newQuestionAnswer2 = document.getElementById('newQuestionAnswer2');
+	newQuestionAnswer3 = document.getElementById('newQuestionAnswer3');
+	newQuestionAnswer4 = document.getElementById('newQuestionAnswer4');
+
+	// if there is input we clear the errormessage
+	newQuestion.oninput = function(){
+		newQuestion.setCustomValidity('');
+	};
+
+	// if there is input we clear the errormessage
+	newSubject.oninput = function(){
+		newSubject.setCustomValidity('');
+	};
+
+	// if there is input we clear the errormessage
+	newQuestionAnswer1.oninput = function(){
+		newQuestionAnswer1.setCustomValidity('');
+	};
+
+	// if there is input we clear the errormessage
+	newQuestionAnswer2.oninput = function(){
+		newQuestionAnswer2.setCustomValidity('');
+	};
+
+	// if there is input we clear the errormessage
+	newQuestionAnswer3.oninput = function(){
+		newQuestionAnswer3.setCustomValidity('');
+	};
+
+	// if there is input we clear the errormessage
+	newQuestionAnswer4.oninput = function(){
+		newQuestionAnswer4.setCustomValidity('');
+	};
+
 	// check each input for errors
-	if (!document.getElementById('newQuestion').checkValidity()){
+	if (!newQuestion.checkValidity()){
+		// custom validity message
+		newQuestion.setCustomValidity("Gelieve een vraag in te vullen.")
 		return false;
 	}
 	
-	else if (!document.getElementById('newSubject').checkValidity()){
+	else if (!newSubject.checkValidity()){
+		// custom validity message
+		newSubject.setCustomValidity("Gelieve een onderwerp in te geven.")
 		return false;
 	}
 
-	else if (!document.getElementById('newQuestionAnswer1').checkValidity()){
+	else if (!newQuestionAnswer1.checkValidity()){
+		// custom validity message
+		newQuestionAnswer1.setCustomValidity("Gelieve een eerste mogelijk antwoord in te vullen.")
 		return false;
 	}
 
-	else if (!document.getElementById('newQuestionAnswer2').checkValidity()){
+	else if (!newQuestionAnswer2.checkValidity()){
+		// custom validity message
+		newQuestionAnswer2.setCustomValidity("Gelieve een tweede mogelijk antwoord in te vullen.")
 		return false;
 	}
 
-	else if (!document.getElementById('newQuestionAnswer3').checkValidity()){
+	else if (!newQuestionAnswer3.checkValidity()){
+		// custom validity message
+		newQuestionAnswer3.setCustomValidity("Gelieve een derde mogelijk antwoord in te vullen.")
 		return false;
 	}
 
-	else if (!document.getElementById('newQuestionAnswer4').checkValidity()){
+	else if (!newQuestionAnswer4.checkValidity()){
+		// custom validity message
+		newQuestionAnswer4.setCustomValidity("Gelieve een vierde mogelijk antwoord in te vullen.")
 		return false;
 	}
 

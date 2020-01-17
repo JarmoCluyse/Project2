@@ -21,11 +21,22 @@ const showMakeAccountPage = function(){
 
 // checking if everything is filled in for login
 const checkValidityLogin = function(){
+	email = document.getElementById('email');
+	password = document.getElementById('password');
+
+	// if there is input we clear the errormessage
+	password.oninput = function(){
+		password.setCustomValidity('');
+	}
+
+
 	// check the validity of each inputfield in the form
-	if (!document.getElementById('email').checkValidity()){
+	if (!email.checkValidity()){
 		return false;
 	}
-	else if (!document.getElementById('password').checkValidity()){
+	else if (!password.checkValidity()){
+		// custom validity message
+		password.setCustomValidity("Gelieve je wachtwoord in te geven.")
 		return false;
 	}
 	else {
@@ -36,25 +47,60 @@ const checkValidityLogin = function(){
 
 // checking if everything is filled in for create an account
 const checkValidityCreateAccount = function(){
-	// check the validity of reach inputfield in the form
-	if (!document.getElementById('newAccountName').checkValidity()){
+	newAccountFirstName = document.getElementById('newAccountFirstName');
+	newAccountName = document.getElementById('newAccountName');
+	newEmail = document.getElementById('newEmail');
+	newPassword = document.getElementById('newPassword');
+	repeatNewPassword = document.getElementById('repeatNewPassword');
+
+	// if there is input we clear the errormessage
+	newAccountFirstName.oninput = function(){
+		newAccountFirstName.setCustomValidity('');
+	}
+
+	// if there is input we clear the errormessage
+	newAccountName.oninput = function(){
+		newAccountName.setCustomValidity('');
+	}
+
+	// if there is input we clear the errormessage
+	newPassword.oninput = function(){
+		newPassword.setCustomValidity('');
+	}
+
+	// if there is input we clear the errormessage
+	repeatNewPassword.oninput = function(){
+		repeatNewPassword.setCustomValidity('');
+	}
+
+	// check the validity of each inputfield in the form
+	if (!newAccountFirstName.checkValidity()){
+		// custom validity message
+		newAccountFirstName.setCustomValidity("Gelieve je voornaam in te vullen.")
 		return false;
 	}
-	else if (!document.getElementById('newAccountFirstName').checkValidity()){
+	else if (!newAccountName.checkValidity()){
+		// custom validity message
+		newAccountName.setCustomValidity("Gelieve je naam in te vullen.")
 		return false;
 	}
 
-	else if (!document.getElementById('newEmail').checkValidity()){
+	else if (!newEmail.checkValidity()){
+		// no custom validity message because the default also checks for "@" and '.' 
 		return false;
 	}
-	else if (!document.getElementById('newPassword').checkValidity()){
+	else if (!newPassword.checkValidity()){
+		// custom validity message
+		newPassword.setCustomValidity("Gelieve een wachtwoord in te vullen.")
 		return false;
 	}
-	else if (!document.getElementById('repeatNewPassword').checkValidity()){
+	else if (!repeatNewPassword.checkValidity()){
+		// custom validity message
+		repeatNewPassword.setCustomValidity("Gelieve je wachtwoord te herhalen.")
 		return false;
 	}
 
-	else if (document.getElementById('newPassword').value != document.getElementById('repeatNewPassword').value){
+	else if (newPassword.value != repeatNewPassword.value){
 		// if the passwords don't match show an errormessage
 		passError.style.display = 'block';
 		return false;
