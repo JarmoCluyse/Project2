@@ -69,6 +69,12 @@ const checkValidityCreateAccount = function(){
 	}
 };
 
+const loggedIn = function(data){
+	console.log(data);
+	localStorage.setItem("LoginToken", JSON.stringify(data));
+	showAdminPage();
+};
+
 
 const init = function(){
 	console.log('Script geladen! 👍')
@@ -100,7 +106,9 @@ const init = function(){
 		// check if everything is filled in correctly
 		if(checkValidityLogin() == true){
 			// show the adminpage
-			showAdminPage();
+			// log in
+			logIn(document.getElementById('email').value, document.getElementById('password').value, loggedIn);
+			//showAdminPage();
 		}
 	});	
 
