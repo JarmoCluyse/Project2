@@ -77,7 +77,7 @@ const checkValidityEdit = function(){
 	// check each input for errors
 	if (!editQuestion.checkValidity()){
 		// custom validity message
-		editQuestion.setCustomValidity("Gelieve een vraag in te vullen.")
+		editQuestion.setCustomValidity("Gelieve een vraag in te geven.")
 		return false;
 	}
 	
@@ -89,25 +89,25 @@ const checkValidityEdit = function(){
 
 	else if (!editQuestionAnswer1.checkValidity()){
 		// custom validity message
-		editQuestionAnswer1.setCustomValidity("Gelieve een eerste mogelijk antwoord in te vullen.")
+		editQuestionAnswer1.setCustomValidity("Gelieve een eerste mogelijk antwoord in te geven.")
 		return false;
 	}
 
 	else if (!editQuestionAnswer2.checkValidity()){
 		// custom validity message
-		editQuestionAnswer2.setCustomValidity("Gelieve een tweede mogelijk antwoord in te vullen.")
+		editQuestionAnswer2.setCustomValidity("Gelieve een tweede mogelijk antwoord in te geven.")
 		return false;
 	}
 
 	else if (!editQuestionAnswer3.checkValidity()){
 		// custom validity message
-		editQuestionAnswer3.setCustomValidity("Gelieve een derde mogelijk antwoord in te vullen.")
+		editQuestionAnswer3.setCustomValidity("Gelieve een derde mogelijk antwoord in te geven.")
 		return false;
 	}
 
 	else if (!editQuestionAnswer4.checkValidity()){
 		// custom validity message
-		editQuestionAnswer4.setCustomValidity("Gelieve een vierde mogelijk antwoord in te vullen.")
+		editQuestionAnswer4.setCustomValidity("Gelieve een vierde mogelijk antwoord in te geven.")
 		return false;
 	}
 
@@ -159,7 +159,7 @@ const checkValidityAdd = function(){
 	// check each input for errors
 	if (!newQuestion.checkValidity()){
 		// custom validity message
-		newQuestion.setCustomValidity("Gelieve een vraag in te vullen.")
+		newQuestion.setCustomValidity("Gelieve een vraag in te geven.")
 		return false;
 	}
 	
@@ -171,25 +171,25 @@ const checkValidityAdd = function(){
 
 	else if (!newQuestionAnswer1.checkValidity()){
 		// custom validity message
-		newQuestionAnswer1.setCustomValidity("Gelieve een eerste mogelijk antwoord in te vullen.")
+		newQuestionAnswer1.setCustomValidity("Gelieve een eerste mogelijk antwoord in te geven.")
 		return false;
 	}
 
 	else if (!newQuestionAnswer2.checkValidity()){
 		// custom validity message
-		newQuestionAnswer2.setCustomValidity("Gelieve een tweede mogelijk antwoord in te vullen.")
+		newQuestionAnswer2.setCustomValidity("Gelieve een tweede mogelijk antwoord in te geven.")
 		return false;
 	}
 
 	else if (!newQuestionAnswer3.checkValidity()){
 		// custom validity message
-		newQuestionAnswer3.setCustomValidity("Gelieve een derde mogelijk antwoord in te vullen.")
+		newQuestionAnswer3.setCustomValidity("Gelieve een derde mogelijk antwoord in te geven.")
 		return false;
 	}
 
 	else if (!newQuestionAnswer4.checkValidity()){
 		// custom validity message
-		newQuestionAnswer4.setCustomValidity("Gelieve een vierde mogelijk antwoord in te vullen.")
+		newQuestionAnswer4.setCustomValidity("Gelieve een vierde mogelijk antwoord in te geven.")
 		return false;
 	}
 

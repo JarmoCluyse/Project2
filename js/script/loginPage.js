@@ -29,10 +29,31 @@ const checkValidityLogin = function(){
 		password.setCustomValidity('');
 	}
 
+	// if there is input we clear the errormessage
+	email.oninput = function(){
+		email.setCustomValidity('');
+	}
+
 
 	// check the validity of each inputfield in the form
 	if (!email.checkValidity()){
-		return false;
+		// custom validity message
+		// check if email isn't empty
+		if (email.value == ""){
+			email.setCustomValidity("Gelieve je e-mailadres in te geven.")	
+			return false;
+		}
+
+		// check if email includes '@'
+		else if (!email.value.includes('@')){
+			email.setCustomValidity("Je e-mailadres moet een '@' bevatten!")
+			return false;
+		}
+
+		else {
+			email.setCustomValidity("Controleer of je e-mailadres wel volledig is!")
+			return false
+		}
 	}
 	else if (!password.checkValidity()){
 		// custom validity message
@@ -64,6 +85,11 @@ const checkValidityCreateAccount = function(){
 	}
 
 	// if there is input we clear the errormessage
+	newEmail.oninput = function(){
+		newEmail.setCustomValidity('');
+	}
+
+	// if there is input we clear the errormessage
 	newPassword.oninput = function(){
 		newPassword.setCustomValidity('');
 	}
@@ -76,22 +102,37 @@ const checkValidityCreateAccount = function(){
 	// check the validity of each inputfield in the form
 	if (!newAccountFirstName.checkValidity()){
 		// custom validity message
-		newAccountFirstName.setCustomValidity("Gelieve je voornaam in te vullen.")
+		newAccountFirstName.setCustomValidity("Gelieve je voornaam in te geven.")
 		return false;
 	}
 	else if (!newAccountName.checkValidity()){
 		// custom validity message
-		newAccountName.setCustomValidity("Gelieve je naam in te vullen.")
+		newAccountName.setCustomValidity("Gelieve je naam in te geven.")
 		return false;
 	}
 
 	else if (!newEmail.checkValidity()){
-		// no custom validity message because the default also checks for "@" and '.' 
-		return false;
+		// custom validity message
+		// check if email isn't empty
+		if (newEmail.value == ""){
+			newEmail.setCustomValidity("Gelieve je e-mailadres in te geven.")	
+			return false;
+		}
+
+		// if newEmail isn't empty check if it contains '@'
+		else if (!newEmail.value.includes('@')){
+			newEmail.setCustomValidity("Je e-mailadres moet een '@' bevatten!")
+			return false;
+		}
+
+		else {
+			newEmail.setCustomValidity("Controleer of je e-mailadres wel volledig is!")
+			return false
+		}
 	}
 	else if (!newPassword.checkValidity()){
 		// custom validity message
-		newPassword.setCustomValidity("Gelieve een wachtwoord in te vullen.")
+		newPassword.setCustomValidity("Gelieve een wachtwoord in te geven.")
 		return false;
 	}
 	else if (!repeatNewPassword.checkValidity()){
