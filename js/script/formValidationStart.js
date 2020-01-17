@@ -3,9 +3,6 @@ let gameId = {};
     // radioChecked = 0,
 	// radioButtons = {};
 
-const isEmpty = function(fieldValue) {
-	return !fieldValue || !fieldValue.length;
-};
 
 // ------  Multiplayer  -----------
 
@@ -20,25 +17,28 @@ const isEmpty = function(fieldValue) {
 // 	}
 // };
 
-
+// start the game and send all filled in data with it
 const startGame = function() {
+	// add all variables to the localstorage
     localStorage.setItem("BeginSpeed", document.getElementById('carSlider').value);
 	localStorage.setItem("Distance", document.getElementById('obstacleSlider').value);
 	localStorage.setItem("Player", document.getElementById('Name1').value);
 	console.log(document.getElementById('Name1').value);
 	
+	// check if the checkbox to increase speed over time is checked
 	if (document.getElementById("checkbox1").checked){
 		localStorage.setItem("Increase", true);
 	} 
 	else {
 		localStorage.setItem("Increase", false);
 	}
+	// read the carcolors selected and add to localstorage
     localStorage.setItem("Color", document.getElementById('selectCarColorPlayer1').value);
     localStorage.setItem("Color2", document.getElementById('selectCarColorPlayer2').value);
     
     if (startGameBool == 1){
+		// redirect to the gamepage
         window.location.href = 'game.html';
-        console.log("ik doe dit")
     }
 
 };
@@ -63,16 +63,21 @@ const enableValidation = function() {
     //     }
     // })
 
-	radioNo.addEventListener('click', function() {
-		document.querySelector('.c-errormsg-radiobuttons').style.display =
-			'none';
-	});
+	// // add an eventlistener to the 'no' radiobutton
+	// radioNo.addEventListener('click', function() {
+	// 	// if the radiobutton has been clicked all errormessages go away
+	// 	document.querySelector('.c-errormsg-radiobuttons').style.display =
+	// 		'none';
+	// });
 
-	radioYes.addEventListener('click', function() {
-		document.querySelector('.c-errormsg-radiobuttons').style.display =
-			'none';
-	});
-
+	// // add an eventlistener to the 'yes' radiobutton
+	// radioYes.addEventListener('click', function() {
+	// 	// if the radiobutton has been clicked all errormessages go away
+	// 	document.querySelector('.c-errormsg-radiobuttons').style.display =
+	// 		'none';
+	// });
+	
+	// add an eventlistener to the startgame button
 	startGameButton.addEventListener('click', function() {
         // ------  Multiplayer  -----------
 
@@ -85,6 +90,7 @@ const enableValidation = function() {
 		// 	}
         // });
 
+		// call the startgame function
         startGame();
 
 		// radioChecked = 0;
