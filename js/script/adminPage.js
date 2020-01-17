@@ -10,23 +10,35 @@ let cb1;
 let cb2;
 let cb3;
 let cb4;
+
+// get the questions from the database
 const getQuestions = function () {
+	// this will send data to the datahandler and the response are the questions
 	handleData(`${BASEURI}questions?code=${key}`, showQuestions)
 };
 
+
+// delete the selected question from the database
 const deleteQuestion = function() {
+	// send data to the database
 	sendData(`${BASEURI}question?code=${key}`, questionPosted, "DELETE", deleting);
 	return false;
 }
 
+// add a new question + answers to the database
 const addQuestion = function () {
+	// all the variables are put into a json format
 	jsontext = `{"questiontext": "${questionBox.value}", "subject": "${subjectBox.value}", "teacheremail": "leraar@school.be", "answers": [{"answertext": "${answer1.value}", "iscorrect": ${cb1.checked}}, {"answertext": "${answer2.value}", "iscorrect": ${cb2.checked}}, {"answertext": "${answer3.value}", "iscorrect": ${cb3.checked}}, {"answertext": "${answer4.value}", "iscorrect": ${cb4.checked}}]}`;
 	json = JSON.parse(jsontext);
 	console.log(json);
+	// send the jsonfile to the database
 	sendData(`${BASEURI}question?code=${key}`, questionPosted, "POST", json);
 };
 
+
+// update a question in the database
 const updateQuestion = function () {
+	// fill in all variables
 	editing.questionText = questionBox.value;
 	editing.subject = subjectBox.value;
 	editing.answers[0].answerText = answer1.value;
@@ -40,20 +52,29 @@ const updateQuestion = function () {
 	console.log(editing);
 	//json = JSON.parse(editing);
 	//console.log(json);
+	// send all data to the database
 	sendData(`${BASEURI}question?code=${key}`, questionPosted, "PUT", editing);
 	return false;
 };
+
+// after sending a question to the database reload the page so all new questions are also loaded in
 const questionPosted = function () {
 	console.log("question posted");
+	// this reloads the page completely
 	location.reload();
 };
+
 var questionsObject;
+
+// get all questions from the database and show them on the adminpage
 const showQuestions = function (data) {
 	console.log(data);
+	// get all the questions from the database
 	questionsObject = data;
 	let listElement = document.getElementById("questionsList");
 	listElement.innerHTML = "";
 	let htmlString = "";
+	// add the questions to the html
 	data.forEach(element => {
 		htmlString += `<li class="c-list__item">
 		<h3 class="c-list__item-question">${element.questionText}</h3>
@@ -76,32 +97,46 @@ const showQuestions = function (data) {
 	});
 	listElement.innerHTML = htmlString;
 
+	// add an eventlistener to every edit icon
 	questionsObject.forEach(element => {
+		// add an eventlistener to EACH edit icon, it runs through a list 
 		document.getElementById(`E${element.questionId}`).addEventListener('click', function () {
+			// this brings you to the editquestion page, we send the question id so we get the correct question
 			showEditQuestionPage(element.questionId);
 		});
 	})
+
+	// add an eventlistener to every delete icon
 	questionsObject.forEach(element => {
+		// add an eventlistener to EACH delete icon, it runs through a list 
 		document.getElementById(`D${element.questionId}`).addEventListener('click', function () {
+			// this gives you a pop-up to confirm the deletion
 			deleteQuestionConfirmation(element.questionId);
 		});
 	})
 };
 
+// confirmation popup 'are you sure you want to delete this question?'
 const deleteQuestionConfirmation = function (qid) {
 	yesButton = document.querySelector('.js-yes');
 	noButton = document.querySelector('.js-no');
+
+	// make the maincard look more in the background
 	mainCard.style.opacity = 0.2;
 	mainCard.style.pointerEvents = 'none';
+	// show the deletecard
 	deleteCard.style.display = 'block';
 
 
+	// if person chose 'yes' the question will be deleted
 	yesButton.addEventListener('click', function () {
+		// show the maincard again
 		mainCard.style.opacity = 1;
 		mainCard.style.pointerEvents = 'auto';
+		// hide the deletecard
 		deleteCard.style.display = 'none';
-		// delete de vraag hier
 		console.log(qid);
+		// run through all questions till the question id matches, then delete said question
 		for (var q in questionsObject) {
 			if (questionsObject[q].questionId == qid) {
 				deleting = questionsObject[q];
@@ -111,18 +146,25 @@ const deleteQuestionConfirmation = function (qid) {
 		deleteQuestion();
 	});
 
+	// if the person chose 'no' the user will be brought back to the mainpage
 	noButton.addEventListener('click', function () {
+		// show the maincard again
 		mainCard.style.opacity = 1;
 		mainCard.style.pointerEvents = 'auto';
+		// hide the deletecard
 		deleteCard.style.display = 'none';
 	});
 };
 
 
+// this will show the page with a form to make a complete new question
 const showAddQuestionPage = function () {
+	// make the maincard more to the background
 	mainCard.style.opacity = 0.2;
 	mainCard.style.pointerEvents = 'none';
+	// show the addquestion card
 	addCard.style.display = 'block';
+
 	questionBox = document.getElementById("newQuestion");
 	subjectBox = document.getElementById("newSubject");
 	answer1 = document.getElementById('newQuestionAnswer1');
@@ -139,17 +181,24 @@ const showAddQuestionPage = function () {
 	// });
 };
 
+
+// this will show the page to edit a question, all data from the selected question is filled in already
 const showEditQuestionPage = function (qid) {
 	console.log(qid);
+	// run through all the questions till the id matches and display this info
 	for (var q in questionsObject) {
 		if (questionsObject[q].questionId == qid) {
 			editing = questionsObject[q];
 		}
 	}
 	console.log(editing);
+	// make the maincard go more to the background
 	mainCard.style.opacity = 0.2;
 	mainCard.style.pointerEvents = 'none';
+	// show the editcard
 	editCard.style.display = 'block';
+	
+	// grab all inputs
 	questionBox = document.getElementById("editQuestion");
 	subjectBox = document.getElementById("editSubject");
 	answer1 = document.getElementById('editQuestionAnswer1');
@@ -160,6 +209,7 @@ const showEditQuestionPage = function (qid) {
 	cb2 = document.getElementById('checkbox6');
 	cb3 = document.getElementById('checkbox7');
 	cb4 = document.getElementById('checkbox8');
+	// fill in the inputs with the correct data
 	questionBox.value = editing.questionText;
 	subjectBox.value = editing.subject;
 	answer1.value = editing.answers[0].answerText;
@@ -175,14 +225,21 @@ const showEditQuestionPage = function (qid) {
 	// });
 };
 
+
+// this function brings you back to the mainpage
 const showMainPage = function () {
+	// hide edit and add card
 	editCard.style.display = 'none';
 	addCard.style.display = 'none';
+
+	// show the maincard
 	mainCard.style.opacity = 1;
 	mainCard.style.pointerEvents = 'auto';
 };
 
+// this function checks if you clicked a checkbox
 const checkedState = function (checkboxElement) {
+	// check if a checkbox is checked
 	if (checkboxElement.checked) {
 		checkboxElement.checked = true;
 	} else {
@@ -193,6 +250,7 @@ const checkedState = function (checkboxElement) {
 
 const init = function () {
 	console.log('Script geladen! 👍');
+	// grab all the questions as the page is loading
 	getQuestions();
 	newQuestionButton = document.querySelector('.js-newQuestion');
 	mainCard = document.querySelector('.c-main-card');
@@ -204,6 +262,7 @@ const init = function () {
 	closeWindowButton = document.querySelectorAll('.c-close__button');
 	checkboxInputs = document.querySelectorAll('.js-checkbox');
 
+	// check the checkboxinputs
 	checkboxInputs.forEach(element => {
 		element.addEventListener('click', function () {
 			checkedState(element);
@@ -211,12 +270,15 @@ const init = function () {
 	});
 
 
-
+	// if you click on this button you will be brought to the page to add a new question
 	newQuestionButton.addEventListener('click', function () {
 		showAddQuestionPage();
 	});
 
+
+	// close the window you are currently looking at
 	closeWindowButton.forEach(element => {
+		// add an eventlistener to each closewindow element
 		element.addEventListener('click', function () {
 			showMainPage();
 		});
