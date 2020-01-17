@@ -68,6 +68,7 @@ var questionsObject;
 
 // get all questions from the database and show them on the adminpage
 const showQuestions = function (data) {
+	preloadDropDown(data);
 	console.log(data);
 	// get all the questions from the database
 	questionsObject = data;
@@ -97,6 +98,7 @@ const showQuestions = function (data) {
 	});
 	listElement.innerHTML = htmlString;
 
+
 	// add an eventlistener to every edit icon
 	questionsObject.forEach(element => {
 		// add an eventlistener to EACH edit icon, it runs through a list 
@@ -114,6 +116,25 @@ const showQuestions = function (data) {
 			deleteQuestionConfirmation(element.questionId);
 		});
 	})
+};
+
+const preloadDropDown = function(data){
+	mainDropDown = document.getElementById('select');
+	mainDropDown.innerHTML = "";
+
+	foundSubjects = []
+
+	data.forEach(element =>{
+		if (!foundSubjects.includes(element.subject)){
+			foundSubjects.push(element.subject);
+		}
+	});
+	
+	foundSubjects.forEach(element => {
+		mainDropDown.innerHTML += `<option value="${element}">${element}</option>`;
+	});
+
+
 };
 
 // confirmation popup 'are you sure you want to delete this question?'
@@ -349,6 +370,7 @@ const init = function () {
 	addSubjectButton = document.getElementById('addSubject');
 	deleteSubjectButton = document.getElementById('deleteSubjectButton');
 	dropDownForCards = document.getElementById('dropDownForCards');
+
 
 	// check the checkboxinputs
 	checkboxInputs.forEach(element => {
