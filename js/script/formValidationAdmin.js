@@ -50,11 +50,6 @@ const checkValidityEdit = function(){
 	};
 
 	// if there is input we clear the errormessage
-	editSubject.oninput = function(){
-		editSubject.setCustomValidity('');
-	};
-
-	// if there is input we clear the errormessage
 	editQuestionAnswer1.oninput = function(){
 		editQuestionAnswer1.setCustomValidity('');
 	};
@@ -81,11 +76,6 @@ const checkValidityEdit = function(){
 		return false;
 	}
 	
-	else if (!editSubject.checkValidity()){
-		// custom validity message
-		editSubject.setCustomValidity("Gelieve een onderwerp in te geven.")
-		return false;
-	}
 
 	else if (!editQuestionAnswer1.checkValidity()){
 		// custom validity message
@@ -131,10 +121,6 @@ const checkValidityAdd = function(){
 		newQuestion.setCustomValidity('');
 	};
 
-	// if there is input we clear the errormessage
-	newSubject.oninput = function(){
-		newSubject.setCustomValidity('');
-	};
 
 	// if there is input we clear the errormessage
 	newQuestionAnswer1.oninput = function(){
@@ -163,11 +149,6 @@ const checkValidityAdd = function(){
 		return false;
 	}
 	
-	else if (!newSubject.checkValidity()){
-		// custom validity message
-		newSubject.setCustomValidity("Gelieve een onderwerp in te geven.")
-		return false;
-	}
 
 	else if (!newQuestionAnswer1.checkValidity()){
 		// custom validity message

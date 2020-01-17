@@ -69,13 +69,11 @@ const removePlayer2 = function() {
 // dropdown for the selected gamemode
 const dropdownFunction = function() {
 	// check the dropdown value a first time
-	dropdownSelectValue =
-		dropdownSelect.options[dropdownSelect.selectedIndex].value;
+	dropdownSelectValue = dropdownSelect.options[dropdownSelect.selectedIndex].value;
 
 	// check the dropdown value if theres a change
 	dropdownSelect.onchange = function() {
-		dropdownSelectValue =
-			dropdownSelect.options[dropdownSelect.selectedIndex].value;
+		dropdownSelectValue = dropdownSelect.options[dropdownSelect.selectedIndex].value;
 
 		// if the selected dropdown value is 'single player'
 		if (dropdownSelectValue == 'single-player') {

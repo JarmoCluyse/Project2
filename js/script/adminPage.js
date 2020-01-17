@@ -40,7 +40,7 @@ const addQuestion = function () {
 const updateQuestion = function () {
 	// fill in all variables
 	editing.questionText = questionBox.value;
-	editing.subject = subjectBox.value;
+	editing.subject = document.getElementById('dropDownForEditCard').options[document.getElementById('dropDownForEditCard').selectedIndex].value;
 	editing.answers[0].answerText = answer1.value;
 	editing.answers[1].answerText = answer2.value;
 	editing.answers[2].answerText = answer3.value;
@@ -159,6 +159,8 @@ const deleteQuestionConfirmation = function (qid) {
 
 // this will show the page with a form to make a complete new question
 const showAddQuestionPage = function () {
+	// fill the dropdowns with all the subjects	
+	fillDropDowns("dropDownForAddCard");
 	// make the maincard more to the background
 	mainCard.style.opacity = 0.2;
 	mainCard.style.pointerEvents = 'none';
@@ -166,7 +168,7 @@ const showAddQuestionPage = function () {
 	addCard.style.display = 'block';
 
 	questionBox = document.getElementById("newQuestion");
-	subjectBox = document.getElementById("newSubject");
+	subjectBox = document.getElementById("dropDownForAddCard");
 	answer1 = document.getElementById('newQuestionAnswer1');
 	answer2 = document.getElementById('newQuestionAnswer2');
 	answer3 = document.getElementById('newQuestionAnswer3');
@@ -184,6 +186,9 @@ const showAddQuestionPage = function () {
 
 // this will show the page to edit a question, all data from the selected question is filled in already
 const showEditQuestionPage = function (qid) {
+	// fill the dropdowns with all the subjects
+	fillDropDowns("dropDownForEditCard");
+	let counter = 0;
 	console.log(qid);
 	// run through all the questions till the id matches and display this info
 	for (var q in questionsObject) {
@@ -200,7 +205,7 @@ const showEditQuestionPage = function (qid) {
 	
 	// grab all inputs
 	questionBox = document.getElementById("editQuestion");
-	subjectBox = document.getElementById("editSubject");
+	dropDown = document.getElementById('dropDownForEditCard');
 	answer1 = document.getElementById('editQuestionAnswer1');
 	answer2 = document.getElementById('editQuestionAnswer2');
 	answer3 = document.getElementById('editQuestionAnswer3');
@@ -209,9 +214,17 @@ const showEditQuestionPage = function (qid) {
 	cb2 = document.getElementById('checkbox6');
 	cb3 = document.getElementById('checkbox7');
 	cb4 = document.getElementById('checkbox8');
+
+	// check all the subjects and if you find a match pick that one as selected index
+	while (counter < dropDown.options.length){
+		if (editing.subject.toLowerCase() == dropDown.options[counter].innerHTML.toLowerCase()){
+			dropDown.selectedIndex = counter;
+		}
+		counter += 1;
+	}
+
 	// fill in the inputs with the correct data
 	questionBox.value = editing.questionText;
-	subjectBox.value = editing.subject;
 	answer1.value = editing.answers[0].answerText;
 	answer2.value = editing.answers[1].answerText;
 	answer3.value = editing.answers[2].answerText;
@@ -225,12 +238,81 @@ const showEditQuestionPage = function (qid) {
 	// });
 };
 
+// show edit dropdown page
+const showDropDownEditPage = function(){
+	// set display to block for dropdowncard
+	dropdownCard.style.display = 'block';
+
+	// make it look like maincard is in background
+	mainCard.style.opacity = 0.2;
+	mainCard.style.pointerEvents = 'none';
+
+	// fill the dropdownmenus with the correct values by giving the id of the dropdown
+	fillDropDowns("deleteSubject");
+	
+};
+
+// fill the dropdowns 
+const fillDropDowns = function(elementId){
+	// get the dropdownlist with the given id
+	dropDownList = document.getElementById(`${elementId}`);
+	
+	// empty the dropdownlist
+	dropDownList.innerHTML = "";
+
+	let dropDownHtml = "";
+
+	// make an empty list of values
+	let dropdownValues = []
+	dropdownInt = 0;
+
+	// while loop that adds all values to the empty list
+	while (dropdownInt < subjectSelect.options.length){
+		// push to the empty list
+		dropdownValues.push(subjectSelect.options[dropdownInt].innerHTML)
+
+		// add 1 to dropdownoptions
+		dropdownInt += 1;
+	};
+
+	// add innerhtml for each dropdown option
+	dropdownValues.forEach(element => {
+		dropDownHtml += `<option value="${element}">${element}</option>`;
+	})
+
+	// give the dropdown list the innerhtml
+	dropDownList.innerHTML = dropDownHtml;
+}
+
+
+// add subject to dropdown menu
+const addSubjectToDropDown = function(){
+	// get the new subject from the input
+	newSubject = document.getElementById('newDropDownValue');
+
+	// add the option to the dropdownlists
+	subjectSelect.innerHTML += `<option value="${newSubject.value}">${newSubject.value}</option>`;
+
+	// set the value back to nothing
+	newSubject.value = "";
+
+	// go back to the mainpage
+	showMainPage();
+};
+
+const deleteSubjectFromDropDown = function(){
+	dropDownList = document.getElementById('deleteSubject');
+	
+	subjectSelect.remove(dropDownList.selectedIndex);
+	showMainPage();
+};
 
 // this function brings you back to the mainpage
 const showMainPage = function () {
 	// hide edit and add card
 	editCard.style.display = 'none';
 	addCard.style.display = 'none';
+	dropdownCard.style.display = 'none';
 
 	// show the maincard
 	mainCard.style.opacity = 1;
@@ -256,11 +338,17 @@ const init = function () {
 	mainCard = document.querySelector('.c-main-card');
 	addCard = document.querySelector('.c-add-card');
 	editCard = document.querySelector('.c-edit-card');
+	dropdownCard = document.querySelector('.c-dropdown-card');
 	deleteCard = document.querySelector('.c-delete-card');
 	submitQuestion = document.querySelector('.js-addQuestion');
 	submitEdit = document.querySelector('.js-editQuestion');
 	closeWindowButton = document.querySelectorAll('.c-close__button');
 	checkboxInputs = document.querySelectorAll('.js-checkbox');
+	dropdownEdit = document.querySelector('.c-custom-select__symbol-edit');
+	subjectSelect = document.querySelector('.js-subjectSelect');
+	addSubjectButton = document.getElementById('addSubject');
+	deleteSubjectButton = document.getElementById('deleteSubjectButton');
+	dropDownForCards = document.getElementById('dropDownForCards');
 
 	// check the checkboxinputs
 	checkboxInputs.forEach(element => {
@@ -268,6 +356,22 @@ const init = function () {
 			checkedState(element);
 		});
 	});
+
+	deleteSubjectButton.addEventListener('click', function(){
+		deleteSubjectFromDropDown();
+	});
+
+
+	addSubjectButton.addEventListener('click', function(){
+		addSubjectToDropDown();
+	});
+
+
+	dropdownEdit.addEventListener('click', function(){
+		showDropDownEditPage();
+	});
+
+
 
 
 	// if you click on this button you will be brought to the page to add a new question
