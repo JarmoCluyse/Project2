@@ -575,11 +575,18 @@ input::placeholder {
 }
 
 .c-custom-select {
-	margin-top: calc(var(--global-baseline) * 2);
+	margin-top: 0px;
+	width: 20%;
 	display: block;
 	position: relative;
 }
 
+.c-custom-select__dropdown-edit {
+	margin-top: 0px;
+	width: 20%;
+	display: block;
+	position: relative;
+}
 .c-input {
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -624,6 +631,10 @@ input::placeholder {
 
 .c-subject {
 	display: flex;
+}
+
+.c-dropdown-card{
+	display: none;
 }
 
 .c-gameId__title {
@@ -683,11 +694,45 @@ input::placeholder {
 	width: var(--global-whitespace);
 	height: var(--global-whitespace);
 	position: absolute;
-	top: calc(var(--global-whitespace) / 2);
-	right: calc(var(--global-whitespace) / 2);
+	height: 44px;
+	top: 2px;
+	right: calc(var(--global-baseline) * 5.25);
 	pointer-events: none;
 	fill: var(--global-color-neutral-x-light);
+	border-right: var(--global-borderWidth) solid var(--global-color-neutral-xxx-light);
 }
+
+.c-custom-select__symbol-edit {
+	width: var(--global-whitespace);
+	height: var(--global-whitespace);
+	position: absolute;
+	top: calc(var(--global-whitespace) / 2);
+	right: calc(var(--global-whitespace) / 2);
+	fill: var(--global-color-neutral-x-light);
+	padding-left: calc(var(--global-baseline) / 4);
+	border-radius: var(--global-borderRadius);
+}
+
+.c-custom-select__symbol-edit-dropdown {
+	pointer-events: none;
+	width: var(--global-whitespace);
+	height: var(--global-whitespace);
+	position: absolute;
+	top: calc(var(--global-whitespace) / 2);
+	right: calc(calc(var(--global-whitespace) / 2) * -1);
+	fill: var(--global-color-neutral-x-light);
+	padding-left: calc(var(--global-baseline) / 4);
+	border-radius: var(--global-borderRadius);
+}
+
+.c-pick-subject{
+	display: flex;
+}
+
+.c-delete__subject{
+	margin-left: calc(var(--global-baseline) * 4);	
+}
+
 
 .c-card__questions {
 	margin-top: calc(var(--global-baseline) * 2);
@@ -990,6 +1035,12 @@ input::placeholder {
 	padding-right: calc(var(--global-baseline) * 2);
 }
 
+.c-dropdown__values {
+	width: 20%;
+	padding-right: calc(var(--global-baseline) * 2);
+}
+
+
 .c-list__item-answer {
 	display: flex;
 	align-content: center;
@@ -1205,6 +1256,7 @@ input::placeholder {
 	color: var(--global-color-alpha);
 	display: none;
 }
+
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/

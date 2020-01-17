@@ -21,11 +21,43 @@ const showMakeAccountPage = function(){
 
 // checking if everything is filled in for login
 const checkValidityLogin = function(){
-	// check the validity of each inputfield in the form
-	if (!document.getElementById('email').checkValidity()){
-		return false;
+	email = document.getElementById('email');
+	password = document.getElementById('password');
+
+	// if there is input we clear the errormessage
+	password.oninput = function(){
+		password.setCustomValidity('');
 	}
-	else if (!document.getElementById('password').checkValidity()){
+
+	// if there is input we clear the errormessage
+	email.oninput = function(){
+		email.setCustomValidity('');
+	}
+
+
+	// check the validity of each inputfield in the form
+	if (!email.checkValidity()){
+		// custom validity message
+		// check if email isn't empty
+		if (email.value == ""){
+			email.setCustomValidity("Gelieve je e-mailadres in te geven.")	
+			return false;
+		}
+
+		// check if email includes '@'
+		else if (!email.value.includes('@')){
+			email.setCustomValidity("Je e-mailadres moet een '@' bevatten!")
+			return false;
+		}
+
+		else {
+			email.setCustomValidity("Controleer of je e-mailadres wel volledig is!")
+			return false
+		}
+	}
+	else if (!password.checkValidity()){
+		// custom validity message
+		password.setCustomValidity("Gelieve je wachtwoord in te geven.")
 		return false;
 	}
 	else {
@@ -36,25 +68,80 @@ const checkValidityLogin = function(){
 
 // checking if everything is filled in for create an account
 const checkValidityCreateAccount = function(){
-	// check the validity of reach inputfield in the form
-	if (!document.getElementById('newAccountName').checkValidity()){
+	newAccountFirstName = document.getElementById('newAccountFirstName');
+	newAccountName = document.getElementById('newAccountName');
+	newEmail = document.getElementById('newEmail');
+	newPassword = document.getElementById('newPassword');
+	repeatNewPassword = document.getElementById('repeatNewPassword');
+
+	// if there is input we clear the errormessage
+	newAccountFirstName.oninput = function(){
+		newAccountFirstName.setCustomValidity('');
+	}
+
+	// if there is input we clear the errormessage
+	newAccountName.oninput = function(){
+		newAccountName.setCustomValidity('');
+	}
+
+	// if there is input we clear the errormessage
+	newEmail.oninput = function(){
+		newEmail.setCustomValidity('');
+	}
+
+	// if there is input we clear the errormessage
+	newPassword.oninput = function(){
+		newPassword.setCustomValidity('');
+	}
+
+	// if there is input we clear the errormessage
+	repeatNewPassword.oninput = function(){
+		repeatNewPassword.setCustomValidity('');
+	}
+
+	// check the validity of each inputfield in the form
+	if (!newAccountFirstName.checkValidity()){
+		// custom validity message
+		newAccountFirstName.setCustomValidity("Gelieve je voornaam in te geven.")
 		return false;
 	}
-	else if (!document.getElementById('newAccountFirstName').checkValidity()){
+	else if (!newAccountName.checkValidity()){
+		// custom validity message
+		newAccountName.setCustomValidity("Gelieve je naam in te geven.")
 		return false;
 	}
 
-	else if (!document.getElementById('newEmail').checkValidity()){
+	else if (!newEmail.checkValidity()){
+		// custom validity message
+		// check if email isn't empty
+		if (newEmail.value == ""){
+			newEmail.setCustomValidity("Gelieve je e-mailadres in te geven.")	
+			return false;
+		}
+
+		// if newEmail isn't empty check if it contains '@'
+		else if (!newEmail.value.includes('@')){
+			newEmail.setCustomValidity("Je e-mailadres moet een '@' bevatten!")
+			return false;
+		}
+
+		else {
+			newEmail.setCustomValidity("Controleer of je e-mailadres wel volledig is!")
+			return false
+		}
+	}
+	else if (!newPassword.checkValidity()){
+		// custom validity message
+		newPassword.setCustomValidity("Gelieve een wachtwoord in te geven.")
 		return false;
 	}
-	else if (!document.getElementById('newPassword').checkValidity()){
-		return false;
-	}
-	else if (!document.getElementById('repeatNewPassword').checkValidity()){
+	else if (!repeatNewPassword.checkValidity()){
+		// custom validity message
+		repeatNewPassword.setCustomValidity("Gelieve je wachtwoord te herhalen.")
 		return false;
 	}
 
-	else if (document.getElementById('newPassword').value != document.getElementById('repeatNewPassword').value){
+	else if (newPassword.value != repeatNewPassword.value){
 		// if the passwords don't match show an errormessage
 		passError.style.display = 'block';
 		return false;
