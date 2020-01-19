@@ -1043,9 +1043,25 @@ input::placeholder {
 	display: block;
 }
 
+.c-card__login-title {
+	padding-top: var(--global-baseline);
+	padding-left: var(--global-baseline);
+	font-size: 32px;
+	line-height: calc(var(--global-whitespace) * 1.5);
+	color: var(--global-color-alpha-light);
+	margin-right: calc(var(--global-baseline) * 3);
+	margin-top: calc(var(--global-baseline) * 2);
+	padding-left: calc(var(--global-baseline) * 2);
+	display: block;
+}
+
 @media(min-width: 768px){
 	.c-card__add-title{
 		line-height: var(--global-whitespace);
+	}
+
+	.c-card__login-title{
+		margin-left: calc(var(--global-baseline) * 4);
 	}
 }
 
@@ -1194,6 +1210,12 @@ input::placeholder {
 	}
 }
 
+.c-form__login-email {
+	width: 100%;
+	margin-left: calc(var(--global-baseline) * -2);
+}
+
+
 .c-form-field__answers {
 	width: 100%;
 	padding-right: calc(var(--global-baseline) * 2);
@@ -1202,6 +1224,10 @@ input::placeholder {
 @media(min-width: 768px){
 	.c-form-field__answers{
 		width: 50%;
+	}
+
+	.c-form__login-email{
+		margin-left: 0;
 	}
 }
 
@@ -1395,9 +1421,15 @@ input::placeholder {
 
 .c-login__input-titles{
 	font-size: 18px;
-	padding-left: calc(var(--global-baseline) * 4);
+	padding-left: calc(var(--global-baseline) * 2);
 	color: var(--global-color-alpha-light);
 	margin-bottom: 0;
+}
+
+@media(min-width: 768px){
+	.c-login__input-titles{
+		padding-left: calc(var(--global-baseline) * 4);
+	}
 }
 
 
@@ -1405,6 +1437,7 @@ input::placeholder {
 	width: 86%;
 	margin-left: calc(var(--global-baseline) * 4);
 }
+
 
 .c-login-button {
 	display: flex;
@@ -1426,6 +1459,14 @@ input::placeholder {
 
 .c-login__footer-content {
 	padding-top: calc(var(--global-baseline) * 3);
+	display: flex;
+	justify-content: center;
+}
+
+@media(min-width: 768px){
+	.c-login__footer-content{
+		display: block;
+	}
 }
 
 .c-forgot__pass {
@@ -1438,8 +1479,29 @@ input::placeholder {
 	display: block;
 }
 
+
 .c-new-account-card {
 	display: none;
+}
+
+@media(min-width: 768px){
+	.c-login-card{
+		width: 500px;
+	}
+
+	.c-new-account-card {
+		width: 500px;
+	}
+}
+
+@media(min-width: 1024px){
+	.c-login-card{
+		width: auto;
+	}
+
+	.c-new-account-card {
+		width: auto;
+	}
 }
 
 .c-passDontMatch {
