@@ -3,8 +3,28 @@ let newCodeBool, inputBoxBool, player2Bool, doYouHaveCodeBool, startGameBool = 1
 
 // show the settings for player 2
 const showPlayer2 = function() {
+	// check the window width
+	width = window.matchMedia("(min-width: 768px)")
 	// unhide the player 2 name inputbox
-	player2.style.display = 'block';
+
+	// when width changes recheck
+	width.onchange = function(){
+		//if min width: 768px == true set display to flex, else to block
+		if (width.matches){
+			player2.style.display = 'flex';
+		}
+		else {
+			player2.style.display = 'block';
+		}
+	}
+
+	//if min width: 768px == true set display to flex, else to block
+	if (width.matches){
+		player2.style.display = 'flex';
+	}
+	else {
+		player2.style.display = 'block';
+	}
 
 	// unhide the player 2 car color selection
 	carList.style.display = 'block';
