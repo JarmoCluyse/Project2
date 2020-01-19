@@ -492,8 +492,18 @@ input::placeholder {
 
 
 .c-card__players {
-	display: flex;
+	display: block;
+	margin-left: calc(var(--global-baseline) * 2);
 }
+
+@media(min-width: 768px){
+	.c-card__players{
+		display: flex;
+		margin-left: 0;
+	}
+}
+
+
 
 .c-card__dropdowns {
 	display: block;
@@ -501,16 +511,37 @@ input::placeholder {
 }
 
 .c-carSpeed {
-	display: flex;
+	display: block;
 }
 
+
 .c-obstacles {
-	display: flex;
+	display: block;
+}
+
+@media(min-width: 768px){
+	.c-obstacles {
+		display: flex;
+	}
+
+	.c-carSpeed {
+		display: flex;
+	}
 }
 
 .c-slider {
 	padding-top: calc(var(--global-baseline));
 	margin-top: var(--global-baseline);
+	display: flex;
+	justify-content: start;
+	margin-left: calc(var(--global-baseline) * 2);
+}
+
+@media(min-width: 768px){
+	.c-slider{
+		display: block;
+		margin-left: 0;
+	}
 }
 
 .c-slider-input {
@@ -522,11 +553,11 @@ input::placeholder {
 	border-radius: 5px;
   }
 
-  .c-slider-input:hover {
+.c-slider-input:hover {
 	opacity: 1; 
-  }
+}
 
-  .c-slider-input::-webkit-slider-thumb {
+.c-slider-input::-webkit-slider-thumb {
 	-webkit-appearance: none;
 	appearance: none;
 	width: 15px;
@@ -535,13 +566,13 @@ input::placeholder {
 	background: var(--global-color-alpha-lighter);
 	border: solid 1px var(--global-color-alpha-x-dark);
 	cursor: pointer;
-  }
+}
 
-  .c-slider-output{
-	  display: flex;
-	  justify-content: center;
-	  padding-top: calc(var(--global-baseline) / 2);
-  }
+.c-slider-output{
+	display: flex;
+	justify-content: center;
+	padding-top: calc(var(--global-baseline) / 2);
+}
 
 
 
@@ -551,6 +582,7 @@ input::placeholder {
 	line-height: var(--global-whitespace);
 	color: var(--global-color-alpha-light);
 	margin-right: calc(var(--global-baseline) * 3);
+	margin-left: calc(var(--global-baseline) * 2);
 	margin-top: calc(var(--global-baseline) * 2);
 	display: block;
 }
@@ -560,10 +592,23 @@ input::placeholder {
 	font-size: 18px;
 	line-height: var(--global-whitespace);
 	color: var(--global-color-alpha-light);
-	margin-right: calc(var(--global-baseline) * 3);
+	margin-right: calc(var(--global-baseline) * 1);
+	margin-left: calc(var(--global-baseline) * 2);
 	margin-top: var(--global-baseline);
 	display: block;
 }
+
+@media(min-width: 768px){
+	.c-card__difficulty-title{
+		margin-left: 0;
+	}
+
+	.c-card__difficulty-subtitle{
+		margin-right: calc(var(--global-baseline) * 3);
+		margin-left: 0;
+	}
+}
+
 
 
 .c-card__players-title {
@@ -573,10 +618,14 @@ input::placeholder {
 	color: var(--global-color-alpha-light);
 	margin-right: calc(var(--global-baseline) * 3);
 	margin-top: calc(var(--global-baseline) * 2);
+	margin-bottom: 0;
 	display: block;
 }
 
 
+.c-form-fields {
+	padding-top: calc(var(--global-baseline) * 2);
+}
 
 
 .c-custom-select {
@@ -588,9 +637,22 @@ input::placeholder {
 	margin-bottom: calc(var(--global-baseline) * 2);
 }
 
+.c-custom-select__startpage{
+	margin-top: 0px;
+	width: 93%;
+	display: block;
+	position: relative;
+	margin-bottom: calc(var(--global-baseline) * 2);
+}
+
+
 @media (min-width: 768px){
 	.c-custom-select{
 		width: 35%;
+	}
+
+	.c-custom-select__startpage{
+		width: 100%;
 	}
 }
 
@@ -599,6 +661,7 @@ input::placeholder {
 		width: 20%;
 		margin-left: 0;
 	}
+
 }
 
 .c-custom-select__dropdown-edit {
@@ -653,23 +716,39 @@ input::placeholder {
 }
 
 .c-input-name {
-	width: 70%;
-	margin-left: calc(var(--global-baseline) * 4);
+	width: 93%;
 }
 
 .c-players {
 	display: block;
+	width: 100%;
 }
 
 .c-player1{
-	display: block;
-	
+	display: block;	
+}
+
+@media(min-width: 768px){
+	.c-player1 {
+		display: flex;
+		margin-right: calc(var(--global-baseline) * 8);
+	}
+
+	.c-input-name{
+		width: 70%;
+		margin-left: calc(var(--global-baseline) * 4);
+	}
+
 }
 
 
 @media(min-width: 1024px){
 	.c-subject {
 		display: flex;
+	}
+
+	.c-player1{
+		margin-right: calc(var(--global-baseline) * 2);
 	}
 }
 
@@ -740,7 +819,8 @@ input::placeholder {
 	pointer-events: none;
 	fill: var(--global-color-neutral-x-light);
 	border-right: var(--global-borderWidth) solid var(--global-color-neutral-xxx-light);
-}
+}	
+
 
 .c-custom-select__symbol-edit {
 	width: var(--global-whitespace);
@@ -991,6 +1071,13 @@ input::placeholder {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 270px;
+}
+
+@media(min-width: 768px){
+	.c-newGame-card{
+		width: auto;
+	}
 }
 
 .c-card__no-grid{
@@ -1043,35 +1130,54 @@ input::placeholder {
 	display: block;
 }
 
+.c-card__login-title {
+	padding-top: var(--global-baseline);
+	padding-left: var(--global-baseline);
+	font-size: 32px;
+	line-height: calc(var(--global-whitespace) * 1.5);
+	color: var(--global-color-alpha-light);
+	margin-right: calc(var(--global-baseline) * 3);
+	margin-top: calc(var(--global-baseline) * 2);
+	padding-left: calc(var(--global-baseline) * 2);
+	display: block;
+}
+
 @media(min-width: 768px){
 	.c-card__add-title{
 		line-height: var(--global-whitespace);
+	}
+
+	.c-card__login-title{
+		margin-left: calc(var(--global-baseline) * 4);
 	}
 }
 
 .c-card__player1-title {
 	padding-top: var(--global-baseline);
-	padding-left: var(--global-baseline);
 	font-size: 32px;
 	line-height: var(--global-whitespace);
 	color: var(--global-color-alpha-light);
 	margin-right: calc(var(--global-baseline) * 3);
 	margin-top: calc(var(--global-baseline) * 2);
-	padding-left: calc(var(--global-baseline) * 4);
+	padding-left: 0;
 	margin-bottom: calc(var(--global-baseline) * 2);
 	display: block;
 }
 
+
+
+
 .c-card__carColor-title {
 	padding-top: var(--global-baseline);
-	padding-left: var(--global-baseline);
 	font-size: 32px;
 	line-height: var(--global-whitespace);
 	color: var(--global-color-alpha-light);
 	margin-right: calc(var(--global-baseline) * 3);
 	margin-top: calc(var(--global-baseline) * 2);
+	margin-bottom: calc(var(--global-baseline) * 2);
 	display: block;
 }
+
 
 .c-card__player1-name{
 	padding-top: var(--global-baseline);
@@ -1080,10 +1186,37 @@ input::placeholder {
 	line-height: var(--global-whitespace);
 	color: var(--global-color-alpha-light);
 	margin-right: calc(var(--global-baseline) * 3);
-	padding-left: calc(var(--global-baseline) * 4);
+	margin-bottom: calc(var(--global-baseline) * 2);
+	padding-left: 0;
 	display: block;
 }
 
+.c-card__space {
+	padding-top: var(--global-baseline);
+	padding-left: var(--global-baseline);
+	font-size: 24px;
+	line-height: var(--global-whitespace);
+	color: var(--global-color-alpha-light);
+	margin-right: calc(var(--global-baseline) * 3);
+	padding-left: 0;
+	display: none;
+}
+
+@media(min-width: 768px){
+	.c-card__player1-title{
+		padding-left: calc(var(--global-baseline) * 4);
+	}
+
+	.c-card__player1-name {
+		padding-left: calc(var(--global-baseline) * 4);
+		margin-bottom: calc(var(--global-baseline) * 3);
+	}
+
+	.c-card__space {
+		display: block;
+	}
+
+}
 .c-card__add-question{
 	padding-top: var(--global-baseline);
 	padding-left: var(--global-baseline);
@@ -1194,6 +1327,12 @@ input::placeholder {
 	}
 }
 
+.c-form__login-email {
+	width: 100%;
+	margin-left: calc(var(--global-baseline) * -2);
+}
+
+
 .c-form-field__answers {
 	width: 100%;
 	padding-right: calc(var(--global-baseline) * 2);
@@ -1202,6 +1341,10 @@ input::placeholder {
 @media(min-width: 768px){
 	.c-form-field__answers{
 		width: 50%;
+	}
+
+	.c-form__login-email{
+		margin-left: 0;
 	}
 }
 
@@ -1344,15 +1487,25 @@ input::placeholder {
 }
 
 .c-card__carColor-name {
-	margin-bottom: var(--global-baseline);
+	margin-bottom: 6px ;
 }
 
 .c-input__gameId {
-	width: 50%;
+	width: 65%;
 }
 
 .c-lists {
-	display: flex;
+	display: block;
+}
+
+@media(min-width: 768px){
+	.c-lists{
+		display: flex;
+	}
+
+	.c-input__gameId{
+		width: 50%;
+	}
 }
 
 .c-color-input{
@@ -1373,7 +1526,6 @@ input::placeholder {
 }
 
 .c-carColors2 {
-	margin-top: calc(var(--global-baseline));
 	display: none;
 }
 
@@ -1395,9 +1547,15 @@ input::placeholder {
 
 .c-login__input-titles{
 	font-size: 18px;
-	padding-left: calc(var(--global-baseline) * 4);
+	padding-left: calc(var(--global-baseline) * 2);
 	color: var(--global-color-alpha-light);
 	margin-bottom: 0;
+}
+
+@media(min-width: 768px){
+	.c-login__input-titles{
+		padding-left: calc(var(--global-baseline) * 4);
+	}
 }
 
 
@@ -1405,6 +1563,7 @@ input::placeholder {
 	width: 86%;
 	margin-left: calc(var(--global-baseline) * 4);
 }
+
 
 .c-login-button {
 	display: flex;
@@ -1426,6 +1585,14 @@ input::placeholder {
 
 .c-login__footer-content {
 	padding-top: calc(var(--global-baseline) * 3);
+	display: flex;
+	justify-content: center;
+}
+
+@media(min-width: 768px){
+	.c-login__footer-content{
+		display: block;
+	}
 }
 
 .c-forgot__pass {
@@ -1438,8 +1605,29 @@ input::placeholder {
 	display: block;
 }
 
+
 .c-new-account-card {
 	display: none;
+}
+
+@media(min-width: 768px){
+	.c-login-card{
+		width: 500px;
+	}
+
+	.c-new-account-card {
+		width: 500px;
+	}
+}
+
+@media(min-width: 1024px){
+	.c-login-card{
+		width: auto;
+	}
+
+	.c-new-account-card {
+		width: auto;
+	}
 }
 
 .c-passDontMatch {
