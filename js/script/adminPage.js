@@ -89,12 +89,19 @@ const showQuestions = function (data) {
 		</svg>   
 		</div>                                      
 	</li>
-	<ul class="c-list__question-answers o-list">
-    <li class="c-list__answers">${element.answers[0].answerText}</li>
-    <li class="c-list__answers">${element.answers[1].answerText}</li>
-	<li class="c-list__answers">${element.answers[2].answerText}</li>
-    <li class="c-list__answers">${element.answers[3].answerText}</li>
-	</ul>`
+	<div class="c-answerlist">
+		<ul class="c-list__question-answers o-list">
+			<div class="c-answers">	
+				<li class="c-list__answers">${element.answers[0].answerText}</li>
+				<li class="c-list__answers">${element.answers[1].answerText}</li>
+			</div>
+
+			<div class="c-answers">	
+				<li class="c-list__answers">${element.answers[2].answerText}</li>
+				<li class="c-list__answers">${element.answers[3].answerText}</li>
+			</div>
+		</ul>
+	</div>`
 	});
 	listElement.innerHTML = htmlString;
 
