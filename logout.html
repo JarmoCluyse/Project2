@@ -11,10 +11,13 @@
 
         <link rel="stylesheet" href="./css/normalize.css">
         <link rel="stylesheet" href="./css/screen.css"> 
+        <script src="./js/gamefiles/GlobalVariables.js"></script>
         <script src="./js/script/dataHandler.js"></script>  
         <script src="./js/script/key.js"></script>
-        <script>document.addEventListener('DOMContentLoaded', function() {
-            localStorage.removeItem('LoginToken');
+        <script>
+            const loggedOut = function(data){};
+        document.addEventListener('DOMContentLoaded', function() {
+            logOut(JSON.parse(localStorage.getItem('LoginToken')), loggedOut);
         });</script>      
         <!-- This page is only for logging out since we don't have a proper menu for that yet -->
     </head>

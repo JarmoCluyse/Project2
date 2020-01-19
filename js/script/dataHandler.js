@@ -76,6 +76,15 @@ const logIn = function (email, password, callback) {
   .catch(function (error) {
     console.error(`Error sending data: ${error}`);
   });
+};
 
-
+const logOut = function(token, callback) {
+  const proceed = function(data){
+    console.log(data);
+    if (data.ok){
+      localStorage.removeItem('LoginToken');
+      callback(data);
+    }
+  };
+  sendData(`${BASEURI}logout?code=${key}`, proceed, "POST", token);
 };
