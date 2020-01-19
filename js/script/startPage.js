@@ -180,7 +180,7 @@ const init = function() {
 
 	sliderFunction();
 	dropdownFunction();
-	radioButtonFunction();
+	//radioButtonFunction();
 };
 
 document.addEventListener('DOMContentLoaded', function() {
