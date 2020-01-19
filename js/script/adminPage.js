@@ -89,12 +89,19 @@ const showQuestions = function (data) {
 		</svg>   
 		</div>                                      
 	</li>
-	<ul class="c-list__question-answers o-list">
-    <li class="c-list__answers">${element.answers[0].answerText}</li>
-    <li class="c-list__answers">${element.answers[1].answerText}</li>
-	<li class="c-list__answers">${element.answers[2].answerText}</li>
-    <li class="c-list__answers">${element.answers[3].answerText}</li>
-	</ul>`
+	<div class="c-answerlist">
+		<ul class="c-list__question-answers o-list">
+			<div class="c-answers">	
+				<li class="c-list__answers">${element.answers[0].answerText}</li>
+				<li class="c-list__answers">${element.answers[1].answerText}</li>
+			</div>
+
+			<div class="c-answers">	
+				<li class="c-list__answers">${element.answers[2].answerText}</li>
+				<li class="c-list__answers">${element.answers[3].answerText}</li>
+			</div>
+		</ul>
+	</div>`
 	});
 	listElement.innerHTML = htmlString;
 
@@ -113,7 +120,7 @@ const showQuestions = function (data) {
 		// add an eventlistener to EACH delete icon, it runs through a list 
 		document.getElementById(`D${element.questionId}`).addEventListener('click', function () {
 			// this gives you a pop-up to confirm the deletion
-			deleteQuestionConfirmation(element.questionId);
+			deleteQuestionConfirmation(element.questionId, element.questionText);
 		});
 	})
 };
@@ -138,9 +145,12 @@ const preloadDropDown = function(data){
 };
 
 // confirmation popup 'are you sure you want to delete this question?'
-const deleteQuestionConfirmation = function (qid) {
+const deleteQuestionConfirmation = function (qid, qText) {
 	yesButton = document.querySelector('.js-yes');
 	noButton = document.querySelector('.js-no');
+	questionConfirmationTitle = document.querySelector('.c-deleteQuestion-title');
+
+	questionConfirmationTitle.innerHTML = `Weet je zeker dat je de vraag "${qText}" wilt verwijderen?`
 
 	// make the maincard look more in the background
 	mainCard.style.opacity = 0.2;
@@ -176,6 +186,45 @@ const deleteQuestionConfirmation = function (qid) {
 		deleteCard.style.display = 'none';
 	});
 };
+
+const deleteSubjectConfirmation = function(){
+	yesButtonSubject = document.querySelector('.js-yesSubject');
+	noButtonSubject = document.querySelector('.js-noSubject');
+	subjectConfirmationTitle = document.querySelector('.c-deleteSubject-title');
+
+
+	// make the dropdowncard look more in the background
+	dropdownCard.style.opacity = 0.2;
+	dropdownCard.pointerEvents = 'none';
+
+	// show the deletecard
+	deleteSubjectCard.style.display = 'block';
+	subjectConfirmationTitle.innerHTML = `Weet je zeker dat je het onderwerp '${dropDownList.options[dropDownList.selectedIndex].value}' wilt verwijderen?`;
+
+	yesButtonSubject.addEventListener('click', function(){
+		// remove subject from dropdown
+		subjectSelect.remove(dropDownList.selectedIndex);
+
+		// hide deletecard
+		deleteSubjectCard.style.display = 'none';
+
+		// show dropdown card again properly
+		dropdownCard.style.opacity = 1;
+		dropdownCard.pointerEvents = 'auto';
+
+		// show mainpage again
+		showMainPage();
+	});
+
+	noButtonSubject.addEventListener('click', function(){
+		// hide deletecard
+		deleteSubjectCard.style.display = 'none';
+
+		// show dropdown card again properly
+		dropdownCard.style.opacity = 1;
+		dropdownCard.pointerEvents = 'auto';
+	});
+}
 
 
 // this will show the page with a form to make a complete new question
@@ -324,8 +373,7 @@ const addSubjectToDropDown = function(){
 const deleteSubjectFromDropDown = function(){
 	dropDownList = document.getElementById('deleteSubject');
 	
-	subjectSelect.remove(dropDownList.selectedIndex);
-	showMainPage();
+	deleteSubjectConfirmation();
 };
 
 // this function brings you back to the mainpage
@@ -361,6 +409,7 @@ const init = function () {
 	editCard = document.querySelector('.c-edit-card');
 	dropdownCard = document.querySelector('.c-dropdown-card');
 	deleteCard = document.querySelector('.c-delete-card');
+	deleteSubjectCard = document.querySelector('.c-deleteSubject-card');
 	submitQuestion = document.querySelector('.js-addQuestion');
 	submitEdit = document.querySelector('.js-editQuestion');
 	closeWindowButton = document.querySelectorAll('.c-close__button');

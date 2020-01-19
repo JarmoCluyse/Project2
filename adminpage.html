@@ -21,7 +21,7 @@
         <section class="c-mainpage c-section">
             <div class="o-container u-max-width-lg">
                 <div class="o-row o-row--lg">
-                    <div class="c-grid">
+                    <div class="c-grid c-main-card__no-grid">
                         <div class="c-grid__item u-grid-column__title u-grid-row__title">
                             <div class="c-header">
                                 <h1 class="c-title">
@@ -67,12 +67,18 @@
                                                 </svg>
                                             </span>                                          
                                         </li>
-                                        <ul class="c-list__question-answers o-list">
-                                            <li class="c-list__answers">5</li>
-                                            <li class="c-list__answers">2</li>
-                                            <li class="c-list__answers">7</li>
-                                            <li class="c-list__answers">9</li>
-                                        </ul>
+                                        <div class="c-answerlist">
+                                            <ul class="c-list__question-answers o-list">
+                                                <div class="c-answers">
+                                                    <li class="c-list__answers">5</li>
+                                                    <li class="c-list__answers">2</li>
+                                                </div>
+                                                <div class="c-answers">
+                                                    <li class="c-list__answers">7</li>
+                                                    <li class="c-list__answers">9</li>
+                                                </div>
+                                            </ul>
+                                        </div>
 
                                         <li class="c-list__item">
                                             <h3 class="c-list__item-question">Hoeveel continenten zijn er?</h3>
@@ -160,7 +166,7 @@
                             </div>
                         </div>
 
-                        <div class="c-grid__item u-grid-column__add-question u-grid-row__add-question">
+                        <div class="c-grid__item u-grid-column__add-question u-grid-row__add-question c-card__no-grid">
                             <form class="c-card c-card__add c-add-card" id="newSubmit" action="#" onsubmit="return false;">
                                 <div class="c-card__title">
                                     <h1 class="c-card__add-title">
@@ -176,7 +182,7 @@
                                     Vraag:
                                 </h2>
 
-                                <p class="c-form-field">
+                                <p class="c-form-field__admin">
                                     <input class="c-input-question c-input" type="text" name="newQuestion" id="newQuestion" placeholder="vb. Wat is de som van 27 + 41?" required>
                                 </p>
 
@@ -280,7 +286,7 @@
                             </form>
                         </div>
 
-                        <div class="c-grid__item u-grid-column__add-question u-grid-row__add-question">
+                        <div class="c-grid__item u-grid-column__add-question u-grid-row__add-question c-card__no-grid">
                             <form class="c-card c-card__add c-dropdown-card" action="#" onsubmit="return false;">
                                 <div class="c-card__title">
                                     <h1 class="c-card__add-title">
@@ -296,7 +302,7 @@
                                     Nieuw onderwerp:
                                 </h2>
 
-                                <p class="c-form-field">
+                                <p class="c-form-field__admin">
                                     <input class="c-input-question c-input" type="text" name="newDropDownValue" id="newDropDownValue" placeholder="vb. Wiskunde" >
                                 </p>
 
@@ -331,7 +337,7 @@
                         </div>
 
 
-                        <div class="c-grid__item u-grid-column__add-question u-grid-row__add-question">
+                        <div class="c-grid__item u-grid-column__add-question u-grid-row__add-question c-card__no-grid">
                             <form class="c-card c-card__add c-edit-card" action="#" id="editSubmit" onsubmit="return false">
                                 <div class="c-card__title">
                                     <h1 class="c-card__add-title">
@@ -347,7 +353,7 @@
                                     Vraag:
                                 </h2>
 
-                                <p class="c-form-field">
+                                <p class="c-form-field__admin">
                                     <input class="c-input-question c-input" type="text" name="editQuestion" id="editQuestion" value="Hoeveel continenten zijn er?" placeholder="vb. Wat is de som van 27 + 41?" required>
                                 </p>
 
@@ -450,10 +456,10 @@
                             </form>
                         </div>
 
-                        <div class="c-grid__item u-grid-column__add-question u-grid-row__add-question">
+                        <div class="c-grid__item u-grid-column__add-question u-grid-row__add-question c-card__no-grid">
                             <div class="c-delete-card c-card c-card__add">
-                                <h2 class="c-card__delete-title">
-                                    Weet je zeker dat je de vraag wilt verwijderen?
+                                <h2 class="c-card__delete-title c-deleteQuestion-title">
+                                    Weet je zeker dat je de vraag 'Vraag hier' wilt verwijderen?
                                 </h2>
     
                                 <div class="c-delete__buttons">
@@ -462,6 +468,24 @@
                                     </p>
 
                                     <p class="c-button__question js-no">
+                                        <button class="o-button-reset c-button" type="submit">Neen</button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="c-grid__item u-grid-column__add-question u-grid-row__add-question c-card__no-grid">
+                            <div class="c-deleteSubject-card c-card c-card__add">
+                                <h2 class="c-card__delete-title c-deleteSubject-title">
+                                    Weet je zeker dat je het onderwerp 'Wiskunde' wilt verwijderen?
+                                </h2>
+    
+                                <div class="c-delete__buttons">
+                                    <p class="c-button__question js-yesSubject">
+                                        <button class="o-button-reset c-button" type="submit">Ja</button>
+                                    </p>
+
+                                    <p class="c-button__question js-noSubject">
                                         <button class="o-button-reset c-button" type="submit">Neen</button>
                                     </p>
                                 </div>
