@@ -611,6 +611,13 @@ input::placeholder {
 
 @media(min-width: 768px){
 	.c-custom-select__dropdown-edit{
+		width: 30%;
+		margin-bottom: 0;
+	}
+}
+
+@media(min-width: 1024px){
+	.c-custom-select__dropdown-edit{
 		width: 20%;
 		margin-bottom: 0;
 	}
@@ -1001,10 +1008,25 @@ input::placeholder {
 
 @media(min-width: 1024px){
 	.c-card__no-grid{
-		position: static;
-		top: 0px;
-		left: 0px;
-		width: auto;
+		top: 200px;
+		left: 90px;
+		width: 60%;
+	}	
+}
+
+@media(min-width: 1440px){
+	.c-card__no-grid{
+		top: 200px;
+		left: 240px;
+		width: 60%;
+	}	
+}
+
+@media(min-width: 1920px){
+	.c-card__no-grid{
+		top: 200px;
+		left: 25%;
+		width: 50%;
 	}	
 }
 
@@ -1093,6 +1115,10 @@ input::placeholder {
 }
 
 .c-delete-card {
+	display: none;
+}
+
+.c-deleteSubject-card {
 	display: none;
 }
 
@@ -1473,9 +1499,6 @@ input::placeholder {
 	grid-column: span 10 / 16;
 }
 
-.u-grid-row__add-question {
-	grid-row: 3;
-}
 
 
 
