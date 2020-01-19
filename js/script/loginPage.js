@@ -75,9 +75,24 @@ const loggedIn = function(data){
 	showAdminPage();
 };
 
+const checkCallback = function(data){
+	if (data.ok){
+		showAdminPage();
+	}
+	else{
+		localStorage.removeItem('LoginToken');
+	}
+	
+};
+
 
 const init = function(){
 	console.log('Script geladen! 👍')
+	let token = JSON.parse(localStorage.getItem("LoginToken"));
+	console.log(token);
+	if (token != null){
+		sendData(`${BASEURI}login/token?code=${key}`, checkCallback, "POST", token);
+	}
 	loginButton = document.querySelector('.c-button__login');
 	makeAccountButton = document.querySelector('.js-makeAccount');
 	goBackToLoginButton = document.querySelector('.js-login');
