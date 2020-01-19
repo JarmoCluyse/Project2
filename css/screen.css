@@ -1637,6 +1637,35 @@ input::placeholder {
 	display: none;
 }
 
+.c-logo-sportinnovatiecampus{
+	width: 250px;
+	position: absolute;
+	bottom: 0px;
+	right: 120px;
+}
+
+.c-logo-mct{
+	position: absolute;
+	width: 150px;
+	bottom: 0px;
+	left: 80px;
+}
+
+.c-logo-howest{
+	position: absolute;
+	width: 250px;
+	bottom: 0px;
+	right: 700px;
+}
+
+.c-logo-sportbewegen{
+	position: absolute;
+	width: 250px;
+	bottom: 40px;
+	left: 600px;
+	color: white;
+}
+
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/
