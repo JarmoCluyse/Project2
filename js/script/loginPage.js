@@ -156,9 +156,30 @@ const checkValidityCreateAccount = function(){
 	}
 };
 
+const loggedIn = function(data){
+	console.log(data);
+	localStorage.setItem("LoginToken", JSON.stringify(data));
+	showAdminPage();
+};
+
+const checkCallback = function(data){
+	if (data.ok){
+		showAdminPage();
+	}
+	else{
+		localStorage.removeItem('LoginToken');
+	}
+	
+};
+
 
 const init = function(){
 	console.log('Script geladen! 👍')
+	let token = JSON.parse(localStorage.getItem("LoginToken"));
+	console.log(token);
+	if (token != null){
+		sendData(`${BASEURI}login/token?code=${key}`, checkCallback, "POST", token);
+	}
 	loginButton = document.querySelector('.c-button__login');
 	makeAccountButton = document.querySelector('.js-makeAccount');
 	goBackToLoginButton = document.querySelector('.js-login');
@@ -187,7 +208,9 @@ const init = function(){
 		// check if everything is filled in correctly
 		if(checkValidityLogin() == true){
 			// show the adminpage
-			showAdminPage();
+			// log in
+			logIn(document.getElementById('email').value, document.getElementById('password').value, loggedIn);
+			//showAdminPage();
 		}
 	});	
 

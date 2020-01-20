@@ -49,3 +49,42 @@ const idGenerator = function (type) {
     return id;
 
 }
+
+const logIn = function (email, password, callback) {
+  let jsontext = `{
+    "emailaddress": "${email}",
+    "password": "${password}"
+  }`
+  let json = JSON.parse(jsontext);
+  fetch(`${BASEURI}login?code=${key}`, {
+    method: "POST",
+    body: JSON.stringify(json),
+  })
+  .then(function (response) {
+    if (!response.ok) {
+      throw Error(`Probleem bij de fetch(). Status Code: ${response.status}`);
+    } else {
+      console.info('Er is een response teruggekomen van de server');
+      return response.json();
+    }
+  })
+  .then(function (jsonObject) {
+    console.info('json object is aangemaakt');
+    console.info('verwerken data');
+    callback(jsonObject);
+  })
+  .catch(function (error) {
+    console.error(`Error sending data: ${error}`);
+  });
+};
+
+const logOut = function(token, callback) {
+  const proceed = function(data){
+    console.log(data);
+    if (data.ok){
+      localStorage.removeItem('LoginToken');
+      callback(data);
+    }
+  };
+  sendData(`${BASEURI}logout?code=${key}`, proceed, "POST", token);
+};
