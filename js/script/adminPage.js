@@ -393,7 +393,6 @@ const showMainPage = function () {
 	editCard.style.display = 'none';
 	addCard.style.display = 'none';
 	dropdownCard.style.display = 'none';
-	accountCard.style.display = 'none';
 
 	// show the maincard
 	mainCard.style.opacity = 1;
@@ -432,12 +431,6 @@ const init = function () {
 	addSubjectButton = document.getElementById('addSubject');
 	deleteSubjectButton = document.getElementById('deleteSubjectButton');
 	dropDownForCards = document.getElementById('dropDownForCards');
-	accountSettingsButton = document.querySelector('.c-account-settings');
-
-	accountSettingsButton.addEventListener('click', function(){
-		showAccountCard();
-	})
-
 
 	// check the checkboxinputs
 	checkboxInputs.forEach(element => {
