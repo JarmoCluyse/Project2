@@ -22,7 +22,7 @@ var gamePlayState = new Phaser.Class({
         //creates an objects
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
-        car = this.physics.add.sprite(400,630, 'car').setTint(carColor);
+        car = this.physics.add.sprite(400,730, 'car').setTint(carColor);
 
         console.log(BeginSpeed);
         speed = BeginSpeed;
@@ -80,7 +80,7 @@ var gamePlayState = new Phaser.Class({
 // Add scene to list of scenes
 myGame.scenes.push(gamePlayState);
 
-function moveCar(e)
+let moveCar = function(e)
 {
     // if an arrowkey is pressed
     if (!gameOver)
@@ -178,7 +178,7 @@ function moveCar(e)
       }
 }
 // if a collision happens
-function hitObstacle(car, obstacle){
+let hitObstacle = function(car, obstacle){
     getQuestions()
     jsGamePlay.classList.add('hide');
     jsGameQuestion.classList.remove('hide');
@@ -194,7 +194,7 @@ function hitObstacle(car, obstacle){
     
 }
 
-function hitPickup(car, pickup){
+let hitPickup = function(car, pickup){
     // pickup the coin
     // console.log("pickup");
     pickup.disableBody(true, true);//remove the pickup from the screen
@@ -203,7 +203,7 @@ function hitPickup(car, pickup){
 
 }
 
-function setcars(){
+let setcars = function(){
     increasing();
     score += DriveScore;
     placeScore();
@@ -228,7 +228,7 @@ function setcars(){
     // pickups.create(650,-50, 'coin').setScale(.2);
 }
 
-function getRandomobstakels() {
+let getRandomobstakels = function() {
     let random = Math.floor(Math.random() * Math.floor(100));
     if(random < 20) return 0;
     if(random < 50) return 1;
@@ -236,7 +236,7 @@ function getRandomobstakels() {
     else return 3;
 }
 
-function increasing(){
+let increasing = function(){
     if (increase){
         if (waitIncrease >= speedIncrease){
             speed += increaseValue;
