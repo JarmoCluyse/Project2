@@ -170,23 +170,23 @@ const registerCallback = function(data){
 	if (data.ok){
 		logIn(newEmail.value, newPassword.value, loggedIn);
 
+		// hide registration error
+		createAccountError.style.display = "none";
+
 	}
 	else{
-		//Hier registreer fout
-
+		// display registration error
+		createAccountError.style.display = "block";
 	}
 
 };
 
 const loggedIn = function(data){//This function is run when a result is returned from the server while logging in
-	passwordError = document.querySelector('.c-password-error');
-	passwordInput = document.querySelector('.c-input-password');
-	passwordTitle = document.querySelector('.c-login__input-password');
-
 	console.log(data);
 	if(data.userEmail != "undefined"){
 		localStorage.setItem("LoginToken", JSON.stringify(data));
 
+		// hide login error
 		passwordError.style.display = "none";
 		passwordInput.style.borderColor = "var(--global-color-neutral-xxx-light)";
 		passwordTitle.style.color = "var(--global-color-alpha-light)";
@@ -194,13 +194,11 @@ const loggedIn = function(data){//This function is run when a result is returned
 		showAdminPage();
 	}
 	else{
-		//steek hier uwn error
+		// display login error
 		passwordError.style.display = "block";
 		passwordInput.style.borderColor = "red";
 		passwordTitle.style.color = "red";
-	}
-	
-	
+	}	
 };
 
 const checkCallback = function(data){//This function checks if the logintoken stored in the browser is still valid
@@ -222,6 +220,10 @@ const init = function(){
 		sendData(`${BASEURI}login/token?code=${key}`, checkCallback, "POST", token);
 	}
 	loginButton = document.querySelector('.c-button__login');
+	passwordError = document.querySelector('.c-password-error');
+	passwordInput = document.querySelector('.c-input-password');
+	passwordTitle = document.querySelector('.c-login__input-password');
+	createAccountError = document.querySelector('.c-registration-error');
 	makeAccountButton = document.querySelector('.js-makeAccount');
 	goBackToLoginButton = document.querySelector('.js-login');
 	makeAccountCard = document.querySelector('.c-new-account-card');
@@ -259,6 +261,9 @@ const init = function(){
 	// go to the create an account screen
 	makeAccountButton.addEventListener('click', function(){
 		// show the create an account card
+		passwordError = document.querySelector('.c-password-error');
+		passwordInput = document.querySelector('.c-input-password');
+		passwordTitle = document.querySelector('.c-login__input-password');
 		showMakeAccountPage();
 	});
 
