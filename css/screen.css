@@ -1759,10 +1759,11 @@ input::placeholder {
 
 
 .c-dropbtn {
-	background-color: none;
 	padding: 16px;
 	font-size: 16px;
 	border: none;
+	background-color: var(--global-color-alpha-lighter);
+	border-radius: var(--global-borderRadius);
 }
   
 .c-dropdown {
@@ -1800,7 +1801,7 @@ input::placeholder {
 
 
 .c-dropdown:hover .c-dropbtn {
-	background-color: var(--global-color);
+	background-color: var(--global-color-alpha);
 }
 
 

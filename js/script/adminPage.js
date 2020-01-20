@@ -431,6 +431,11 @@ const init = function () {
 	addSubjectButton = document.getElementById('addSubject');
 	deleteSubjectButton = document.getElementById('deleteSubjectButton');
 	dropDownForCards = document.getElementById('dropDownForCards');
+	logoutButton = document.getElementById('logout');
+
+	logoutButton.addEventListener('click', function(){
+		// hier log ik uit ofzo idk
+	})
 
 	// check the checkboxinputs
 	checkboxInputs.forEach(element => {
@@ -452,8 +457,6 @@ const init = function () {
 	dropdownEdit.addEventListener('click', function(){
 		showDropDownEditPage();
 	});
-
-
 
 
 	// if you click on this button you will be brought to the page to add a new question
