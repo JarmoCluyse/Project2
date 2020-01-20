@@ -22,21 +22,26 @@ var gamePlayState = new Phaser.Class({
         //creates an objects
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
-        car = this.physics.add.sprite(400,630, 'car').setTint(carColor);
+        car = this.physics.add.sprite(300,730, 'car').setTint(carColor);
+        car2 = this.physics.add.sprite(500,730, 'car').setTint(carColor);
+        console.log(car);
+        
 
         console.log(BeginSpeed);
         speed = BeginSpeed;
 
         // on collision what happens
-        this.physics.add.collider(car, obstacles, hitObstacle, null, this);
-        this.physics.add.overlap(car, pickups, hitPickup, null, this);
+        this.physics.add.collider(car, obstacles, hitObstacle2, null, this);
+        this.physics.add.overlap(car, pickups, hitPickup2, null, this);
+        this.physics.add.collider(car2, obstacles, hitObstacle2, null, this);
+        this.physics.add.overlap(car2, pickups, hitPickup2, null, this);
 
         //add callbacks for arrow key presses
-        this.input.keyboard.on('keydown-RIGHT', moveCar);
-        this.input.keyboard.on('keydown-UP', moveCar);
-        this.input.keyboard.on('keydown-DOWN', moveCar);
-        this.input.keyboard.on('keydown-LEFT', moveCar);
-        this.input.keyboard.on('keydown-SPACE', moveCar);
+        this.input.keyboard.on('keydown-RIGHT', moveCar2);
+        this.input.keyboard.on('keydown-UP', moveCar2);
+        this.input.keyboard.on('keydown-DOWN', moveCar2);
+        this.input.keyboard.on('keydown-LEFT', moveCar2);
+        this.input.keyboard.on('keydown-SPACE', moveCar2);
     
     },
 
@@ -80,7 +85,7 @@ var gamePlayState = new Phaser.Class({
 // Add scene to list of scenes
 myGame.scenes.push(gamePlayState);
 
-function moveCar(e)
+let moveCar2 =function(e)
 {
     // if an arrowkey is pressed
     if (!gameOver)
@@ -100,13 +105,14 @@ function moveCar(e)
             car.x = 350;
         }
         if (e.key == "ArrowDown"){
-            car.x = 450;
+            car2.x = 450;
         }
         if (e.key == "ArrowRight"){
-            car.x = 550;
+            car2.x = 550;
         }
         if (e.key == " "){
-            car.x = 650;
+            car.x = 150;
+            car2.x = 650;
         }
     }
     else if (gameStarted && gameOver && !gameDone && answer) { // when car is hit
@@ -178,7 +184,7 @@ function moveCar(e)
       }
 }
 // if a collision happens
-function hitObstacle(car, obstacle){
+let hitObstacle2 = function(car, obstacle){
     getQuestions()
     jsGamePlay.classList.add('hide');
     jsGameQuestion.classList.remove('hide');
@@ -193,8 +199,7 @@ function hitObstacle(car, obstacle){
 
     
 }
-
-function hitPickup(car, pickup){
+let hitPickup2 = function(car, pickup){
     // pickup the coin
     // console.log("pickup");
     pickup.disableBody(true, true);//remove the pickup from the screen
@@ -203,40 +208,62 @@ function hitPickup(car, pickup){
 
 }
 
-function setcars(){
+let setcars2 = function(){
     increasing();
     score += DriveScore;
     placeScore();
-    let randomObstacles = getRandomobstakels();
-    let randomPickups = getRandomInt(4 - randomObstacles);
-    arr = [250,350,450, 550];
+    let randomObstacles = getRandomobstakels2();
+    let randomPickups = getRandomInt(2 - randomObstacles);
+    let randomObstacles2 = getRandomobstakels2();
+    let randomPickups2 = getRandomInt(2 - randomObstacles);
+    arr = [250,350];
+    arr2 = [450, 550];
     arr = shuffle(arr);
+    arr2 = shuffle(arr2)
     for (i = 0; i < randomObstacles; i++) {
-
-        var ShuffleColorList = shuffle(Colors)
-        if (ShuffleColorList[0] == carColor){
-            randomColor = ShuffleColorList[1]
-        }else {
+        let ShuffleColorList = shuffle(Colors)
+        if (ShuffleColorList[0] != carColor || ShuffleColorList[0] != carColor2){
             randomColor = ShuffleColorList[0]
+        }
+        else if (ShuffleColorList[1] != carColor || ShuffleColorList[1] != carColor2){
+            randomColor = ShuffleColorList[1]
+        }
+        else{
+            randomColor = ShuffleColorList[2]
         } 
         obstacles.create(arr[i],-50, 'car').setScale(1).setTint(randomColor);
+    }
+    for (i = 0; i < randomObstacles2; i++) {
+        let ShuffleColorList = shuffle(Colors)
+        if (ShuffleColorList[0] != carColor || ShuffleColorList[0] != carColor2){
+            randomColor = ShuffleColorList[0]
+        }
+        else if (ShuffleColorList[1] != carColor || ShuffleColorList[1] != carColor2){
+            randomColor = ShuffleColorList[1]
+        }
+        else{
+            randomColor = ShuffleColorList[2]
+        } 
+        obstacles.create(arr2[i],-50, 'car').setScale(1).setTint(randomColor);
     }
     for (i = 0; i < randomPickups; i++) {
         
         pickups.create(arr[i+randomObstacles],-50, 'coin').setScale(.2);
     }
+    for (i = 0; i < randomPickups2; i++) {
+        
+        pickups.create(arr2[i+randomObstacles2],-50, 'coin').setScale(.2);
+    }
     // pickups.create(650,-50, 'coin').setScale(.2);
 }
 
-function getRandomobstakels() {
+let getRandomobstakels2 = function() {
     let random = Math.floor(Math.random() * Math.floor(100));
-    if(random < 20) return 0;
-    if(random < 50) return 1;
-    if(random < 90) return 2;
-    else return 3;
+    if(random > 35) return 1;
+    return 0;
 }
 
-function increasing(){
+let increasing2 = function (){
     if (increase){
         if (waitIncrease >= speedIncrease){
             speed += increaseValue;
