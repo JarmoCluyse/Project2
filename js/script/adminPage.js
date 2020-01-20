@@ -10,6 +10,7 @@ let cb1;
 let cb2;
 let cb3;
 let cb4;
+let token;
 
 // get the questions from the database
 const getQuestions = function () {
@@ -28,7 +29,7 @@ const deleteQuestion = function() {
 // add a new question + answers to the database
 const addQuestion = function () {
 	// all the variables are put into a json format
-	jsontext = `{"questiontext": "${questionBox.value}", "subject": "${subjectBox.value}", "teacheremail": "leraar@school.be", "answers": [{"answertext": "${answer1.value}", "iscorrect": ${cb1.checked}}, {"answertext": "${answer2.value}", "iscorrect": ${cb2.checked}}, {"answertext": "${answer3.value}", "iscorrect": ${cb3.checked}}, {"answertext": "${answer4.value}", "iscorrect": ${cb4.checked}}]}`;
+	jsontext = `{"questiontext": "${questionBox.value}", "subject": "${subjectBox.value}", "teacheremail": "${token.userEmail}", "answers": [{"answertext": "${answer1.value}", "iscorrect": ${cb1.checked}}, {"answertext": "${answer2.value}", "iscorrect": ${cb2.checked}}, {"answertext": "${answer3.value}", "iscorrect": ${cb3.checked}}, {"answertext": "${answer4.value}", "iscorrect": ${cb4.checked}}]}`;
 	json = JSON.parse(jsontext);
 	console.log(json);
 	// send the jsonfile to the database
@@ -71,12 +72,16 @@ const showQuestions = function (data) {
 	preloadDropDown(data);
 	console.log(data);
 	// get all the questions from the database
-	questionsObject = data;
+	var questionsTeacher = data.filter(obj => {
+		return obj.teacherEmail === token.userEmail;
+	  })
+	  console.log(questionsTeacher);
+	questionsObject = questionsTeacher;
 	let listElement = document.getElementById("questionsList");
 	listElement.innerHTML = "";
 	let htmlString = "";
 	// add the questions to the html
-	data.forEach(element => {
+	questionsTeacher.forEach(element => {
 		htmlString += `<li class="c-list__item">
 		<h3 class="c-list__item-question">${element.questionText}</h3>
 
@@ -402,6 +407,7 @@ const checkedState = function (checkboxElement) {
 const init = function () {
 	console.log('Script geladen! 👍');
 	// grab all the questions as the page is loading
+	token = JSON.parse(localStorage.getItem('LoginToken'));
 	getQuestions();
 	newQuestionButton = document.querySelector('.js-newQuestion');
 	mainCard = document.querySelector('.c-main-card');
