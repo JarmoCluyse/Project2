@@ -822,6 +822,19 @@ input::placeholder {
 }	
 
 
+.c-custom-select__symbol-edit-index {
+	pointer-events: none;
+	width: var(--global-whitespace);
+	height: var(--global-whitespace);
+	position: absolute;
+	top: calc(var(--global-whitespace) / 2);
+	right: calc(var(--global-whitespace) / 2);
+	fill: var(--global-color-neutral-x-light);
+	padding-left: calc(var(--global-baseline) / 4);
+	border-radius: var(--global-borderRadius);
+}
+
+
 .c-custom-select__symbol-edit {
 	width: var(--global-whitespace);
 	height: var(--global-whitespace);
