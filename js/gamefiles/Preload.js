@@ -20,12 +20,10 @@ var preloadState = new Phaser.Class({
         setInterval(function() {
             if (!gameOver && gameStarted){
                 if(!coop){
-                    setcars();
-                    console.log('ik werk s');                    
+                    setcars();                 
                 }
                 else{
                     setcars2();
-                    console.log('ik werk c');
                 }                }
             }, distance * 1000);
     },

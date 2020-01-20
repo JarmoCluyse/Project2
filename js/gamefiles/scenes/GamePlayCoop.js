@@ -23,7 +23,7 @@ var gamePlayState = new Phaser.Class({
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
         car = this.physics.add.sprite(300,730, 'car').setTint(carColor);
-        car2 = this.physics.add.sprite(500,730, 'car').setTint(carColor);
+        car2 = this.physics.add.sprite(500,730, 'car').setTint(carColor2);
         console.log(car);
         
 
@@ -222,28 +222,20 @@ let setcars2 = function(){
     arr2 = shuffle(arr2)
     for (i = 0; i < randomObstacles; i++) {
         let ShuffleColorList = shuffle(Colors)
-        if (ShuffleColorList[0] != carColor || ShuffleColorList[0] != carColor2){
-            randomColor = ShuffleColorList[0]
+        let ii = 0;
+        while (ShuffleColorList[ii] == carColor || ShuffleColorList[ii] == carColor2) {
+            ii ++;
         }
-        else if (ShuffleColorList[1] != carColor || ShuffleColorList[1] != carColor2){
-            randomColor = ShuffleColorList[1]
-        }
-        else{
-            randomColor = ShuffleColorList[2]
-        } 
+        randomColor = ShuffleColorList[ii]
         obstacles.create(arr[i],-50, 'car').setScale(1).setTint(randomColor);
     }
     for (i = 0; i < randomObstacles2; i++) {
         let ShuffleColorList = shuffle(Colors)
-        if (ShuffleColorList[0] != carColor || ShuffleColorList[0] != carColor2){
-            randomColor = ShuffleColorList[0]
+        let ii = 0;
+        while (ShuffleColorList[ii] == carColor || ShuffleColorList[ii] == carColor2) {
+            ii ++;
         }
-        else if (ShuffleColorList[1] != carColor || ShuffleColorList[1] != carColor2){
-            randomColor = ShuffleColorList[1]
-        }
-        else{
-            randomColor = ShuffleColorList[2]
-        } 
+        randomColor = ShuffleColorList[ii]
         obstacles.create(arr2[i],-50, 'car').setScale(1).setTint(randomColor);
     }
     for (i = 0; i < randomPickups; i++) {

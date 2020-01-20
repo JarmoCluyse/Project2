@@ -18,6 +18,7 @@ var carColor2 = ColorList[localStorage.getItem("Color2")]; // current color of t
 //------------------------------- //
 const BASEURI = 'https://project2driveacar.azurewebsites.net/api/v2/';
 var player = localStorage.getItem("Player");
+var player2 = localStorage.getItem("Player2");
 var questionsSubject;
 var coinsCollected = 0;
 var questionsAnswered = 0;
@@ -71,6 +72,9 @@ if (typeof increase === 'undefined' || !increase) {
 }
 if (typeof player === 'undefined' || !player) {
   player = "anoniem"; //default value
+}
+if (typeof player2 === 'undefined' || !player2) {
+  player2 = "anoniem"; //default value
 }
 if (typeof mode === 'undefined' || !mode) {
   mode = "SP"; //default value
