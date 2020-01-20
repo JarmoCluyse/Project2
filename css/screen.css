@@ -1070,6 +1070,12 @@ input::placeholder {
 	grid-column: 0;
 	grid-row: 0;
 }
+.c-game-highscore {
+	padding: 20px;
+	grid-column: 3;
+	grid-row: 0;
+	text-align: left;
+}
 .c-phaser {
     display: flex;
     justify-content: center;

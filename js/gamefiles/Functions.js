@@ -38,6 +38,7 @@ function keyListener(e){ // listen to keypress
         game.scene.stop('GameOver');
         game.scene.start('MainMenu');
         score = 0; // put score back to 0
+        questionsAnswered = 0
         placeScore(); // update the score
         // variables back to false
         gameStarted = false;
