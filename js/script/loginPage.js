@@ -156,13 +156,54 @@ const checkValidityCreateAccount = function(){
 	}
 };
 
-const loggedIn = function(data){
-	console.log(data);
-	localStorage.setItem("LoginToken", JSON.stringify(data));
-	showAdminPage();
+const register = function(){
+	let jsontext = `{"emailaddress": "${newEmail.value}",
+	"lastname": "${newAccountName.value}",
+	"firstname": "${newAccountFirstName.value}",
+	"password": "${newPassword.value}"}`
+	let json = JSON.parse(jsontext);
+	sendData(`${BASEURI}register?code=${key}`, registerCallback, 'POST', json);
+
+
+};
+const registerCallback = function(data){
+	if (data.ok){
+		logIn(newEmail.value, newPassword.value, loggedIn);
+
+	}
+	else{
+		//Hier registreer fout
+
+	}
+
 };
 
-const checkCallback = function(data){
+const loggedIn = function(data){//This function is run when a result is returned from the server while logging in
+	passwordError = document.querySelector('.c-password-error');
+	passwordInput = document.querySelector('.c-input-password');
+	passwordTitle = document.querySelector('.c-login__input-password');
+
+	console.log(data);
+	if(data.userEmail != "undefined"){
+		localStorage.setItem("LoginToken", JSON.stringify(data));
+
+		passwordError.style.display = "none";
+		passwordInput.style.borderColor = "var(--global-color-neutral-xxx-light)";
+		passwordTitle.style.color = "var(--global-color-alpha-light)";
+
+		showAdminPage();
+	}
+	else{
+		//steek hier uwn error
+		passwordError.style.display = "block";
+		passwordInput.style.borderColor = "red";
+		passwordTitle.style.color = "red";
+	}
+	
+	
+};
+
+const checkCallback = function(data){//This function checks if the logintoken stored in the browser is still valid
 	if (data.ok){
 		showAdminPage();
 	}
@@ -198,7 +239,8 @@ const init = function(){
 		// check if everything is filled in correctly
 		if(checkValidityCreateAccount() == true){
 			// show the adminpage
-			showAdminPage();
+			//showAdminPage();
+			register();
 		}
 
 	});

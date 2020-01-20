@@ -754,6 +754,13 @@ input::placeholder {
 
 .c-dropdown-card{
 	display: none;
+	width: 320px;
+}
+
+@media(min-width: 768px){
+	.c-dropdown-card{
+		width: auto;
+	}
 }
 
 .c-gameId__title {
@@ -1073,12 +1080,15 @@ input::placeholder {
 
 .c-add-card {
 	display: none;
-	
+	width: 320px;
 }
 
 .c-edit-card {
 	display: none;
+	width: 320px;
 }
+
+
 
 .c-newGame-card{
 	display: flex;
@@ -1089,6 +1099,14 @@ input::placeholder {
 
 @media(min-width: 768px){
 	.c-newGame-card{
+		width: auto;
+	}
+
+	.c-edit-card{
+		width: auto;
+	}
+
+	.c-add-card{
 		width: auto;
 	}
 }
@@ -1286,7 +1304,7 @@ input::placeholder {
 .c-close__button{
 	position: absolute;
 	top: 30px;
-	right: 30px;
+	right: 20px;
 	height: 28px;
 	width: 28px;
 }
@@ -1328,14 +1346,14 @@ input::placeholder {
 
 .c-delete__buttons{
 	display: block;
-	margin-left: calc(var(--global-baseline) * 3);
-	margin-right: clac(var(--global-baseline) * 3);
 	width: 93%;
 }
 
 @media(min-width: 768px){
 	.c-delete__buttons{
 		display: flex;
+		margin-left: calc(var(--global-baseline) * 3);
+		margin-right: calc(var(--global-baseline) * 3);
 		justify-content: space-between;
 	}
 }
@@ -1344,6 +1362,13 @@ input::placeholder {
 	width: 100%;
 	margin-left: calc(var(--global-baseline) * -2);
 }
+
+.c-form__login-password {
+	width: 100%;
+	margin-left: calc(var(--global-baseline) * -2);
+	margin-bottom: 0;
+}
+
 
 
 .c-form-field__answers {
@@ -1357,6 +1382,10 @@ input::placeholder {
 	}
 
 	.c-form__login-email{
+		margin-left: 0;
+	}
+
+	.c-form__login-password {
 		margin-left: 0;
 	}
 }
@@ -1565,14 +1594,41 @@ input::placeholder {
 	margin-bottom: 0;
 }
 
+.c-login__input-password{
+	font-size: 18px;
+	color: var(--global-color-alpha-light);
+	margin-bottom: 0;
+}
+
 @media(min-width: 768px){
 	.c-login__input-titles{
 		padding-left: calc(var(--global-baseline) * 4);
 	}
+
+	.c-login__input-password{
+		margin-left: calc(var(--global-baseline) * 4);
+	}
+}
+
+.c-password-error{
+	color: red;
+	display: none;
+}
+
+.c-registration-error{
+	color: red;
+	display: none;
 }
 
 
+
 .c-input-email{
+	width: 86%;
+	margin-left: calc(var(--global-baseline) * 4);
+}
+
+
+.c-input-password{
 	width: 86%;
 	margin-left: calc(var(--global-baseline) * 4);
 }
@@ -1588,6 +1644,17 @@ input::placeholder {
 
 .c-button__login {
 	font-size: 18px;
+}
+
+.c-button__question{
+	display: flex;
+	justify-content: center;
+}
+
+@media(min-width: 768px){
+	.c-button__question{
+		display: block;
+	}
 }
 
 .c-login__footer {
