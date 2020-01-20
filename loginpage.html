@@ -40,12 +40,16 @@
                                 <input class="c-input-email c-input" type="email" name="email" id="email" placeholder="vb. john@doe.com" required>
                             </p>
 
-                            <h2 class="c-login__input-titles">
+                            <h2 class="c-login__input-password">
                                 wachtwoord
                             </h2>
-                            <p class="c-form-field c-form__login-email">
-                                <input class="c-input-email c-input" type="password" name="password" id="password" required>
+                            <p class="c-form-field c-form__login-password">
+                                <input class="c-input-password c-input" type="password" name="password" id="password" required>
                             </p>
+
+                            <h2 class="c-login__input-titles c-password-error">
+                                Het e-mailadres of wachtwoord is incorrect!
+                            </h2>
 
                             <p class="c-login-button">
                                 <button class="o-button-reset c-button c-button__login" type="submit">aanmelden</button>
@@ -103,6 +107,10 @@
                             <h3 class="c-passDontMatch">
                                 Je wachtwoorden komen niet overeen!
                             </h3>
+
+                            <h2 class="c-login__input-titles c-registration-error">
+                                Dit e-mailadres is al in gebruik!
+                            </h2>
 
                             <p class="c-login-button">
                                 <button class="o-button-reset c-button c-button__login js-createAccount" type="submit">maak account</button>

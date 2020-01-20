@@ -1363,6 +1363,13 @@ input::placeholder {
 	margin-left: calc(var(--global-baseline) * -2);
 }
 
+.c-form__login-password {
+	width: 100%;
+	margin-left: calc(var(--global-baseline) * -2);
+	margin-bottom: 0;
+}
+
+
 
 .c-form-field__answers {
 	width: 100%;
@@ -1375,6 +1382,10 @@ input::placeholder {
 	}
 
 	.c-form__login-email{
+		margin-left: 0;
+	}
+
+	.c-form__login-password {
 		margin-left: 0;
 	}
 }
@@ -1583,14 +1594,41 @@ input::placeholder {
 	margin-bottom: 0;
 }
 
+.c-login__input-password{
+	font-size: 18px;
+	color: var(--global-color-alpha-light);
+	margin-bottom: 0;
+}
+
 @media(min-width: 768px){
 	.c-login__input-titles{
 		padding-left: calc(var(--global-baseline) * 4);
 	}
+
+	.c-login__input-password{
+		margin-left: calc(var(--global-baseline) * 4);
+	}
+}
+
+.c-password-error{
+	color: red;
+	display: none;
+}
+
+.c-registration-error{
+	color: red;
+	display: none;
 }
 
 
+
 .c-input-email{
+	width: 86%;
+	margin-left: calc(var(--global-baseline) * 4);
+}
+
+
+.c-input-password{
 	width: 86%;
 	margin-left: calc(var(--global-baseline) * 4);
 }

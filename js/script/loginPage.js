@@ -157,13 +157,25 @@ const checkValidityCreateAccount = function(){
 };
 
 const loggedIn = function(data){
+	passwordError = document.querySelector('.c-password-error');
+	passwordInput = document.querySelector('.c-input-password');
+	passwordTitle = document.querySelector('.c-login__input-password');
+
 	console.log(data);
 	if(data.userEmail != "undefined"){
 		localStorage.setItem("LoginToken", JSON.stringify(data));
+
+		passwordError.style.display = "none";
+		passwordInput.style.borderColor = "var(--global-color-neutral-xxx-light)";
+		passwordTitle.style.color = "var(--global-color-alpha-light)";
+
 		showAdminPage();
 	}
 	else{
 		//steek hier uwn error
+		passwordError.style.display = "block";
+		passwordInput.style.borderColor = "red";
+		passwordTitle.style.color = "red";
 	}
 	
 	
