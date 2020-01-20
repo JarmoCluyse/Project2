@@ -19,8 +19,12 @@ var preloadState = new Phaser.Class({
         game.scene.start('MainMenu');
         setInterval(function() {
             if (!gameOver && gameStarted){
-                setcars();
+                if(!coop){
+                    setcars();                 
                 }
+                else{
+                    setcars2();
+                }                }
             }, distance * 1000);
     },
     update: function() {
