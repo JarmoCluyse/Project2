@@ -12,6 +12,10 @@ let cb3;
 let cb4;
 let token;
 
+const loggedOut = function(data){
+	window.location.href = 'loginpage.html';
+};
+
 // get the questions from the database
 const getQuestions = function () {
 	// this will send data to the datahandler and the response are the questions
@@ -440,7 +444,7 @@ const init = function () {
 	logoutButton = document.getElementById('logout');
 
 	logoutButton.addEventListener('click', function(){
-		// hier log ik uit ofzo idk
+		logOut(JSON.parse(localStorage.getItem('LoginToken')), loggedOut);
 	})
 
 	// check the checkboxinputs
