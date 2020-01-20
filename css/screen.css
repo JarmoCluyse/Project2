@@ -728,6 +728,7 @@ input::placeholder {
 	display: block;	
 }
 
+
 @media(min-width: 768px){
 	.c-player1 {
 		display: flex;
@@ -738,7 +739,6 @@ input::placeholder {
 		width: 70%;
 		margin-left: calc(var(--global-baseline) * 4);
 	}
-
 }
 
 
@@ -892,11 +892,12 @@ input::placeholder {
 	font-size: 24px;
 	line-height: var(--global-whitespace);
 	color: var(--global-color-alpha-light);
-	margin-bottom: var(--global-baseline);
+	margin-bottom: calc(var(--global-baseline) * 2);
 	margin-right: calc(var(--global-baseline) * 3);
 	padding-left: calc(var(--global-baseline) * 4);
 	display: block;
 }
+
 
 .c-list__item{
 	margin-left: calc(var(--global-baseline) * 4);
@@ -1750,25 +1751,19 @@ input::placeholder {
 	color: white;
 }
 
-
 .c-account {
-	position: absolute;
 	display: flex;
-	left: 210px;
-	align-self: center;
-	font-size: 18px;
-	line-height: var(--global-whitespace);
-	color: var(--global-color-alpha-light);
-	margin-bottom: calc(var(--global-baseline) * 2);
-	justify-content: center;
+	justify-content: end;
+	width: 25%;
 }
 
 
 .c-dropbtn {
-	background-color: none;
 	padding: 16px;
 	font-size: 16px;
 	border: none;
+	background-color: var(--global-color-alpha-lighter);
+	border-radius: var(--global-borderRadius);
 }
   
 .c-dropdown {
@@ -1806,7 +1801,7 @@ input::placeholder {
 
 
 .c-dropdown:hover .c-dropbtn {
-	background-color: var(--global-color);
+	background-color: var(--global-color-alpha);
 }
 
 

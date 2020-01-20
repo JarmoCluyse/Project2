@@ -12,6 +12,10 @@ let cb3;
 let cb4;
 let token;
 
+const loggedOut = function(data){
+	window.location.href = 'loginpage.html';
+};
+
 // get the questions from the database
 const getQuestions = function () {
 	// this will send data to the datahandler and the response are the questions
@@ -437,6 +441,11 @@ const init = function () {
 	addSubjectButton = document.getElementById('addSubject');
 	deleteSubjectButton = document.getElementById('deleteSubjectButton');
 	dropDownForCards = document.getElementById('dropDownForCards');
+	logoutButton = document.getElementById('logout');
+
+	logoutButton.addEventListener('click', function(){
+		logOut(JSON.parse(localStorage.getItem('LoginToken')), loggedOut);
+	})
 
 	// check the checkboxinputs
 	checkboxInputs.forEach(element => {
@@ -458,8 +467,6 @@ const init = function () {
 	dropdownEdit.addEventListener('click', function(){
 		showDropDownEditPage();
 	});
-
-
 
 
 	// if you click on this button you will be brought to the page to add a new question
