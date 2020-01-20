@@ -3,6 +3,7 @@
 //------------------------------- //
 var BeginSpeed = localStorage.getItem("BeginSpeed");
 // var BeginSpeed = 10;  // speed of cars
+var coop = true;
 var distance = localStorage.getItem("Distance"); // distance between cars
 var increase =  localStorage.getItem("increase"); // if you can increase the speed while playing the game
 var speedIncrease = 4; // the rate of increasing
