@@ -96,7 +96,7 @@ const dropdownFunction = function() {
 		dropdownSelectValue = dropdownSelect.options[dropdownSelect.selectedIndex].value;
 
 		// if the selected dropdown value is 'single player'
-		if (dropdownSelectValue == 'single-player') {
+		if (dropdownSelectValue == 'SP') {
 			// ----- multiplayer ------
 			// if (newCodeBool == 1) {
 			// 	removeNewcode();
@@ -118,7 +118,7 @@ const dropdownFunction = function() {
 		}
 
 		// if the selected dropdown value is 'co-op'
-		if (dropdownSelectValue == 'co-op') {
+		if (dropdownSelectValue == 'COOP') {
 			// ----- multiplayer -----
 			// if (newCodeBool == 1) {
 			// 	removeNewcode();

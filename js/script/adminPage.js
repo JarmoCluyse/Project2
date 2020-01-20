@@ -10,6 +10,11 @@ let cb1;
 let cb2;
 let cb3;
 let cb4;
+let token;
+
+const loggedOut = function(data){
+	window.location.href = 'loginpage.html';
+};
 
 // get the questions from the database
 const getQuestions = function () {
@@ -28,7 +33,7 @@ const deleteQuestion = function() {
 // add a new question + answers to the database
 const addQuestion = function () {
 	// all the variables are put into a json format
-	jsontext = `{"questiontext": "${questionBox.value}", "subject": "${subjectBox.value}", "teacheremail": "leraar@school.be", "answers": [{"answertext": "${answer1.value}", "iscorrect": ${cb1.checked}}, {"answertext": "${answer2.value}", "iscorrect": ${cb2.checked}}, {"answertext": "${answer3.value}", "iscorrect": ${cb3.checked}}, {"answertext": "${answer4.value}", "iscorrect": ${cb4.checked}}]}`;
+	jsontext = `{"questiontext": "${questionBox.value}", "subject": "${subjectBox.value}", "teacheremail": "${token.userEmail}", "answers": [{"answertext": "${answer1.value}", "iscorrect": ${cb1.checked}}, {"answertext": "${answer2.value}", "iscorrect": ${cb2.checked}}, {"answertext": "${answer3.value}", "iscorrect": ${cb3.checked}}, {"answertext": "${answer4.value}", "iscorrect": ${cb4.checked}}]}`;
 	json = JSON.parse(jsontext);
 	console.log(json);
 	// send the jsonfile to the database
@@ -71,12 +76,16 @@ const showQuestions = function (data) {
 	preloadDropDown(data);
 	console.log(data);
 	// get all the questions from the database
-	questionsObject = data;
+	var questionsTeacher = data.filter(obj => {
+		return obj.teacherEmail === token.userEmail;
+	  })
+	  console.log(questionsTeacher);
+	questionsObject = questionsTeacher;
 	let listElement = document.getElementById("questionsList");
 	listElement.innerHTML = "";
 	let htmlString = "";
 	// add the questions to the html
-	data.forEach(element => {
+	questionsTeacher.forEach(element => {
 		htmlString += `<li class="c-list__item">
 		<h3 class="c-list__item-question">${element.questionText}</h3>
 
@@ -393,7 +402,6 @@ const showMainPage = function () {
 	editCard.style.display = 'none';
 	addCard.style.display = 'none';
 	dropdownCard.style.display = 'none';
-	accountCard.style.display = 'none';
 
 	// show the maincard
 	mainCard.style.opacity = 1;
@@ -414,6 +422,7 @@ const checkedState = function (checkboxElement) {
 const init = function () {
 	console.log('Script geladen! 👍');
 	// grab all the questions as the page is loading
+	token = JSON.parse(localStorage.getItem('LoginToken'));
 	getQuestions();
 	newQuestionButton = document.querySelector('.js-newQuestion');
 	mainCard = document.querySelector('.c-main-card');
@@ -432,12 +441,11 @@ const init = function () {
 	addSubjectButton = document.getElementById('addSubject');
 	deleteSubjectButton = document.getElementById('deleteSubjectButton');
 	dropDownForCards = document.getElementById('dropDownForCards');
-	accountSettingsButton = document.querySelector('.c-account-settings');
+	logoutButton = document.getElementById('logout');
 
-	accountSettingsButton.addEventListener('click', function(){
-		showAccountCard();
+	logoutButton.addEventListener('click', function(){
+		logOut(JSON.parse(localStorage.getItem('LoginToken')), loggedOut);
 	})
-
 
 	// check the checkboxinputs
 	checkboxInputs.forEach(element => {
@@ -459,8 +467,6 @@ const init = function () {
 	dropdownEdit.addEventListener('click', function(){
 		showDropDownEditPage();
 	});
-
-
 
 
 	// if you click on this button you will be brought to the page to add a new question
