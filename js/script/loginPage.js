@@ -158,8 +158,15 @@ const checkValidityCreateAccount = function(){
 
 const loggedIn = function(data){
 	console.log(data);
-	localStorage.setItem("LoginToken", JSON.stringify(data));
-	showAdminPage();
+	if(data.userEmail != "undefined"){
+		localStorage.setItem("LoginToken", JSON.stringify(data));
+		showAdminPage();
+	}
+	else{
+		//steek hier uwn error
+	}
+	
+	
 };
 
 const checkCallback = function(data){

@@ -62,7 +62,7 @@ const logIn = function (email, password, callback) {
   })
   .then(function (response) {
     if (!response.ok) {
-      throw Error(`Probleem bij de fetch(). Status Code: ${response.status}`);
+      return JSON.parse(`{"userEmail": "undefined"}`);
     } else {
       console.info('Er is een response teruggekomen van de server');
       return response.json();
@@ -73,9 +73,9 @@ const logIn = function (email, password, callback) {
     console.info('verwerken data');
     callback(jsonObject);
   })
-  .catch(function (error) {
-    console.error(`Error sending data: ${error}`);
-  });
+  // .catch(function (error) {
+  //   console.error(`Error sending data: ${error}`);
+  // });
 };
 
 const logOut = function(token, callback) {
