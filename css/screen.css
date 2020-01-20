@@ -745,6 +745,7 @@ input::placeholder {
 @media(min-width: 1024px){
 	.c-subject {
 		display: flex;
+		width: 80%;
 	}
 
 	.c-player1{
@@ -1746,9 +1747,24 @@ input::placeholder {
 }
 
 .c-account {
+	margin-right: calc(var(--global-baseline) * 4);
+	margin-bottom: calc(var(--global-baseline));
+	margin-top: calc(var(--global-baseline));
+	margin-left: calc(var(--global-baseline) * 4);
 	display: flex;
-	justify-content: end;
-	width: 25%;
+	justify-content: center;
+}
+
+.c-topbar {
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+@media(min-width: 768px){
+	.c-topbar {
+		justify-content: space-between;
+		flex-direction: row;
+	}
 }
 
 
