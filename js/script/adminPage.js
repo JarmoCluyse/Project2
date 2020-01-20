@@ -322,6 +322,17 @@ const showDropDownEditPage = function(){
 	
 };
 
+// show account page
+const showAccountCard = function(){
+	// set display to block for dropdowncard
+	accountCard.style.display = 'block';
+
+	// make it look like maincard is in background
+	mainCard.style.opacity = 0.2;
+	mainCard.style.pointerEvents = 'none';
+
+};
+
 // fill the dropdowns 
 const fillDropDowns = function(elementId){
 	// get the dropdownlist with the given id
@@ -382,6 +393,7 @@ const showMainPage = function () {
 	editCard.style.display = 'none';
 	addCard.style.display = 'none';
 	dropdownCard.style.display = 'none';
+	accountCard.style.display = 'none';
 
 	// show the maincard
 	mainCard.style.opacity = 1;
@@ -408,6 +420,7 @@ const init = function () {
 	addCard = document.querySelector('.c-add-card');
 	editCard = document.querySelector('.c-edit-card');
 	dropdownCard = document.querySelector('.c-dropdown-card');
+	accountCard = document.querySelector('.c-account-card');
 	deleteCard = document.querySelector('.c-delete-card');
 	deleteSubjectCard = document.querySelector('.c-deleteSubject-card');
 	submitQuestion = document.querySelector('.js-addQuestion');
@@ -419,6 +432,11 @@ const init = function () {
 	addSubjectButton = document.getElementById('addSubject');
 	deleteSubjectButton = document.getElementById('deleteSubjectButton');
 	dropDownForCards = document.getElementById('dropDownForCards');
+	accountSettingsButton = document.querySelector('.c-account-settings');
+
+	accountSettingsButton.addEventListener('click', function(){
+		showAccountCard();
+	})
 
 
 	// check the checkboxinputs

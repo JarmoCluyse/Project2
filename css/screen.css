@@ -906,9 +906,7 @@ input::placeholder {
 	border: var(--global-borderWidth) solid var(--global-color-neutral-xxx-light);
 	border-radius: var(--global-borderRadius);
 	align-items: center;
-
 }
-
 
 
 
@@ -1744,6 +1742,29 @@ input::placeholder {
 	bottom: 40px;
 	left: 600px;
 	color: white;
+}
+
+.c-account-logo {
+	position: absolute;
+	top: 20px;
+	right: 32px;
+}
+
+.c-account {
+	position: absolute;
+	right: 75px;
+	top: 26px;
+	display: flex;
+	align-self: center;
+	font-size: 18px;
+	text-decoration: underline;
+	line-height: var(--global-whitespace);
+	color: var(--global-color-alpha-light);
+	justify-content: center;
+}
+
+.c-account-card {
+	display: none;
 }
 
 /*------------------------------------*\
