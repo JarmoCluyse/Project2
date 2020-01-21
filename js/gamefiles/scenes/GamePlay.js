@@ -102,26 +102,46 @@ let moveCar = function(e)
 
         //move the car
         if (e.key == "ArrowLeft"){
-            car.x = 250;
+            if (car.x != 250){
+                car.x = 250;
+                noLaneChanges++;
+            }
+            
         }
         if (e.key == "ArrowUp"){
-            car.x = 350;
+            if (car.x != 350){
+                car.x = 350;
+                noLaneChanges++;
+            }
         }
         if (e.key == "ArrowDown"){
             if(mode == 'SP'){
                 car.x = 450;
+                if (car.x != 450){
+                    car.x = 450;
+                    noLaneChanges++;
+                }
             }
             if(mode == 'COOP'){
-                car2.x = 450;
+                if (car2.x != 450){
+                    car2.x = 450;
+                    noLaneChangesP2++;
+                }
             }
             
         }
         if (e.key == "ArrowRight"){
             if(mode == 'SP'){
-                car.x = 550;
+                if (car.x != 550){
+                    car.x = 550;
+                    noLaneChanges++;
+                }
             }
             if(mode == 'COOP'){
-                car2.x = 550;
+                if (car2.x != 550){
+                    car2.x = 550;
+                    noLaneChangesP2++;
+                }
             }
             
         }
