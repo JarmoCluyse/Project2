@@ -4,7 +4,6 @@
 var BeginSpeed = localStorage.getItem("BeginSpeed");
 // var BeginSpeed = 10;  // speed of cars
 var mode = localStorage.getItem("Mode");
-var distance = localStorage.getItem("Distance"); // distance between cars
 var increase =  localStorage.getItem("increase"); // if you can increase the speed while playing the game
 var speedIncrease = 4; // the rate of increasing
 var increaseValue = 0.5; // value that we increase with
@@ -23,6 +22,7 @@ var questionsSubject;
 var coinsCollected = 0;
 var questionsAnswered = 0;
 var noLaneChanges = 0;
+var noLaneChangesP2 = 0;
 var session;
 //------------------------------- //
 // Declare Game
@@ -39,7 +39,7 @@ var jsGamePlay = document.querySelector(".js-gamePlay") // game html
 var jsGameStart = document.querySelector(".js-gameStart") // gamestart html
 var jsGameEnd = document.querySelector(".js-gameEnd") // gamestart html
 var jsGameQuestion = document.querySelector(".js-gameQuestion") // gamestart html
-var coop
+var lanes;
 var CurrentQuestion;
 var ShuffledAnswers;
 var car; // users
@@ -49,6 +49,7 @@ var pickups; // pickups
 var score = 0; // score of the game
 var waitIncrease = 0; // variable to count the waiting
 var speed = 5; // current speed of the game
+var distance = 3000;
 var Colors = [];
 for (var keys in ColorList) {
   Colors.push(ColorList[keys])
@@ -61,11 +62,6 @@ if (typeof BeginSpeed === 'undefined' || !BeginSpeed) {
   BeginSpeed = 5;
 } else {
   BeginSpeed = parseInt(BeginSpeed);
-}
-  if (typeof distance === 'undefined' || !distance) {
-  distance = 1;
-} else {
-  distance = parseInt(distance);
 }
 if (typeof increase === 'undefined' || !increase) {
   increase = true;
@@ -90,12 +86,12 @@ var gameOver = false;
 var answer = false
 var gameDone = false;
 if(mode == 'SP'){
-  coop = false;
+  lanes = 4;
 }
 else if(mode == 'COOP'){
-  coop = true;
+  lanes = 2;
 }
 else{
-  coop = false;
+  lanes = 4;
 }
 

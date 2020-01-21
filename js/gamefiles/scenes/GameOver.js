@@ -19,12 +19,9 @@ var mainMenuState = new Phaser.Class({
 		// log the current scene
 		console.log('scene: GameOver');
 		// send to database
-		if (coop) {
-			postGame(player);
-			postGame(player2);
-		}
-		else {
-			postGame(player);
+		postGame(player, noLaneChanges);
+		if (mode == 'COOP') {
+			postGame(player2, noLaneChangesP2);
 		}
 
 		// to next scene
@@ -39,9 +36,9 @@ var mainMenuState = new Phaser.Class({
 myGame.scenes.push(mainMenuState);
 
 
-const postGame = function(played){
+const postGame = function(played, langechanges){
 	
-	jsontext = `{"player": "${played}", "subject": "${questionsSubject}", "mode": "${mode}", "score": "${score}", "coinscollected": "${coinsCollected}", "questionsanswered": "${questionsAnswered}", "numberoflanechanges": "${noLaneChanges}", "session": "${session}"}`;
+	jsontext = `{"player": "${played}", "subject": "${questionsSubject}", "mode": "${mode}", "score": "${score}", "coinscollected": "${coinsCollected}", "questionsanswered": "${questionsAnswered}", "numberoflanechanges": "${langechanges}", "session": "${session}"}`;
 	json = JSON.parse(jsontext);
 	console.log(json);
 	console.log(jsontext);

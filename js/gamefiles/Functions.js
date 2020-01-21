@@ -27,18 +27,14 @@ function keyListener(e){ // listen to keypress
   if(!gameStarted && !gameDone && !gameOver && e.key != "f"){ // when game hasn't started
     gameStarted = true; // start the game
     game.scene.stop('MainMenu'); // stop this screen
-    if (!coop){
-      game.scene.start('GamePlay'); // start the game
-    }
-    else {
-      game.scene.start('GamePlayCoop'); // start the game
-    }
+    game.scene.start('GamePlay'); // start the game
   }
   else if (gameStarted && gameOver && gameDone && e.key != "f") { // when game is done
         game.scene.stop('GameOver');
         game.scene.start('MainMenu');
         score = 0; // put score back to 0
         questionsAnswered = 0
+        distance = 3000;
         placeScore(); // update the score
         // variables back to false
         gameStarted = false;
