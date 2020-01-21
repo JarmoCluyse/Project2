@@ -19,12 +19,9 @@ var mainMenuState = new Phaser.Class({
 		// log the current scene
 		console.log('scene: GameOver');
 		// send to database
-		if (coop) {
-			postGame(player);
+		postGame(player);
+		if (mode == 'COOP') {
 			postGame(player2);
-		}
-		else {
-			postGame(player);
 		}
 
 		// to next scene
