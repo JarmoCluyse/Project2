@@ -73,19 +73,28 @@ var questionsObject;
 
 // get all questions from the database and show them on the adminpage
 const showQuestions = function (data) {
-	preloadDropDown(data);
-	console.log(data);
-	// get all the questions from the database
-	var questionsTeacher = data.filter(obj => {
-		return obj.teacherEmail === token.userEmail;
-	  })
-	  console.log(questionsTeacher);
-	questionsObject = questionsTeacher;
+	if (data != null){//if data is null the data is we are calling the function to filter the questions so getting them again is not needed
+		var questionsTeacher = data.filter(obj => {
+			return obj.teacherEmail === token.userEmail;
+		  })
+		  questionsObject = questionsTeacher;
+		  preloadDropDown(questionsTeacher);
+		  console.log(questionsTeacher);
+	}
+	if (mainDropDown.value != 'all'){
+		var filteredQuestions = questionsObject.filter(obj => {
+			return obj.subject === mainDropDown.value;
+		  });
+	}
+	else{
+		filteredQuestions = questionsObject;
+	}
+	
 	let listElement = document.getElementById("questionsList");
 	listElement.innerHTML = "";
 	let htmlString = "";
 	// add the questions to the html
-	questionsTeacher.forEach(element => {
+	filteredQuestions.forEach(element => {
 		htmlString += `<li class="c-list__item">
 		<h3 class="c-list__item-question">${element.questionText}</h3>
 
@@ -116,7 +125,7 @@ const showQuestions = function (data) {
 
 
 	// add an eventlistener to every edit icon
-	questionsObject.forEach(element => {
+	filteredQuestions.forEach(element => {
 		// add an eventlistener to EACH edit icon, it runs through a list 
 		document.getElementById(`E${element.questionId}`).addEventListener('click', function () {
 			// this brings you to the editquestion page, we send the question id so we get the correct question
@@ -125,7 +134,7 @@ const showQuestions = function (data) {
 	})
 
 	// add an eventlistener to every delete icon
-	questionsObject.forEach(element => {
+	filteredQuestions.forEach(element => {
 		// add an eventlistener to EACH delete icon, it runs through a list 
 		document.getElementById(`D${element.questionId}`).addEventListener('click', function () {
 			// this gives you a pop-up to confirm the deletion
@@ -136,19 +145,23 @@ const showQuestions = function (data) {
 
 const preloadDropDown = function(data){
 	mainDropDown = document.getElementById('select');
-	mainDropDown.innerHTML = "";
+	mainDropDown.innerHTML = `<option value="all">(Alle vragen)</option>`;
+	mainDropDown.addEventListener('change', function(){
+		showQuestions(null);
+	});
 
 	foundSubjects = []
 
 	data.forEach(element =>{
 		if (!foundSubjects.includes(element.subject)){
 			foundSubjects.push(element.subject);
+			mainDropDown.innerHTML += `<option value="${element.subject}">${element.subject}</option>`;
 		}
 	});
 	
-	foundSubjects.forEach(element => {
-		mainDropDown.innerHTML += `<option value="${element}">${element}</option>`;
-	});
+	// foundSubjects.forEach(element => {
+	// 	mainDropDown.innerHTML += `<option value="${element}">${element}</option>`;
+	// });
 
 
 };
