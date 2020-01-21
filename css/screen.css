@@ -1119,7 +1119,7 @@ input::placeholder {
 @media(min-width: 768px){
 	.c-card__no-grid{
 		top: 100px;
-		left: 77px;
+		left: 10%;
 		width: 80%;
 	}
 }
@@ -1127,7 +1127,7 @@ input::placeholder {
 @media(min-width: 1024px){
 	.c-card__no-grid{
 		top: 200px;
-		left: 90px;
+		left: 7%;
 		width: 60%;
 	}	
 }
@@ -1135,7 +1135,7 @@ input::placeholder {
 @media(min-width: 1440px){
 	.c-card__no-grid{
 		top: 200px;
-		left: 240px;
+		left: 15%;
 		width: 60%;
 	}	
 }
@@ -1753,6 +1753,12 @@ input::placeholder {
 	margin-left: calc(var(--global-baseline) * 4);
 	display: flex;
 	justify-content: center;
+}
+
+@media(min-width: 1024px){
+	.c-account {
+		margin-top: 0;
+	}
 }
 
 .c-topbar {
