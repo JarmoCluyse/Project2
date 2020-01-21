@@ -116,6 +116,7 @@ let moveCar = function(e)
             jsGameQuestion.classList.add('hide');
             gameOver = false;
             answer = false;
+            questionsAnswered ++;      
           }
           else{
             gameDone = true;
@@ -132,6 +133,7 @@ let moveCar = function(e)
             jsGameQuestion.classList.add('hide');
             gameOver = false;
             answer = false;
+            questionsAnswered ++;   
           }
           else{
             gameDone = true;
@@ -148,6 +150,7 @@ let moveCar = function(e)
             jsGameQuestion.classList.add('hide');
             gameOver = false;
             answer = false;
+            questionsAnswered ++;   
           }
           else{
             gameDone = true;
@@ -164,6 +167,7 @@ let moveCar = function(e)
             jsGameQuestion.classList.add('hide');
             gameOver = false;
             answer = false;
+            questionsAnswered ++;   
           }
           else{
             gameDone = true;

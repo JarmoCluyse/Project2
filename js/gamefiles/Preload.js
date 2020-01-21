@@ -19,6 +19,8 @@ var preloadState = new Phaser.Class({
         game.scene.start('MainMenu');
         setInterval(function() {
             if (!gameOver && gameStarted){
+                console.log("placecars");
+                
                 if(!coop){
                     setcars();                 
                 }
