@@ -252,7 +252,15 @@ const deleteSubjectConfirmation = function(){
 // this will show the page with a form to make a complete new question
 const showAddQuestionPage = function () {
 	// fill the dropdowns with all the subjects	
-	fillDropDowns("dropDownForAddCard");
+	subjectBox = document.getElementById("dropDownForAddCard");
+	if (mainDropDown.value == 'all'){
+		fillDropDowns("dropDownForAddCard");
+	}
+		
+	else{
+		subjectBox.innerHTML = `<option value="${mainDropDown.value}">${mainDropDown.value}</option>`
+	}
+		
 	// make the maincard more to the background
 	mainCard.style.opacity = 0.2;
 	mainCard.style.pointerEvents = 'none';
@@ -260,7 +268,7 @@ const showAddQuestionPage = function () {
 	addCard.style.display = 'block';
 
 	questionBox = document.getElementById("newQuestion");
-	subjectBox = document.getElementById("dropDownForAddCard");
+	
 	answer1 = document.getElementById('newQuestionAnswer1');
 	answer2 = document.getElementById('newQuestionAnswer2');
 	answer3 = document.getElementById('newQuestionAnswer3');
@@ -269,6 +277,8 @@ const showAddQuestionPage = function () {
 	cb2 = document.getElementById('checkbox2');
 	cb3 = document.getElementById('checkbox3');
 	cb4 = document.getElementById('checkbox4');
+
+	
 
 	// document.getElementById("newSubmit").addEventListener('submit', function () {
 	// 	addQuestion();
@@ -367,7 +377,7 @@ const fillDropDowns = function(elementId){
 
 	// make an empty list of values
 	let dropdownValues = []
-	dropdownInt = 0;
+	dropdownInt = 1;
 
 	// while loop that adds all values to the empty list
 	while (dropdownInt < subjectSelect.options.length){
