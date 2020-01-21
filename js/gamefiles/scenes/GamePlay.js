@@ -287,10 +287,10 @@ let setcars = function(){
             pickups.create(arr2[i+randomObstacles2],-50, 'coin').setScale(.2);
         }
     }
-    // pickups.create(150,-50, 'coin').setScale(.2);
-    // if(mode == 'COOP'){
-    // pickups.create(650,-50, 'coin').setScale(.2);
-    // }
+    //  pickups.create(150,-50, 'coin').setScale(.2);
+    //  if(mode == 'COOP'){
+    //  pickups.create(650,-50, 'coin').setScale(.2);
+    //  }
 }
 
 let getRandomobstakels = function() {

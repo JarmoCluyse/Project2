@@ -34,6 +34,7 @@ function keyListener(e){ // listen to keypress
         game.scene.start('MainMenu');
         score = 0; // put score back to 0
         questionsAnswered = 0
+        distance = 3000;
         placeScore(); // update the score
         // variables back to false
         gameStarted = false;
