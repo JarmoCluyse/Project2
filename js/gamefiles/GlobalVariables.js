@@ -39,7 +39,7 @@ var jsGamePlay = document.querySelector(".js-gamePlay") // game html
 var jsGameStart = document.querySelector(".js-gameStart") // gamestart html
 var jsGameEnd = document.querySelector(".js-gameEnd") // gamestart html
 var jsGameQuestion = document.querySelector(".js-gameQuestion") // gamestart html
-var coop
+var lanes;
 var CurrentQuestion;
 var ShuffledAnswers;
 var car; // users
@@ -90,12 +90,12 @@ var gameOver = false;
 var answer = false
 var gameDone = false;
 if(mode == 'SP'){
-  coop = false;
+  lanes = 4;
 }
 else if(mode == 'COOP'){
-  coop = true;
+  lanes = 2;
 }
 else{
-  coop = false;
+  lanes = 4;
 }
 

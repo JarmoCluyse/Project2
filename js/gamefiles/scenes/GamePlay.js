@@ -22,14 +22,22 @@ var gamePlayState = new Phaser.Class({
         //creates an objects
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
-        car = this.physics.add.sprite(400,730, 'car').setTint(carColor);
-
-        console.log(BeginSpeed);
+        if(mode == 'SP'){
+            car = this.physics.add.sprite(400,730, 'car').setTint(carColor);
+        }
+        if(mode == 'COOP'){
+            car = this.physics.add.sprite(300,730, 'car').setTint(carColor);
+            car2 = this.physics.add.sprite(500,730, 'car').setTint(carColor2);
+        }
         speed = BeginSpeed;
 
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
+        if(mode == 'COOP'){
+            this.physics.add.collider(car2, obstacles, hitObstacle, null, this);
+            this.physics.add.overlap(car2, pickups, hitPickup, null, this);
+        }
 
         //add callbacks for arrow key presses
         this.input.keyboard.on('keydown-RIGHT', moveCar);
@@ -100,13 +108,28 @@ let moveCar = function(e)
             car.x = 350;
         }
         if (e.key == "ArrowDown"){
-            car.x = 450;
+            if(mode == 'SP'){
+                car.x = 450;
+            }
+            if(mode == 'COOP'){
+                car2.x = 450;
+            }
+            
         }
         if (e.key == "ArrowRight"){
-            car.x = 550;
+            if(mode == 'SP'){
+                car.x = 550;
+            }
+            if(mode == 'COOP'){
+                car2.x = 550;
+            }
+            
         }
         if (e.key == " "){
-            car.x = 650;
+            car.x = 150;
+            if(mode == 'COOP'){
+                car2.x = 650;
+            }
         }
     }
     else if (gameStarted && gameOver && !gameDone && answer) { // when car is hit
@@ -212,32 +235,77 @@ let setcars = function(){
     score += DriveScore;
     placeScore();
     let randomObstacles = getRandomobstakels();
-    let randomPickups = getRandomInt(4 - randomObstacles);
-    arr = [250,350,450, 550];
-    arr = shuffle(arr);
+    let randomPickups = getRandomInt(lanes - randomObstacles);
+    let randomObstacles2 = getRandomobstakels();
+    let randomPickups2 = getRandomInt(2 - randomObstacles);
+    if(mode == 'SP'){
+        arr = [250,350,450, 550];
+        arr = shuffle(arr);
+    }
+    if(mode == 'COOP'){
+        arr = [250,350];
+        arr = shuffle(arr);
+        arr2 = [450, 550];
+        arr2 = shuffle(arr2);
+    }
     for (i = 0; i < randomObstacles; i++) {
-
         var ShuffleColorList = shuffle(Colors)
-        if (ShuffleColorList[0] == carColor){
-            randomColor = ShuffleColorList[1]
-        }else {
-            randomColor = ShuffleColorList[0]
-        } 
+        if(mode == 'SP'){
+            if (ShuffleColorList[0] == carColor){
+                randomColor = ShuffleColorList[1]
+            }else {
+                randomColor = ShuffleColorList[0]
+            }
+        }
+        if(mode == 'COOP'){
+            let ii = 0;
+            while (ShuffleColorList[ii] == carColor || ShuffleColorList[ii] == carColor2) {
+                ii ++;
+            }
+            randomColor = ShuffleColorList[ii]
+        }
         obstacles.create(arr[i],-50, 'car').setScale(1).setTint(randomColor);
+    }
+    if(mode == 'COOP'){
+        for (i = 0; i < randomObstacles2; i++) {
+            let ShuffleColorList = shuffle(Colors)
+            let ii = 0;
+            while (ShuffleColorList[ii] == carColor || ShuffleColorList[ii] == carColor2) {
+                ii ++;
+            }
+            randomColor = ShuffleColorList[ii]
+            obstacles.create(arr2[i],-50, 'car').setScale(1).setTint(randomColor);
+        }
     }
     for (i = 0; i < randomPickups; i++) {
         
         pickups.create(arr[i+randomObstacles],-50, 'coin').setScale(.2);
     }
+    if(mode == 'COOP'){
+        for (i = 0; i < randomPickups2; i++) {
+        
+            pickups.create(arr2[i+randomObstacles2],-50, 'coin').setScale(.2);
+        }
+    }
+    // pickups.create(150,-50, 'coin').setScale(.2);
+    // if(mode == 'COOP'){
     // pickups.create(650,-50, 'coin').setScale(.2);
+    // }
 }
 
 let getRandomobstakels = function() {
     let random = Math.floor(Math.random() * Math.floor(100));
-    if(random < 20) return 0;
-    if(random < 50) return 1;
-    if(random < 90) return 2;
-    else return 3;
+    if(mode == 'SP'){
+        if(random < 20) return 0;
+        if(random < 50) return 1;
+        if(random < 90) return 2;
+        else return 3;
+    }
+    if(mode == 'COOP'){
+        if(random > 35) return 1;
+        return 0;
+    }
+
 }
 
 let increasing = function(){
