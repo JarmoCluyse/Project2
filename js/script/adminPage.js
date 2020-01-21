@@ -225,8 +225,9 @@ const deleteSubjectConfirmation = function(){
 
 	yesButtonSubject.addEventListener('click', function(){
 		// remove subject from dropdown
+		str = `{"teacheremail": "${token.userEmail}", "subject": "${dropDownList.value}"}`;
 		subjectSelect.remove(dropDownList.selectedIndex);
-
+		sendData(`${BASEURI}question/subject?code=${key}`, deletedSubject, 'DELETE', JSON.parse(str));
 		// hide deletecard
 		deleteSubjectCard.style.display = 'none';
 
@@ -247,6 +248,10 @@ const deleteSubjectConfirmation = function(){
 		dropdownCard.pointerEvents = 'auto';
 	});
 }
+
+const deletedSubject = function(data){
+	location.reload();
+};
 
 
 // this will show the page with a form to make a complete new question
@@ -415,7 +420,6 @@ const addSubjectToDropDown = function(){
 
 const deleteSubjectFromDropDown = function(){
 	dropDownList = document.getElementById('deleteSubject');
-	
 	deleteSubjectConfirmation();
 };
 
