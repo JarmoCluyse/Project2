@@ -255,17 +255,26 @@ const deletedSubject = function(data){
 
 
 // this will show the page with a form to make a complete new question
-const showAddQuestionPage = function () {
+const showAddQuestionPage = function (selection = null) {
 	// fill the dropdowns with all the subjects	
 	subjectBox = document.getElementById("dropDownForAddCard");
-	if (mainDropDown.value == 'all'){
-		fillDropDowns("dropDownForAddCard");
+
+	if (selection != null){
+		subjectBox.innerHTML = `<option value="${selection}">${selection}</option>`;
 	}
-		
+
 	else{
-		subjectBox.innerHTML = `<option value="${mainDropDown.value}">${mainDropDown.value}</option>`
+		if (mainDropDown.value == 'all'){
+			fillDropDowns("dropDownForAddCard");
+		}
+			
+		else{
+			subjectBox.innerHTML = `<option value="${mainDropDown.value}">${mainDropDown.value}</option>`
+		}
 	}
-		
+
+
+	
 	// make the maincard more to the background
 	mainCard.style.opacity = 0.2;
 	mainCard.style.pointerEvents = 'none';
@@ -409,13 +418,15 @@ const addSubjectToDropDown = function(){
 	newSubject = document.getElementById('newDropDownValue');
 
 	// add the option to the dropdownlists
-	subjectSelect.innerHTML += `<option value="${newSubject.value}">${newSubject.value}</option>`;
+	// subjectSelect.innerHTML += `<option value="${newSubject.value}">${newSubject.value}</option>`;
+
+	
+	// go to add question page
+	showAddQuestionPage(newSubject.value);
+	dropdownCard.style.display = 'none';
 
 	// set the value back to nothing
 	newSubject.value = "";
-
-	// go back to the mainpage
-	showMainPage();
 };
 
 const deleteSubjectFromDropDown = function(){
