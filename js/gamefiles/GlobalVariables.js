@@ -55,6 +55,7 @@ var Colors = [];
 for (var keys in ColorList) {
   Colors.push(ColorList[keys])
 }
+var loopHighscores = 1;
 
 //-------------//
 // default values 

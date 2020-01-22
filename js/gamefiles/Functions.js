@@ -80,3 +80,10 @@ const showQuestion = function (data) {
 var sleep = (milliseconds) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
+
+const getHighscores = function(){
+  handleData(`${BASEURI}games?code=${key}`, showHighscores, "GET",null)
+  if (loopHighscores){
+    setTimeout(getHighscores, 20000);
+  }
+}
