@@ -1093,6 +1093,7 @@ input::placeholder {
 	height: 95vh;
 	width: 95vw;
 	align-items: center;
+	background-color: ;
 }
 .c-game-score {
 	padding: 20px;

@@ -36,6 +36,7 @@ var gamePlayState = new Phaser.Class({
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
+        this.physics.add.overlap(obstacles, pickups, hitPickup, null, this);
         if(mode == 'COOP'){
             this.physics.add.collider(car2, obstacles, hitObstacle, null, this);
             this.physics.add.overlap(car2, pickups, hitPickup, null, this);
@@ -56,8 +57,9 @@ var gamePlayState = new Phaser.Class({
             //move all moving items down by the speed variable
             this.background1.tilePositionY -= speed
             let placeTree = getRandomInt(100)
-            if (placeTree > 98){
+            if (placeTree > 95){
                 let wichTree = getRandomInt(100);
+                // wichTree = 50;
                 console.log('plant tree');
                 if (wichTree <= 3) {
                     decorations.create(TreeLocation(),-100, 'tree1').setScale((.08));
@@ -68,6 +70,15 @@ var gamePlayState = new Phaser.Class({
                 if (wichTree <= 15 && wichTree > 6) {
                     decorations.create(TreeLocation(),-100, 'tire').setScale((0.03));
                 }
+                if (wichTree <= 30 && wichTree > 15) {
+                    decorations.create(TreeLocation(),-100, 'dog').setScale((0.04));
+                }
+                if (wichTree <= 45 && wichTree > 30) {
+                    decorations.create(TreeLocation(),-100, 'cat').setScale((.04));
+                }
+                if (wichTree <= 60 && wichTree > 45) {
+                    decorations.create(TreeLocation(),-100, 'goose').setScale((.09));
+                }
             }
             for (i = 0; i < obstacles.children.entries.length; i++) {
                 if (obstacles.children.entries[i].y >= 850){
@@ -76,7 +87,7 @@ var gamePlayState = new Phaser.Class({
                     i--;
                 }
                 else{
-                    obstacles.children.entries[i].y += speed
+                    obstacles.children.entries[i].y += (speed / 2)
                 }
 
             }
@@ -87,7 +98,7 @@ var gamePlayState = new Phaser.Class({
                     i--;
                 }
                 else {
-                    pickups.children.entries[i].y += speed;
+                    pickups.children.entries[i].y += (speed );
                 }
 
             }
