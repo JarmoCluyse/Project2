@@ -34,7 +34,7 @@
 	--global-selection-backgroundColor: var(--global-color-alpha);
 
 	/* borders */
-	--global-borderRadius: 4px;
+	--global-borderRadius: 20px;
 	--global-borderWidth: 1px;
 
 	/* transitions */
@@ -80,6 +80,7 @@ html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	background-color: var(--global-html-backgroundColor);
+
 }
 
 
@@ -430,6 +431,14 @@ input::placeholder {
 /*------------------------------------*\
 #COMPONENTS
 \*------------------------------------*/
+
+.c-background-img-mainpage{
+	background-image: url('/assets/road.png'), url('/assets/road.png');
+	background-repeat: repeat-y, repeat-y;
+	background-position: left, right;
+	background-size: 450px;
+	background-color: #009247;
+}
 
 
 .c-mainpage {
@@ -835,7 +844,6 @@ input::placeholder {
 	right: calc(var(--global-whitespace) / 2);
 	fill: var(--global-color-neutral-x-light);
 	padding-left: calc(var(--global-baseline) / 4);
-	border-radius: var(--global-borderRadius);
 }
 
 .c-custom-select__symbol-edit-dropdown {
@@ -1460,7 +1468,7 @@ input::placeholder {
 
 
 .c-custom-option__fake-input--checkbox {
-	border-radius: var(--global-borderRadius);
+	border-radius: 4px;
 }
 
 .c-custom-option__fake-input--radio {
