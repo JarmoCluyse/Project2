@@ -1197,8 +1197,8 @@ input::placeholder {
 }
 
 .c-lanes li{
-	padding: 30px;
-	margin: 8px;
+	padding: 28px;
+	margin: 4px;
 }
 
 .c-game-card {
@@ -1288,6 +1288,7 @@ input::placeholder {
 		left: 15%;
 		width: 60%;
 	}	
+	
 }
 
 @media(min-width: 1920px){
