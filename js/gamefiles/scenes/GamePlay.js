@@ -13,6 +13,7 @@ var gamePlayState = new Phaser.Class({
     create: function() {
         // Create objects
         console.log("scene: GamePlay");
+        loopHighscores = 1;
         getHighscores();
         // show game
         jsGameStart.classList.add('hide');

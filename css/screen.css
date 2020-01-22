@@ -449,6 +449,13 @@ input::placeholder {
 	}
 }
 
+.c-background-img{
+	background-image: url('/assets/background.png');
+	background-repeat: repeat;
+	background-size: 300px;
+	background-color: var(--global-html-backgroundColor);
+}
+
 
 .c-mainpage {
 	display: flex;
