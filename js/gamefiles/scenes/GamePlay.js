@@ -16,8 +16,11 @@ var gamePlayState = new Phaser.Class({
         loopHighscores = 1;
         getHighscores();
         // show game
+        jsMainCard.classList.remove("c-start-card");
+        jsGameQuestion.classList.add("hide");
         jsGameStart.classList.add('hide');
         jsGamePlay.classList.remove('hide');
+        jsSplashTitle.classList.add('hide');
         jsGameEnd.classList.add('hide');
         // set the background
         this.background1 = this.add.tileSprite(400,400,800,800, 'road')

@@ -35,6 +35,8 @@ var myGame = {// Declare myGame
 //------------------------------- //
 // variables of the game
 //------------------------------- //
+var jsMainCard = document.querySelector(".js-mainCard");
+var jsSplashTitle = document.querySelector(".js-splashTitle");
 var jsScore = document.querySelector(".js-score") // score html
 var jsGamePlay = document.querySelector(".js-gamePlay") // game html
 var jsGameStart = document.querySelector(".js-gameStart") // gamestart html
