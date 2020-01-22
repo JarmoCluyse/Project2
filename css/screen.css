@@ -1133,11 +1133,11 @@ input::placeholder {
     animation:blinkingText 1.2s infinite;
 }
 @keyframes blinkingText{
-    0%{     color: #000;    }
-    49%{    color: #000; }
+    0%{     color: var(--global-color-neutral-xxx-dark);    }
+    49%{    color: var(--global-color-neutral-xxx-dark);  }
     60%{    color: transparent; }
     99%{    color:transparent;  }
-    100%{   color: #000;    }
+    100%{   color: var(--global-color-neutral-xxx-dark);    }
 }
 /* game allignement */
 .c-game {
@@ -1198,7 +1198,7 @@ input::placeholder {
 
 .c-lanes li{
 	padding: 28px;
-	margin: 4px;
+	margin: var(--global-whitespace-xs);
 }
 
 .c-game-card {
