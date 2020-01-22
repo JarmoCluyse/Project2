@@ -28,6 +28,11 @@
 	--global-color-neutral-xxx-dark: #35374d;
 	--global-color-neutral-xxxx-dark: #20223a;
 
+	--global-color-answer1: #0356fc;
+	--global-color-answer2: #18b557;
+	--global-color-answer3: #8618b5;
+
+
 	/* global page settings */
 	--global-html-color: var(--global-color-neutral-xxxx-dark);
 	--global-html-backgroundColor: var(--global-color-alpha-x-dark);
@@ -1051,9 +1056,27 @@ input::placeholder {
 .c-gameQuestion li {
 	padding: 16px;
 	margin: 16px;
-	background-color: var(--global-color-alpha);
+	/*background-color: var(--global-color-alpha);*/
 	color: var(--global-color-neutral-xxxx-light);
+	border-radius: var(--global-borderRadius);
+	font-weight: bolder;
+	font-size: 36px;
+	padding: calc(var(--global-baseline)*5) calc(var(--global-baseline)*8);
 }
+
+.c-gameQuestion li:nth-of-type(1){
+	background-color: var(--global-color-alpha)
+}
+.c-gameQuestion li:nth-of-type(2){
+	background-color: var(--global-color-answer1);
+}
+.c-gameQuestion li:nth-of-type(3){
+	background-color: var(--global-color-answer2);
+}
+.c-gameQuestion li:nth-of-type(4){
+	background-color: var(--global-color-answer3);
+}
+
 .c-game-card {
 	margin: 2.5vh 0;
 	height: 95vh;

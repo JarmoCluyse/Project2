@@ -56,10 +56,13 @@ const showHighscores = function(data){
 	console.log(data);
 	data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
 	let scoreList = document.getElementById("highscoreList");
+	let scoreList2 = document.getElementById("highscoreList2");
 	let str = "";
-	data.forEach(element => {
+	var leaderboard = data.slice(0, 10);
+	leaderboard.forEach(element => {
 		str+= `<li>${element.score}		${element.player}</li>`;
 	});
 	scoreList.innerHTML = str;
+	scoreList2.innerHTML = str;
 
 }
