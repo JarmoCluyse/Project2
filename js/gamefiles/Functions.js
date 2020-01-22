@@ -51,16 +51,16 @@ var placeDecorations = function () {
       // wichDeco = 726;
       console.log('plant tree');
       if (wichDeco <= 30) {
-          decorations.create(DecorationX(),-250, 'tree1').setScale(Math.random() * 0.040 + .08);
+          decorations.create(DecorationX(),-250, 'tree1').setScale(Math.random() * 0.01 + .08);
       }
       if (wichDeco <= 60 && wichDeco > 30) {
-          decorations.create(DecorationX(),-250, 'tree2').setScale(Math.random() * 0.040 + .06);
+          decorations.create(DecorationX(),-250, 'tree2').setScale(Math.random() * 0.01 + .06);
       }
       if (wichDeco <= 90 && wichDeco > 60) {
-          decorations.create(DecorationX(),-250, 'tire').setScale( Math.random() * 0.010 + 0.03);
+          decorations.create(DecorationX(),-250, 'tire').setScale( Math.random() * 0.01 + 0.03);
       }
       if (wichDeco <= 500 && wichDeco > 90) {
-        decorations.create(DecorationX(),-250, 'grass1').setScale((Math.random() * 0.040 + 0.03));    
+        decorations.create(DecorationX(),-250, 'grass1').setScale((Math.random() * 0.05 + 0.03));    
       }
       if (wichDeco <= 600 && wichDeco > 500) {
         decorations.create(DecorationX(),-250, 'bush1').setScale((Math.random() * 0.1 + 0.1));    
