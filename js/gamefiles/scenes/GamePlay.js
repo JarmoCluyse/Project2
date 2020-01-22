@@ -18,16 +18,19 @@ var gamePlayState = new Phaser.Class({
         jsGameStart.classList.add('hide');
         jsGamePlay.classList.remove('hide');
         jsGameEnd.classList.add('hide');
-        // set the background
-        this.background1 = this.add.tileSprite(400,400,800,800, 'road')
+        
         //creates an objects
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
         decorations = this.physics.add.group();
         if(mode == 'SP'){
+            // set the background
+            this.background1 = this.add.tileSprite(400,400,800,800, 'road')
             car = this.physics.add.sprite(400,730, 'car').setTint(carColor);
         }
         if(mode == 'COOP'){
+            // set the background
+            this.background1 = this.add.tileSprite(400,400,800,800, 'roadCoop')
             car = this.physics.add.sprite(300,730, 'car').setTint(carColor);
             car2 = this.physics.add.sprite(500,730, 'car').setTint(carColor2);
         }
