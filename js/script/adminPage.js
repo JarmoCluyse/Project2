@@ -73,19 +73,28 @@ var questionsObject;
 
 // get all questions from the database and show them on the adminpage
 const showQuestions = function (data) {
-	preloadDropDown(data);
-	console.log(data);
-	// get all the questions from the database
-	var questionsTeacher = data.filter(obj => {
-		return obj.teacherEmail === token.userEmail;
-	  })
-	  console.log(questionsTeacher);
-	questionsObject = questionsTeacher;
+	if (data != null){//if data is null the data is we are calling the function to filter the questions so getting them again is not needed
+		var questionsTeacher = data.filter(obj => {
+			return obj.teacherEmail === token.userEmail;
+		  })
+		  questionsObject = questionsTeacher;
+		  preloadDropDown(questionsTeacher);
+		  console.log(questionsTeacher);
+	}
+	if (mainDropDown.value != 'all'){
+		var filteredQuestions = questionsObject.filter(obj => {
+			return obj.subject === mainDropDown.value;
+		  });
+	}
+	else{
+		filteredQuestions = questionsObject;
+	}
+	
 	let listElement = document.getElementById("questionsList");
 	listElement.innerHTML = "";
 	let htmlString = "";
 	// add the questions to the html
-	questionsTeacher.forEach(element => {
+	filteredQuestions.forEach(element => {
 		htmlString += `<li class="c-list__item">
 		<h3 class="c-list__item-question">${element.questionText}</h3>
 
@@ -116,7 +125,7 @@ const showQuestions = function (data) {
 
 
 	// add an eventlistener to every edit icon
-	questionsObject.forEach(element => {
+	filteredQuestions.forEach(element => {
 		// add an eventlistener to EACH edit icon, it runs through a list 
 		document.getElementById(`E${element.questionId}`).addEventListener('click', function () {
 			// this brings you to the editquestion page, we send the question id so we get the correct question
@@ -125,7 +134,7 @@ const showQuestions = function (data) {
 	})
 
 	// add an eventlistener to every delete icon
-	questionsObject.forEach(element => {
+	filteredQuestions.forEach(element => {
 		// add an eventlistener to EACH delete icon, it runs through a list 
 		document.getElementById(`D${element.questionId}`).addEventListener('click', function () {
 			// this gives you a pop-up to confirm the deletion
@@ -136,19 +145,23 @@ const showQuestions = function (data) {
 
 const preloadDropDown = function(data){
 	mainDropDown = document.getElementById('select');
-	mainDropDown.innerHTML = "";
+	mainDropDown.innerHTML = `<option value="all">(Alle vragen)</option>`;
+	mainDropDown.addEventListener('change', function(){
+		showQuestions(null);
+	});
 
 	foundSubjects = []
 
 	data.forEach(element =>{
 		if (!foundSubjects.includes(element.subject)){
 			foundSubjects.push(element.subject);
+			mainDropDown.innerHTML += `<option value="${element.subject}">${element.subject}</option>`;
 		}
 	});
 	
-	foundSubjects.forEach(element => {
-		mainDropDown.innerHTML += `<option value="${element}">${element}</option>`;
-	});
+	// foundSubjects.forEach(element => {
+	// 	mainDropDown.innerHTML += `<option value="${element}">${element}</option>`;
+	// });
 
 
 };
@@ -212,8 +225,9 @@ const deleteSubjectConfirmation = function(){
 
 	yesButtonSubject.addEventListener('click', function(){
 		// remove subject from dropdown
+		str = `{"teacheremail": "${token.userEmail}", "subject": "${dropDownList.value}"}`;
 		subjectSelect.remove(dropDownList.selectedIndex);
-
+		sendData(`${BASEURI}question/subject?code=${key}`, deletedSubject, 'DELETE', JSON.parse(str));
 		// hide deletecard
 		deleteSubjectCard.style.display = 'none';
 
@@ -235,11 +249,23 @@ const deleteSubjectConfirmation = function(){
 	});
 }
 
+const deletedSubject = function(data){
+	location.reload();
+};
+
 
 // this will show the page with a form to make a complete new question
 const showAddQuestionPage = function () {
 	// fill the dropdowns with all the subjects	
-	fillDropDowns("dropDownForAddCard");
+	subjectBox = document.getElementById("dropDownForAddCard");
+	if (mainDropDown.value == 'all'){
+		fillDropDowns("dropDownForAddCard");
+	}
+		
+	else{
+		subjectBox.innerHTML = `<option value="${mainDropDown.value}">${mainDropDown.value}</option>`
+	}
+		
 	// make the maincard more to the background
 	mainCard.style.opacity = 0.2;
 	mainCard.style.pointerEvents = 'none';
@@ -247,7 +273,7 @@ const showAddQuestionPage = function () {
 	addCard.style.display = 'block';
 
 	questionBox = document.getElementById("newQuestion");
-	subjectBox = document.getElementById("dropDownForAddCard");
+	
 	answer1 = document.getElementById('newQuestionAnswer1');
 	answer2 = document.getElementById('newQuestionAnswer2');
 	answer3 = document.getElementById('newQuestionAnswer3');
@@ -256,6 +282,8 @@ const showAddQuestionPage = function () {
 	cb2 = document.getElementById('checkbox2');
 	cb3 = document.getElementById('checkbox3');
 	cb4 = document.getElementById('checkbox4');
+
+	
 
 	// document.getElementById("newSubmit").addEventListener('submit', function () {
 	// 	addQuestion();
@@ -354,7 +382,7 @@ const fillDropDowns = function(elementId){
 
 	// make an empty list of values
 	let dropdownValues = []
-	dropdownInt = 0;
+	dropdownInt = 1;
 
 	// while loop that adds all values to the empty list
 	while (dropdownInt < subjectSelect.options.length){
@@ -392,7 +420,6 @@ const addSubjectToDropDown = function(){
 
 const deleteSubjectFromDropDown = function(){
 	dropDownList = document.getElementById('deleteSubject');
-	
 	deleteSubjectConfirmation();
 };
 
