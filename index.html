@@ -20,15 +20,15 @@
     <body class="c-background-img-mainpage">
         <section class="c-mainpage c-section">
             <div class="o-row o-row--lg">
-                <div class="c-grid">
-                    <div class="c-grid__item u-grid-column__title u-grid-row__title">
+                <div class="c-grid-mainpage">
+                    <!-- <div class="c-grid__item u-grid-column__title u-grid-row__title">
                         <div class="c-header">
                             <h1 class="c-title">
                                 Start een nieuw spel
                             </h1>
                         </div>
-                    </div>
-                    <form class="c-grid__item u-grid-column__card u-grid-row__card" action="#">
+                    </div> -->
+                    <form class="c-grid__item u-grid-column__card-mainpage u-grid-row__card" action="#">
                         <div class="c-card c-newGame-card">
                             <div class="c-card__dropdowns">
                                 <div class="c-card__difficulty">
@@ -44,15 +44,6 @@
                                             <output class="c-slider-output js-outputCar" id="carOutput">5</output>
                                         </div>
                                     </div>
-                                    <!-- <div class="c-obstacles">
-                                        <h2 class="c-card__difficulty-subtitle">
-                                            Afstand tussen obstakels:
-                                        </h2>
-                                        <div class="c-slider">
-                                            <input class="c-slider-input js-sliderObstacle" type="range" min="1" max="10" value="5.2" id="obstacleSlider">
-                                            <output class="c-slider-output js-outputObstacle" id="obstacleOutput">5</output>
-                                        </div>
-                                    </div> -->
 
                                     <div class="c-goQuicker">
                                         <h2 class="c-card__difficulty-subtitle c-goQuicker-subtitle">
@@ -78,8 +69,6 @@
                                             <select class="c-input  js-selectGameMode" name="select" id="selectGameMode">
                                                 <option value="SP">Alleen</option>
                                                 <option value="COOP">Samen spelen</option>
-                                                <!--  --------  Multiplayer  ----------- -->
-                                                <!-- <option value="multiplayer">Tegen elkaar</option> -->
                                             </select>
                                             <svg class="c-custom-select__symbol-edit-index" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M7,10l5,5,5-5Z"/>
@@ -95,9 +84,6 @@
                                             <h1 class="c-card__player1-title">
                                                 Speler 1
                                             </h1>
-                                            <h2 class="c-card__player1-name">
-                                                Naam
-                                            </h2>
                                             <p class="c-form-field">
                                                 <input class="c-input-name c-input" type="text" name="Name1" id="Name1" placeholder="vb. Tommy">
                                             </p>
@@ -107,10 +93,6 @@
                                             <h1 class="c-card__carColor-title">
                                                 Autokleur
                                             </h1>
-                                            <h2 class="c-card__space">
-                                                &nbsp
-                                            </h2>
-        
                                             <span class="c-custom-select__startpage c-card__carColor-select">
                                                 <select class="c-input" name="select" id="selectCarColorPlayer1">
                                                     <option value="blue">Blauw</option>
@@ -134,9 +116,6 @@
                                             <h1 class="c-card__player1-title">
                                                 Speler 2
                                             </h1>
-                                            <h2 class="c-card__player1-name">
-                                                Naam
-                                            </h2>
                                             <p class="c-form-field">
                                                 <input class="c-input-name c-input" type="text" name="Name2" id="Name2" placeholder="vb. Eline">
                                             </p>
@@ -146,9 +125,6 @@
                                             <h1 class="c-card__carColor-title">
                                                 Autokleur
                                             </h1>
-                                            <h2 class="c-card__space">
-                                                &nbsp
-                                            </h2>
         
                                             <span class="c-custom-select__startpage c-card__carColor-select">
                                                 <select class="c-input" name="select" id="selectCarColorPlayer2">
