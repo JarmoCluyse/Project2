@@ -85,7 +85,8 @@ html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	background-color: var(--global-html-backgroundColor);
-
+	height: 100vh;
+	width: 100vw;
 }
 
 
@@ -460,6 +461,16 @@ input::placeholder {
 	}
 }
 
+
+@media (min-width: 1024px){
+	.c-grid-mainpage {
+		display: grid;
+		grid-template-columns: repeat(20, auto);
+		grid-gap: calc(var(--grid-baseline) * 2);
+		grid-template-rows: repeat(auto, auto);
+	}
+}
+
 .c-grid__item {
 	grid-column: span 10;
 }
@@ -492,6 +503,7 @@ input::placeholder {
 .c-card__players {
 	display: block;
 	margin-left: calc(var(--global-baseline) * 2);
+	
 }
 
 @media(min-width: 768px){
@@ -698,7 +710,6 @@ input::placeholder {
 	font-size: 20px;
 	line-height: calc(var(--global-baseline) * 3);
 	padding: calc(var(--global-baseline) * 1.5 - var(--global-borderWidth)) var(--global-whitespace-md);
-	padding-right: calc(var(--global-baseline) * 6);
 	outline: none;
 	transition: border var(--transition);
 	box-shadow: var(--transition);
@@ -734,7 +745,7 @@ input::placeholder {
 	}
 
 	.c-input-name{
-		width: 70%;
+		width: 60%;
 		margin-left: calc(var(--global-baseline) * 4);
 	}
 }
@@ -1587,6 +1598,12 @@ input::placeholder {
 
 .c-carColors{
 	margin-bottom: calc(var(--global-baseline) * 3);
+}
+
+@media(min-width: 1024px){
+	.c-carColors{
+		margin-right: calc(var(--global-baseline) * 4);
+	}
 }
 
 .c-carColors2 {
