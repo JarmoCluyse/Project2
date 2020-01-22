@@ -80,7 +80,7 @@ html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	background-color: var(--global-html-backgroundColor);
-	
+
 }
 
 
@@ -1468,7 +1468,7 @@ input::placeholder {
 
 
 .c-custom-option__fake-input--checkbox {
-	border-radius: var(--global-borderRadius);
+	border-radius: 4px;
 }
 
 .c-custom-option__fake-input--radio {
