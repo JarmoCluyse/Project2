@@ -1866,6 +1866,10 @@ input::placeholder {
 	grid-column: span 12 / 17;
 }
 
+.u-grid-column__card-mainpage{
+	grid-column: span 8 / 15;
+}
+
 @media (min-width: 1440px){
 	.u-grid-column__card {
 		grid-column: span 14 / 18;
