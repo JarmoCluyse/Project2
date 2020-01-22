@@ -22,6 +22,7 @@ var questionsSubject;
 var coinsCollected = 0;
 var questionsAnswered = 0;
 var noLaneChanges = 0;
+var noLaneChangesP2 = 0;
 var session;
 //------------------------------- //
 // Declare Game

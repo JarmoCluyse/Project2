@@ -432,22 +432,6 @@ input::placeholder {
 \*------------------------------------*/
 
 
-@media (min-width: 1440px) {
-	.c-background-img {
-		background-image: url("BackgroundNogInvullen");
-
-		background-position: center center;
-
-		background-repeat: no-repeat;
-
-		background-attachment: fixed;
-
-		background-size: cover;
-
-		background-color: var(--global-html-backgroundColor);
-	}
-}
-
 .c-mainpage {
 	display: flex;
 	justify-content: center;
@@ -996,7 +980,7 @@ input::placeholder {
 
 .c-buttons{
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
 	align-content: center;
 	margin-left: calc(var(--global-baseline) * 4);
 	margin-right: calc(var(--global-baseline) * 4);

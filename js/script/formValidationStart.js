@@ -21,7 +21,7 @@ let gameId = {};
 const startGame = function() {
 	// add all variables to the localstorage
     localStorage.setItem("BeginSpeed", document.getElementById('carSlider').value);
-	localStorage.setItem("Distance", document.getElementById('obstacleSlider').value);
+	// localStorage.setItem("Distance", document.getElementById('obstacleSlider').value);
 	localStorage.setItem("Player", document.getElementById('Name1').value);
 	localStorage.setItem("Player2", document.getElementById('Name2').value);
 	console.log(document.getElementById('Name1').value);
