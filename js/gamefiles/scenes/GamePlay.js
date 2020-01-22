@@ -22,6 +22,7 @@ var gamePlayState = new Phaser.Class({
         //creates an objects
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
+        decorations = this.physics.add.group();
         if(mode == 'SP'){
             car = this.physics.add.sprite(400,730, 'car').setTint(carColor);
         }
@@ -53,6 +54,20 @@ var gamePlayState = new Phaser.Class({
         {
             //move all moving items down by the speed variable
             this.background1.tilePositionY -= speed
+            let placeTree = getRandomInt(100)
+            if (placeTree > 98){
+                let wichTree = getRandomInt(100);
+                console.log('plant tree');
+                if (wichTree <= 3) {
+                    decorations.create(TreeLocation(),-100, 'tree1').setScale((.08));
+                }
+                if (wichTree <= 6 && wichTree > 3) {
+                    decorations.create(TreeLocation(),-100, 'tree2').setScale((.06));
+                }
+                if (wichTree <= 15 && wichTree > 6) {
+                    decorations.create(TreeLocation(),-100, 'tire').setScale((0.03));
+                }
+            }
             for (i = 0; i < obstacles.children.entries.length; i++) {
                 if (obstacles.children.entries[i].y >= 850){
                     obstacles.remove(obstacles.children.entries[i], true);
@@ -74,7 +89,19 @@ var gamePlayState = new Phaser.Class({
                     pickups.children.entries[i].y += speed;
                 }
 
-            }         
+            }
+            if (decorations)
+            for (i = 0; i < decorations.children.entries.length; i++) {
+                if (decorations.children.entries[i].y >= 950){
+                    decorations.remove(decorations.children.entries[i], true);
+                    //console.log(pickups.children.entries.length);
+                    i--;
+                }
+                else {
+                    decorations.children.entries[i].y += speed;
+                }
+
+            }          
         }
         if(gameDone){
             // if gameover stop here to fix crash

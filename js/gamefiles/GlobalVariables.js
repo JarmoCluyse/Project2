@@ -45,6 +45,7 @@ var car; // users
 var car2; // users
 var obstacles; // obstacles
 var pickups; // pickups
+var decorations;
 var score = 0; // score of the game
 var waitIncrease = 0; // variable to count the waiting
 var speed = 5; // current speed of the game
