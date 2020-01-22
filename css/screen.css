@@ -1172,6 +1172,11 @@ input::placeholder {
 	background-color: var(--global-color-answer3);
 }
 
+.c-lanes li{
+	padding: 30px;
+	margin: 8px;
+}
+
 .c-game-card {
 	margin: 2.5vh 0;
 	height: 95vh;
