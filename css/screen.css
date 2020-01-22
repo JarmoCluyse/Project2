@@ -10,6 +10,7 @@
 	/* Global colors */
 	--global-color-alpha-x-light: #A5A4A4;
 	--global-color-alpha-light: #747474;
+	--global-color-alpha-super-light: #FFABAA;
 	--global-color-alpha-lightest: #FFAB80;
 	--global-color-alpha-lighter: #FF894D;
 	--global-color-alpha: #FF5700;
@@ -431,22 +432,6 @@ input::placeholder {
 #COMPONENTS
 \*------------------------------------*/
 
-
-@media (min-width: 1440px) {
-	.c-background-img {
-		background-image: url("BackgroundNogInvullen");
-
-		background-position: center center;
-
-		background-repeat: no-repeat;
-
-		background-attachment: fixed;
-
-		background-size: cover;
-
-		background-color: var(--global-html-backgroundColor);
-	}
-}
 
 .c-mainpage {
 	display: flex;
@@ -996,7 +981,7 @@ input::placeholder {
 
 .c-buttons{
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
 	align-content: center;
 	margin-left: calc(var(--global-baseline) * 4);
 	margin-right: calc(var(--global-baseline) * 4);
