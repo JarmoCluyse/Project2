@@ -43,6 +43,15 @@ function keyListener(e){ // listen to keypress
   }
 
 }
+var TreeLocation = function () {
+  let LeftOrRight = getRandomInt(2)
+  if (LeftOrRight == 0) {
+    return getRandomInt(180)
+  }
+  if (LeftOrRight == 1) {
+    return getRandomInt(180) + 620
+  }
+}
 var getQuestions = function () {
 	handleData(`${BASEURI}questions?code=${key}`, showQuestion)
 };

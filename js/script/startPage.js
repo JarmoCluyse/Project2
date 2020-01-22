@@ -157,11 +157,6 @@ const sliderFunction = function() {
         outputCar.innerHTML = this.value;
 	};
 
-	// slider for the distance between obstacles
-	sliderObstacle.oninput = function() {
-		// change the value shown to the value the user selected
-		outputObstacle.innerHTML = this.value;
-	};
 };
 
 
