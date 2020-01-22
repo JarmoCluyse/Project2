@@ -32,6 +32,7 @@ var gamePlayState = new Phaser.Class({
             car = this.physics.add.sprite(300,730, 'car').setTint(carColor);
             car2 = this.physics.add.sprite(500,730, 'car').setTint(carColor2);
         }
+        moveCar(startEvent);
         speed = BeginSpeed;
 
         // on collision what happens

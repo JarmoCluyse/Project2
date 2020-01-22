@@ -12,6 +12,7 @@ var scoreCoin = 10; // score when you pickup something
 var ColorList = {'blue':'0x0000ff','red': '0xff0000','green': '0x00ff00','yellow': '0xffff00','pink': '0xff77ff','purple': '0xff00ff','white':'0xffffff','black':'0x101010' }
 var carColor = ColorList[localStorage.getItem("Color")]; // current color of the car
 var carColor2 = ColorList[localStorage.getItem("Color2")]; // current color of the car
+var startEvent;
 //------------------------------- //
 // DB
 //------------------------------- //
