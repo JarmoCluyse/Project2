@@ -37,6 +37,7 @@ var gamePlayState = new Phaser.Class({
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
         this.physics.add.overlap(obstacles, pickups, hitPickup, null, this);
+        this.physics.add.collider(decorations, decorations, obstaclesHit, null, this);
         if(mode == 'COOP'){
             this.physics.add.collider(car2, obstacles, hitObstacle, null, this);
             this.physics.add.overlap(car2, pickups, hitPickup, null, this);
@@ -56,30 +57,7 @@ var gamePlayState = new Phaser.Class({
         {
             //move all moving items down by the speed variable
             this.background1.tilePositionY -= speed
-            let placeTree = getRandomInt(100)
-            if (placeTree > 95){
-                let wichTree = getRandomInt(100);
-                // wichTree = 50;
-                console.log('plant tree');
-                if (wichTree <= 3) {
-                    decorations.create(TreeLocation(),-100, 'tree1').setScale((.08));
-                }
-                if (wichTree <= 6 && wichTree > 3) {
-                    decorations.create(TreeLocation(),-100, 'tree2').setScale((.06));
-                }
-                if (wichTree <= 15 && wichTree > 6) {
-                    decorations.create(TreeLocation(),-100, 'tire').setScale((0.03));
-                }
-                if (wichTree <= 30 && wichTree > 15) {
-                    decorations.create(TreeLocation(),-100, 'dog').setScale((0.04));
-                }
-                if (wichTree <= 45 && wichTree > 30) {
-                    decorations.create(TreeLocation(),-100, 'cat').setScale((.04));
-                }
-                if (wichTree <= 60 && wichTree > 45) {
-                    decorations.create(TreeLocation(),-100, 'goose').setScale((.09));
-                }
-            }
+            placeDecorations();
             for (i = 0; i < obstacles.children.entries.length; i++) {
                 if (obstacles.children.entries[i].y >= 850){
                     obstacles.remove(obstacles.children.entries[i], true);
@@ -287,6 +265,12 @@ let hitPickup = function(car, pickup){
     score += scoreCoin;
     placeScore();
 
+}
+
+let obstaclesHit = function(obstacle1, obstacle2){
+    obstacle2.disableBody(true, true);//remove the pickup from the screen
+
+    
 }
 
 let setcars = function(){
