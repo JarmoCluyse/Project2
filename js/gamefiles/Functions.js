@@ -54,6 +54,9 @@ const showQuestion = function (data) {
   CurrentQuestion = question;
   console.log(question);
   jsGameQuestion.innerHTML = `
+  <h1>Beantwoord deze vraag om verder te spelen:</h1>
+  <br>
+  <br>
   <h1>${question.questionText}</h1>
   <ul class="o-list">
     <li>${question.answers[ans[0]].answerText}</li>
