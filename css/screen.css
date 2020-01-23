@@ -190,6 +190,16 @@ li ol {
 	margin-bottom: 0;
 }
 
+td,
+th {
+	border: 1px solid var(--global-color-alpha-x-dark);
+	border-collapse: collapse;
+}
+
+td {
+	text-align: center;
+}
+
 blockquote {
 	font-style: normal;
 	font-size: 23px;
@@ -447,6 +457,13 @@ input::placeholder {
 		background-color: var(--global-html-backgroundColor);
 		overflow: hidden;
 	}
+}
+
+.c-background-img{
+	background-image: url('/assets/background.png');
+	background-repeat: repeat;
+	background-size: 300px;
+	background-color: var(--global-html-backgroundColor);
 }
 
 
@@ -961,6 +978,28 @@ input::placeholder {
 	}
 }
 
+.c-session-card {
+	display: flex;
+	justify-content: center;
+}
+
+.c-custom-select__session {
+	width: 50%;
+	margin-left: calc(var(--global-baseline) * 4);
+}
+
+.c-session-card-select {
+	display: flex;
+	justify-content: center;
+}
+
+
+
+.c-session-card-title {
+	margin-top: calc(var(--global-baseline) * 2);
+	display: flex;
+	justify-content: center;
+}
 
 .c-delete__subject{
 	margin-left: calc(var(--global-baseline) * 4);	
@@ -1532,6 +1571,26 @@ input::placeholder {
 	display: flex;
 }
 
+.c-session-card-results-title{
+	margin-top: calc(var(--global-baseline) * 2);
+	font-size: 28px;
+}
+
+.c-session-card-table{
+	display: flex;
+	justify-content: center;
+}
+
+.c-table {
+	width: 100%;
+	border: 1px solid var(--global-color-alpha-x-dark);
+	border-collapse: collapse;
+}
+
+.c-table-row {
+	border: 1px solid var(--global-color-alpha-x-dark);
+	border-collapse: collapse;
+}
 
 
 .c-custom-option {
@@ -1566,6 +1625,11 @@ input::placeholder {
 	box-shadow: var(--toggle-boxShadow, 0);
 }
 
+
+.c-session-card-button {
+	display: flex;
+	justify-content: flex-end;
+}
 
 
 .c-custom-option__fake-input:focus,
@@ -1870,6 +1934,9 @@ input::placeholder {
 	justify-content: center;
 }
 
+
+
+
 @media(min-width: 1024px){
 	.c-account {
 		margin-top: 0;
@@ -1956,10 +2023,13 @@ input::placeholder {
 	grid-column: span 6 / 14;
 }
 
+.u-grid-column__card-session{
+	grid-column: span 10 / 16;
+}
 
 
 .u-grid-column__card {
-	grid-column: span 12 / 17;
+	grid-column: span 15 / 17;
 }
 
 .u-grid-column__card-mainpage{

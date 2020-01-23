@@ -46,12 +46,11 @@ const postGame = function(played, langechanges){
 }
 const gamePosted = function(){
 	console.log("Game saved to db");
+	loopHighscores = 0;
 	getHighscores();
 }
 
-const getHighscores = function(){
-	handleData(`${BASEURI}games?code=${key}`, showHighscores, "GET",null)
-}
+
 const showHighscores = function(data){
 	console.log(data);
 	data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
