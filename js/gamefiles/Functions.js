@@ -26,6 +26,7 @@ function keyListener(e){ // listen to keypress
   e.preventDefault(); // prevent the arrows from scrolling
   if(!gameStarted && !gameDone && !gameOver && e.key != "f"){ // when game hasn't started
     gameStarted = true; // start the game
+    startEvent = e;
     game.scene.stop('MainMenu'); // stop this screen
     game.scene.start('GamePlay'); // start the game
   }
@@ -43,15 +44,52 @@ function keyListener(e){ // listen to keypress
   }
 
 }
-var TreeLocation = function () {
-  let LeftOrRight = getRandomInt(2)
-  if (LeftOrRight == 0) {
-    return getRandomInt(180)
-  }
-  if (LeftOrRight == 1) {
-    return getRandomInt(180) + 620
+
+var placeDecorations = function () {
+  let placeDeco = getRandomInt(100)
+  if (placeDeco > 70){
+      let wichDeco = getRandomInt(1000);
+      // wichDeco = 726;
+      console.log('plant tree');
+      if (wichDeco <= 30) {
+          decorations.create(DecorationX(),-250, 'tree1').setScale(Math.random() * 0.01 + .08);
+      }
+      if (wichDeco <= 60 && wichDeco > 30) {
+          decorations.create(DecorationX(),-250, 'tree2').setScale(Math.random() * 0.01 + .06);
+      }
+      if (wichDeco <= 90 && wichDeco > 60) {
+          decorations.create(DecorationX(),-250, 'tire').setScale( Math.random() * 0.01 + 0.03);
+      }
+      if (wichDeco <= 200 && wichDeco > 90) {
+        decorations.create(DecorationX(),-250, 'bush1').setScale((Math.random() * 0.1 + 0.1));    
+      }
+      if (wichDeco <= 250 && wichDeco > 200) {
+        decorations.create(DecorationX(),-250, 'puddle').setScale((Math.random() * 0.05 + .08));    
+      }
+      if (wichDeco <= 990 && wichDeco > 998) {
+        decorations.create(DecorationX(),-250, 'goose').setScale((Math.random() * 0.05 + .08));    
+      }
+      if (wichDeco <= 995 && wichDeco > 990) {
+        decorations.create(DecorationX(),-250, 'cat').setScale((Math.random() * 0.03 + .03));    
+      }
+      if (wichDeco <= 1000 && wichDeco > 995) {
+        decorations.create(DecorationX(),-250, 'dog').setScale((Math.random() * 0.03 + .03));    
+      }
+      else {
+        decorations.create(DecorationX(),-250, 'grass1').setScale((Math.random() * 0.05 + 0.03));    
+      }
   }
 }
+var DecorationX = function () {
+  let LeftOrRight = getRandomInt(2)
+  if (LeftOrRight == 0) {
+    return getRandomInt(150)
+  }
+  if (LeftOrRight == 1) {
+    return getRandomInt(150) + 650
+  }
+}
+
 var getQuestions = function () {
 	handleData(`${BASEURI}questions?code=${key}`, showQuestion)
 };

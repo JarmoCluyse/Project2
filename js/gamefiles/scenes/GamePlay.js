@@ -16,32 +16,42 @@ var gamePlayState = new Phaser.Class({
         loopHighscores = 1;
         getHighscores();
         // show game
+        jsMainCard.classList.remove("c-start-card");
+        jsGameQuestion.classList.add("hide");
         jsGameStart.classList.add('hide');
         jsGamePlay.classList.remove('hide');
+        jsSplashTitle.classList.add('hide');
         jsGameEnd.classList.add('hide');
-        // set the background
-        this.background1 = this.add.tileSprite(400,400,800,800, 'road')
+        
         //creates an objects
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
         decorations = this.physics.add.group();
+        powerUps = this.physics.add.group();
         if(mode == 'SP'){
+            // set the background
+            this.background1 = this.add.tileSprite(400,400,800,800, 'road')
             car = this.physics.add.sprite(400,730, 'car').setTint(carColor);
         }
         if(mode == 'COOP'){
+            // set the background
+            this.background1 = this.add.tileSprite(400,400,800,800, 'roadCoop')
             car = this.physics.add.sprite(300,730, 'car').setTint(carColor);
             car2 = this.physics.add.sprite(500,730, 'car').setTint(carColor2);
         }
+        moveCar(startEvent);
         speed = BeginSpeed;
 
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
+        this.physics.add.overlap(car, powerUps, hitPowerUp, null, this);
+        this.physics.add.overlap(obstacles, pickups, hitPickup, null, this);
+        this.physics.add.collider(decorations, decorations, DecorationHit, null, this);
         if(mode == 'COOP'){
             this.physics.add.collider(car2, obstacles, hitObstacle, null, this);
             this.physics.add.overlap(car2, pickups, hitPickup, null, this);
         }
-
         //add callbacks for arrow key presses
         this.input.keyboard.on('keydown-RIGHT', moveCar);
         this.input.keyboard.on('keydown-UP', moveCar);
@@ -54,22 +64,10 @@ var gamePlayState = new Phaser.Class({
     update: function() {        
         if (!gameOver)
         {
+            placeScore();
             //move all moving items down by the speed variable
             this.background1.tilePositionY -= speed
-            let placeTree = getRandomInt(100)
-            if (placeTree > 98){
-                let wichTree = getRandomInt(100);
-                console.log('plant tree');
-                if (wichTree <= 3) {
-                    decorations.create(TreeLocation(),-100, 'tree1').setScale((.08));
-                }
-                if (wichTree <= 6 && wichTree > 3) {
-                    decorations.create(TreeLocation(),-100, 'tree2').setScale((.06));
-                }
-                if (wichTree <= 15 && wichTree > 6) {
-                    decorations.create(TreeLocation(),-100, 'tire').setScale((0.03));
-                }
-            }
+            placeDecorations();
             for (i = 0; i < obstacles.children.entries.length; i++) {
                 if (obstacles.children.entries[i].y >= 850){
                     obstacles.remove(obstacles.children.entries[i], true);
@@ -77,7 +75,7 @@ var gamePlayState = new Phaser.Class({
                     i--;
                 }
                 else{
-                    obstacles.children.entries[i].y += speed
+                    obstacles.children.entries[i].y += (speed / 2)
                 }
 
             }
@@ -88,11 +86,10 @@ var gamePlayState = new Phaser.Class({
                     i--;
                 }
                 else {
-                    pickups.children.entries[i].y += speed;
+                    pickups.children.entries[i].y += (speed );
                 }
 
             }
-            if (decorations)
             for (i = 0; i < decorations.children.entries.length; i++) {
                 if (decorations.children.entries[i].y >= 950){
                     decorations.remove(decorations.children.entries[i], true);
@@ -101,6 +98,17 @@ var gamePlayState = new Phaser.Class({
                 }
                 else {
                     decorations.children.entries[i].y += speed;
+                }
+
+            }          
+            for (i = 0; i < powerUps.children.entries.length; i++) {
+                if (powerUps.children.entries[i].y >= 950){
+                    powerUps.remove(powerUps.children.entries[i], true);
+                    //console.log(pickups.children.entries.length);
+                    i--;
+                }
+                else {
+                    powerUps.children.entries[i].y += speed;
                 }
 
             }          
@@ -134,6 +142,7 @@ let moveCar = function(e)
             if (car.x != 250){
                 car.x = 250;
                 noLaneChanges++;
+                score++;
             }
             
         }
@@ -141,6 +150,7 @@ let moveCar = function(e)
             if (car.x != 350){
                 car.x = 350;
                 noLaneChanges++;
+                score++;
             }
         }
         if (e.key == "ArrowDown"){
@@ -149,12 +159,14 @@ let moveCar = function(e)
                 if (car.x != 450){
                     car.x = 450;
                     noLaneChanges++;
+                    score++;
                 }
             }
             if(mode == 'COOP'){
                 if (car2.x != 450){
                     car2.x = 450;
                     noLaneChangesP2++;
+                    score++;
                 }
             }
             
@@ -164,12 +176,14 @@ let moveCar = function(e)
                 if (car.x != 550){
                     car.x = 550;
                     noLaneChanges++;
+                    score++;
                 }
             }
             if(mode == 'COOP'){
                 if (car2.x != 550){
                     car2.x = 550;
                     noLaneChangesP2++;
+                    score++;
                 }
             }
             
@@ -275,27 +289,41 @@ let hitPickup = function(car, pickup){
     // console.log("pickup");
     pickup.disableBody(true, true);//remove the pickup from the screen
     score += scoreCoin;
-    placeScore();
 
+}
+
+let hitPowerUp = function(car, powerUp){
+    powerUp.disableBody(true, true);//remove the pickup from the screen
+    PowerUpCoin = true;
+    for (i = obstacles.children.entries.length; i >= 0; i--) {
+        obstacles.remove(obstacles.children.entries[i], true);
+    }
+    sleep(2000).then(() => {PowerUpCoin = false; });
+}
+
+let DecorationHit = function(decoration, dacoration2){
+    dacoration2.disableBody(true, true);//remove the pickup from the screen
 }
 
 let setcars = function(){
     increasing();
     score += DriveScore;
-    placeScore();
     let randomObstacles = getRandomobstakels();
     let randomPickups = getRandomInt(lanes - randomObstacles);
     let randomObstacles2 = getRandomobstakels();
     let randomPickups2 = getRandomInt(2 - randomObstacles);
+    let powerUpSet;
     if(mode == 'SP'){
         arr = [250,350,450, 550];
         arr = shuffle(arr);
+        powerUpPlace = getRandomInt(10)
     }
     if(mode == 'COOP'){
         arr = [250,350];
         arr = shuffle(arr);
         arr2 = [450, 550];
         arr2 = shuffle(arr2);
+        powerUpPlace = getRandomInt(20)
     }
     for (i = 0; i < randomObstacles; i++) {
         var ShuffleColorList = shuffle(Colors)
@@ -327,19 +355,35 @@ let setcars = function(){
         }
     }
     for (i = 0; i < randomPickups; i++) {
-        
-        pickups.create(arr[i+randomObstacles],-50, 'coin').setScale(.2);
+        if (powerUpPlace == 1){
+            powerUps.create(arr[i+randomObstacles],-50, 'mct').setScale(.08);
+            powerUpPlace = -1
+        }
+        else {
+            pickups.create(arr[i+randomObstacles],-50, 'coin').setScale(.2);
+        }
     }
     if(mode == 'COOP'){
         for (i = 0; i < randomPickups2; i++) {
-        
-            pickups.create(arr2[i+randomObstacles2],-50, 'coin').setScale(.2);
+            if (powerUpPlace == 2){
+                powerUps.create(arr2[i+randomObstacles2],-50, 'mct').setScale(.08);
+                powerUpPlace = -1
+            }
+            else {
+                pickups.create(arr2[i+randomObstacles2],-50, 'coin').setScale(.2);
+            }
         }
     }
     //  pickups.create(150,-50, 'coin').setScale(.2);
     //  if(mode == 'COOP'){
     //  pickups.create(650,-50, 'coin').setScale(.2);
     //  }
+}
+var setCoins = function name(params) {
+    arr = [250,350,450, 550];
+    for (i = 0; i < arr.length; i++) {
+        pickups.create(arr[i],-50, 'coin').setScale(.2);
+    } 
 }
 
 let getRandomobstakels = function() {

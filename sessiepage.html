@@ -49,6 +49,12 @@
                                         </span>  
                                     </div>
 
+                                    <div class="c-newSessionButton">
+                                        <p class="c-button__question js-newSession">
+                                            <button class="o-button-reset c-button" type="submit">Maak nieuwe sessie</button>
+                                        </p>
+                                    </div>
+
                                     <div class="c-session-card-results">
                                         <h1 class="c-card__questions-title c-session-card-results-title">
                                             Dit zijn de resultaten voor 'sessienaam':
@@ -101,14 +107,145 @@
                                         </div>
                                     </div>
 
-                                    <div class="c-session-card-button">
-                                        <p class="c-button__question">
-                                            <button class="o-button-reset c-button js-newSession">Maak nieuwe sessie aan</button>
+                                    <div class="c-newSessionButton">
+                                        <p class="c-button__question js-deleteASession">
+                                            <button class="o-button-reset c-button">Verwijder een sessie</button>
                                         </p>
                                     </div>  
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="c-grid__item u-grid-column__card-session u-grid-row__add-question c-card__no-grid-session">
+                        <form class="c-card c-card__add c-newSession-card" action="#" onsubmit="return false;">
+                            <div class="c-card__title">
+                                <h1 class="c-card__add-title">
+                                    Nieuwe sessie
+                                </h1>
+                            </div>
+
+                            <svg class="c-close__button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+                                <image id="close_cross_delete_exit_remove_icon-1320085939816384527" data-name="close+cross+delete+exit+remove+icon-1320085939816384527" width="24" height="24" xlink:href="data:image/png;base64,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"/>
+                            </svg>
+
+                            <h2 class="c-card__add-question">
+                                Naam van de sessie:
+                            </h2>
+
+                            <p class="c-form-field__admin">
+                                <input class="c-input-question c-input" type="text" name="newSessionName" id="newSessionName" placeholder="vb. Les 1 - klas 5" >
+                            </p>
+
+                            <h2 class="c-card__add-question c-session-newId">
+                                Selecteer een onderwerp die je in deze sessie wilt gebruiken
+                            </h2>
+
+                            <span class="c-custom-select__dropdown-edit c-select-width">
+                                <select class="c-input c-delete__subject c-session-input" name="select" id="selectSessionSubject">
+                                    <option value="wiskunde">Wiskunde</option>
+                                    <option value="aardrijkskunde">Aardrijkskunde</option>
+                                    <option value="spelling">Spelling</option>
+                                </select>
+                                <svg class="c-custom-select__symbol-edit-dropdown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M7,10l5,5,5-5Z"/>
+                                </svg>
+                            </span> 
+                            
+                            <div class="c-session-checkbox">
+                                <h2 class="c-card__add-question c-session-newId">
+                                    Gebruik alle vragen (ook van andere gebruikers):
+                                </h2>
+    
+                                <input class="o-hide-accessible  c-option--hidden js-checkboxEdit" type="checkbox" id="checkbox5">
+                                <label class="c-custom-option c-checkbox-session" for="checkbox5">
+                                    <span class="c-custom-option__fake-input c-custom-option__fake-input--checkbox">
+                                        <svg class="c-custom-option__symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 6.75">
+                                            <path d="M4.75,9.5a1,1,0,0,1-.707-.293l-2.25-2.25A1,1,0,1,1,3.207,5.543L4.75,7.086,8.793,3.043a1,1,0,0,1,1.414,1.414l-4.75,4.75A1,1,0,0,1,4.75,9.5" transform="translate(-1.5 -2.75)"/>
+                                        </svg>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="c-add__vragenlijst">
+                                <p class="c-button__question js-addNewSession">
+                                    <button class="o-button-reset c-button" type="submit">Maak nieuwe sessie</button>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="c-grid__item u-grid-column__add-question u-grid-row__add-question c-card__no-grid-session">
+                        <div class="c-card c-card__add c-delete__session">
+                            <h2 class="c-card__delete-title c-deleteSubject-title">
+                                Weet je zeker dat je de sessie 'Sessie hier' wilt verwijderen?
+                            </h2>
+
+                            <div class="c-delete__buttons">
+                                <p class="c-button__question js-yesSession">
+                                    <button class="o-button-reset c-button" type="submit">Ja</button>
+                                </p>
+
+                                <p class="c-button__question js-noSession">
+                                    <button class="o-button-reset c-button" type="submit">Neen</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="c-grid__item u-grid-column__add-question u-grid-row__add-question c-card__no-grid-session">
+                        <div class="c-card c-card__add c-sessionId-card">
+                            <div class="c-session-succes">
+                                <h2 class="c-card__delete-title c-deleteSubject-title">
+                                    Nieuwe sessie succesvol aangemaakt!
+                                </h2>
+    
+                                <div class="c-newSessionId">
+                                    <h2 class="c-card__add-question c-session-newId">
+                                        Jouw nieuwe unieke sessie-id (lesnummer) is
+                                    </h2>
+        
+                                    <div class="c-session-border">
+                                        <h2 class="c-session-new-sessionId">
+                                            S-123456
+                                        </h2>
+                                    </div>
+                                </div>      
+                            </div>
+                            <svg class="c-close__button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+                                <image id="close_cross_delete_exit_remove_icon-1320085939816384527" data-name="close+cross+delete+exit+remove+icon-1320085939816384527" width="24" height="24" xlink:href="data:image/png;base64,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"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="c-grid__item u-grid-column__add-question u-grid-row__add-question c-card__no-grid-session">
+                        <form class="c-card c-card__add c-deleteSession-card" action="#" onsubmit="return false;">
+                            <h2 class="c-card__add-question c-session-delete-title">
+                                Selecteer de sessie dat je wilt verwijderen:
+                            </h2>
+
+                            <svg class="c-close__button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+                                <image id="close_cross_delete_exit_remove_icon-1320085939816384527" data-name="close+cross+delete+exit+remove+icon-1320085939816384527" width="24" height="24" xlink:href="data:image/png;base64,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"/>
+                            </svg>
+
+                            <span class="c-custom-select__dropdown-edit c-select-width">
+                                <select class="c-input js-subjectSelect c-delete__subject" name="select" id="deleteSessionSelect">
+                                    <option value="wiskunde">Wiskunde</option>
+                                    <option value="aardrijkskunde">Aardrijkskunde</option>
+                                    <option value="spelling">Spelling</option>
+                                </select>
+                                <svg class="c-custom-select__symbol-edit-dropdown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M7,10l5,5,5-5Z"/>
+                                </svg>
+                            </span>  
+
+
+                            <div class="c-add__vragenlijst">
+                                <p class="c-button__question js-deleteSessionButton">
+                                    <button class="o-button-reset c-button"type="submit">Verwijder sessie</button>
+                                </p>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

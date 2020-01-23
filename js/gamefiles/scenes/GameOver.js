@@ -57,11 +57,25 @@ const showHighscores = function(data){
 	let scoreList = document.getElementById("highscoreList");
 	let scoreList2 = document.getElementById("highscoreList2");
 	let str = "";
+	let str2 = "";
 	var leaderboard = data.slice(0, 10);
+	let inserted = false;
+	let count = 0;
 	leaderboard.forEach(element => {
+		if(score > element.score && !inserted){
+			str2+= `<li class="c-leaderboard-currentplayer">${score}		${player}</li>`;
+			str2+= `<li>${element.score}		${element.player}</li>`;
+			inserted = true;
+			count += 2;
+		}
+		else if (count < 10){
+			str2+= `<li>${element.score}		${element.player}</li>`; 
+			count++;
+		}
 		str+= `<li>${element.score}		${element.player}</li>`;
+		
 	});
 	scoreList.innerHTML = str;
-	scoreList2.innerHTML = str;
+	scoreList2.innerHTML = str2;
 
 }

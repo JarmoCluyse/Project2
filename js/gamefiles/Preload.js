@@ -10,12 +10,19 @@ var preloadState = new Phaser.Class({
     preload: function() {
     // Preload images
     this.load.image('road', 'assets/road.png');
+    this.load.image('roadCoop', 'assets/roadCoop.png');
     this.load.image('car', 'assets/car.png');
     this.load.image('coin', 'assets/coin.png');
     this.load.image('tree1', 'assets/tree1.png');
     this.load.image('tree2', 'assets/tree2.png');
     this.load.image('tire', 'assets/tire.png');
-    
+    this.load.image('dog', 'assets/dog.png');
+    this.load.image('cat', 'assets/cat.png');
+    this.load.image('goose', 'assets/goose.png');
+    this.load.image('grass1', 'assets/grass1.png');
+    this.load.image('bush1', 'assets/bush.png');
+    this.load.image('puddle', 'assets/puddle.png');
+    this.load.image('mct', 'assets/mct.png');
     },
     create: function() {
         console.log("Preload");
@@ -23,10 +30,20 @@ var preloadState = new Phaser.Class({
         setInterval(function() {
             if (!gameOver && gameStarted){
                 console.log("placecars");
-                setcars();
+                if (!PowerUpCoin){
+                    setcars();
+                }
                 distance -5;                 
             }
         }, distance);
+        setInterval(function() {
+            if (!gameOver && gameStarted){
+                console.log("placecars");
+                if (PowerUpCoin) {
+                    setCoins();
+                }                
+            }
+        }, 200);
     },
     update: function() {
         // Update objects & variables
