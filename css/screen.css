@@ -1207,7 +1207,7 @@ input::placeholder {
 	opacity: 1;
 }
 .c-blinking-text{
-    animation:blinkingText 1.2s infinite;
+    animation:blinkingText 2s infinite;
 }
 @keyframes blinkingText{
     0%{     color: var(--global-color-neutral-xxx-dark);    }
@@ -1283,7 +1283,6 @@ input::placeholder {
 	height: 95vh;
 	width: 95vw;
 	align-items: center;
-	background-color: ;
 }
 .c-start-card{
 	width: 60%;
@@ -1298,6 +1297,9 @@ input::placeholder {
 	grid-column: 3;
 	grid-row: 0;
 	text-align: left;
+}
+.c-leaderboard-currentplayer{
+	color: var(--global-color-answer1);
 }
 .c-phaser {
     display: flex;

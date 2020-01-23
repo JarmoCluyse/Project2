@@ -64,6 +64,7 @@ var gamePlayState = new Phaser.Class({
     update: function() {        
         if (!gameOver)
         {
+            placeScore();
             //move all moving items down by the speed variable
             this.background1.tilePositionY -= speed
             placeDecorations();
@@ -141,6 +142,7 @@ let moveCar = function(e)
             if (car.x != 250){
                 car.x = 250;
                 noLaneChanges++;
+                score++;
             }
             
         }
@@ -148,6 +150,7 @@ let moveCar = function(e)
             if (car.x != 350){
                 car.x = 350;
                 noLaneChanges++;
+                score++;
             }
         }
         if (e.key == "ArrowDown"){
@@ -156,12 +159,14 @@ let moveCar = function(e)
                 if (car.x != 450){
                     car.x = 450;
                     noLaneChanges++;
+                    score++;
                 }
             }
             if(mode == 'COOP'){
                 if (car2.x != 450){
                     car2.x = 450;
                     noLaneChangesP2++;
+                    score++;
                 }
             }
             
@@ -171,12 +176,14 @@ let moveCar = function(e)
                 if (car.x != 550){
                     car.x = 550;
                     noLaneChanges++;
+                    score++;
                 }
             }
             if(mode == 'COOP'){
                 if (car2.x != 550){
                     car2.x = 550;
                     noLaneChangesP2++;
+                    score++;
                 }
             }
             
@@ -282,7 +289,6 @@ let hitPickup = function(car, pickup){
     // console.log("pickup");
     pickup.disableBody(true, true);//remove the pickup from the screen
     score += scoreCoin;
-    placeScore();
 
 }
 
@@ -302,7 +308,6 @@ let DecorationHit = function(decoration, dacoration2){
 let setcars = function(){
     increasing();
     score += DriveScore;
-    placeScore();
     let randomObstacles = getRandomobstakels();
     let randomPickups = getRandomInt(lanes - randomObstacles);
     let randomObstacles2 = getRandomobstakels();
