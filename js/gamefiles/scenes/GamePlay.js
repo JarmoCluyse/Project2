@@ -18,16 +18,19 @@ var gamePlayState = new Phaser.Class({
         jsGameStart.classList.add('hide');
         jsGamePlay.classList.remove('hide');
         jsGameEnd.classList.add('hide');
-        // set the background
-        this.background1 = this.add.tileSprite(400,400,800,800, 'road')
+        
         //creates an objects
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
         decorations = this.physics.add.group();
         if(mode == 'SP'){
+            // set the background
+            this.background1 = this.add.tileSprite(400,400,800,800, 'road')
             car = this.physics.add.sprite(400,730, 'car').setTint(carColor);
         }
         if(mode == 'COOP'){
+            // set the background
+            this.background1 = this.add.tileSprite(400,400,800,800, 'roadCoop')
             car = this.physics.add.sprite(300,730, 'car').setTint(carColor);
             car2 = this.physics.add.sprite(500,730, 'car').setTint(carColor2);
         }
@@ -36,6 +39,8 @@ var gamePlayState = new Phaser.Class({
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
+        this.physics.add.overlap(obstacles, pickups, hitPickup, null, this);
+        this.physics.add.collider(decorations, decorations, obstaclesHit, null, this);
         if(mode == 'COOP'){
             this.physics.add.collider(car2, obstacles, hitObstacle, null, this);
             this.physics.add.overlap(car2, pickups, hitPickup, null, this);
@@ -55,20 +60,7 @@ var gamePlayState = new Phaser.Class({
         {
             //move all moving items down by the speed variable
             this.background1.tilePositionY -= speed
-            let placeTree = getRandomInt(100)
-            if (placeTree > 98){
-                let wichTree = getRandomInt(100);
-                console.log('plant tree');
-                if (wichTree <= 3) {
-                    decorations.create(TreeLocation(),-100, 'tree1').setScale((.08));
-                }
-                if (wichTree <= 6 && wichTree > 3) {
-                    decorations.create(TreeLocation(),-100, 'tree2').setScale((.06));
-                }
-                if (wichTree <= 15 && wichTree > 6) {
-                    decorations.create(TreeLocation(),-100, 'tire').setScale((0.03));
-                }
-            }
+            placeDecorations();
             for (i = 0; i < obstacles.children.entries.length; i++) {
                 if (obstacles.children.entries[i].y >= 850){
                     obstacles.remove(obstacles.children.entries[i], true);
@@ -76,7 +68,7 @@ var gamePlayState = new Phaser.Class({
                     i--;
                 }
                 else{
-                    obstacles.children.entries[i].y += speed
+                    obstacles.children.entries[i].y += (speed / 2)
                 }
 
             }
@@ -87,7 +79,7 @@ var gamePlayState = new Phaser.Class({
                     i--;
                 }
                 else {
-                    pickups.children.entries[i].y += speed;
+                    pickups.children.entries[i].y += (speed );
                 }
 
             }
@@ -276,6 +268,12 @@ let hitPickup = function(car, pickup){
     score += scoreCoin;
     placeScore();
 
+}
+
+let obstaclesHit = function(obstacle1, obstacle2){
+    obstacle2.disableBody(true, true);//remove the pickup from the screen
+
+    
 }
 
 let setcars = function(){
