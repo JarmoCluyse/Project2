@@ -175,7 +175,7 @@ const deleteQuestionConfirmation = function (qid, qText) {
 	questionConfirmationTitle.innerHTML = `Weet je zeker dat je de vraag "${qText}" wilt verwijderen?`
 
 	// make the maincard look more in the background
-	mainCard.style.opacity = 0.2;
+	mainCard.style.opacity = 0.8;
 	mainCard.style.pointerEvents = 'none';
 	// show the deletecard
 	deleteCard.style.display = 'block';
@@ -216,7 +216,7 @@ const deleteSubjectConfirmation = function(){
 
 
 	// make the dropdowncard look more in the background
-	dropdownCard.style.opacity = 0.2;
+	dropdownCard.style.opacity = 0.8;
 	dropdownCard.pointerEvents = 'none';
 
 	// show the deletecard
@@ -276,7 +276,7 @@ const showAddQuestionPage = function (selection = null) {
 
 	
 	// make the maincard more to the background
-	mainCard.style.opacity = 0.2;
+	mainCard.style.opacity = 0.8;
 	mainCard.style.pointerEvents = 'none';
 	// show the addquestion card
 	addCard.style.display = 'block';
@@ -314,7 +314,7 @@ const showEditQuestionPage = function (qid) {
 	}
 	console.log(editing);
 	// make the maincard go more to the background
-	mainCard.style.opacity = 0.2;
+	mainCard.style.opacity = 0.8;
 	mainCard.style.pointerEvents = 'none';
 	// show the editcard
 	editCard.style.display = 'block';
@@ -360,7 +360,7 @@ const showDropDownEditPage = function(){
 	dropdownCard.style.display = 'block';
 
 	// make it look like maincard is in background
-	mainCard.style.opacity = 0.2;
+	mainCard.style.opacity = 0.8;
 	mainCard.style.pointerEvents = 'none';
 
 	// fill the dropdownmenus with the correct values by giving the id of the dropdown
@@ -374,7 +374,7 @@ const showAccountCard = function(){
 	accountCard.style.display = 'block';
 
 	// make it look like maincard is in background
-	mainCard.style.opacity = 0.2;
+	mainCard.style.opacity = 0.8;
 	mainCard.style.pointerEvents = 'none';
 
 };

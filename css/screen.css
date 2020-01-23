@@ -254,7 +254,7 @@ select {
 }
 
 input::placeholder {
-	color: var(--global-placeholder-color);
+	color: var(--global-color-neutral-dark);
 }
 
 /*------------------------------------*\
@@ -545,6 +545,7 @@ input::placeholder {
 		animation-name: car;
 		animation-duration: 3s;
 		animation-iteration-count: infinite;
+		z-index: 0;
 	}
 	
 	.c-animated-car2{
@@ -555,6 +556,7 @@ input::placeholder {
 		animation-name: car;
 		animation-duration: 5s;
 		animation-iteration-count: infinite;
+		z-index: 0;
 	}
 
 	.c-animated-car3{
@@ -565,22 +567,29 @@ input::placeholder {
 		animation-name: car3;
 		animation-duration: 7s;
 		animation-iteration-count: infinite;
+		z-index: 0;
 	}
 
 	.c-animated-car4{
-		display: block;
+		display: none;
 		position: absolute;
 		bottom: 10px;
 		right: 290px;
 		animation-name: car;
 		animation-duration: 9s;
 		animation-iteration-count: infinite;
+		z-index: 0;
+	}
+}
+
+@media(min-width: 1024px){
+	.c-animated-car4{
+		display: block;
 	}
 }
 
 
-
-@media(min-width: 1024px) {
+@media(min-width: 768px) {
 	@keyframes car {
 		0% {bottom: -100px;}
 		100% {bottom: 1200px;}
@@ -993,6 +1002,32 @@ input::placeholder {
 	justify-content: center;
 }
 
+.c-session-border {
+	margin-bottom: calc(var(--global-baseline) * 2);
+	display: flex;
+	justify-content: center;
+
+}
+
+.c-session-input{
+	margin-bottom: calc(var(--global-baseline) * 2);
+}
+
+.c-session-checkbox {
+	display: flex;
+	margin-bottom: calc(var(--global-baseline) * 2);
+}
+
+.c-session-new-sessionId{
+	padding-left: var(--global-baseline);
+	margin-bottom: 0;
+	border: 1px solid var(--global-color-neutral-xxx-light);
+	border-radius: var(--global-borderRadius);
+	color: var(--global-color-alpha);
+	font-size: 24px;
+	width: 30%;
+}
+
 
 
 .c-session-card-title {
@@ -1010,6 +1045,9 @@ input::placeholder {
 	margin-top: calc(var(--global-baseline) * 2);
 }
 
+.c-sessionId-card{
+	display: none;
+}
 
 .c-card__questions-title{
 	padding-top: var(--global-baseline);
@@ -1148,6 +1186,13 @@ input::placeholder {
 	box-shadow: 0 0 0 3px var(--global-color-alpha-lightest);
 }
 
+.c-newSessionButton {
+	display: flex;
+	justify-content: center;
+	margin-top: calc(var(--global-baseline) * 4);
+	margin-left: calc(var(--global-baseline) * 4);
+}
+
 .c-button:active {
 	background-color: var(--global-color-alpha-dark);
 	box-shadow: none;
@@ -1277,6 +1322,7 @@ input::placeholder {
 	flex-direction: column;
 	align-items: center;
 	width: 270px;
+	z-index: 1;
 	
 }
 
@@ -1299,6 +1345,20 @@ input::placeholder {
 	top: 100px;	
 }
 
+.c-card__no-grid-session{
+	position: fixed;
+	top: 100px;
+	left: 0%;
+}
+
+@media(min-width: 768px){
+	.c-card__no-grid-session{
+		top: 100px;
+		left: 10%;
+		width: 80%;
+	}
+}
+
 @media(min-width: 768px){
 	.c-card__no-grid{
 		top: 100px;
@@ -1312,6 +1372,12 @@ input::placeholder {
 		top: 200px;
 		left: 7%;
 		width: 60%;
+	}
+
+	.c-card__no-grid-session{
+		top: 200px;
+		left: 7%;
+		width: 60%;
 	}	
 }
 
@@ -1320,7 +1386,13 @@ input::placeholder {
 		top: 200px;
 		left: 15%;
 		width: 60%;
-	}	
+	}
+	
+	.c-card__no-grid-session{
+		top: 200px;
+		left: 20%;
+		width: 50%;
+	}
 	
 }
 
@@ -1330,7 +1402,14 @@ input::placeholder {
 		left: 25%;
 		width: 50%;
 	}	
+
+	.c-card__no-grid-session{
+		top: 200px;
+		left: 30%;
+		width: 40%;
+	}
 }
+
 @media(min-width: 2160px){
 	.c-card__no-grid{
 		top: 200px;
@@ -1612,7 +1691,6 @@ input::placeholder {
 }
 
 .c-session-card-results-title{
-	margin-top: calc(var(--global-baseline) * 2);
 	font-size: 28px;
 }
 
@@ -1666,6 +1744,18 @@ input::placeholder {
 }
 
 
+.c-delete__session{
+	display: none;
+}
+
+.c-select-width {
+	width: 30%;
+}
+
+.c-deleteSession-card {
+	display: none;
+}
+
 .c-session-card-button {
 	display: flex;
 	justify-content: flex-end;
@@ -1703,6 +1793,10 @@ input::placeholder {
 	width: 10px;
 	height: 10px;
 	fill: var(--global-color-alpha);
+}
+
+.c-session-delete-title {
+	margin-top: calc(var(--global-baseline) * 2);
 }
 
 .c-custom-option__fake-input--radio .c-custom-option__symbol {
@@ -1751,6 +1845,10 @@ input::placeholder {
 	width: 65%;
 }
 
+
+.c-newSession-card{
+	display: none;
+}
 .c-lists {
 	display: block;
 }
@@ -1932,6 +2030,11 @@ input::placeholder {
 	}
 }
 
+.c-session-newId {
+	margin-bottom: calc(var(--global-baseline));
+	font-size: 20px;
+}
+
 .c-passDontMatch {
 	font-size: 20px;
 	margin-left: calc(var(--global-baseline) * 4);
@@ -1951,6 +2054,11 @@ input::placeholder {
 	width: 150px;
 	bottom: 0px;
 	left: 80px;
+}
+
+.c-checkbox-session {
+	width: 20%;
+	margin-top: calc(var(--global-baseline) * 1.7);
 }
 
 .c-logo-howest{
@@ -2064,6 +2172,10 @@ input::placeholder {
 }
 
 .u-grid-column__card-session{
+	grid-column: span 10 / 16;
+}
+
+.u-grid-column__card-new-session{
 	grid-column: span 10 / 16;
 }
 
