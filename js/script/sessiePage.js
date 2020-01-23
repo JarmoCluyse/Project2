@@ -12,19 +12,16 @@ const showSessionResults = function(data){
                                     <th>Aantal bewegingen</th>
                                     <th>Juiste vragen</th>
                                 </tr>`;
-    
-    Naamhier = "bob";
-    Scorehier = "69";
-    aantalBewegingenHier = "69420";
-    juisteVragenHier = "98";
-                                
-    // gelieve hier nog de results in te vullen @thomas
-    sessionTable.innerHTML +=   `<tr class="c-table-row">
-                                    <td>${Naamhier}</td>
-                                    <td>${Scorehier}</td>
-                                    <td>${aantalBewegingenHier}</td>
-                                    <td>${juisteVragenHier}</td>
-                                </tr>` 
+                       
+    filteredGames.forEach(element =>{
+        sessionTable.innerHTML +=   `<tr class="c-table-row">
+        <td>${element.player}</td>
+        <td>${element.score}</td>
+        <td>${element.numberOfLaneChanges}</td>
+        <td>${element.questionsAnswered}</td>
+    </tr>`
+    });
+     
 
 };
 

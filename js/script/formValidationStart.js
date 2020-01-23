@@ -35,7 +35,8 @@ const startGame = function() {
 	}
 	// read the carcolors selected and add to localstorage
     localStorage.setItem("Color", document.getElementById('selectCarColorPlayer1').value);
-    localStorage.setItem("Color2", document.getElementById('selectCarColorPlayer2').value);
+	localStorage.setItem("Color2", document.getElementById('selectCarColorPlayer2').value);
+	localStorage.setItem('Session', document.getElementById('sessieId').value);
     
     if (startGameBool == 1){
 		// redirect to the gamepage
