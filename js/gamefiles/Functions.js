@@ -59,13 +59,10 @@ var placeDecorations = function () {
       if (wichDeco <= 90 && wichDeco > 60) {
           decorations.create(DecorationX(),-250, 'tire').setScale( Math.random() * 0.01 + 0.03);
       }
-      if (wichDeco <= 500 && wichDeco > 90) {
-        decorations.create(DecorationX(),-250, 'grass1').setScale((Math.random() * 0.05 + 0.03));    
-      }
-      if (wichDeco <= 600 && wichDeco > 500) {
+      if (wichDeco <= 200 && wichDeco > 90) {
         decorations.create(DecorationX(),-250, 'bush1').setScale((Math.random() * 0.1 + 0.1));    
       }
-      if (wichDeco <= 650 && wichDeco > 600) {
+      if (wichDeco <= 250 && wichDeco > 200) {
         decorations.create(DecorationX(),-250, 'puddle').setScale((Math.random() * 0.05 + .08));    
       }
       if (wichDeco <= 990 && wichDeco > 998) {
@@ -77,15 +74,18 @@ var placeDecorations = function () {
       if (wichDeco <= 1000 && wichDeco > 995) {
         decorations.create(DecorationX(),-250, 'dog').setScale((Math.random() * 0.03 + .03));    
       }
+      else {
+        decorations.create(DecorationX(),-250, 'grass1').setScale((Math.random() * 0.05 + 0.03));    
+      }
   }
 }
 var DecorationX = function () {
   let LeftOrRight = getRandomInt(2)
   if (LeftOrRight == 0) {
-    return getRandomInt(160)
+    return getRandomInt(150)
   }
   if (LeftOrRight == 1) {
-    return getRandomInt(160) + 640
+    return getRandomInt(150) + 650
   }
 }
 
