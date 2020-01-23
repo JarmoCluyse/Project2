@@ -43,9 +43,9 @@ var gamePlayState = new Phaser.Class({
         }
         moveCar(startEvent);
         speed = BeginSpeed;
-
-        PowerUpCoins.create(150,-50, 'chest').setScale(.08);
-        PowerUpMagnets.create(150,0, 'magnet').setScale(.08);
+        // PowerUphearts.create(150,-100, 'heart').setScale(.006);
+        // PowerUpCoins.create(150,-50, 'chest').setScale(.08);
+        // PowerUpMagnets.create(150,0, 'magnet').setScale(.08);
         jsheartcount.innerHTML = PowerUpheart;
         jschest.style.opacity = .6;
         jsmagnet.style.opacity = .6;
@@ -355,7 +355,7 @@ let hitObstacle = function(car, obstacle){
     for (i = pickups.children.entries.length; i >= 0; i--) {
         pickups.remove(pickups.children.entries[i], true);
     }
-    if (PowerUpheart <= 0){
+    if (PowerUpheart <= 1){
         getQuestions()
         jsGamePlay.classList.add('hide');
         jsGameQuestion.classList.remove('hide');
@@ -397,7 +397,9 @@ let hitPowerUpMagnet = function(car, powerUp){
 }
 let hitPowerUpHeart = function(car, powerUp){
     powerUp.disableBody(true, true);//remove the pickup from the screen
-    PowerUpheart += 1;
+    if (PowerUpheart <= 5){
+        PowerUpheart += 1;
+    }
     jsheartcount.innerHTML = PowerUpheart;
     console.log(PowerUpheart);
     
