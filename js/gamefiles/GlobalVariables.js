@@ -16,6 +16,7 @@ var startEvent;
 //------------------------------- //
 // DB
 //------------------------------- //
+var token = JSON.parse(localStorage.getItem('LoginToken'));
 const BASEURI = 'https://project2driveacar.azurewebsites.net/api/v2/';
 var player = localStorage.getItem("Player");
 var player2 = localStorage.getItem("Player2");

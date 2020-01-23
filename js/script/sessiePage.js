@@ -1,4 +1,10 @@
-const getSessionResults = function(){
+let id;
+const showSessionResults = function(data){
+    currentId = sessionDropdown.options[sessionDropdown.selectedIndex].value;
+    var filteredGames = data.filter(obj => {
+        return obj.session === currentId;
+      });
+      console.log(filteredGames);  
     sessionTable = document.querySelector('.c-table');
     sessionTable.innerHTML =    `<tr class="c-table-row">
                                     <th>Naam</th>
@@ -24,12 +30,25 @@ const getSessionResults = function(){
 
 
 const showNewSessionpage = function(){
+    handleData(`${BASEURI}questions?code=${key}`, fillSubjects)
     newSessionPage.style.display = 'block';
-    sessionSelectSubjectDropdown.innerHTML = "";
-    sessionSelectSubjectDropdown.innerHTML += `<option value="${subjectIdHier}">${subjectNaamHier}</option>`
 
     hideMainPage();
 
+};
+const fillSubjects = function(data){
+    console.log(data);
+    sessionSelectSubjectDropdown.innerHTML = `<option value="all">(Alle onderwerpen)</option>`;
+    var subjects = data.filter(obj => {
+        return obj.teacherEmail === token.userEmail;
+      });
+    foundSubjects = []
+    subjects.forEach(element =>{
+	if (!foundSubjects.includes(element.subject)){
+		foundSubjects.push(element.subject);
+		sessionSelectSubjectDropdown.innerHTML += `<option value="${element.subject}">${element.subject}</option>`;
+	}
+	});
 };
 
 const showSessionMainPage = function(){
@@ -42,14 +61,14 @@ const showSessionMainPage = function(){
 
 };
 
-const fillSessionDropdown = function(){
+const fillSessionDropdown = function(data){
+    console.log(data);
     sessionDropdown.innerHTML = "";
 
-    sessieIdHier = "S-69420"
-    sessieNaamHier = "hihi"
+    data.forEach(element=>{
+        sessionDropdown.innerHTML += `<option value="${element.sessionId}">${element.sessionId} - ${element.beschrijving}</option>`;
+    });
 
-    sessionDropdown.innerHTML += `<option value="${sessieIdHier}">${sessieNaamHier}</option>`;
-    sessionDropdown.innerHTML += `<option value="${sessieIdHier}">${sessieNaamHier}</option>`;
 };
 
 
@@ -85,6 +104,8 @@ const showSessionIdPage = function(){
 
 const init = function(){
     console.log('Script geladen! 👍')
+    newSessionName = document.getElementById("newSessionName");
+    checkboxSession = document.getElementById("checkboxSession");
     sessionDropdown = document.querySelector('.js-sessionSelection');
     resultsTitle = document.querySelector('.c-session-card-results-title');
     newSessionButton = document.querySelector('.js-newSession');
@@ -101,8 +122,7 @@ const init = function(){
     newSessionIdCard = document.querySelector('.c-sessionId-card');
     sessionSelectSubjectDropdown = document.getElementById('selectSessionSubject');
     sessionSelectDeleteDropdown = document.getElementById('deleteSessionSelect');
-
-    fillSessionDropdown();
+    handleData(`${BASEURI}sessions/${token.userEmail}?code=${key}`, fillSessionDropdown);
 
     resultsTitle.innerHTML = `Dit zijn de resultaten voor ${sessionDropdown.options[sessionDropdown.selectedIndex].innerHTML}:`
     dropdownId = sessionDropdown.options[sessionDropdown.selectedIndex].value
@@ -125,7 +145,13 @@ const init = function(){
 
     createNewSessionButton.addEventListener('click', function(){
         selectedSessionSubject = sessionSelectSubjectDropdown.options[sessionSelectSubjectDropdown.selectedIndex].value;
-        showSessionIdPage();
+
+        console.log(selectedSessionSubject);
+        id = idGenerator();
+        postTxt = `{"teacheremail": "${token.userEmail}", "forcedsubject": "${selectedSessionSubject}", "beschrijving": "${newSessionName.value}", "teacherquestionsonly": ${!checkboxSession.checked}, "sessionid": "${id}" }`;
+        postjson = JSON.parse(postTxt);
+        console.log(postjson);
+        sendData(`${BASEURI}session?code=${key}`, showSessionIdPage,'POST', postjson);
     });
 
     newSessionButton.addEventListener('click', function(){
@@ -141,11 +167,11 @@ const init = function(){
     });
 
     sessionDropdown.addEventListener('change', function(){
+        handleData(`${BASEURI}games?code=${key}`, showSessionResults, "GET",null)
         console.log(sessionDropdown.options[sessionDropdown.selectedIndex].value)  
 
         resultsTitle.innerHTML = `Dit zijn de resultaten voor ${sessionDropdown.options[sessionDropdown.selectedIndex].innerHTML}:`
 
-        getSessionResults();
     });
 }
 
