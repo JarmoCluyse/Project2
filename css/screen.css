@@ -2058,6 +2058,10 @@ input::placeholder {
 	grid-row: 2;
 }
 
+.u-grid-row__card-index {
+	grid-row: 1;
+}
+
 .u-grid-column__add-question {
 	grid-column: span 10 / 16;
 }
