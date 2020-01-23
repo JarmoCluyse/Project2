@@ -30,6 +30,7 @@ const fillSessionDropdown = function(){
     sessieNaamHier = "hihi"
 
     sessionDropdown.innerHTML += `<option value="${sessieIdHier}">${sessieNaamHier}</option>`;
+    sessionDropdown.innerHTML += `<option value="${sessieIdHier}">${sessieNaamHier}</option>`;
 };
 
 
