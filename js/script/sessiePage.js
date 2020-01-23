@@ -61,9 +61,11 @@ const showSessionMainPage = function(){
 const fillSessionDropdown = function(data){
     console.log(data);
     sessionDropdown.innerHTML = "";
+    sessionSelectDeleteDropdown.innerHTML = "";
 
     data.forEach(element=>{
         sessionDropdown.innerHTML += `<option value="${element.sessionId}">${element.sessionId} - ${element.beschrijving}</option>`;
+        sessionSelectDeleteDropdown.innerHTML += `<option value="${element.sessionId}">${element.sessionId} - ${element.beschrijving}</option>`;
     });
 
 };
@@ -76,20 +78,26 @@ const hideMainPage = function(){
 
 const showDeleteSessionPage = function(){
     deleteSessionPage.style.display = 'block';
-    sessionSelectDeleteDropdown.innerHTML = "";
-    sessionSelectDeleteDropdown.innerHTML += `<option value="${sessieIdHier}">${sessieNaamHier}</option>`
+    // sessionSelectDeleteDropdown.innerHTML = "";
+    // sessionSelectDeleteDropdown.innerHTML += `<option value="${sessieIdHier}">${sessieNaamHier}</option>`
     hideMainPage();
 };
 
 const showDeleteSessionConfirmation = function(){
     deleteSesssionConfirmation.style.display = 'block';
     deleteSessionPage.style.display = 'none';
+    deleteTitle.innerHTML = `Weet je zeker dat je de sessie ${sessionSelectDeleteDropdown.value} wilt verwijderen?`;
 }
 
 const deleteSession = function(){
     // verwijder hier je de session
-
+    delTxt = `{"sessionid": "${sessionSelectDeleteDropdown.value}", "teacheremail": "${token.userEmail}"}`;
+    del = JSON.parse(delTxt);
+    sendData(`${BASEURI}session?code=${key}`, deletedSession, 'DELETE', del);
     showSessionMainPage();
+};
+const deletedSession = function(data){
+    console.log("deleted");
 };
 
 const showSessionIdPage = function(){
@@ -101,6 +109,7 @@ const showSessionIdPage = function(){
 
 const init = function(){
     console.log('Script geladen! 👍')
+    deleteTitle = document.getElementById("js-deleteTitle");
     newSessionName = document.getElementById("newSessionName");
     checkboxSession = document.getElementById("checkboxSession");
     sessionDropdown = document.querySelector('.js-sessionSelection');
