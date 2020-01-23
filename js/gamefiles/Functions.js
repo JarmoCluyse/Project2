@@ -65,7 +65,7 @@ var placeDecorations = function () {
       if (wichDeco <= 600 && wichDeco > 500) {
         decorations.create(DecorationX(),-250, 'bush1').setScale((Math.random() * 0.1 + 0.1));    
       }
-      if (wichDeco <= 700 && wichDeco > 600) {
+      if (wichDeco <= 650 && wichDeco > 600) {
         decorations.create(DecorationX(),-250, 'puddle').setScale((Math.random() * 0.05 + .08));    
       }
       if (wichDeco <= 990 && wichDeco > 998) {
