@@ -16,6 +16,14 @@ var mainMenuState = new Phaser.Class({
 
     create: function() {
         jsMainCard.classList.add("c-start-card");
+        if(mode == 'COOP'){
+            jsVideo.innerHTML = `<source src="/assets/vidCoop.m4v" type="video/mp4">
+            Your browser does not support the video tag.`;
+        }
+        else{
+            jsVideo.innerHTML = `<source src="/assets/vid.m4v" type="video/mp4">
+            Your browser does not support the video tag.`;
+        }
         jsGameStart.classList.remove('hide');
         jsSplashTitle.classList.remove('hide');
         jsGamePlay.classList.add('hide');
