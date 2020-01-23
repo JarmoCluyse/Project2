@@ -22,28 +22,13 @@ var preloadState = new Phaser.Class({
     this.load.image('grass1', 'assets/grass1.png');
     this.load.image('bush1', 'assets/bush.png');
     this.load.image('puddle', 'assets/puddle.png');
-    this.load.image('mct', 'assets/mct.png');
+    this.load.image('heart', 'assets/heart.png');
+    this.load.image('chest', 'assets/chest.png');
+    this.load.image('magnet', 'assets/magnet.png');
     },
     create: function() {
         console.log("Preload");
         game.scene.start('MainMenu');
-        setInterval(function() {
-            if (!gameOver && gameStarted){
-                console.log("placecars");
-                if (!PowerUpCoin){
-                    setcars();
-                }
-                distance -5;                 
-            }
-        }, distance);
-        setInterval(function() {
-            if (!gameOver && gameStarted){
-                console.log("placecars");
-                if (PowerUpCoin) {
-                    setCoins();
-                }                
-            }
-        }, 200);
     },
     update: function() {
         // Update objects & variables
