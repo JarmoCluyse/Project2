@@ -26,6 +26,7 @@ function keyListener(e){ // listen to keypress
   e.preventDefault(); // prevent the arrows from scrolling
   if(!gameStarted && !gameDone && !gameOver && e.key != "f"){ // when game hasn't started
     gameStarted = true; // start the game
+    startEvent = e;
     game.scene.stop('MainMenu'); // stop this screen
     game.scene.start('GamePlay'); // start the game
   }

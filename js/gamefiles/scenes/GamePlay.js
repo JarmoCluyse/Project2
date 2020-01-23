@@ -16,8 +16,11 @@ var gamePlayState = new Phaser.Class({
         loopHighscores = 1;
         getHighscores();
         // show game
+        jsMainCard.classList.remove("c-start-card");
+        jsGameQuestion.classList.add("hide");
         jsGameStart.classList.add('hide');
         jsGamePlay.classList.remove('hide');
+        jsSplashTitle.classList.add('hide');
         jsGameEnd.classList.add('hide');
         
         //creates an objects
@@ -36,6 +39,7 @@ var gamePlayState = new Phaser.Class({
             car = this.physics.add.sprite(300,730, 'car').setTint(carColor);
             car2 = this.physics.add.sprite(500,730, 'car').setTint(carColor2);
         }
+        moveCar(startEvent);
         speed = BeginSpeed;
 
         // on collision what happens
