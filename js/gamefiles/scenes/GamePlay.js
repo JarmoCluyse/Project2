@@ -23,6 +23,7 @@ var gamePlayState = new Phaser.Class({
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
         decorations = this.physics.add.group();
+        powerUps = this.physics.add.group();
         if(mode == 'SP'){
             // set the background
             this.background1 = this.add.tileSprite(400,400,800,800, 'road')
@@ -39,13 +40,13 @@ var gamePlayState = new Phaser.Class({
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
+        this.physics.add.overlap(car, powerUps, hitPowerUp, null, this);
         this.physics.add.overlap(obstacles, pickups, hitPickup, null, this);
-        this.physics.add.collider(decorations, decorations, obstaclesHit, null, this);
+        this.physics.add.collider(decorations, decorations, DecorationHit, null, this);
         if(mode == 'COOP'){
             this.physics.add.collider(car2, obstacles, hitObstacle, null, this);
             this.physics.add.overlap(car2, pickups, hitPickup, null, this);
         }
-
         //add callbacks for arrow key presses
         this.input.keyboard.on('keydown-RIGHT', moveCar);
         this.input.keyboard.on('keydown-UP', moveCar);
@@ -83,7 +84,6 @@ var gamePlayState = new Phaser.Class({
                 }
 
             }
-            if (decorations)
             for (i = 0; i < decorations.children.entries.length; i++) {
                 if (decorations.children.entries[i].y >= 950){
                     decorations.remove(decorations.children.entries[i], true);
@@ -92,6 +92,17 @@ var gamePlayState = new Phaser.Class({
                 }
                 else {
                     decorations.children.entries[i].y += speed;
+                }
+
+            }          
+            for (i = 0; i < powerUps.children.entries.length; i++) {
+                if (powerUps.children.entries[i].y >= 950){
+                    powerUps.remove(powerUps.children.entries[i], true);
+                    //console.log(pickups.children.entries.length);
+                    i--;
+                }
+                else {
+                    powerUps.children.entries[i].y += speed;
                 }
 
             }          
@@ -270,10 +281,17 @@ let hitPickup = function(car, pickup){
 
 }
 
-let obstaclesHit = function(obstacle1, obstacle2){
-    obstacle2.disableBody(true, true);//remove the pickup from the screen
+let hitPowerUp = function(car, powerUp){
+    powerUp.disableBody(true, true);//remove the pickup from the screen
+    PowerUpCoin = true;
+    for (i = obstacles.children.entries.length; i >= 0; i--) {
+        obstacles.remove(obstacles.children.entries[i], true);
+    }
+    sleep(2000).then(() => {PowerUpCoin = false; });
+}
 
-    
+let DecorationHit = function(decoration, dacoration2){
+    dacoration2.disableBody(true, true);//remove the pickup from the screen
 }
 
 let setcars = function(){
@@ -284,15 +302,18 @@ let setcars = function(){
     let randomPickups = getRandomInt(lanes - randomObstacles);
     let randomObstacles2 = getRandomobstakels();
     let randomPickups2 = getRandomInt(2 - randomObstacles);
+    let powerUpSet;
     if(mode == 'SP'){
         arr = [250,350,450, 550];
         arr = shuffle(arr);
+        powerUpPlace = getRandomInt(10)
     }
     if(mode == 'COOP'){
         arr = [250,350];
         arr = shuffle(arr);
         arr2 = [450, 550];
         arr2 = shuffle(arr2);
+        powerUpPlace = getRandomInt(20)
     }
     for (i = 0; i < randomObstacles; i++) {
         var ShuffleColorList = shuffle(Colors)
@@ -324,19 +345,35 @@ let setcars = function(){
         }
     }
     for (i = 0; i < randomPickups; i++) {
-        
-        pickups.create(arr[i+randomObstacles],-50, 'coin').setScale(.2);
+        if (powerUpPlace == 1){
+            powerUps.create(arr[i+randomObstacles],-50, 'mct').setScale(.08);
+            powerUpPlace = -1
+        }
+        else {
+            pickups.create(arr[i+randomObstacles],-50, 'coin').setScale(.2);
+        }
     }
     if(mode == 'COOP'){
         for (i = 0; i < randomPickups2; i++) {
-        
-            pickups.create(arr2[i+randomObstacles2],-50, 'coin').setScale(.2);
+            if (powerUpPlace == 2){
+                powerUps.create(arr2[i+randomObstacles2],-50, 'mct').setScale(.08);
+                powerUpPlace = -1
+            }
+            else {
+                pickups.create(arr2[i+randomObstacles2],-50, 'coin').setScale(.2);
+            }
         }
     }
     //  pickups.create(150,-50, 'coin').setScale(.2);
     //  if(mode == 'COOP'){
     //  pickups.create(650,-50, 'coin').setScale(.2);
     //  }
+}
+var setCoins = function name(params) {
+    arr = [250,350,450, 550];
+    for (i = 0; i < arr.length; i++) {
+        pickups.create(arr[i],-50, 'coin').setScale(.2);
+    } 
 }
 
 let getRandomobstakels = function() {
