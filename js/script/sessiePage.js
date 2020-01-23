@@ -67,6 +67,9 @@ const fillSessionDropdown = function(data){
         sessionDropdown.innerHTML += `<option value="${element.sessionId}">${element.sessionId} - ${element.beschrijving}</option>`;
         sessionSelectDeleteDropdown.innerHTML += `<option value="${element.sessionId}">${element.sessionId} - ${element.beschrijving}</option>`;
     });
+    resultsTitle.innerHTML = `Dit zijn de resultaten voor ${sessionDropdown.options[sessionDropdown.selectedIndex].innerHTML}:`
+    handleData(`${BASEURI}games?code=${key}`, showSessionResults, "GET",null);
+
 
 };
 
@@ -173,8 +176,8 @@ const init = function(){
     });
 
     sessionDropdown.addEventListener('change', function(){
-        handleData(`${BASEURI}games?code=${key}`, showSessionResults, "GET",null)
-        console.log(sessionDropdown.options[sessionDropdown.selectedIndex].value)  
+        handleData(`${BASEURI}games?code=${key}`, showSessionResults, "GET",null);
+        console.log(sessionDropdown.options[sessionDropdown.selectedIndex].value); 
 
         resultsTitle.innerHTML = `Dit zijn de resultaten voor ${sessionDropdown.options[sessionDropdown.selectedIndex].innerHTML}:`
 
