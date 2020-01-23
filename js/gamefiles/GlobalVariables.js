@@ -26,6 +26,7 @@ var questionsAnswered = 0;
 var noLaneChanges = 0;
 var noLaneChangesP2 = 0;
 var session = localStorage.getItem('Session');
+var sessionObject = localStorage.getItem('SessionObject');
 //------------------------------- //
 // Declare Game
 //------------------------------- //
