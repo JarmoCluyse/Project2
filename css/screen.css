@@ -825,6 +825,7 @@ input::placeholder {
 .c-players {
 	display: block;
 	width: 100%;
+	margin-bottom: 0;
 }
 
 .c-player1{
@@ -1802,7 +1803,7 @@ input::placeholder {
 }
 
 .c-session-id {
-	margin-top: calc(var(--global-baseline) * 3);
+	margin-top: 0;
 }
 
 
@@ -2103,7 +2104,7 @@ input::placeholder {
 }
 
 .u-grid-row__card-index {
-	grid-row: 1;
+	grid-row: 2;
 }
 
 .u-grid-column__add-question {
