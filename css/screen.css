@@ -1206,6 +1206,8 @@ input::placeholder {
 .c-main-card {
 	opacity: 1;
 }
+
+
 .c-blinking-text{
     animation:blinkingText 2s infinite;
 }
@@ -1767,8 +1769,10 @@ input::placeholder {
 	display: none;
 }
 
-.c-select-width {
-	width: 30%;
+@media (min-width: 768px){
+	.c-select-width {
+		width: 30%;
+	}
 }
 
 .c-deleteSession-card {
@@ -1816,6 +1820,14 @@ input::placeholder {
 
 .c-session-delete-title {
 	margin-top: calc(var(--global-baseline) * 2);
+}
+
+
+.c-session-account {
+	position: absolute;
+	top: 80px;
+	left: 700px;
+	z-index: 1;
 }
 
 .c-custom-option__fake-input--radio .c-custom-option__symbol {
@@ -2206,6 +2218,7 @@ input::placeholder {
 .u-grid-column__card-mainpage{
 	grid-column: span 8 / 15;
 }
+
 
 @media (min-width: 1440px){
 	.u-grid-column__card {
