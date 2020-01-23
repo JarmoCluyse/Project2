@@ -27,7 +27,9 @@ var gamePlayState = new Phaser.Class({
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
         decorations = this.physics.add.group();
-        powerUps = this.physics.add.group();
+        PowerUpCoins = this.physics.add.group();
+        PowerUpMagnets = this.physics.add.group();
+        PowerUphearts = this.physics.add.group();
         if(mode == 'SP'){
             // set the background
             this.background1 = this.add.tileSprite(400,400,800,800, 'road')
@@ -42,11 +44,24 @@ var gamePlayState = new Phaser.Class({
         moveCar(startEvent);
         speed = BeginSpeed;
 
+        PowerUpCoins.create(150,-50, 'chest').setScale(.08);
+        PowerUpMagnets.create(150,0, 'magnet').setScale(.08);
+        jsheartcount.innerHTML = PowerUpheart;
+        jschest.style.opacity = .6;
+        jsmagnet.style.opacity = .6;
+
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
-        this.physics.add.overlap(car, powerUps, hitPowerUp, null, this);
-        this.physics.add.overlap(obstacles, pickups, hitPickup, null, this);
+        this.physics.add.overlap(car, PowerUpCoins, hitPowerUpCoin, null, this);
+        this.physics.add.overlap(car, PowerUpMagnets, hitPowerUpMagnet, null, this);
+        this.physics.add.overlap(car, PowerUphearts, hitPowerUpHeart, null, this);
+        this.physics.add.collider(PowerUpCoins, obstacles, hitPowerUpObstacle, null, this);
+        this.physics.add.collider(PowerUpMagnets, obstacles, hitPowerUpObstacle, null, this);
+        this.physics.add.collider(PowerUphearts, obstacles, hitPowerUpObstacle, null, this);
+        this.physics.add.collider(PowerUpCoins, pickups, hitPowerUpObstacle, null, this);
+        this.physics.add.collider(PowerUpMagnets, pickups, hitPowerUpObstacle, null, this);
+        this.physics.add.collider(PowerUphearts, pickups, hitPowerUpObstacle, null, this);
         this.physics.add.collider(decorations, decorations, DecorationHit, null, this);
         if(mode == 'COOP'){
             this.physics.add.collider(car2, obstacles, hitObstacle, null, this);
@@ -61,10 +76,23 @@ var gamePlayState = new Phaser.Class({
     
     },
 
-    update: function() {        
-        if (!gameOver)
+    update: function() {
+        if (!gameOver && gameStarted)
         {
             placeScore();
+            if (counter >= distance){         
+                if (!PowerUpCoin){
+                    setcars();
+                    distance -= 0.025;
+
+                }
+                if (PowerUpCoin) {
+                    setCoins();
+                    distance -= 0.025;
+                }
+                counter = 0;
+            }
+            counter ++;   
             //move all moving items down by the speed variable
             this.background1.tilePositionY -= speed
             placeDecorations();
@@ -86,7 +114,37 @@ var gamePlayState = new Phaser.Class({
                     i--;
                 }
                 else {
-                    pickups.children.entries[i].y += (speed );
+                    if (!PowerUpMagnet){
+                        pickups.children.entries[i].y += (speed );
+                    }
+                    if (PowerUpMagnet){
+                        let xdiff
+                        if(mode == 'SP'){
+                            xdiff = (car.x -pickups.children.entries[i].x)
+                        }
+                        if(mode == 'COOP'){
+                            if (pickups.children.entries[i].x > 400){
+                                xdiff = (car2.x -pickups.children.entries[i].x)
+                            }
+                            if (pickups.children.entries[i].x < 400){
+                                xdiff = (car.x -pickups.children.entries[i].x)
+                            }
+                        }
+                        
+                        if ( xdiff > (Math.random() * 5  + 8) ){
+                            pickups.children.entries[i].x += (Math.random() * 10  + xdiff/20)
+                        } 
+                        else if ( xdiff < (Math.random() * 5  -13) ) {
+                            pickups.children.entries[i].x -= (Math.random() * 10  + -1*xdiff/20)
+                        }
+                        let ydiff = (car.y -pickups.children.entries[i].y)
+                        if ( ydiff > (Math.random() * 5  + 8) ){
+                            pickups.children.entries[i].y += (Math.random() * 10  + ydiff/20)
+                        } 
+                        else if ( ydiff < (Math.random() * 5  -13) ) {
+                            pickups.children.entries[i].y -= (Math.random() * 10  + -1*ydiff/20)
+                        }
+                    }
                 }
 
             }
@@ -101,14 +159,36 @@ var gamePlayState = new Phaser.Class({
                 }
 
             }          
-            for (i = 0; i < powerUps.children.entries.length; i++) {
-                if (powerUps.children.entries[i].y >= 950){
-                    powerUps.remove(powerUps.children.entries[i], true);
+            for (i = 0; i < PowerUpCoins.children.entries.length; i++) {
+                if (PowerUpCoins.children.entries[i].y >= 950){
+                    PowerUpCoins.remove(PowerUpCoins.children.entries[i], true);
                     //console.log(pickups.children.entries.length);
                     i--;
                 }
                 else {
-                    powerUps.children.entries[i].y += speed;
+                    PowerUpCoins.children.entries[i].y += speed;
+                }
+
+            }          
+            for (i = 0; i < PowerUpMagnets.children.entries.length; i++) {
+                if (PowerUpMagnets.children.entries[i].y >= 950){
+                    PowerUpMagnets.remove(PowerUpMagnets.children.entries[i], true);
+                    //console.log(pickups.children.entries.length);
+                    i--;
+                }
+                else {
+                    PowerUpMagnets.children.entries[i].y += speed;
+                }
+
+            }          
+            for (i = 0; i < PowerUphearts.children.entries.length; i++) {
+                if (PowerUphearts.children.entries[i].y >= 950){
+                    PowerUphearts.remove(PowerUphearts.children.entries[i], true);
+                    //console.log(pickups.children.entries.length);
+                    i--;
+                }
+                else {
+                    PowerUphearts.children.entries[i].y += speed;
                 }
 
             }          
@@ -269,17 +349,23 @@ let moveCar = function(e)
 }
 // if a collision happens
 let hitObstacle = function(car, obstacle){
-    getQuestions()
-    jsGamePlay.classList.add('hide');
-    jsGameQuestion.classList.remove('hide');
     for (i = obstacles.children.entries.length; i >= 0; i--) {
         obstacles.remove(obstacles.children.entries[i], true);
     }
     for (i = pickups.children.entries.length; i >= 0; i--) {
         pickups.remove(pickups.children.entries[i], true);
     }
-    gameOver = true;
-    sleep(2000).then(() => {answer = true;});
+    if (PowerUpheart <= 0){
+        getQuestions()
+        jsGamePlay.classList.add('hide');
+        jsGameQuestion.classList.remove('hide');
+        gameOver = true;
+        sleep(2000).then(() => {answer = true;});
+    }
+    else{
+        PowerUpheart --
+        jsheartcount.innerHTML = PowerUpheart;
+    }
 
     
 }
@@ -292,17 +378,36 @@ let hitPickup = function(car, pickup){
 
 }
 
-let hitPowerUp = function(car, powerUp){
+let hitPowerUpCoin = function(car, powerUp){
     powerUp.disableBody(true, true);//remove the pickup from the screen
     PowerUpCoin = true;
+    jschest.style.opacity = 1;
+    let oldDistance = distance;
+    distance = 10
     for (i = obstacles.children.entries.length; i >= 0; i--) {
         obstacles.remove(obstacles.children.entries[i], true);
     }
-    sleep(2000).then(() => {PowerUpCoin = false; });
+    sleep(2000).then(() => {PowerUpCoin = false; distance = oldDistance; jschest.style.opacity = .6;});
+}
+let hitPowerUpMagnet = function(car, powerUp){
+    powerUp.disableBody(true, true);//remove the pickup from the screen
+    PowerUpMagnet = true;
+    jsmagnet.style.opacity = 1;
+    sleep(10000).then(() => {PowerUpMagnet = false; jsmagnet.style.opacity = .6;});
+}
+let hitPowerUpHeart = function(car, powerUp){
+    powerUp.disableBody(true, true);//remove the pickup from the screen
+    PowerUpheart += 1;
+    jsheartcount.innerHTML = PowerUpheart;
+    console.log(PowerUpheart);
+    
 }
 
 let DecorationHit = function(decoration, dacoration2){
     dacoration2.disableBody(true, true);//remove the pickup from the screen
+}
+let hitPowerUpObstacle = function (powerup, other) {
+    other.disableBody(true, true);
 }
 
 let setcars = function(){
@@ -312,18 +417,28 @@ let setcars = function(){
     let randomPickups = getRandomInt(lanes - randomObstacles);
     let randomObstacles2 = getRandomobstakels();
     let randomPickups2 = getRandomInt(2 - randomObstacles);
-    let powerUpSet;
+    let power = getRandomInt(100)
+    let powerarr = [250,350,450, 550];
+    powerarr = shuffle(powerarr);
+    if (power <= 5 && power > 0){
+        PowerUpCoins.create(powerarr[0],-50, 'chest').setScale(.08);
+        
+    }
+    if (power <= 10 && power > 5){
+        PowerUpMagnets.create(powerarr[0],0, 'magnet').setScale(.08);
+    }
+    if (power <= 15 && power > 10){
+        PowerUphearts.create(powerarr[0],-100, 'heart').setScale(.006);
+    }
     if(mode == 'SP'){
         arr = [250,350,450, 550];
         arr = shuffle(arr);
-        powerUpPlace = getRandomInt(10)
     }
     if(mode == 'COOP'){
         arr = [250,350];
         arr = shuffle(arr);
         arr2 = [450, 550];
         arr2 = shuffle(arr2);
-        powerUpPlace = getRandomInt(20)
     }
     for (i = 0; i < randomObstacles; i++) {
         var ShuffleColorList = shuffle(Colors)
@@ -355,23 +470,12 @@ let setcars = function(){
         }
     }
     for (i = 0; i < randomPickups; i++) {
-        if (powerUpPlace == 1){
-            powerUps.create(arr[i+randomObstacles],-50, 'mct').setScale(.08);
-            powerUpPlace = -1
-        }
-        else {
-            pickups.create(arr[i+randomObstacles],-50, 'coin').setScale(.2);
-        }
+        pickups.create(arr[i+randomObstacles],(Math.random() * 5  -55), 'coin').setScale(.2);
+
     }
     if(mode == 'COOP'){
         for (i = 0; i < randomPickups2; i++) {
-            if (powerUpPlace == 2){
-                powerUps.create(arr2[i+randomObstacles2],-50, 'mct').setScale(.08);
-                powerUpPlace = -1
-            }
-            else {
-                pickups.create(arr2[i+randomObstacles2],-50, 'coin').setScale(.2);
-            }
+            pickups.create(arr2[i+randomObstacles2],(Math.random() * 5  -55), 'coin').setScale(.2);                
         }
     }
     //  pickups.create(150,-50, 'coin').setScale(.2);
@@ -382,7 +486,7 @@ let setcars = function(){
 var setCoins = function name(params) {
     arr = [250,350,450, 550];
     for (i = 0; i < arr.length; i++) {
-        pickups.create(arr[i],-50, 'coin').setScale(.2);
+        pickups.create(arr[i],(Math.random() * 5 -50), 'coin').setScale(.2);
     } 
 }
 
@@ -405,10 +509,6 @@ let increasing = function(){
     if (increase){
         if (waitIncrease >= speedIncrease){
             speed += increaseValue;
-            console.log(speed);
-            console.log(waitIncrease);
-            
-            // console.log(speed);
             
             waitIncrease = 0;
         }

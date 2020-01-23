@@ -1293,6 +1293,23 @@ input::placeholder {
 	padding: 20px;
 	grid-column: 0;
 	grid-row: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.c-game-icons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+.c-game-icons img {
+	max-width: 80px;
+	max-height: 80px;
+}
+.c-hearts{
+	align-self: center;
+	margin: auto;
 }
 .c-game-highscore {
 	padding: 20px;

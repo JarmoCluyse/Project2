@@ -50,7 +50,6 @@ var placeDecorations = function () {
   if (placeDeco > 70){
       let wichDeco = getRandomInt(1000);
       // wichDeco = 726;
-      console.log('plant tree');
       if (wichDeco <= 30) {
           decorations.create(DecorationX(),-250, 'tree1').setScale(Math.random() * 0.01 + .08);
       }
