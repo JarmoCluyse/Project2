@@ -51,6 +51,7 @@ var powerUps;
 var score = 0; // score of the game
 var waitIncrease = 0; // variable to count the waiting
 var speed = 5; // current speed of the game
+var PowerUpCoin = false
 var distance = 3000;
 var Colors = [];
 for (var keys in ColorList) {
