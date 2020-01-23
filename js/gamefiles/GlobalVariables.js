@@ -16,6 +16,7 @@ var startEvent;
 //------------------------------- //
 // DB
 //------------------------------- //
+var token = JSON.parse(localStorage.getItem('LoginToken'));
 const BASEURI = 'https://project2driveacar.azurewebsites.net/api/v2/';
 var player = localStorage.getItem("Player");
 var player2 = localStorage.getItem("Player2");
@@ -24,7 +25,8 @@ var coinsCollected = 0;
 var questionsAnswered = 0;
 var noLaneChanges = 0;
 var noLaneChangesP2 = 0;
-var session;
+var session = localStorage.getItem('Session');
+var sessionObject = localStorage.getItem('SessionObject');
 //------------------------------- //
 // Declare Game
 //------------------------------- //

@@ -10,7 +10,6 @@ let cb1;
 let cb2;
 let cb3;
 let cb4;
-let token;
 
 const loggedOut = function(data){
 	window.location.href = 'loginpage.html';
@@ -460,7 +459,6 @@ const checkedState = function (checkboxElement) {
 const init = function () {
 	console.log('Script geladen! 👍');
 	// grab all the questions as the page is loading
-	token = JSON.parse(localStorage.getItem('LoginToken'));
 	getQuestions();
 	newQuestionButton = document.querySelector('.js-newQuestion');
 	mainCard = document.querySelector('.c-main-card');

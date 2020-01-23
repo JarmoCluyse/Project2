@@ -16,6 +16,8 @@ var mainMenuState = new Phaser.Class({
 
     create: function() {
         jsMainCard.classList.add("c-start-card");
+        localStorage.removeItem('SessionObject');
+        handleData(`${BASEURI}session/${session}?code=${key}`, setSession);
         if(mode == 'COOP'){
             jsVideo.innerHTML = `<source src="/assets/vidCoop.m4v" type="video/mp4">
             Your browser does not support the video tag.`;
@@ -45,3 +47,7 @@ var mainMenuState = new Phaser.Class({
 });
 // Add scene to list of scenes
 myGame.scenes.push(mainMenuState);
+setSession = function(data){
+    console.log(data);
+    localStorage.setItem('SessionObject', JSON.stringify(data));
+};
