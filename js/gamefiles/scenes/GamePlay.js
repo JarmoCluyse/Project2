@@ -23,6 +23,7 @@ var gamePlayState = new Phaser.Class({
         obstacles = this.physics.add.group();
         pickups = this.physics.add.group();
         decorations = this.physics.add.group();
+        powerUps = this.physics.add.group();
         if(mode == 'SP'){
             // set the background
             this.background1 = this.add.tileSprite(400,400,800,800, 'road')
@@ -39,6 +40,7 @@ var gamePlayState = new Phaser.Class({
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
+        this.physics.add.overlap(car, powerUps, hitPowerUp, null, this);
         this.physics.add.overlap(obstacles, pickups, hitPickup, null, this);
         this.physics.add.collider(decorations, decorations, obstaclesHit, null, this);
         if(mode == 'COOP'){
@@ -268,6 +270,12 @@ let hitPickup = function(car, pickup){
     score += scoreCoin;
     placeScore();
 
+}
+
+let hitPowerUp = function(car, powerUp){
+    // pickup the coin
+    // console.log("pickup");
+    pickup.disableBody(true, true);//remove the pickup from the screen
 }
 
 let obstaclesHit = function(obstacle1, obstacle2){

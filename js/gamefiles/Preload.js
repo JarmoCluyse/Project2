@@ -22,6 +22,7 @@ var preloadState = new Phaser.Class({
     this.load.image('grass1', 'assets/grass1.png');
     this.load.image('bush1', 'assets/bush.png');
     this.load.image('puddle', 'assets/puddle.png');
+    this.load.image('MCT', 'assets/mct.png');
     },
     create: function() {
         console.log("Preload");
