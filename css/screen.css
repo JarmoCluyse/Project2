@@ -35,7 +35,7 @@
 
 	/* global page settings */
 	--global-html-color: var(--global-color-neutral-xxxx-dark);
-	--global-html-backgroundColor: var(--global-color-alpha-x-dark);
+	--global-html-backgroundColor: #009247;
 	--global-selection-backgroundColor: var(--global-color-alpha);
 
 	/* borders */
@@ -438,12 +438,15 @@ input::placeholder {
 #COMPONENTS
 \*------------------------------------*/
 
-.c-background-img-mainpage{
-	background-image: url('/assets/road.png'), url('/assets/road.png');
-	background-repeat: repeat-y, repeat-y;
-	background-position: left, right;
-	background-size: 450px;
-	background-color: #009247;
+@media (min-width: 768px){
+	.c-background-img-mainpage{
+		background-image: url('/assets/roadBackground.png'), url('/assets/roadBackground.png'), url('/assets/background.png');
+		background-repeat: repeat-y, repeat-y, repeat;
+		background-position: left, right, center;
+		background-size: 450px, 450px, 500px;
+		background-color: var(--global-html-backgroundColor);
+		overflow: hidden;
+	}
 }
 
 
@@ -470,6 +473,7 @@ input::placeholder {
 		grid-template-rows: repeat(auto, auto);
 	}
 }
+
 
 .c-grid__item {
 	grid-column: span 10;
@@ -498,6 +502,79 @@ input::placeholder {
 	display: block;
 	position: relative;
 }
+
+.c-animated-car1{
+	display: none;
+}
+
+.c-animated-car2{
+	display: none;
+}
+
+.c-animated-car3{
+	display: none;
+}
+
+.c-animated-car4{
+	display: none;
+}
+
+@media (min-width: 768px){
+	.c-animated-car1{
+		display: block;
+		position: absolute;
+		bottom: 10px;
+		left: 120px;
+		animation-name: car;
+		animation-duration: 3s;
+		animation-iteration-count: infinite;
+	}
+	
+	.c-animated-car2{
+		display: block;
+		position: absolute;
+		bottom: 10px;
+		right: 180px;
+		animation-name: car;
+		animation-duration: 5s;
+		animation-iteration-count: infinite;
+	}
+
+	.c-animated-car3{
+		display: block;
+		position: absolute;
+		bottom: 10px;
+		left: 180px;
+		animation-name: car3;
+		animation-duration: 7s;
+		animation-iteration-count: infinite;
+	}
+
+	.c-animated-car4{
+		display: block;
+		position: absolute;
+		bottom: 10px;
+		right: 290px;
+		animation-name: car;
+		animation-duration: 9s;
+		animation-iteration-count: infinite;
+	}
+}
+
+
+
+@media(min-width: 1024px) {
+	@keyframes car {
+		0% {bottom: -100px;}
+		100% {bottom: 1200px;}
+	}
+
+	@keyframes car3 {
+		0% {bottom: -100px;}
+		100% {bottom: 1300px;}
+	}
+}
+
 
 
 .c-card__players {
@@ -1129,6 +1206,7 @@ input::placeholder {
 	flex-direction: column;
 	align-items: center;
 	width: 270px;
+	
 }
 
 @media(min-width: 768px){
@@ -1619,6 +1697,7 @@ input::placeholder {
 .c-session-id {
 	margin-top: calc(var(--global-baseline) * 3);
 }
+
 
 .c-login__title {
 	font-size: 24px;
