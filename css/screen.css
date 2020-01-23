@@ -611,7 +611,6 @@ input::placeholder {
 
 .c-card__dropdowns {
 	display: block;
-	margin-bottom: calc(var(--global-baseline) * 2);
 }
 
 .c-carSpeed {
@@ -1380,7 +1379,7 @@ input::placeholder {
 
 .c-card__player1-title {
 	padding-top: var(--global-baseline);
-	font-size: 32px;
+	font-size: 24px;
 	line-height: var(--global-whitespace);
 	color: var(--global-color-alpha-light);
 	margin-right: calc(var(--global-baseline) * 3);
@@ -1395,7 +1394,7 @@ input::placeholder {
 
 .c-card__carColor-title {
 	padding-top: var(--global-baseline);
-	font-size: 32px;
+	font-size: 24px;
 	line-height: var(--global-whitespace);
 	color: var(--global-color-alpha-light);
 	margin-right: calc(var(--global-baseline) * 3);
