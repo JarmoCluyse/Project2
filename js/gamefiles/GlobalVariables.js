@@ -43,6 +43,10 @@ var jsGamePlay = document.querySelector(".js-gamePlay") // game html
 var jsGameStart = document.querySelector(".js-gameStart") // gamestart html
 var jsGameEnd = document.querySelector(".js-gameEnd") // gamestart html
 var jsGameQuestion = document.querySelector(".js-gameQuestion") // gamestart html
+var jschest = document.querySelector(".js-chest") // gamestart html
+var jsmagnet = document.querySelector(".js-magnet") // gamestart html
+var jsheart = document.querySelector(".js-heart") // gamestart html
+var jsheartcount = document.querySelector(".js-heartcount") // gamestart html
 var lanes;
 var CurrentQuestion;
 var ShuffledAnswers;
