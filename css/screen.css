@@ -1162,7 +1162,7 @@ input::placeholder {
 	opacity: 1;
 }
 .c-blinking-text{
-    animation:blinkingText 1.2s infinite;
+    animation:blinkingText 2s infinite;
 }
 @keyframes blinkingText{
     0%{     color: var(--global-color-neutral-xxx-dark);    }
