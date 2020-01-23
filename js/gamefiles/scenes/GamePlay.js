@@ -347,7 +347,7 @@ let setcars = function(){
     for (i = 0; i < randomPickups; i++) {
         if (powerUpPlace == 1){
             powerUps.create(arr[i+randomObstacles],-50, 'mct').setScale(.08);
-
+            powerUpPlace = -1
         }
         else {
             pickups.create(arr[i+randomObstacles],-50, 'coin').setScale(.2);
@@ -357,7 +357,7 @@ let setcars = function(){
         for (i = 0; i < randomPickups2; i++) {
             if (powerUpPlace == 2){
                 powerUps.create(arr2[i+randomObstacles2],-50, 'mct').setScale(.08);
-
+                powerUpPlace = -1
             }
             else {
                 pickups.create(arr2[i+randomObstacles2],-50, 'coin').setScale(.2);
