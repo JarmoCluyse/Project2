@@ -46,6 +46,9 @@ var gamePlayState = new Phaser.Class({
 
         PowerUpCoins.create(150,-50, 'chest').setScale(.08);
         PowerUpMagnets.create(150,0, 'magnet').setScale(.08);
+        jsheartcount.innerHTML = PowerUpheart;
+        jschest.style.opacity = .6;
+        jsmagnet.style.opacity = .6;
 
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
@@ -354,6 +357,7 @@ let hitObstacle = function(car, obstacle){
     }
     else{
         PowerUpheart --
+        jsheartcount.innerHTML = PowerUpheart;
     }
 
     
@@ -371,21 +375,24 @@ let hitPickup = function(car, pickup){
 let hitPowerUpCoin = function(car, powerUp){
     powerUp.disableBody(true, true);//remove the pickup from the screen
     PowerUpCoin = true;
+    jschest.style.opacity = 1;
     let oldDistance = distance;
     distance = 10
     for (i = obstacles.children.entries.length; i >= 0; i--) {
         obstacles.remove(obstacles.children.entries[i], true);
     }
-    sleep(2000).then(() => {PowerUpCoin = false; distance = oldDistance;});
+    sleep(2000).then(() => {PowerUpCoin = false; distance = oldDistance; jschest.style.opacity = .6;});
 }
 let hitPowerUpMagnet = function(car, powerUp){
     powerUp.disableBody(true, true);//remove the pickup from the screen
     PowerUpMagnet = true;
-    sleep(10000).then(() => {PowerUpMagnet = false;});
+    jsmagnet.style.opacity = 1;
+    sleep(10000).then(() => {PowerUpMagnet = false; jsmagnet.style.opacity = .6;});
 }
 let hitPowerUpHeart = function(car, powerUp){
     powerUp.disableBody(true, true);//remove the pickup from the screen
     PowerUpheart += 1;
+    jsheartcount.innerHTML = PowerUpheart;
     console.log(PowerUpheart);
     
 }
