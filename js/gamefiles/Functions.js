@@ -94,10 +94,23 @@ var getQuestions = function () {
 	handleData(`${BASEURI}questions?code=${key}`, showQuestion)
 };
 const showQuestion = function (data) {
+  s = JSON.parse(localStorage.getItem('SessionObject'));
+  var questionsFiltered = data;
+  if(s != null){
+    if (s.teacherQuestionsOnly){
+      questionsFiltered = questionsFiltered.filter(obj => {
+        return obj.teacherEmail === s.teacherEmail;
+        });
+    }
+    questionsFiltered = questionsFiltered.filter(obj => {
+      return obj.subject === s.forcedSubject;
+      });
+    console.log(questionsFiltered);
+  }
   let ans = [0,1,2, 3];
   ShuffledAnswers = ans;
   ans = shuffle(ans);
-  let question = data[getRandomInt(data.length)];
+  let question = questionsFiltered[getRandomInt(questionsFiltered.length)];
   CurrentQuestion = question;
   console.log(question);
   jsGameQuestion.innerHTML = `

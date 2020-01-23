@@ -16,6 +16,7 @@ var mainMenuState = new Phaser.Class({
 
     create: function() {
         jsMainCard.classList.add("c-start-card");
+        localStorage.removeItem('SessionObject');
         handleData(`${BASEURI}session/${session}?code=${key}`, setSession);
         if(mode == 'COOP'){
             jsVideo.innerHTML = `<source src="/assets/vidCoop.m4v" type="video/mp4">
