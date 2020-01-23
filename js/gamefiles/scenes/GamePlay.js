@@ -44,6 +44,9 @@ var gamePlayState = new Phaser.Class({
         moveCar(startEvent);
         speed = BeginSpeed;
 
+        PowerUpCoins.create(150,-50, 'chest').setScale(.08);
+        PowerUpMagnets.create(150,0, 'magnet').setScale(.08);
+
         // on collision what happens
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
@@ -111,7 +114,19 @@ var gamePlayState = new Phaser.Class({
                         pickups.children.entries[i].y += (speed );
                     }
                     if (PowerUpMagnet){
-                        let xdiff = (car.x -pickups.children.entries[i].x)
+                        let xdiff
+                        if(mode == 'SP'){
+                            xdiff = (car.x -pickups.children.entries[i].x)
+                        }
+                        if(mode == 'COOP'){
+                            if (pickups.children.entries[i].x > 400){
+                                xdiff = (car2.x -pickups.children.entries[i].x)
+                            }
+                            if (pickups.children.entries[i].x < 400){
+                                xdiff = (car.x -pickups.children.entries[i].x)
+                            }
+                        }
+                        
                         if ( xdiff > (Math.random() * 5  + 8) ){
                             pickups.children.entries[i].x += (Math.random() * 10  + xdiff/20)
                         } 
