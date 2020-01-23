@@ -1383,9 +1383,7 @@ input::placeholder {
 	line-height: var(--global-whitespace);
 	color: var(--global-color-alpha-light);
 	margin-right: calc(var(--global-baseline) * 3);
-	margin-top: calc(var(--global-baseline) * 2);
 	padding-left: 0;
-	margin-bottom: calc(var(--global-baseline) * 2);
 	display: block;
 }
 
@@ -1398,8 +1396,6 @@ input::placeholder {
 	line-height: var(--global-whitespace);
 	color: var(--global-color-alpha-light);
 	margin-right: calc(var(--global-baseline) * 3);
-	margin-top: calc(var(--global-baseline) * 2);
-	margin-bottom: calc(var(--global-baseline) * 2);
 	display: block;
 }
 
