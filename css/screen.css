@@ -192,8 +192,13 @@ li ol {
 
 td,
 th {
-	border: 1px solid var(--global-color-alpha-x-dark);
+	border: 1px solid var(--global-color-alpha-lightest);
 	border-collapse: collapse;
+	color: var(--global-color-neutral-xxx-dark);
+	font-size: 18px;
+	padding: calc(var(--global-baseline) / 2);
+	padding-left: calc(var(--global-baseline) * 2);
+	padding-right: calc(var(--global-baseline) * 2);
 }
 
 td {
