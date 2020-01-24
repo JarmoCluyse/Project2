@@ -758,6 +758,19 @@ input::placeholder {
 }
 
 
+.c-custom-select__session {
+	width: 80%;
+	margin-left: 0;
+}
+
+@media(min-width: 768px){
+	.c-custom-select__session{
+		width: 50%;
+		margin-left: calc(var(--global-baseline) * 4);
+	}
+}
+
+
 @media (min-width: 768px){
 	.c-custom-select{
 		width: 35%;
@@ -977,6 +990,8 @@ input::placeholder {
 	border-radius: var(--global-borderRadius);
 }
 
+
+
 .c-pick-subject{
 	display: block;
 }
@@ -990,12 +1005,22 @@ input::placeholder {
 .c-session-card {
 	display: flex;
 	justify-content: center;
+	width: 310px;
 }
 
-.c-custom-select__session {
-	width: 50%;
-	margin-left: calc(var(--global-baseline) * 4);
+@media(min-width: 768px){
+	.c-session-card{
+		width: 500px;
+	}
 }
+
+@media(min-width: 1024px){
+	.c-session-card {
+		width: auto;
+	}
+}
+
+
 
 .c-session-card-select {
 	display: flex;
@@ -1190,7 +1215,12 @@ input::placeholder {
 	display: flex;
 	justify-content: center;
 	margin-top: calc(var(--global-baseline) * 4);
-	margin-left: calc(var(--global-baseline) * 4);
+}
+
+@media(min-width: 768px){
+	.c-newSessionButton{
+		margin-left: calc(var(--global-baseline) * 4);
+	}
 }
 
 .c-button:active {
@@ -1374,7 +1404,7 @@ input::placeholder {
 
 @media(min-width: 768px){
 	.c-card__no-grid-session{
-		top: 100px;
+		top: 150px;
 		left: 10%;
 		width: 80%;
 	}
@@ -1880,6 +1910,7 @@ input::placeholder {
 .c-newSession-card{
 	display: none;
 }
+
 .c-lists {
 	display: block;
 }
