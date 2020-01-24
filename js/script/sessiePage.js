@@ -163,7 +163,7 @@ const init = function(){
     token = JSON.parse(localStorage.getItem("LoginToken"));
 	console.log(token);
 	if (token != null){
-		sendData(`${BASEURI}login/token?code=${key}`, checkCallbackAdmin, "POST", token);
+		sendData(`${BASEURI}login/token?code=${key}`, checkCallbackSessie, "POST", token);
 	}
 	else{
 		window.location.href = "loginpage.html";
