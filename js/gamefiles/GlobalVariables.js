@@ -43,20 +43,30 @@ var jsGamePlay = document.querySelector(".js-gamePlay") // game html
 var jsGameStart = document.querySelector(".js-gameStart") // gamestart html
 var jsGameEnd = document.querySelector(".js-gameEnd") // gamestart html
 var jsGameQuestion = document.querySelector(".js-gameQuestion") // gamestart html
+var jschest = document.querySelector(".js-chest") // gamestart html
+var jsmagnet = document.querySelector(".js-magnet") // gamestart html
+var jsheart = document.querySelector(".js-heart") // gamestart html
+var jsheartcount = document.querySelector(".js-heartcount") // gamestart html
 var lanes;
 var CurrentQuestion;
 var ShuffledAnswers;
+var counter = 0;
 var car; // users
 var car2; // users
 var obstacles; // obstacles
 var pickups; // pickups
 var decorations;
-var powerUps;
+var PowerUpCoins;
+var PowerUpMagnets;
+var PowerUphearts;
+var powerUps2;
 var score = 0; // score of the game
 var waitIncrease = 0; // variable to count the waiting
 var speed = 5; // current speed of the game
-var PowerUpCoin = false
-var distance = 3000;
+var PowerUpCoin = false;
+var PowerUpMagnet = false;
+var PowerUpheart = 1;
+var distance = 100;
 var Colors = [];
 for (var keys in ColorList) {
   Colors.push(ColorList[keys])
