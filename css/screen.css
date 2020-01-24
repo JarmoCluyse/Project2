@@ -835,7 +835,7 @@ input::placeholder {
 
 @media(min-width: 768px){
 	.c-custom-select__session-title{
-		width: 50%;
+		width: 45%;
 		margin-left: calc(var(--global-baseline) * 4);
 	}
 }
