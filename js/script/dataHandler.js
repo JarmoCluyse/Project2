@@ -16,9 +16,9 @@ const handleData = function (url, callback, method = 'GET', body = null) {
       console.info('verwerken data');
       callback(jsonObject);
     })
-    // .catch(function (error) {
-    //   console.error(`fout bij verwerken json ${error}`);
-    // });
+    .catch(function (error) {
+      console.error(`fout bij verwerken json ${error}`);
+    });
 };
 
 const sendData = function (url, callback, method, body) {

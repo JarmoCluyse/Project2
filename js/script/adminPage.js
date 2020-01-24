@@ -340,6 +340,7 @@ const showEditQuestionPage = function (qid) {
 			dropDown.selectedIndex = counter;
 		}
 		counter += 1;
+		
 	}
 
 	// fill in the inputs with the correct data
@@ -483,6 +484,7 @@ const init = function () {
 	dropDownForCards = document.getElementById('dropDownForCards');
 	logoutButton = document.getElementById('logout');
 	sessionButton = document.getElementById('sessions');
+	startGameButton = document.getElementById('game');
 
 	logoutButton.addEventListener('click', function(){
 		logOut(JSON.parse(localStorage.getItem('LoginToken')), loggedOut);
@@ -497,6 +499,10 @@ const init = function () {
 		element.addEventListener('click', function () {
 			checkedState(element);
 		});
+	});
+
+	startGameButton.addEventListener('click', function(){
+		window.location.href = 'index.html';
 	});
 
 	deleteSubjectButton.addEventListener('click', function(){

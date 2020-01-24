@@ -101,6 +101,11 @@ const init = function() {
 	sliderObstacle = document.querySelector('.js-sliderObstacle');
 	outputCar = document.querySelector('.js-outputCar');
 	outputObstacle = document.querySelector('.js-outputObstacle');
+	teacherButton = document.getElementById('teacher');
+
+	teacherButton.addEventListener('click', function(){
+		window.location.href = 'loginpage.html';
+	});
 
 	sliderFunction();
 	dropdownFunction();

@@ -142,6 +142,7 @@ const init = function(){
     settingsButton = document.getElementById('settings');
     accountButton = document.querySelector('.c-session-account');
     newSessionClose = document.getElementById('newSessionClose');
+    startGameButton = document.getElementById('game');
     handleData(`${BASEURI}sessions/${token.userEmail}?code=${key}`, fillSessionDropdown);
 
     //fillSessionDropdown();
@@ -170,6 +171,10 @@ const init = function(){
         location.reload();
     });
 
+    
+	startGameButton.addEventListener('click', function(){
+		window.location.href = 'index.html';
+	});
 
 
     createNewSessionButton.addEventListener('click', function(){
