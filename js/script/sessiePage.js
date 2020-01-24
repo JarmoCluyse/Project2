@@ -1,7 +1,8 @@
 let id;
+let filteredGames;
 const showSessionResults = function(data){
     currentId = sessionDropdown.options[sessionDropdown.selectedIndex].value;
-    var filteredGames = data.filter(obj => {
+    filteredGames = data.filter(obj => {
         return obj.session === currentId;
       });
       console.log(filteredGames);  
@@ -23,6 +24,38 @@ const showSessionResults = function(data){
     });
      
 
+};
+
+const sortGames = function(by){
+    if (by == "player"){
+        filteredGames = filteredGames.sort((a, b) => (a.player > b.player) ? 1 : -1);
+    }
+    else if (by == "score"){
+        filteredGames = filteredGames.sort((a, b) => (a.score < b.score) ? 1 : -1);
+    }
+    else if (by == "laneChanges"){
+        filteredGames = filteredGames.sort((a, b) => (a.numberOfLaneChanges < b.numberOfLaneChanges) ? 1 : -1);
+    }
+    else if (by == "questionsAnswered"){
+        filteredGames = filteredGames.sort((a, b) => (a.questionsAnswered < b.questionsAnswered) ? 1 : -1);
+    }
+    sessionTable = document.querySelector('.c-table');
+    sessionTable.innerHTML =    `<tr class="c-table-row">
+                                    <th>Naam</th>
+                                    <th>Score</th> 
+                                    <th>Aantal bewegingen</th>
+                                    <th>Juiste vragen</th>
+                                </tr>`;
+                       
+    filteredGames.forEach(element =>{
+        sessionTable.innerHTML +=   `<tr class="c-table-row">
+        <td>${element.player}</td>
+        <td>${element.score}</td>
+        <td>${element.numberOfLaneChanges}</td>
+        <td>${element.questionsAnswered}</td>
+    </tr>`
+    });
+    
 };
 
 
@@ -116,9 +149,26 @@ const loggedOut = function(data){
 const settingsPage = function(){
     window.location.href = 'adminpage.html';
 }
-
+const checkCallbackSessie = function(data){//This function checks if the logintoken stored in the browser is still valid
+	if (data.ok){
+	}
+	else{
+		localStorage.removeItem('LoginToken');
+		window.location.href = "loginpage.html";
+	}
+	
+};
 const init = function(){
     console.log('Script geladen! 👍')
+    token = JSON.parse(localStorage.getItem("LoginToken"));
+	console.log(token);
+	if (token != null){
+		sendData(`${BASEURI}login/token?code=${key}`, checkCallbackAdmin, "POST", token);
+	}
+	else{
+		window.location.href = "loginpage.html";
+	}
+    sortSelect = document.getElementById("sortSelect");
     deleteTitle = document.getElementById("js-deleteTitle");
     newSessionName = document.getElementById("newSessionName");
     checkboxSession = document.getElementById("checkboxSession");
@@ -204,6 +254,10 @@ const init = function(){
     sessionDropdown.addEventListener('change', function(){
         handleData(`${BASEURI}games?code=${key}`, showSessionResults, "GET",null);
         console.log(sessionDropdown.options[sessionDropdown.selectedIndex].value); 
+
+    });
+    sortSelect.addEventListener('change', function(){
+        sortGames(sortSelect.value);
 
     });
 }
