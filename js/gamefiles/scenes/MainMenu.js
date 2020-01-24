@@ -18,7 +18,6 @@ var mainMenuState = new Phaser.Class({
         // -------------------------- //
         // make front page
         // -------------------------- //
-        jsMainCard.classList.add("c-start-card");
         localStorage.removeItem('SessionObject');
         handleData(`${BASEURI}session/${session}?code=${key}`, setSession);
         if(mode == 'COOP'){ // change video if coop 
@@ -32,6 +31,7 @@ var mainMenuState = new Phaser.Class({
         // -------------------------- //
         // Hide things
         // -------------------------- //
+        jsMainCard.classList.add("c-start-card");
         jsGameStart.classList.remove('hide');
         jsGamePlay.classList.add('hide');
         jsGameQuestion.classList.add('hide');

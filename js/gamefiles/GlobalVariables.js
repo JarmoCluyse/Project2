@@ -1,17 +1,22 @@
 //------------------------------- //
 // Things to Edit
 //------------------------------- //
+var speedIncrease = 4; // the rate of increasing
+var increaseValue = 0.5; // value that we increase with
+var waitquestion = 7; // question time out
+var DriveScore = 5; // score for driving
+var scoreCoin = 10; // score when you pickup something
+var maxhearts = 3; // max hearts in a game
+var ColorList = {'blue':'0x0000ff','red': '0xff0000','green': '0x00ff00','yellow': '0xffff00','pink': '0xff77ff','purple': '0xff00ff','white':'0xffffff','black':'0x101010' }
+var startEvent;
+//------------------------------- //
+// local storage
+//------------------------------- //
 var BeginSpeed = localStorage.getItem("BeginSpeed");
 var mode = localStorage.getItem("Mode");
 var increase =  localStorage.getItem("increase"); // if you can increase the speed while playing the game
-var speedIncrease = 4; // the rate of increasing
-var increaseValue = 0.5; // value that we increase with
-var DriveScore = 5; // score for driving
-var scoreCoin = 10; // score when you pickup something
-var ColorList = {'blue':'0x0000ff','red': '0xff0000','green': '0x00ff00','yellow': '0xffff00','pink': '0xff77ff','purple': '0xff00ff','white':'0xffffff','black':'0x101010' }
 var carColor = ColorList[localStorage.getItem("Color")]; // current color of the car
 var carColor2 = ColorList[localStorage.getItem("Color2")]; // current color of the car
-var startEvent;
 //------------------------------- //
 // DB
 //------------------------------- //
@@ -74,6 +79,7 @@ var PowerUphearts;
 var PowerUpCoin = false;
 var PowerUpMagnet = false;
 var PowerUpheart = false;
+var heartsCounter = 0;
 //------------------------------- //
 // Question
 //------------------------------- //
@@ -99,7 +105,7 @@ var questionTimer = 10;
 //------------------------------- //
 // testing
 //------------------------------- //
-var testing = true
+var testing = true;
 //------------------------------- //
 // Default values 
 //------------------------------- //

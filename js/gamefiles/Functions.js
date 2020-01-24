@@ -36,6 +36,7 @@ function keyListener(e){ // listen to keypress
         score = 0; // put score back to 0
         questionsAnswered = 0
         distance = 3000;
+        heartsCounter = 0;
         placeScore(); // update the score
         // variables back to false
         gameStarted = false;

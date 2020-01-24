@@ -75,22 +75,29 @@ var gamePlayState = new Phaser.Class({
         // -------------------------- //
         // Collisions
         // -------------------------- //
+        // user
         this.physics.add.collider(car, obstacles, hitObstacle, null, this);
         this.physics.add.overlap(car, pickups, hitPickup, null, this);
         this.physics.add.overlap(car, PowerUpCoins, hitPowerUpCoin, null, this);
         this.physics.add.overlap(car, PowerUpMagnets, hitPowerUpMagnet, null, this);
         this.physics.add.overlap(car, PowerUphearts, hitPowerUpHeart, null, this);
+        // powerup
         this.physics.add.collider(PowerUpCoins, obstacles, hitPowerUpObstacle, null, this);
         this.physics.add.collider(PowerUpMagnets, obstacles, hitPowerUpObstacle, null, this);
         this.physics.add.collider(PowerUphearts, obstacles, hitPowerUpObstacle, null, this);
         this.physics.add.collider(PowerUpCoins, pickups, hitPowerUpObstacle, null, this);
         this.physics.add.collider(PowerUpMagnets, pickups, hitPowerUpObstacle, null, this);
         this.physics.add.collider(PowerUphearts, pickups, hitPowerUpObstacle, null, this);
+        // decoration
         this.physics.add.collider(decorations, decorations, DecorationHit, null, this);
+        // user 2 in COOP
         if(mode == 'COOP'){
             // if coop colliser with 2nd car
             this.physics.add.collider(car2, obstacles, hitObstacle, null, this);
             this.physics.add.overlap(car2, pickups, hitPickup, null, this);
+            this.physics.add.overlap(car2, PowerUpCoins, hitPowerUpCoin, null, this);
+            this.physics.add.overlap(car2, PowerUpMagnets, hitPowerUpMagnet, null, this);
+            this.physics.add.overlap(car2, PowerUphearts, hitPowerUpHeart, null, this);
         }
         // -------------------------- //
         // Callbacks for arrow key presses
@@ -223,6 +230,18 @@ var gamePlayState = new Phaser.Class({
                 }
 
             }          
+        }
+        if(answer){ // give player 2 s to stand on mat after timer runs out
+            sleep(2000).then(() => {
+                if(answer){
+                    gameDone = true;
+                    answer = false;
+                    jsGamePlay.classList.add('hide')
+                    jsGameQuestion.classList.add('hide');
+                    game.scene.stop('GamePlay');
+                    game.scene.start('GameOver');
+                }
+            });
         }
     }
 });
@@ -400,7 +419,7 @@ let hitObstacle = function(car, obstacle){
         jsGamePlay.classList.add('hide');
         jsGameQuestion.classList.remove('hide');
         gameOver = true;
-        questionTimer = 5;
+        questionTimer = waitquestion;
         timeQuestion();
         //sleep(5000).then(() => {answer = true;});
     }
@@ -448,7 +467,7 @@ let hitPowerUpCoin = function(car, powerUp){
     for (i = obstacles.children.entries.length; i >= 0; i--) { // remove all cars
         obstacles.remove(obstacles.children.entries[i], true);
     }
-    sleep(2000).then(() => {PowerUpCoin = false; distance = oldDistance; jschest.style.opacity = .4;}); // after time revert to normal
+    sleep(5000).then(() => {PowerUpCoin = false; distance = oldDistance; jschest.style.opacity = .4;}); // after time revert to normal
 }
 // -------------------------- //
 // user with magnet
@@ -458,7 +477,7 @@ let hitPowerUpMagnet = function(car, powerUp){
     powerUp.disableBody(true, true);//remove the powerup
     PowerUpMagnet = true; // bool to let coins come to you
     jsmagnet.style.opacity = 1; // visable
-    sleep(10000).then(() => {PowerUpMagnet = false; jsmagnet.style.opacity = .4;}); // revert back to normal
+    sleep(20000).then(() => {PowerUpMagnet = false; jsmagnet.style.opacity = .4;}); // revert back to normal
 }
 // -------------------------- //
 // user with haert
@@ -469,6 +488,7 @@ let hitPowerUpHeart = function(car, powerUp){
     if (!PowerUpheart){
         PowerUpheart = true; // one extra life
         jsheart.style.opacity = 1;
+        heartsCounter ++;
     }
    
 }
@@ -476,7 +496,9 @@ let hitPowerUpHeart = function(car, powerUp){
 // powerup with obstacle
 // -------------------------- //
 let hitPowerUpObstacle = function (powerup, other) {
-    other.disableBody(true, true); //remove obstacle
+    if(powerup.y < 0){
+        other.disableBody(true, true); //remove obstacle
+    }
 }
 // -------------------------- //
 // decorations with eachother
@@ -505,13 +527,19 @@ let setcars = function(){
     let powerarr = [250,350,450, 550];
     powerarr = shuffle(powerarr);
     if (power <= 5 && power > 0){
-        PowerUpCoins.create(powerarr[0],-50, 'chest').setScale(.08); 
+        if(!PowerUpCoin) {
+            PowerUpCoins.create(powerarr[0],-50, 'chest').setScale(.08); 
+        }
     }
     if (power <= 10 && power > 5){
-        PowerUpMagnets.create(powerarr[0],0, 'magnet').setScale(.08);
+        if(!PowerUpMagnet) {
+            PowerUpMagnets.create(powerarr[0],0, 'magnet').setScale(.08);
+        }
     }
     if (power <= 15 && power > 10){
-        PowerUphearts.create(powerarr[0],-100, 'heart').setScale(.006);
+        if(!PowerUpheart && heartsCounter < maxhearts) {
+            PowerUphearts.create(powerarr[0],-100, 'heart').setScale(.006);
+        }
     }
     // -------------------------- //
     // shuffle lists
