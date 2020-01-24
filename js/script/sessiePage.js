@@ -149,9 +149,25 @@ const loggedOut = function(data){
 const settingsPage = function(){
     window.location.href = 'adminpage.html';
 }
-
+const checkCallbackSessie = function(data){//This function checks if the logintoken stored in the browser is still valid
+	if (data.ok){
+	}
+	else{
+		localStorage.removeItem('LoginToken');
+		window.location.href = "loginpage.html";
+	}
+	
+};
 const init = function(){
     console.log('Script geladen! 👍')
+    token = JSON.parse(localStorage.getItem("LoginToken"));
+	console.log(token);
+	if (token != null){
+		sendData(`${BASEURI}login/token?code=${key}`, checkCallbackAdmin, "POST", token);
+	}
+	else{
+		window.location.href = "loginpage.html";
+	}
     sortSelect = document.getElementById("sortSelect");
     deleteTitle = document.getElementById("js-deleteTitle");
     newSessionName = document.getElementById("newSessionName");

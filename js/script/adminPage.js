@@ -460,9 +460,25 @@ const checkedState = function (checkboxElement) {
 	}
 };
 
-
+const checkCallbackAdmin = function(data){//This function checks if the logintoken stored in the browser is still valid
+	if (data.ok){
+	}
+	else{
+		localStorage.removeItem('LoginToken');
+		window.location.href = "loginpage.html";
+	}
+	
+};
 const init = function () {
 	console.log('Script geladen! 👍');
+	token = JSON.parse(localStorage.getItem("LoginToken"));
+	console.log(token);
+	if (token != null){
+		sendData(`${BASEURI}login/token?code=${key}`, checkCallbackAdmin, "POST", token);
+	}
+	else{
+		window.location.href = "loginpage.html";
+	}
 	// grab all the questions as the page is loading
 	getQuestions();
 	newQuestionButton = document.querySelector('.js-newQuestion');
