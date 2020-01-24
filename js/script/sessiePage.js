@@ -147,7 +147,7 @@ const init = function(){
     accountButton = document.querySelector('.c-session-account');
     handleData(`${BASEURI}sessions/${token.userEmail}?code=${key}`, fillSessionDropdown);
 
-    fillSessionDropdown();
+    //fillSessionDropdown();
 
     resultsTitle.innerHTML = `Dit zijn de resultaten voor ${sessionDropdown.options[sessionDropdown.selectedIndex].innerHTML}:`
     dropdownId = sessionDropdown.options[sessionDropdown.selectedIndex].value
