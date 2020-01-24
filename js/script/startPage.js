@@ -47,45 +47,6 @@ const removePlayer2 = function() {
 };
 
 
-
-// ----------- multiplayer --------------
-// const showDoYouHaveCode = function() {
-// 	gameIdAvailable.style.display = 'flex';
-
-// 	doYouHaveCodeBool = 1;
-// };
-
-// const removeDoYouHaveCode = function() {
-// 	gameIdAvailable.style.display = 'none';
-
-// 	doYouHaveCodeBool = 0;
-// };
-
-// const showCodeInputBox = function() {
-// 	codeInputBox.style.display = 'block';
-
-// 	inputBoxBool = 1;
-// };
-
-// const showNewCode = function() {
-// 	newCode.style.display = 'block';
-
-// 	newCodeBool = 1;
-// };
-
-// const removeShowInputBox = function() {
-// 	codeInputBox.style.display = 'none';
-
-// 	inputBoxBool = 0;
-// };
-
-// const removeNewcode = function() {
-// 	newCode.style.display = 'none';
-
-// 	newCodeBool = 0;
-// };
-
-
 // dropdown for the selected gamemode
 const dropdownFunction = function() {
 	// check the dropdown value a first time
@@ -96,56 +57,20 @@ const dropdownFunction = function() {
 		dropdownSelectValue = dropdownSelect.options[dropdownSelect.selectedIndex].value;
 
 		// if the selected dropdown value is 'single player'
-		if (dropdownSelectValue == 'SP') {
-			// ----- multiplayer ------
-			// if (newCodeBool == 1) {
-			// 	removeNewcode();
-			// }
-
-			// if (inputBoxBool == 1) {
-			// 	removeShowInputBox();
-			// }
-			
+		if (dropdownSelectValue == 'SP') {	
 			// if there are settings for player 2
 			if (player2Bool == 1) {
 				// remove them
 				removePlayer2();
 			}
-
-			// if (doYouHaveCodeBool == 1) {
-			// 	removeDoYouHaveCode();
-			// }
 		}
 
 		// if the selected dropdown value is 'co-op'
 		if (dropdownSelectValue == 'COOP') {
-			// ----- multiplayer -----
-			// if (newCodeBool == 1) {
-			// 	removeNewcode();
-			// }
-
-			// if (inputBoxBool == 1) {
-			// 	removeShowInputBox();
-			// }
-
-			// if (doYouHaveCodeBool == 1) {
-			// 	removeDoYouHaveCode();
-			// }
 
 			// show settings for player 2
 			showPlayer2();
 		}
-
-		// ------  Multiplayer  -----------
-		
-		// if (dropdownSelectValue == 'multiplayer') {
-		// 	startGameBool = 0;
-		// 	if (player2Bool == 1) {
-		// 		removePlayer2();
-		// 	}
-
-		// 	showDoYouHaveCode();
-		// }
 	};
 };
 
@@ -158,24 +83,6 @@ const sliderFunction = function() {
 	};
 
 };
-
-
-// ---------- multiplayer ---------
-// const radioButtonFunction = function() {
-// 	radioButtonYes.addEventListener('click', function() {
-// 		if (newCodeBool == 1) {
-// 			removeNewcode();
-// 		}
-// 		showCodeInputBox();
-// 	});
-
-// 	radioButtonNo.addEventListener('click', function() {
-// 		if (inputBoxBool == 1) {
-// 			removeShowInputBox();
-// 		}
-// 		showNewCode();
-// 	});
-// };
 
 
 const init = function() {
@@ -195,7 +102,6 @@ const init = function() {
 
 	sliderFunction();
 	dropdownFunction();
-	//radioButtonFunction();
 };
 
 document.addEventListener('DOMContentLoaded', function() {
