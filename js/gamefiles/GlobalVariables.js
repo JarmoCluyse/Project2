@@ -51,6 +51,9 @@ var jsheart = document.querySelector(".js-heart") // gamestart html
 var jsheartcount = document.querySelector(".js-heartcount") // gamestart html
 var lanes;
 var CurrentQuestion;
+var coinMusic;
+var PowerUpMusic;
+var HitMusic;
 var ShuffledAnswers;
 var counter = 0;
 var car; // users

@@ -25,6 +25,9 @@ var preloadState = new Phaser.Class({
     this.load.image('heart', 'assets/heart.png');
     this.load.image('chest', 'assets/chest.png');
     this.load.image('magnet', 'assets/magnet.png');
+    this.load.audio('coinMusic', 'assets/coin.wav');
+    this.load.audio('PowerUpMusic', 'assets/powerup.wav');
+    this.load.audio('HitMusic', 'assets/crash.wav');
     },
     create: function() {
         console.log("Preload");

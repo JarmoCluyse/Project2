@@ -30,6 +30,11 @@ var gamePlayState = new Phaser.Class({
         PowerUpCoins = this.physics.add.group();
         PowerUpMagnets = this.physics.add.group();
         PowerUphearts = this.physics.add.group();
+
+        coinMusic = this.sound.add('coinMusic');
+        PowerUpMusic = this.sound.add('PowerUpMusic');
+        HitMusic = this.sound.add('HitMusic');
+
         if(mode == 'SP'){
             // set the background
             this.background1 = this.add.tileSprite(400,400,800,800, 'road')
@@ -349,6 +354,7 @@ let moveCar = function(e)
 }
 // if a collision happens
 let hitObstacle = function(car, obstacle){
+    HitMusic.play();
     for (i = obstacles.children.entries.length; i >= 0; i--) {
         obstacles.remove(obstacles.children.entries[i], true);
     }
@@ -374,12 +380,14 @@ let hitPickup = function(car, pickup){
     // pickup the coin
     // console.log("pickup");
     pickup.disableBody(true, true);//remove the pickup from the screen
+    coinMusic.play();
     score += scoreCoin;
 
 }
 
 let hitPowerUpCoin = function(car, powerUp){
     powerUp.disableBody(true, true);//remove the pickup from the screen
+    PowerUpMusic.play();
     PowerUpCoin = true;
     jschest.style.opacity = 1;
     let oldDistance = distance;
@@ -391,12 +399,14 @@ let hitPowerUpCoin = function(car, powerUp){
 }
 let hitPowerUpMagnet = function(car, powerUp){
     powerUp.disableBody(true, true);//remove the pickup from the screen
+    PowerUpMusic.play();
     PowerUpMagnet = true;
     jsmagnet.style.opacity = 1;
     sleep(10000).then(() => {PowerUpMagnet = false; jsmagnet.style.opacity = .6;});
 }
 let hitPowerUpHeart = function(car, powerUp){
     powerUp.disableBody(true, true);//remove the pickup from the screen
+    PowerUpMusic.play();
     if (PowerUpheart <= 5){
         PowerUpheart += 1;
     }
@@ -404,12 +414,12 @@ let hitPowerUpHeart = function(car, powerUp){
     console.log(PowerUpheart);
     
 }
+let hitPowerUpObstacle = function (powerup, other) {
+    other.disableBody(true, true);
+}
 
 let DecorationHit = function(decoration, dacoration2){
     dacoration2.disableBody(true, true);//remove the pickup from the screen
-}
-let hitPowerUpObstacle = function (powerup, other) {
-    other.disableBody(true, true);
 }
 
 let setcars = function(){
