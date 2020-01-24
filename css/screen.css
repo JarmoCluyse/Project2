@@ -1347,11 +1347,19 @@ input::placeholder {
 	margin: 2.5vh 0;
 	height: 95vh;
 	width: 95vw;
+	display: flex;
 	align-items: center;
 }
 .c-start-card{
 	width: 60%;
 }
+
+.c-vid-icon-left {
+	display: flex;
+	justify-content: center;
+}
+
+
 .c-game-score {
 	padding: 20px;
 	grid-column: 0;
@@ -1701,6 +1709,41 @@ input::placeholder {
 	display: block;
 	width: 93%;
 }
+
+.c-video-row {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.c-side-vid{
+	font-size: 24px;
+	width: 250px;
+	display: flex;
+}
+
+.c-left-side-vid{
+	display: flex;
+	align-self: center;
+}
+
+.c-right-side-vid{
+	margin-left: calc(var(--global-baseline) * 4);
+	display: flex;
+	align-self: center;
+	margin-right: -25px;
+}
+
+.c-right-side-vid-icons{
+	height: 50px;
+	width: 50px;
+}
+
+.c-left-side-vid-icons {
+	height: 60px;
+	margin-right: calc(var(--global-baseline) * 6);
+}
+
+
 
 @media(min-width: 768px){
 	.c-delete__buttons{

@@ -20,7 +20,6 @@ var gamePlayState = new Phaser.Class({
         jsGameQuestion.classList.add("hide");
         jsGameStart.classList.add('hide');
         jsGamePlay.classList.remove('hide');
-        jsSplashTitle.classList.add('hide');
         jsGameEnd.classList.add('hide');
         
         //creates an objects

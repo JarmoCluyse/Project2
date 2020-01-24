@@ -36,20 +36,40 @@
 <body>
   <section class="c-mainpage c-section c-background-img">
           <div class="c-card c-main-card c-game-card js-mainCard">
-            <div class="js-splashTitle c-splash-title hide">
-              <h1>
-                Ontwijk de andere auto's en verzamel zo veel mogelijk muntjes!
-              </h1>
-            </div>
             <div class="js-gameStart c-gamePage c-splash-page hide">
-              
               <h1 class="c-blinking-text">
                 Ga op een baan staan om te beginnen
               </h1>
-              <video autoplay loop muted preload="auto" id="js-video" class="c-splash-video" width="600" height="600">
-                <!-- <source src="/assets/vid.m4v" type="video/mp4">
-                Your browser does not support the video tag. -->
-              </video>
+
+              <div class="c-video-row">
+                <div class="c-left-side-vid">
+                  <div>
+                    <div class="c-side-vid-title">
+                      <h1 class="c-side-vid">
+                        Ontwijk de auto's:
+                      </h1>
+                    </div>
+                    <div class="c-vid-icon-left">
+                      <img class="c-left-side-vid-icons" src="assets/car.png">
+                    </div>
+                  </div>
+                </div>
+                <video autoplay loop muted preload="auto" id="js-video" class="c-splash-video" width="600" height="600">
+                  <!-- <source src="/assets/vid.m4v" type="video/mp4">
+                  Your browser does not support the video tag. -->
+                </video>
+                <div class="c-right-side-vid">
+                  <div>
+                    <h1 class="c-side-vid">
+                      Raap dit op:
+                    </h1>
+                    <img class="c-right-side-vid-icons" src="assets/magnet.png">
+                    <img class="c-right-side-vid-icons" src="assets/chest.png">
+                    <img class="c-right-side-vid-icons" src="assets/heart.png">
+                    <img class="c-right-side-vid-icons" src="assets/coin.png">
+                  </div>
+                </div>
+              </div>
               <div class="c-gameQuestion c-lanes">
                 <ul class="o-list">
                   <li></li>

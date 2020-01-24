@@ -27,9 +27,8 @@ var mainMenuState = new Phaser.Class({
             Your browser does not support the video tag.`;
         }
         jsGameStart.classList.remove('hide');
-        jsSplashTitle.classList.remove('hide');
         jsGamePlay.classList.add('hide');
-        jsGameQuestion.classList.remove('hide');
+        jsGameQuestion.classList.add('hide');
         jsGameEnd.classList.add('hide');
         // log the current scene
         console.log("MainMenu");
