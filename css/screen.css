@@ -1213,6 +1213,10 @@ input::placeholder {
 	margin-right: calc(var(--global-baseline) * 4);
 }
 
+.c-button-play {
+	margin-bottom: calc(var(--global-baseline));
+}
+
 .c-button {
 	font-size: 16px;
 	font-weight: 700;
