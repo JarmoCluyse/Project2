@@ -94,6 +94,8 @@ var Colors = [];
 for (var keys in ColorList) {
   Colors.push(ColorList[keys])
 }
+var questionTimer = 10;
+//var timeQuestion = false;
 //------------------------------- //
 // testing
 //------------------------------- //
