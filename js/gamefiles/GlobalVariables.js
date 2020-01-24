@@ -2,7 +2,6 @@
 // Things to Edit
 //------------------------------- //
 var BeginSpeed = localStorage.getItem("BeginSpeed");
-// var BeginSpeed = 10;  // speed of cars
 var mode = localStorage.getItem("Mode");
 var increase =  localStorage.getItem("increase"); // if you can increase the speed while playing the game
 var speedIncrease = 4; // the rate of increasing
@@ -35,7 +34,7 @@ var myGame = {// Declare myGame
   frameRate: 60
 };
 //------------------------------- //
-// variables of the game
+// html id's
 //------------------------------- //
 var jsVideo = document.getElementById("js-video");
 var jsMainCard = document.querySelector(".js-mainCard");
@@ -48,39 +47,60 @@ var jsGameQuestion = document.querySelector(".js-gameQuestion") // gamestart htm
 var jschest = document.querySelector(".js-chest") // gamestart html
 var jsmagnet = document.querySelector(".js-magnet") // gamestart html
 var jsheart = document.querySelector(".js-heart") // gamestart html
-var jsheartcount = document.querySelector(".js-heartcount") // gamestart html
-var lanes;
-var CurrentQuestion;
+//------------------------------- //
+// Sounds
+//------------------------------- //
 var coinMusic;
-var PowerUpMusic;
 var HitMusic;
-var ShuffledAnswers;
-var counter = 0;
-var car; // users
-var car2; // users
-var obstacles; // obstacles
-var pickups; // pickups
+var PowerUpMusic;
+//------------------------------- //
+// groups
+//------------------------------- //
+//user
+var car;
+var car2;
+// in game
+var obstacles;
+var pickups;
+// side game
 var decorations;
+// powerupps
 var PowerUpCoins;
 var PowerUpMagnets;
 var PowerUphearts;
-var powerUps2;
-var score = 0; // score of the game
-var waitIncrease = 0; // variable to count the waiting
-var speed = 5; // current speed of the game
+//------------------------------- //
+// PowerUp Bool
+//------------------------------- //
 var PowerUpCoin = false;
 var PowerUpMagnet = false;
-var PowerUpheart = 1;
+var PowerUpheart = false;
+//------------------------------- //
+// Question
+//------------------------------- //
+var CurrentQuestion;
+var ShuffledAnswers;
+//------------------------------- //
+// game variables
+//------------------------------- //
+var speed = 5; // current speed of the game
 var distance = 100;
+var lanes;
+var counter = 0;
+var score = 0; // score of the game
+var waitIncrease = 0; // variable to count the waiting
+var loopHighscores = 1;
+// list of colors
 var Colors = [];
 for (var keys in ColorList) {
   Colors.push(ColorList[keys])
 }
-var loopHighscores = 1;
-
-//-------------//
-// default values 
-//-------------//
+//------------------------------- //
+// testing
+//------------------------------- //
+var testing = true
+//------------------------------- //
+// Default values 
+//------------------------------- //
 if (typeof BeginSpeed === 'undefined' || !BeginSpeed) {
   BeginSpeed = 5;
 } else {
@@ -98,16 +118,14 @@ if (typeof player2 === 'undefined' || !player2) {
 if (typeof mode === 'undefined' || !mode) {
   mode = "SP"; //default value
 }
-
-
-
-//-------------//
-// game states
-//-------------//
+//------------------------------- //
+// Game states
+//------------------------------- //
 var gameStarted = false;
 var gameOver = false;
 var answer = false
 var gameDone = false;
+// number of lanes
 if(mode == 'SP'){
   lanes = 4;
 }
