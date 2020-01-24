@@ -33,7 +33,6 @@ var mainMenuState = new Phaser.Class({
         // Hide things
         // -------------------------- //
         jsGameStart.classList.remove('hide');
-        jsSplashTitle.classList.remove('hide');
         jsGamePlay.classList.add('hide');
         jsGameQuestion.classList.add('hide');
         jsGameEnd.classList.add('hide');

@@ -340,6 +340,7 @@ const showEditQuestionPage = function (qid) {
 			dropDown.selectedIndex = counter;
 		}
 		counter += 1;
+		
 	}
 
 	// fill in the inputs with the correct data
@@ -459,9 +460,25 @@ const checkedState = function (checkboxElement) {
 	}
 };
 
-
+const checkCallbackAdmin = function(data){//This function checks if the logintoken stored in the browser is still valid
+	if (data.ok){
+	}
+	else{
+		localStorage.removeItem('LoginToken');
+		window.location.href = "loginpage.html";
+	}
+	
+};
 const init = function () {
 	console.log('Script geladen! 👍');
+	token = JSON.parse(localStorage.getItem("LoginToken"));
+	console.log(token);
+	if (token != null){
+		sendData(`${BASEURI}login/token?code=${key}`, checkCallbackAdmin, "POST", token);
+	}
+	else{
+		window.location.href = "loginpage.html";
+	}
 	// grab all the questions as the page is loading
 	getQuestions();
 	newQuestionButton = document.querySelector('.js-newQuestion');
@@ -483,6 +500,7 @@ const init = function () {
 	dropDownForCards = document.getElementById('dropDownForCards');
 	logoutButton = document.getElementById('logout');
 	sessionButton = document.getElementById('sessions');
+	startGameButton = document.getElementById('game');
 
 	logoutButton.addEventListener('click', function(){
 		logOut(JSON.parse(localStorage.getItem('LoginToken')), loggedOut);
@@ -497,6 +515,10 @@ const init = function () {
 		element.addEventListener('click', function () {
 			checkedState(element);
 		});
+	});
+
+	startGameButton.addEventListener('click', function(){
+		window.location.href = 'index.html';
 	});
 
 	deleteSubjectButton.addEventListener('click', function(){

@@ -1,7 +1,8 @@
 let id;
+let filteredGames;
 const showSessionResults = function(data){
     currentId = sessionDropdown.options[sessionDropdown.selectedIndex].value;
-    var filteredGames = data.filter(obj => {
+    filteredGames = data.filter(obj => {
         return obj.session === currentId;
       });
       console.log(filteredGames);  
@@ -23,6 +24,38 @@ const showSessionResults = function(data){
     });
      
 
+};
+
+const sortGames = function(by){
+    if (by == "player"){
+        filteredGames = filteredGames.sort((a, b) => (a.player > b.player) ? 1 : -1);
+    }
+    else if (by == "score"){
+        filteredGames = filteredGames.sort((a, b) => (a.score < b.score) ? 1 : -1);
+    }
+    else if (by == "laneChanges"){
+        filteredGames = filteredGames.sort((a, b) => (a.numberOfLaneChanges < b.numberOfLaneChanges) ? 1 : -1);
+    }
+    else if (by == "questionsAnswered"){
+        filteredGames = filteredGames.sort((a, b) => (a.questionsAnswered < b.questionsAnswered) ? 1 : -1);
+    }
+    sessionTable = document.querySelector('.c-table');
+    sessionTable.innerHTML =    `<tr class="c-table-row">
+                                    <th>Naam</th>
+                                    <th>Score</th> 
+                                    <th>Aantal bewegingen</th>
+                                    <th>Juiste vragen</th>
+                                </tr>`;
+                       
+    filteredGames.forEach(element =>{
+        sessionTable.innerHTML +=   `<tr class="c-table-row">
+        <td>${element.player}</td>
+        <td>${element.score}</td>
+        <td>${element.numberOfLaneChanges}</td>
+        <td>${element.questionsAnswered}</td>
+    </tr>`
+    });
+    
 };
 
 
@@ -49,7 +82,6 @@ const fillSubjects = function(data){
 
 const showSessionMainPage = function(){
     newSessionPage.style.display = 'none';
-    deleteSessionPage.style.display = 'none';
     deleteSesssionConfirmation.style.display = 'none';
     newSessionIdCard.style.display = 'none';
     sessionMainPage.pointerEvents = 'auto';
@@ -62,16 +94,11 @@ const showSessionMainPage = function(){
 const fillSessionDropdown = function(data){
     console.log(data);
     sessionDropdown.innerHTML = "";
-    sessionSelectDeleteDropdown.innerHTML = "";
 
     data.forEach(element=>{
-        sessionDropdown.innerHTML += `<option value="${element.sessionId}">${element.sessionId} - ${element.beschrijving}</option>`;
-        sessionSelectDeleteDropdown.innerHTML += `<option value="${element.sessionId}">${element.sessionId} - ${element.beschrijving}</option>`;
+        sessionDropdown.innerHTML += `<option value="${element.sessionId}">${element.sessionId} - ${element.beschrijving}</option>`;    
     });
-    resultsTitle.innerHTML = `Dit zijn de resultaten voor ${sessionDropdown.options[sessionDropdown.selectedIndex].innerHTML}:`
     handleData(`${BASEURI}games?code=${key}`, showSessionResults, "GET",null);
-
-
 };
 
 
@@ -91,20 +118,22 @@ const showDeleteSessionPage = function(){
 };
 
 const showDeleteSessionConfirmation = function(){
+    hideMainPage();
     deleteSesssionConfirmation.style.display = 'block';
-    deleteSessionPage.style.display = 'none';
-    deleteTitle.innerHTML = `Weet je zeker dat je de sessie ${sessionSelectDeleteDropdown.value} wilt verwijderen?`;
+    deleteTitle.innerHTML = `Weet je zeker dat je de sessie ${sessionDropdown.options[sessionDropdown.selectedIndex].innerHTML} wilt verwijderen?`;
 }
 
 const deleteSession = function(){
     // verwijder hier je de session
-    delTxt = `{"sessionid": "${sessionSelectDeleteDropdown.value}", "teacheremail": "${token.userEmail}"}`;
+    delTxt = `{"sessionid": "${sessionDropdown.value}", "teacheremail": "${token.userEmail}"}`;
     del = JSON.parse(delTxt);
     sendData(`${BASEURI}session?code=${key}`, deletedSession, 'DELETE', del);
     showSessionMainPage();
 };
+
 const deletedSession = function(data){
     console.log("deleted");
+    location.reload();
 };
 
 const showSessionIdPage = function(){
@@ -120,9 +149,26 @@ const loggedOut = function(data){
 const settingsPage = function(){
     window.location.href = 'adminpage.html';
 }
-
+const checkCallbackSessie = function(data){//This function checks if the logintoken stored in the browser is still valid
+	if (data.ok){
+	}
+	else{
+		localStorage.removeItem('LoginToken');
+		window.location.href = "loginpage.html";
+	}
+	
+};
 const init = function(){
     console.log('Script geladen! 👍')
+    token = JSON.parse(localStorage.getItem("LoginToken"));
+	console.log(token);
+	if (token != null){
+		sendData(`${BASEURI}login/token?code=${key}`, checkCallbackSessie, "POST", token);
+	}
+	else{
+		window.location.href = "loginpage.html";
+	}
+    sortSelect = document.getElementById("sortSelect");
     deleteTitle = document.getElementById("js-deleteTitle");
     newSessionName = document.getElementById("newSessionName");
     checkboxSession = document.getElementById("checkboxSession");
@@ -145,15 +191,16 @@ const init = function(){
     logoutButton = document.getElementById('logout');
     settingsButton = document.getElementById('settings');
     accountButton = document.querySelector('.c-session-account');
+    newSessionClose = document.getElementById('newSessionClose');
+    startGameButton = document.getElementById('game');
     handleData(`${BASEURI}sessions/${token.userEmail}?code=${key}`, fillSessionDropdown);
 
     //fillSessionDropdown();
 
-    resultsTitle.innerHTML = `Dit zijn de resultaten voor ${sessionDropdown.options[sessionDropdown.selectedIndex].innerHTML}:`
     dropdownId = sessionDropdown.options[sessionDropdown.selectedIndex].value
     
     deleteASessionButton.addEventListener('click', function(){
-        showDeleteSessionPage();
+        showDeleteSessionConfirmation();
     });
 
     settingsButton.addEventListener('click', function(){
@@ -170,10 +217,15 @@ const init = function(){
         });    
     });
 
-    deleteSessionButton.addEventListener('click', function(){
-        selectedSessionToDelete = sessionSelectDeleteDropdown.options[sessionSelectDeleteDropdown.selectedIndex].value;
-        showDeleteSessionConfirmation();
+    newSessionClose.addEventListener('click', function(){
+        location.reload();
     });
+
+    
+	startGameButton.addEventListener('click', function(){
+		window.location.href = 'index.html';
+	});
+
 
     createNewSessionButton.addEventListener('click', function(){
         selectedSessionSubject = sessionSelectSubjectDropdown.options[sessionSelectSubjectDropdown.selectedIndex].value;
@@ -184,6 +236,7 @@ const init = function(){
         postjson = JSON.parse(postTxt);
         console.log(postjson);
         sendData(`${BASEURI}session?code=${key}`, showSessionIdPage,'POST', postjson);
+
     });
 
     newSessionButton.addEventListener('click', function(){
@@ -202,7 +255,9 @@ const init = function(){
         handleData(`${BASEURI}games?code=${key}`, showSessionResults, "GET",null);
         console.log(sessionDropdown.options[sessionDropdown.selectedIndex].value); 
 
-        resultsTitle.innerHTML = `Dit zijn de resultaten voor ${sessionDropdown.options[sessionDropdown.selectedIndex].innerHTML}:`
+    });
+    sortSelect.addEventListener('change', function(){
+        sortGames(sortSelect.value);
 
     });
 }
