@@ -758,18 +758,6 @@ input::placeholder {
 }
 
 
-.c-custom-select__session {
-	width: 80%;
-	margin-left: 0;
-}
-
-@media(min-width: 768px){
-	.c-custom-select__session{
-		width: 50%;
-		margin-left: calc(var(--global-baseline) * 4);
-	}
-}
-
 
 @media (min-width: 768px){
 	.c-custom-select{
@@ -787,6 +775,19 @@ input::placeholder {
 		margin-left: 0;
 	}
 
+}
+
+
+.c-custom-select__session {
+	width: 80%;
+	margin-left: 0;
+}
+
+@media(min-width: 768px){
+	.c-custom-select__session{
+		width: 50%;
+		margin-left: calc(var(--global-baseline) * 4);
+	}
 }
 
 .c-custom-select__dropdown-edit {
