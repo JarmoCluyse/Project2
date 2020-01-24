@@ -15,6 +15,10 @@ const loggedOut = function(data){
 	window.location.href = 'loginpage.html';
 };
 
+const sessionPage = function(){
+	window.location.href = 'sessiepage.html';
+};
+
 // get the questions from the database
 const getQuestions = function () {
 	// this will send data to the datahandler and the response are the questions
@@ -478,9 +482,14 @@ const init = function () {
 	deleteSubjectButton = document.getElementById('deleteSubjectButton');
 	dropDownForCards = document.getElementById('dropDownForCards');
 	logoutButton = document.getElementById('logout');
+	sessionButton = document.getElementById('sessions');
 
 	logoutButton.addEventListener('click', function(){
 		logOut(JSON.parse(localStorage.getItem('LoginToken')), loggedOut);
+	})
+
+	sessionButton.addEventListener('click', function(){
+		sessionPage();
 	})
 
 	// check the checkboxinputs

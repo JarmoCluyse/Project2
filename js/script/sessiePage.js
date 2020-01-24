@@ -31,7 +31,6 @@ const showNewSessionpage = function(){
     newSessionPage.style.display = 'block';
 
     hideMainPage();
-
 };
 const fillSubjects = function(data){
     console.log(data);
@@ -55,6 +54,8 @@ const showSessionMainPage = function(){
     newSessionIdCard.style.display = 'none';
     sessionMainPage.pointerEvents = 'auto';
     sessionMainPage.style.opacity = '1';
+    accountButton.style.display = "block";
+    accountButton.pointerEvents = "auto";
 
 };
 
@@ -75,6 +76,9 @@ const fillSessionDropdown = function(data){
 
 
 const hideMainPage = function(){
+    console.log("yep")
+    accountButton.style.display = "none";
+    accountButton.pointerEvents = "none";
     sessionMainPage.pointerEvents = 'none';
     sessionMainPage.style.opacity = '0.8';
 };
@@ -106,9 +110,16 @@ const deletedSession = function(data){
 const showSessionIdPage = function(){
     newSessionPage.style.display = 'none';
     newSessionIdCard.style.display = 'flex';
-    
 
 };
+
+const loggedOut = function(data){
+	window.location.href = 'loginpage.html';
+};
+
+const settingsPage = function(){
+    window.location.href = 'adminpage.html';
+}
 
 const init = function(){
     console.log('Script geladen! 👍')
@@ -131,15 +142,27 @@ const init = function(){
     newSessionIdCard = document.querySelector('.c-sessionId-card');
     sessionSelectSubjectDropdown = document.getElementById('selectSessionSubject');
     sessionSelectDeleteDropdown = document.getElementById('deleteSessionSelect');
+    logoutButton = document.getElementById('logout');
+    settingsButton = document.getElementById('settings');
+    accountButton = document.querySelector('.c-session-account');
     handleData(`${BASEURI}sessions/${token.userEmail}?code=${key}`, fillSessionDropdown);
+
+    fillSessionDropdown();
 
     resultsTitle.innerHTML = `Dit zijn de resultaten voor ${sessionDropdown.options[sessionDropdown.selectedIndex].innerHTML}:`
     dropdownId = sessionDropdown.options[sessionDropdown.selectedIndex].value
-
+    
     deleteASessionButton.addEventListener('click', function(){
         showDeleteSessionPage();
     });
 
+    settingsButton.addEventListener('click', function(){
+        settingsPage();
+    });
+    
+	logoutButton.addEventListener('click', function(){
+		logOut(JSON.parse(localStorage.getItem('LoginToken')), loggedOut);
+	});
 
     closeButton.forEach(element => {
         element.addEventListener('click', function(){
