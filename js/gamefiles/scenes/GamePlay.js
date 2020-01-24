@@ -432,6 +432,7 @@ let hitPickup = function(car, pickup){
     coinMusic.play(); // play th pickup sound effect
     pickup.disableBody(true, true);//remove the pickup from the screen
     score += scoreCoin; // update score
+    coinsCollected++;
 
 }
 // -------------------------- //
