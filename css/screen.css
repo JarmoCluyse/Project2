@@ -778,6 +778,17 @@ input::placeholder {
 }
 
 
+.c-table-title {
+	display: flex;
+	justify-content: center;
+}
+
+@media(min-width: 768px){
+	.c-table-title{
+		justify-content: flex-end;
+	}
+}
+
 .c-custom-select__session {
 	width: 80%;
 	margin-left: 0;
@@ -809,6 +820,18 @@ input::placeholder {
 	.c-custom-select__dropdown-edit{
 		width: 20%;
 		margin-bottom: 0;
+	}
+}
+
+.c-custom-select__session-title{
+	width: 80%;
+	margin-left: 0;
+}
+
+@media(min-width: 768px){
+	.c-custom-select__session-title{
+		width: 50%;
+		margin-left: calc(var(--global-baseline) * 4);
 	}
 }
 
@@ -1215,7 +1238,7 @@ input::placeholder {
 .c-newSessionButton {
 	display: flex;
 	justify-content: center;
-	margin-top: calc(var(--global-baseline) * 4);
+	margin-bottom: calc(var(--global-baseline) * 4);
 }
 
 @media(min-width: 768px){
@@ -1743,7 +1766,8 @@ input::placeholder {
 }
 
 .c-session-card-results-title{
-	font-size: 28px;
+	padding-top: calc(var(--global-baseline) * 1.5);
+	font-size: 24px;
 }
 
 .c-session-card-table{

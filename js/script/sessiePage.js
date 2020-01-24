@@ -49,7 +49,6 @@ const fillSubjects = function(data){
 
 const showSessionMainPage = function(){
     newSessionPage.style.display = 'none';
-    deleteSessionPage.style.display = 'none';
     deleteSesssionConfirmation.style.display = 'none';
     newSessionIdCard.style.display = 'none';
     sessionMainPage.pointerEvents = 'auto';
@@ -62,16 +61,11 @@ const showSessionMainPage = function(){
 const fillSessionDropdown = function(data){
     console.log(data);
     sessionDropdown.innerHTML = "";
-    sessionSelectDeleteDropdown.innerHTML = "";
 
     data.forEach(element=>{
-        sessionDropdown.innerHTML += `<option value="${element.sessionId}">${element.sessionId} - ${element.beschrijving}</option>`;
-        sessionSelectDeleteDropdown.innerHTML += `<option value="${element.sessionId}">${element.sessionId} - ${element.beschrijving}</option>`;
+        sessionDropdown.innerHTML += `<option value="${element.sessionId}">${element.sessionId} - ${element.beschrijving}</option>`;    
     });
-    resultsTitle.innerHTML = `Dit zijn de resultaten voor ${sessionDropdown.options[sessionDropdown.selectedIndex].innerHTML}:`
     handleData(`${BASEURI}games?code=${key}`, showSessionResults, "GET",null);
-
-
 };
 
 
@@ -91,20 +85,22 @@ const showDeleteSessionPage = function(){
 };
 
 const showDeleteSessionConfirmation = function(){
+    hideMainPage();
     deleteSesssionConfirmation.style.display = 'block';
-    deleteSessionPage.style.display = 'none';
-    deleteTitle.innerHTML = `Weet je zeker dat je de sessie ${sessionSelectDeleteDropdown.value} wilt verwijderen?`;
+    deleteTitle.innerHTML = `Weet je zeker dat je de sessie ${sessionDropdown.options[sessionDropdown.selectedIndex].innerHTML} wilt verwijderen?`;
 }
 
 const deleteSession = function(){
     // verwijder hier je de session
-    delTxt = `{"sessionid": "${sessionSelectDeleteDropdown.value}", "teacheremail": "${token.userEmail}"}`;
+    delTxt = `{"sessionid": "${sessionDropdown.value}", "teacheremail": "${token.userEmail}"}`;
     del = JSON.parse(delTxt);
     sendData(`${BASEURI}session?code=${key}`, deletedSession, 'DELETE', del);
     showSessionMainPage();
 };
+
 const deletedSession = function(data){
     console.log("deleted");
+    location.reload();
 };
 
 const showSessionIdPage = function(){
@@ -145,15 +141,15 @@ const init = function(){
     logoutButton = document.getElementById('logout');
     settingsButton = document.getElementById('settings');
     accountButton = document.querySelector('.c-session-account');
+    newSessionClose = document.getElementById('newSessionClose');
     handleData(`${BASEURI}sessions/${token.userEmail}?code=${key}`, fillSessionDropdown);
 
     //fillSessionDropdown();
 
-    resultsTitle.innerHTML = `Dit zijn de resultaten voor ${sessionDropdown.options[sessionDropdown.selectedIndex].innerHTML}:`
     dropdownId = sessionDropdown.options[sessionDropdown.selectedIndex].value
     
     deleteASessionButton.addEventListener('click', function(){
-        showDeleteSessionPage();
+        showDeleteSessionConfirmation();
     });
 
     settingsButton.addEventListener('click', function(){
@@ -170,10 +166,11 @@ const init = function(){
         });    
     });
 
-    deleteSessionButton.addEventListener('click', function(){
-        selectedSessionToDelete = sessionSelectDeleteDropdown.options[sessionSelectDeleteDropdown.selectedIndex].value;
-        showDeleteSessionConfirmation();
+    newSessionClose.addEventListener('click', function(){
+        location.reload();
     });
+
+
 
     createNewSessionButton.addEventListener('click', function(){
         selectedSessionSubject = sessionSelectSubjectDropdown.options[sessionSelectSubjectDropdown.selectedIndex].value;
@@ -184,6 +181,7 @@ const init = function(){
         postjson = JSON.parse(postTxt);
         console.log(postjson);
         sendData(`${BASEURI}session?code=${key}`, showSessionIdPage,'POST', postjson);
+
     });
 
     newSessionButton.addEventListener('click', function(){
@@ -201,8 +199,6 @@ const init = function(){
     sessionDropdown.addEventListener('change', function(){
         handleData(`${BASEURI}games?code=${key}`, showSessionResults, "GET",null);
         console.log(sessionDropdown.options[sessionDropdown.selectedIndex].value); 
-
-        resultsTitle.innerHTML = `Dit zijn de resultaten voor ${sessionDropdown.options[sessionDropdown.selectedIndex].innerHTML}:`
 
     });
 }
