@@ -36,6 +36,7 @@ function keyListener(e){ // listen to keypress
         score = 0; // put score back to 0
         questionsAnswered = 0
         distance = 3000;
+        heartsCounter = 0;
         placeScore(); // update the score
         // variables back to false
         gameStarted = false;
@@ -47,7 +48,7 @@ function keyListener(e){ // listen to keypress
 
 var placeDecorations = function () {
   let placeDeco = getRandomInt(100)
-  if (placeDeco > 70){
+  if (placeDeco > 85){
       let wichDeco = getRandomInt(1000);
       // wichDeco = 726;
       if (wichDeco <= 30) {
