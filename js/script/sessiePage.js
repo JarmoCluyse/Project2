@@ -193,12 +193,17 @@ const init = function(){
     accountButton = document.querySelector('.c-session-account');
     newSessionClose = document.getElementById('newSessionClose');
     startGameButton = document.getElementById('game');
+    highScoreButton = document.getElementById('highscores');
     handleData(`${BASEURI}sessions/${token.userEmail}?code=${key}`, fillSessionDropdown);
 
     //fillSessionDropdown();
 
     dropdownId = sessionDropdown.options[sessionDropdown.selectedIndex].value
     
+    highScoreButton.addEventListener('click', function(){
+        window.location.href = 'highscorepage.html';
+    })
+
     deleteASessionButton.addEventListener('click', function(){
         showDeleteSessionConfirmation();
     });

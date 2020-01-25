@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Drive a car - highscores</title>
+        <meta name="description" content="This is my HTML5 boilerplate.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="msapplication-TileColor" content="#091C2A">
+        <meta name="theme-color" content="#091C2A">
+
+        <link rel="icon" type="image/png" sizes="32x32" href="./assets/mct.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="./assets/mct.png">
+
+        <link rel="stylesheet" href="./css/normalize.css">
+        <link rel="stylesheet" href="./css/screen.css"> 
+        <script src="./js/script/dataHandler.js"></script>  
+        <script src="./js/script/key.js"></script>
+        <script src="./js/gamefiles/GlobalVariables.js"></script>
+        <script src="./js/script/highscorePage.js"></script>    
+
+    </head>
+    <body class="c-background-img">
+        <section class="c-mainpage c-section">
+            <div class="o-row o-row--lg">
+                <div class="c-grid">
+                    <div class="c-grid__item u-grid-column__title u-grid-row__title">
+                        <div class="c-header">
+                            <h1 class="c-title">
+                                Highscores
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="c-grid__item u-grid-column__card-session u-grid-row__card">
+                        <div class="c-dropdown c-account c-session-account c-highscores-account">
+                            <button class="c-dropbtn">Account</button>
+                            <div class="c-dropdown-content">
+                                <a id="game" href="#">Start spel</a>
+                                <a id="settings" href="#">Instellingen</a>
+                                <a id="sessions" href="#">Sessies</a>
+                                <a id="logout" href="#">Log uit</a>
+                            </div>
+                        </div>
+                        <div class="c-card c-main-card">       
+                            <div class="c-session-card">
+                                <div class="c-session-card-content">
+                                    <ol class="c-ol-highscores">
+                                        <div class="c-top-three">
+                                            <li class="c-number-two">
+                                                <div class="c-number-two-content">
+                                                    <div class="c-person">
+                                                        Thomas
+                                                    </div>
+                                                    <div>
+                                                        <p class="c-rank">
+                                                            #2
+                                                        </p>
+                                                        <p class="c-score">
+                                                            Score: 9001
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="c-number-one">
+                                                <div class="c-number-two-content">
+                                                    <div class="c-person">
+                                                        Wout
+                                                    </div>
+                                                    <div>
+                                                        <p class="c-rank">
+                                                            #1
+                                                        </p>
+                                                        <p class="c-score">
+                                                            Score: 69420
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="c-number-three">
+                                                <div class="c-number-two-content">
+                                                    <div class="c-person">
+                                                        Jarmo
+                                                    </div>
+                                                    <div>
+                                                        <p class="c-rank">
+                                                            #3
+                                                        </p>
+                                                        <p class="c-score">
+                                                            Score: 1337
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div class="c-top-ten">
+                                            <ol start="4">
+                                                <li>person 4: 1336</li>
+                                                <li>person 5 &nbsp; score: 574</li>
+                                                <li>person 6</li>
+                                                <li>person 7</li>
+                                                <li>person 8</li>
+                                                <li>person 9</li>
+                                                <li>person 10</li>   
+                                            </ol>
+                                        </div>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

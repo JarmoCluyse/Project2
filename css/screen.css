@@ -1270,6 +1270,90 @@ input::placeholder {
 	opacity: 1;
 }
 
+.c-top-three {
+	display: flex;
+	justify-content: center;
+	list-style: none;
+	margin-top: calc(var(--global-baseline) * 8);
+}
+
+.c-top-ten {
+	display: flex;
+	justify-content: center;
+	margin-top: calc(var(--global-baseline) * 4);
+	font-size: 18px;
+}
+
+.c-number-one{
+	position: relative;
+	height: 200px;
+	width: 150px;
+	display: flex;
+	justify-content: center;
+	background-color: #FFD700;
+	border: 1px solid var(--global-color-neutral-x-dark);
+}
+
+.c-number-two{
+	position: relative;
+	height: 133px;
+	width: 150px;
+	display: flex;
+	justify-content: center;
+	background-color: #C0C0C0;
+	align-self: flex-end;
+	border: 1px solid var(--global-color-neutral-x-dark);
+	border-right: 0;
+}
+
+.c-number-three{
+	position: relative;
+	height: 100px;
+	width: 150px;
+	display: flex;
+	justify-content: center;
+	background-color: #CD7F32;
+	align-self: flex-end;
+	border: 1px solid var(--global-color-neutral-x-dark);
+	border-left: 0;
+}
+
+.c-person{
+	display: flex;
+	justify-content: center;
+	width: 150px;
+	position: absolute;
+	top: -40px;
+	left: 0;
+	font-size: 28px;
+	color: var(--global-color-neutral-xx-dark);
+}
+
+.c-rank{
+	display: flex;
+	justify-content: center;
+	font-size: 32px;
+	margin-bottom: calc(var(--global-baseline));
+	color: white;
+}
+
+.c-score {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 0;
+	font-size: 18px;
+}
+
+
+.c-number-two-content {
+	display: flex;
+	align-self: flex-end;
+}
+
+.c-ol-highscores {
+	width: 600px;
+}
+
 
 .c-blinking-text{
     animation:blinkingText 2s infinite;
@@ -1932,9 +2016,32 @@ input::placeholder {
 
 .c-session-account {
 	position: absolute;
-	top: 80px;
-	left: 700px;
+	top: 65px;
+	left: 180px;
 	z-index: 1;
+}
+
+@media(min-width: 768px){
+	.c-session-account{
+		top: 120px;
+		left: 370px;
+	}
+
+	.c-highscores-account{
+		top: 80px;
+		left: 350px;
+	}
+}
+
+@media(min-width: 1024px){
+	.c-session-account{
+		top: 80px;
+		left: 700px;
+	}
+
+	.c-highscores-account{
+		left: 700px;
+	}
 }
 
 .c-custom-option__fake-input--radio .c-custom-option__symbol {

@@ -501,6 +501,12 @@ const init = function () {
 	logoutButton = document.getElementById('logout');
 	sessionButton = document.getElementById('sessions');
 	startGameButton = document.getElementById('game');
+	highScoreButton = document.getElementById('highscores');
+
+
+	highScoreButton.addEventListener('click', function(){
+        window.location.href = 'highscorepage.html';
+    })
 
 	logoutButton.addEventListener('click', function(){
 		logOut(JSON.parse(localStorage.getItem('LoginToken')), loggedOut);
