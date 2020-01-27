@@ -1,11 +1,12 @@
 let id;
 let filteredGames;
 const showSessionResults = function(data){
-    currentId = sessionDropdown.options[sessionDropdown.selectedIndex].value;
-    filteredGames = data.filter(obj => {
-        return obj.session === currentId;
-      });
-      console.log(filteredGames);  
+    console.log(data);
+    // currentId = sessionDropdown.options[sessionDropdown.selectedIndex].value;
+    // filteredGames = data.filter(obj => {
+    //     return obj.session === currentId;
+    //   });
+    //   console.log(filteredGames);  
     sessionTable = document.querySelector('.c-table');
     sessionTable.innerHTML =    `<tr class="c-table-row">
                                     <th>Naam</th>
@@ -14,7 +15,7 @@ const showSessionResults = function(data){
                                     <th>Juiste vragen</th>
                                 </tr>`;
                        
-    filteredGames.forEach(element =>{
+    data.forEach(element =>{
         sessionTable.innerHTML +=   `<tr class="c-table-row">
         <td>${element.player}</td>
         <td>${element.score}</td>
@@ -98,7 +99,7 @@ const fillSessionDropdown = function(data){
     data.forEach(element=>{
         sessionDropdown.innerHTML += `<option value="${element.sessionId}">${element.sessionId} - ${element.beschrijving}</option>`;    
     });
-    handleData(`${BASEURI}games?code=${key}`, showSessionResults, "GET",null);
+    handleData(`${BASEURI}games/${data[0].sessionId}?code=${key}`, showSessionResults, "GET",null);
 };
 
 
@@ -257,7 +258,7 @@ const init = function(){
     });
 
     sessionDropdown.addEventListener('change', function(){
-        handleData(`${BASEURI}games?code=${key}`, showSessionResults, "GET",null);
+        handleData(`${BASEURI}games/${sessionDropdown.value}?code=${key}`, showSessionResults, "GET",null);
         console.log(sessionDropdown.options[sessionDropdown.selectedIndex].value); 
 
     });
