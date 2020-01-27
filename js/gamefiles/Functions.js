@@ -20,7 +20,7 @@ var shuffle = function(array) { // shuffle a list
       return array;
 }
 var placeScore = function () { // update the score
-  jsScore.innerHTML = `score: ${score}`
+  jsScore.innerHTML = `Score: ${score}`
 }
 function keyListener(e){ // listen to keypress
   e.preventDefault(); // prevent the arrows from scrolling
@@ -151,9 +151,8 @@ const showHighscores = function(data){
 		else if (count < 10){
 			str+= `<li>${element.player}:&nbsp;${element.score}</li>`; 
 			count++;
-		}
-		
-	});
+    }		
+  });
 	scoreList.innerHTML = str;
 
 }
