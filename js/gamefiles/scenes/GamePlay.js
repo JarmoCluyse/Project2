@@ -116,7 +116,6 @@ var gamePlayState = new Phaser.Class({
     },
 
     update: function() {
-        console.log("er is een update");
         if (!gameOver && gameStarted){ // when game is playing
             // -------------------------- //
             // score update
