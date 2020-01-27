@@ -1210,6 +1210,7 @@ input::placeholder {
 	}
 }
 
+
 .c-buttons{
 	display: flex;
 	justify-content: flex-end;
@@ -1282,6 +1283,10 @@ input::placeholder {
 	justify-content: center;
 	margin-top: calc(var(--global-baseline) * 4);
 	font-size: 18px;
+}
+
+.c-score-top-ten{
+	list-style: none;
 }
 
 .c-number-one{
@@ -2123,6 +2128,13 @@ input::placeholder {
 	display: flex;
 }
 
+.c-newGameButton {
+	display: flex;
+	justify-content: center;
+	margin-top: calc(var(--global-baseline) * 4);
+	margin-bottom: calc(var(--global-baseline) * 4);	
+}
+
 .c-carColors{
 	margin-bottom: calc(var(--global-baseline) * 3);
 }
@@ -2222,6 +2234,10 @@ input::placeholder {
 	.c-button__question{
 		display: block;
 	}
+}
+
+.c-button-newgame{
+	margin-left: 0;
 }
 
 .c-login__footer {
