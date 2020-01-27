@@ -36,14 +36,14 @@ const sendData = function (url, callback, method, body) {
   });
 };
 
-const idGenerator = function (type) {
+const idGenerator = function (type = "S") {
     let id = "";
-    if (type == "S"){
-      id += "S";
-    }
-    else{
-      id += "G";
-    }
+    // if (type == "S"){
+    //   id += "S";
+    // }
+    // else{
+    //   id += "G";
+    // }
     id += Math.random().toString(36).substr(2, 6);
     console.log(id);
     return id;

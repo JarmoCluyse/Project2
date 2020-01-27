@@ -1,21 +1,26 @@
 //------------------------------- //
 // Things to Edit
 //------------------------------- //
-var BeginSpeed = localStorage.getItem("BeginSpeed");
-// var BeginSpeed = 10;  // speed of cars
-var mode = localStorage.getItem("Mode");
-var increase =  localStorage.getItem("increase"); // if you can increase the speed while playing the game
 var speedIncrease = 4; // the rate of increasing
 var increaseValue = 0.5; // value that we increase with
+var waitquestion = 7; // question time out
 var DriveScore = 5; // score for driving
 var scoreCoin = 10; // score when you pickup something
+var maxhearts = 3; // max hearts in a game
 var ColorList = {'blue':'0x0000ff','red': '0xff0000','green': '0x00ff00','yellow': '0xffff00','pink': '0xff77ff','purple': '0xff00ff','white':'0xffffff','black':'0x101010' }
+var startEvent;
+//------------------------------- //
+// local storage
+//------------------------------- //
+var BeginSpeed = localStorage.getItem("BeginSpeed");
+var mode = localStorage.getItem("Mode");
+var increase =  localStorage.getItem("increase"); // if you can increase the speed while playing the game
 var carColor = ColorList[localStorage.getItem("Color")]; // current color of the car
 var carColor2 = ColorList[localStorage.getItem("Color2")]; // current color of the car
-var startEvent;
 //------------------------------- //
 // DB
 //------------------------------- //
+var token = JSON.parse(localStorage.getItem('LoginToken'));
 const BASEURI = 'https://project2driveacar.azurewebsites.net/api/v2/';
 var player = localStorage.getItem("Player");
 var player2 = localStorage.getItem("Player2");
@@ -24,7 +29,8 @@ var coinsCollected = 0;
 var questionsAnswered = 0;
 var noLaneChanges = 0;
 var noLaneChangesP2 = 0;
-var session;
+var session = localStorage.getItem('Session');
+var sessionObject = localStorage.getItem('SessionObject');
 //------------------------------- //
 // Declare Game
 //------------------------------- //
@@ -33,7 +39,7 @@ var myGame = {// Declare myGame
   frameRate: 60
 };
 //------------------------------- //
-// variables of the game
+// html id's
 //------------------------------- //
 var jsVideo = document.getElementById("js-video");
 var jsMainCard = document.querySelector(".js-mainCard");
@@ -46,36 +52,63 @@ var jsGameQuestion = document.querySelector(".js-gameQuestion") // gamestart htm
 var jschest = document.querySelector(".js-chest") // gamestart html
 var jsmagnet = document.querySelector(".js-magnet") // gamestart html
 var jsheart = document.querySelector(".js-heart") // gamestart html
-var jsheartcount = document.querySelector(".js-heartcount") // gamestart html
-var lanes;
-var CurrentQuestion;
-var ShuffledAnswers;
-var counter = 0;
-var car; // users
-var car2; // users
-var obstacles; // obstacles
-var pickups; // pickups
+//------------------------------- //
+// Sounds
+//------------------------------- //
+var coinMusic;
+var HitMusic;
+var PowerUpMusic;
+//------------------------------- //
+// groups
+//------------------------------- //
+//user
+var car;
+var car2;
+// in game
+var obstacles;
+var pickups;
+// side game
 var decorations;
+// powerupps
 var PowerUpCoins;
 var PowerUpMagnets;
 var PowerUphearts;
-var powerUps2;
-var score = 0; // score of the game
-var waitIncrease = 0; // variable to count the waiting
-var speed = 5; // current speed of the game
+//------------------------------- //
+// PowerUp Bool
+//------------------------------- //
 var PowerUpCoin = false;
 var PowerUpMagnet = false;
-var PowerUpheart = 1;
+var PowerUpheart = false;
+var heartsCounter = 0;
+//------------------------------- //
+// Question
+//------------------------------- //
+var CurrentQuestion;
+var ShuffledAnswers;
+//------------------------------- //
+// game variables
+//------------------------------- //
+var speed = 5; // current speed of the game
 var distance = 100;
+var lanes;
+var counter = 0;
+var score = 0; // score of the game
+var waitIncrease = 0; // variable to count the waiting
+var loopHighscores = 1;
+// list of colors
 var Colors = [];
 for (var keys in ColorList) {
   Colors.push(ColorList[keys])
 }
-var loopHighscores = 1;
-
-//-------------//
-// default values 
-//-------------//
+var questionTimer = 10;
+//var timeQuestion = false;
+//------------------------------- //
+// testing
+//------------------------------- //
+var testing = true;
+//------------------------------- //
+// Default values 
+//------------------------------- //
 if (typeof BeginSpeed === 'undefined' || !BeginSpeed) {
   BeginSpeed = 5;
 } else {
@@ -93,16 +126,14 @@ if (typeof player2 === 'undefined' || !player2) {
 if (typeof mode === 'undefined' || !mode) {
   mode = "SP"; //default value
 }
-
-
-
-//-------------//
-// game states
-//-------------//
+//------------------------------- //
+// Game states
+//------------------------------- //
 var gameStarted = false;
 var gameOver = false;
 var answer = false
 var gameDone = false;
+// number of lanes
 if(mode == 'SP'){
   lanes = 4;
 }

@@ -214,7 +214,7 @@ const checkCallback = function(data){//This function checks if the logintoken st
 
 const init = function(){
 	console.log('Script geladen! 👍')
-	let token = JSON.parse(localStorage.getItem("LoginToken"));
+	token = JSON.parse(localStorage.getItem("LoginToken"));
 	console.log(token);
 	if (token != null){
 		sendData(`${BASEURI}login/token?code=${key}`, checkCallback, "POST", token);

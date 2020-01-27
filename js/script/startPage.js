@@ -57,7 +57,7 @@ const dropdownFunction = function() {
 		dropdownSelectValue = dropdownSelect.options[dropdownSelect.selectedIndex].value;
 
 		// if the selected dropdown value is 'single player'
-		if (dropdownSelectValue == 'SP') {	
+		if (dropdownSelectValue == 'SP') {
 			// if there are settings for player 2
 			if (player2Bool == 1) {
 				// remove them
@@ -67,7 +67,6 @@ const dropdownFunction = function() {
 
 		// if the selected dropdown value is 'co-op'
 		if (dropdownSelectValue == 'COOP') {
-
 			// show settings for player 2
 			showPlayer2();
 		}
@@ -99,6 +98,11 @@ const init = function() {
 	sliderObstacle = document.querySelector('.js-sliderObstacle');
 	outputCar = document.querySelector('.js-outputCar');
 	outputObstacle = document.querySelector('.js-outputObstacle');
+	teacherButton = document.getElementById('teacher');
+
+	teacherButton.addEventListener('click', function(){
+		window.location.href = 'loginpage.html';
+	});
 
 	sliderFunction();
 	dropdownFunction();

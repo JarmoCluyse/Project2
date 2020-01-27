@@ -36,6 +36,7 @@ function keyListener(e){ // listen to keypress
         score = 0; // put score back to 0
         questionsAnswered = 0
         distance = 3000;
+        heartsCounter = 0;
         placeScore(); // update the score
         // variables back to false
         gameStarted = false;
@@ -47,7 +48,7 @@ function keyListener(e){ // listen to keypress
 
 var placeDecorations = function () {
   let placeDeco = getRandomInt(100)
-  if (placeDeco > 70){
+  if (placeDeco > 85){
       let wichDeco = getRandomInt(1000);
       // wichDeco = 726;
       if (wichDeco <= 30) {
@@ -93,10 +94,23 @@ var getQuestions = function () {
 	handleData(`${BASEURI}questions?code=${key}`, showQuestion)
 };
 const showQuestion = function (data) {
+  s = JSON.parse(localStorage.getItem('SessionObject'));
+  var questionsFiltered = data;
+  if(s != null){
+    if (s.teacherQuestionsOnly){
+      questionsFiltered = questionsFiltered.filter(obj => {
+        return obj.teacherEmail === s.teacherEmail;
+        });
+    }
+    questionsFiltered = questionsFiltered.filter(obj => {
+      return obj.subject === s.forcedSubject;
+      });
+    console.log(questionsFiltered);
+  }
   let ans = [0,1,2, 3];
   ShuffledAnswers = ans;
   ans = shuffle(ans);
-  let question = data[getRandomInt(data.length)];
+  let question = questionsFiltered[getRandomInt(questionsFiltered.length)];
   CurrentQuestion = question;
   console.log(question);
   jsGameQuestion.innerHTML = `
