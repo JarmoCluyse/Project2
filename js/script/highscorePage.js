@@ -19,18 +19,22 @@ const ShowHighScores = function (data) {
     var leaderboard = data.slice(3, 10);
     console.log(leaders);
     console.log(leaderboard);
-    let scoreList = document.querySelector(".js-list");
-    scoreListtext = "";
+    let scoreList = document.querySelectorAll(".js-list");
+    scoreListPlayer = "";
+    scoreListScore = "";
     for (let i = 0; i < leaders.length; i++) {
         document.querySelector(`.js-person-${i+1}`).innerHTML = leaders[i].player;
         document.querySelector(`.js-score-${i+1}`).innerHTML = leaders[i].score;
         
     }
     for (let i = 0; i < leaderboard.length; i++) {
-        scoreListtext += `<li>${leaderboard[i].player}: ${leaderboard[i].score}</li>`
+        scoreListPlayer += `<li>${leaderboard[i].player}</li>`
+        scoreListScore += `<li>${leaderboard[i].score}</li>`
     }
-    scoreList.innerHTML = scoreListtext;
-    scoreListtext = ""
+    scoreList[0].innerHTML = scoreListPlayer;
+    scoreList[1].innerHTML = scoreListScore;
+    scoreListPlayer = ""
+    scoreListScore = ""
 }
 
 
@@ -40,6 +44,11 @@ const init = function(){
     settingsButton = document.getElementById('settings');
     logoutButton = document.getElementById('logout');
     gameButton = document.getElementById('game');
+    startNewGameButton = document.getElementById('newgame');
+
+    startNewGameButton.addEventListener('click', function(){
+        window.location.href = 'index.html';
+    });
 
     sessionButton.addEventListener('click', function(){
         window.location.href = 'sessiepage.html';
