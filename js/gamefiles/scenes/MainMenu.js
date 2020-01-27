@@ -34,8 +34,7 @@ var mainMenuState = new Phaser.Class({
         jsMainCard.classList.add("c-start-card");
         jsGameStart.classList.remove('hide');
         jsGamePlay.classList.add('hide');
-        jsGameQuestion.classList.add('hide');
-        jsGameEnd.classList.add('hide');
+        jsGameQuestion.classList.add('hide');;
         // -------------------------- //
         // listeners for next scene
         // -------------------------- //
