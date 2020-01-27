@@ -120,7 +120,7 @@ var sleep = (milliseconds) => {
 }
 
 const getHighscores = function(){
-  handleData(`${BASEURI}games?code=${key}`, showHighscores, "GET",null)
+  handleData(`${BASEURI}highscores/score/10?code=${key}`, showHighscores, "GET",null)
   if (loopHighscores){
     setTimeout(getHighscores, 20000);
   }
@@ -135,13 +135,13 @@ const gamePosted = function(){
 // -------------------------- //
 const showHighscores = function(data){
 	// console.log(data);
-	data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
-	var leaderboard = data.slice(0, 10);
+	// data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
+	// var leaderboard = data.slice(0, 10);
 	let scoreList = document.getElementById("highscoreList");
 	let str = "";
 	let inserted = false;
 	let count = 0;
-	leaderboard.forEach(element => {
+	data.forEach(element => {
 		if(score > element.score && !inserted){
 			str += `<li class="c-leaderboard-currentplayer">${player}:&nbsp;${score}</li>`;
 			str += `<li>${element.player}:&nbsp;${element.score}</li>`;
