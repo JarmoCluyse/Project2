@@ -1468,6 +1468,15 @@ input::placeholder {
 	max-width: 80px;
 	max-height: 80px;
 }
+.c-game-branding {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.c-game-branding img {
+	max-width: 40px;
+	max-height: px;
+}
 .c-hearts{
 	align-self: center;
 	margin: auto;

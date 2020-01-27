@@ -136,15 +136,15 @@ const gamePosted = function(){
 const showHighscores = function(data){
 	// console.log(data);
 	data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
+	var leaderboard = data.slice(0, 10);
 	let scoreList = document.getElementById("highscoreList");
 	let str = "";
-	var leaderboard = data.slice(0, 10);
 	let inserted = false;
 	let count = 0;
 	leaderboard.forEach(element => {
 		if(score > element.score && !inserted){
-			str+= `<li class="c-leaderboard-currentplayer">${score}		${player}</li>`;
-			str+= `<li>${element.score}		${element.player}</li>`;
+			str += `<li class="c-leaderboard-currentplayer">${score}		${player}</li>`;
+			str += `<li>${element.score}		${element.player}</li>`;
 			inserted = true;
 			count += 2;
 		}
