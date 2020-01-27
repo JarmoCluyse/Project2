@@ -143,13 +143,13 @@ const showHighscores = function(data){
 	let count = 0;
 	leaderboard.forEach(element => {
 		if(score > element.score && !inserted){
-			str += `<li class="c-leaderboard-currentplayer">${score}		${player}</li>`;
-			str += `<li>${element.score}		${element.player}</li>`;
+			str += `<li class="c-leaderboard-currentplayer">${player}:&nbsp;${score}</li>`;
+			str += `<li>${element.player}:&nbsp;${element.score}</li>`;
 			inserted = true;
 			count += 2;
 		}
 		else if (count < 10){
-			str+= `<li>${element.score}		${element.player}</li>`; 
+			str+= `<li>${element.player}:&nbsp;${element.score}</li>`; 
 			count++;
 		}
 		

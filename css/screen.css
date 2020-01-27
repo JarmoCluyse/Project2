@@ -2142,6 +2142,10 @@ input::placeholder {
 	margin-left: calc(var(--global-baseline));
 }
 
+.c-highscoreGame{
+	font-size: 24px;
+}
+
 .c-newGameId {
 	justify-content: center;
 	display: flex;
