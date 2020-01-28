@@ -125,10 +125,13 @@ const getHighscores = function(){
     setTimeout(getHighscores, 20000);
   }
 }
-const gamePosted = function(){
-	console.log("Game saved to db");
+const gamePosted = function(data){
+  localStorage.setItem("Position", JSON.stringify(data));
+  console.log("Game saved to db");
+  console.log(data);
 	loopHighscores = 0;
-	getHighscores();
+  getHighscores();
+  window.location.href = "highscorepage.html";
 }
 // -------------------------- //
 // show highscores
