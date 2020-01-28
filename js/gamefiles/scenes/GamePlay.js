@@ -630,30 +630,56 @@ let answerQuetion = function () {
     console.log(currentAnswer);
     if (currentAnswer < 4) {
         if(CurrentQuestion.answers[ShuffledAnswers[currentAnswer]].isCorrect){ // answer correct show game => play along
-            jsGamePlay.classList.remove('hide');
+            // jsGamePlay.classList.remove('hide');
+            // jsGameQuestion.classList.add('hide');
+            // gameOver = false;
+            // answer = false;
+            // Questioning = false;
+            // questionsAnswered ++; // Count the correct answered questions
+            // currentAnswer = 4;
+            jsGameQuestion.innerHTML = `<img src="./assets/right.png" alt="rightorwrong"  width="600" height="600"></img>`;
+            setTimeout(continueAfterQuestion, 1000);
+          }
+          else{ // stop game go to highscores
+            // gameDone = true;
+            // answer = false;
+            // jsGamePlay.classList.add('hide')
+            // jsGameQuestion.classList.add('hide');
+            // game.scene.stop('GamePlay');
+            // game.scene.start('GameOver');
+            jsGameQuestion.innerHTML = `<img src="./assets/wrong.png" alt="rightorwrong"  width="600" height="600"></img>`;
+            setTimeout(gameOverAfterQuestion, 1000);
+          } 
+    }
+    else{ // stop game go to highscores
+        // gameDone = true;
+        // answer = false;
+        // jsGamePlay.classList.add('hide')
+        // jsGameQuestion.classList.add('hide');
+        // game.scene.stop('GamePlay');
+        // game.scene.start('GameOver');
+        jsGameQuestion.innerHTML = `<img src="./assets/wrong.png" alt="rightorwrong"  width="600" height="600"></img>`;
+        setTimeout(gameOverAfterQuestion, 1000);
+    }
+    
+}
+
+let continueAfterQuestion = function(){
+    jsGamePlay.classList.remove('hide');
             jsGameQuestion.classList.add('hide');
             gameOver = false;
             answer = false;
             Questioning = false;
             questionsAnswered ++; // Count the correct answered questions
             currentAnswer = 4;
-          }
-          else{ // stop game go to highscores
-            gameDone = true;
+            jsGameQuestion.innerHTML = ``; 
+}
+let gameOverAfterQuestion = function(){
+    gameDone = true;
             answer = false;
             jsGamePlay.classList.add('hide')
             jsGameQuestion.classList.add('hide');
             game.scene.stop('GamePlay');
             game.scene.start('GameOver');
-          } 
-    }
-    else{ // stop game go to highscores
-        gameDone = true;
-        answer = false;
-        jsGamePlay.classList.add('hide')
-        jsGameQuestion.classList.add('hide');
-        game.scene.stop('GamePlay');
-        game.scene.start('GameOver');
-    }
-    jsGameQuestion.innerHTML = ``; 
+            jsGameQuestion.innerHTML = ``; 
 }
