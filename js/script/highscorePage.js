@@ -80,16 +80,19 @@ const ShowHighScores = function (data) {
         }
     }
 
-    if (parseInt(position) > 10){
-        if (player2Name == ""){
-            scoreListPlayer += `<li value="${position}" class="c-your-score c-your-scoreColor">${playerName}</li>`
-            scoreListScore += `<li class="c-your-score c-your-scoreColor">${playerScore}</li>`
-        }
-        else{
-            scoreListPlayer += `<li value="${position}" class="c-your-score c-your-scoreColor">${playerName}</li>`
-            scoreListScore += `<li class="c-your-score c-your-scoreColor">${playerScore}</li>`
-            scoreListPlayer += `<li class="c-your-scoreColor" value="${parseInt(position) + 1}">${player2Name}</li>`
-            scoreListScore += `<li class="c-your-scoreColor">${playerScore}</li>`
+    if (cameFromGame == "true"){
+        
+        if (parseInt(position) > 10){
+            if (player2Name == ""){
+                scoreListPlayer += `<li value="${position}" class="c-your-score c-your-scoreColor">${playerName}</li>`
+                scoreListScore += `<li class="c-your-score c-your-scoreColor">${playerScore}</li>`
+            }
+            else{
+                scoreListPlayer += `<li value="${position}" class="c-your-score c-your-scoreColor">${playerName}</li>`
+                scoreListScore += `<li class="c-your-score c-your-scoreColor">${playerScore}</li>`
+                scoreListPlayer += `<li class="c-your-scoreColor" value="${parseInt(position) + 1}">${player2Name}</li>`
+                scoreListScore += `<li class="c-your-scoreColor">${playerScore}</li>`
+            }
         }
     }
 
@@ -97,16 +100,20 @@ const ShowHighScores = function (data) {
     scoreList[1].innerHTML = scoreListScore;
     scoreListPlayer = ""
     scoreListScore = ""
+    localStorage.removeItem('Position');
 }
 
 
 const init = function(){
     console.log('Script geladen! 👍')
+    cameFromGame = localStorage.getItem('CameFromGame');
+    localStorage.setItem('CameFromGame', 'false');
     sessionButton = document.getElementById('sessions');
     settingsButton = document.getElementById('settings');
     logoutButton = document.getElementById('logout');
     gameButton = document.getElementById('game');
     startNewGameButton = document.getElementById('newgame');
+
 
     startNewGameButton.addEventListener('click', function(){
         window.location.href = 'index.html';
@@ -127,6 +134,9 @@ const init = function(){
     gameButton.addEventListener('click', function(){
         window.location.href = 'index.html';
     });
+    if (cameFromGame == 'true'){
+        document.querySelector('.c-dropbtn').classList.add('hide');
+    }
     getHighscores();
 };
 

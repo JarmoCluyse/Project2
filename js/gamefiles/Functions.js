@@ -161,6 +161,7 @@ const gamePosted = function(data){
   console.log(data);
 	loopHighscores = 0;
   getHighscores();
+  localStorage.setItem('CameFromGame', 'true');
   window.location.href = "highscorepage.html";
 }
 // -------------------------- //
