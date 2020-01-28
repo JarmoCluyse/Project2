@@ -32,6 +32,8 @@
 	--global-color-answer2: #18b557;
 	--global-color-answer3: #8618b5;
 
+	--global-color-correctanswer: #00e66f;
+
 
 	/* global page settings */
 	--global-html-color: var(--global-color-neutral-xxxx-dark);
@@ -1175,6 +1177,9 @@ input::placeholder {
 	width: 100%;
 	display: flex;
 	margin-bottom: calc(var(--global-baseline) * 2);
+}
+.c-correct{
+	background-color: var(--global-color-correctanswer);
 }
 
 @media(min-width: 768px){
