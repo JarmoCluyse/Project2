@@ -408,6 +408,36 @@ let moveCar = function(e) { // if an arrowkey is pressed
         }
         jsGameQuestion.innerHTML = ``;
       }
+      else if (Questioning){
+        if (e.key == "ArrowLeft"){
+            console.log(answerIds[0]);
+            document.getElementById(answerIds[0]).classList.add('c-selected');
+            document.getElementById(answerIds[1]).classList.remove('c-selected');
+            document.getElementById(answerIds[2]).classList.remove('c-selected');
+            document.getElementById(answerIds[3]).classList.remove('c-selected');
+          }
+          if (e.key == "ArrowUp"){
+            console.log(answerIds[1]);
+            document.getElementById(answerIds[0]).classList.remove('c-selected');
+            document.getElementById(answerIds[1]).classList.add('c-selected');
+            document.getElementById(answerIds[2]).classList.remove('c-selected');
+            document.getElementById(answerIds[3]).classList.remove('c-selected');
+          }
+          if (e.key == "ArrowDown"){
+            console.log(answerIds[2]);
+            document.getElementById(answerIds[0]).classList.remove('c-selected');
+            document.getElementById(answerIds[1]).classList.remove('c-selected');
+            document.getElementById(answerIds[2]).classList.add('c-selected');
+            document.getElementById(answerIds[3]).classList.remove('c-selected');
+          }
+          if (e.key == "ArrowRight"){
+            console.log(answerIds[3]);
+            document.getElementById(answerIds[0]).classList.remove('c-selected');
+            document.getElementById(answerIds[1]).classList.remove('c-selected');
+            document.getElementById(answerIds[2]).classList.remove('c-selected');
+            document.getElementById(answerIds[3]).classList.add('c-selected');
+          }
+      }
 }
 // -------------------------- //
 // Collistions
@@ -425,6 +455,7 @@ let hitObstacle = function(car, obstacle){
     }
     if (!PowerUpheart){ // if you don't have a haert give a question
         getQuestions()
+        Questioning = true;
         jsGamePlay.classList.add('hide');
         jsGameQuestion.classList.remove('hide');
         gameOver = true;

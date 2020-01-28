@@ -1442,6 +1442,9 @@ input::placeholder {
 .c-gameQuestion li:nth-of-type(4){
 	background-color: var(--global-color-answer3);
 }
+.c-selected{
+	border: 5px solid var(--global-color-alpha) !important;
+}
 
 .c-lanes li{
 	padding: 28px;
