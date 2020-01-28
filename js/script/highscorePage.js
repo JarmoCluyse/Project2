@@ -30,6 +30,7 @@ const ShowHighScores = function (data) {
         if (parseInt(position) <= 3){
             if (i == parseInt(position)-1){
                 if (/\s/.test(leaders[i].player)) {
+                    console.log('added underscore')
                     document.querySelector(`.js-person-${i+1}`).innerHTML = leaders[i].player.replace(/ /g, "&nbsp;");
                 }
                 else {
@@ -41,6 +42,7 @@ const ShowHighScores = function (data) {
             }
             else{
                 if (/\s/.test(leaders[i].player)) {
+                    console.log('added underscore')
                     document.querySelector(`.js-person-${i+1}`).innerHTML = leaders[i].player.replace(/ /g, "&nbsp;");
                 }
                 else {
@@ -51,7 +53,13 @@ const ShowHighScores = function (data) {
         }
 
         else {
-            document.querySelector(`.js-person-${i+1}`).innerHTML = leaders[i].player;
+            if (/\s/.test(leaders[i].player)){
+                document.querySelector(`.js-person-${i+1}`).innerHTML = leaders[i].player.replace(/ /g, "&nbsp;");
+            }
+            else {
+                document.querySelector(`.js-person-${i+1}`).innerHTML = leaders[i].player;
+            }
+            
             document.querySelector(`.js-score-${i+1}`).innerHTML = leaders[i].score;
         }
     }
