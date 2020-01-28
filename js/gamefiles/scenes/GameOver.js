@@ -38,6 +38,5 @@ const postGame = function(played, langechanges){
 	json = JSON.parse(jsontext);
 	// console.log(json);
 	// console.log(jsontext);
-	sendData(`${BASEURI}game?code=${key}`, gamePosted, "POST",json);
-	window.location.href = "highscorepage.html";
+	handleData(`${BASEURI}game?code=${key}`, gamePosted, "POST", JSON.stringify(json));
 }

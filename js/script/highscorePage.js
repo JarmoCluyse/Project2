@@ -5,7 +5,7 @@ const loggedOut = function(data){
 // getting the highscore
 // -------------------------- //
 const getHighscores = function(){
-    handleData(`${BASEURI}games?code=${key}`, ShowHighScores, "GET",null)
+    handleData(`${BASEURI}highscores/score/100?code=${key}`, ShowHighScores, "GET",null)
   }
 // -------------------------- //
 // show the highscores

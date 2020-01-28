@@ -136,28 +136,31 @@ var sleep = (milliseconds) => {
 }
 
 const getHighscores = function(){
-  handleData(`${BASEURI}games?code=${key}`, showHighscores, "GET",null)
+  handleData(`${BASEURI}highscores/score/10?code=${key}`, showHighscores, "GET",null)
   if (loopHighscores){
     setTimeout(getHighscores, 20000);
   }
 }
-const gamePosted = function(){
-	console.log("Game saved to db");
+const gamePosted = function(data){
+  localStorage.setItem("Position", JSON.stringify(data));
+  console.log("Game saved to db");
+  console.log(data);
 	loopHighscores = 0;
-	getHighscores();
+  getHighscores();
+  window.location.href = "highscorepage.html";
 }
 // -------------------------- //
 // show highscores
 // -------------------------- //
 const showHighscores = function(data){
 	// console.log(data);
-	data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
-	var leaderboard = data.slice(0, 10);
+	// data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
+	// var leaderboard = data.slice(0, 10);
 	let scoreList = document.getElementById("highscoreList");
 	let str = "";
 	let inserted = false;
 	let count = 0;
-	leaderboard.forEach(element => {
+	data.forEach(element => {
 		if(score > element.score && !inserted){
 			str += `<li class="c-leaderboard-currentplayer">${player}:&nbsp;${score}</li>`;
 			str += `<li>${element.player}:&nbsp;${element.score}</li>`;
