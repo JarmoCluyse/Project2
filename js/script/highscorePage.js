@@ -5,7 +5,7 @@ const loggedOut = function(data){
 // getting the highscore
 // -------------------------- //
 const getHighscores = function(){
-    handleData(`${BASEURI}highscores/score/100?code=${key}`, ShowHighScores, "GET",null)
+    handleData(`${BASEURI}highscores/score/10?code=${key}`, ShowHighScores, "GET",null)
   }
 // -------------------------- //
 // show the highscores
@@ -31,8 +31,22 @@ const ShowHighScores = function (data) {
         scoreListPlayer += `<li>${leaderboard[i].player}</li>`
         scoreListScore += `<li>${leaderboard[i].score}</li>`
     }
-    scoreListPlayer += `<li value="69" class="c-your-score"   ">little timmy</li>`
-    scoreListScore += `<li class="c-your-score" >69</li>`
+    position = localStorage.getItem('Position');
+    playerName = localStorage.getItem('Player');
+    player2Name = localStorage.getItem('Player2');
+    playerScore = localStorage.getItem('Score');
+
+    if (player2Name == ""){
+        scoreListPlayer += `<li value="${position}" class="c-your-score">${playerName}</li>`
+        scoreListScore += `<li class="c-your-score">${playerScore}</li>`
+    }
+    else{
+        scoreListPlayer += `<li value="${position}" class="c-your-score">${playerName}</li>`
+        scoreListScore += `<li class="c-your-score">${playerScore}</li>`
+        scoreListPlayer += `<li value="${parseInt(position) + 1}">${player2Name}</li>`
+        scoreListScore += `<li>${playerScore}</li>`
+    }
+
     scoreList[0].innerHTML = scoreListPlayer;
     scoreList[1].innerHTML = scoreListScore;
     scoreListPlayer = ""

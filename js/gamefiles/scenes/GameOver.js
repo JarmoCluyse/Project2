@@ -34,6 +34,7 @@ myGame.scenes.push(mainMenuState);
 // send to database
 // -------------------------- //
 const postGame = function(played, langechanges){
+	localStorage.setItem('Score', score)
 	jsontext = `{"player": "${played}", "subject": "${questionsSubject}", "mode": "${mode}", "score": "${score}", "coinscollected": "${coinsCollected}", "questionsanswered": "${questionsAnswered}", "numberoflanechanges": "${langechanges}", "session": "${session}"}`;
 	json = JSON.parse(jsontext);
 	// console.log(json);
