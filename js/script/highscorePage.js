@@ -81,9 +81,8 @@ const ShowHighScores = function (data) {
     }
 
     if (cameFromGame == "true"){
-        
         if (parseInt(position) > 10){
-        if (mode == "COOP"){
+            if (mode == "SP"){
                 scoreListPlayer += `<li value="${position}" class="c-your-score c-your-scoreColor">${playerName}</li>`
                 scoreListScore += `<li class="c-your-score c-your-scoreColor">${playerScore}</li>`
             }
