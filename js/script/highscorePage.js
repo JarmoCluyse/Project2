@@ -20,32 +20,68 @@ const ShowHighScores = function (data) {
     console.log(leaders);
     console.log(leaderboard);
     let scoreList = document.querySelectorAll(".js-list");
-    scoreListPlayer = "";
-    scoreListScore = "";
-    for (let i = 0; i < leaders.length; i++) {
-        document.querySelector(`.js-person-${i+1}`).innerHTML = leaders[i].player;
-        document.querySelector(`.js-score-${i+1}`).innerHTML = leaders[i].score;
-        
-    }
-    for (let i = 0; i < leaderboard.length; i++) {
-        scoreListPlayer += `<li>${leaderboard[i].player}</li>`
-        scoreListScore += `<li>${leaderboard[i].score}</li>`
-    }
     position = localStorage.getItem('Position');
     playerName = localStorage.getItem('Player');
     player2Name = localStorage.getItem('Player2');
     playerScore = localStorage.getItem('Score');
+    scoreListPlayer = "";
+    scoreListScore = "";
+    for (let i = 0; i < leaders.length; i++) {
+        if (parseInt(position) <= 3){
+            if (i == parseInt(position)-1){
+                if (/\s/.test(leaders[i].player)) {
+                    document.querySelector(`.js-person-${i+1}`).innerHTML = leaders[i].player.replace(/ /g, "&nbsp;");
+                }
+                else {
+                    document.querySelector(`.js-person-${i+1}`).innerHTML = leaders[i].player;
+                }
+
+                document.querySelector(`.js-person-${i+1}`).classList.add("c-your-scoreColor");
+                document.querySelector(`.js-score-${i+1}`).innerHTML = leaders[i].score;
+            }
+            else{
+                if (/\s/.test(leaders[i].player)) {
+                    document.querySelector(`.js-person-${i+1}`).innerHTML = leaders[i].player.replace(/ /g, "&nbsp;");
+                }
+                else {
+                    document.querySelector(`.js-person-${i+1}`).innerHTML = leaders[i].player;
+                }
+                document.querySelector(`.js-score-${i+1}`).innerHTML = leaders[i].score;
+            }
+        }
+
+        else {
+            document.querySelector(`.js-person-${i+1}`).innerHTML = leaders[i].player;
+            document.querySelector(`.js-score-${i+1}`).innerHTML = leaders[i].score;
+        }
+    }
+    for (let i = 0; i < leaderboard.length; i++) {
+        if (parseInt(position) > 3 && parseInt(position) < 10){
+            if (i == parseInt(position)-1){
+                scoreListPlayer += `<li class="c-your-scoreColor">${leaderboard[i].player}</li>`
+                scoreListScore += `<li class="c-your-scoreColor">${leaderboard[i].score}</li>`
+            }
+            else {
+                scoreListPlayer += `<li>${leaderboard[i].player}</li>`
+                scoreListScore += `<li>${leaderboard[i].score}</li>`
+            }
+        }
+        else {
+            scoreListPlayer += `<li>${leaderboard[i].player}</li>`
+            scoreListScore += `<li>${leaderboard[i].score}</li>`
+        }
+    }
 
     if (parseInt(position) > 10){
         if (player2Name == ""){
-            scoreListPlayer += `<li value="${position}" class="c-your-score">${playerName}</li>`
-            scoreListScore += `<li class="c-your-score">${playerScore}</li>`
+            scoreListPlayer += `<li value="${position}" class="c-your-score c-your-scoreColor">${playerName}</li>`
+            scoreListScore += `<li class="c-your-score c-your-scoreColor">${playerScore}</li>`
         }
         else{
-            scoreListPlayer += `<li value="${position}" class="c-your-score">${playerName}</li>`
-            scoreListScore += `<li class="c-your-score">${playerScore}</li>`
-            scoreListPlayer += `<li value="${parseInt(position) + 1}">${player2Name}</li>`
-            scoreListScore += `<li>${playerScore}</li>`
+            scoreListPlayer += `<li value="${position}" class="c-your-score c-your-scoreColor">${playerName}</li>`
+            scoreListScore += `<li class="c-your-score c-your-scoreColor">${playerScore}</li>`
+            scoreListPlayer += `<li class="c-your-scoreColor" value="${parseInt(position) + 1}">${player2Name}</li>`
+            scoreListScore += `<li class="c-your-scoreColor">${playerScore}</li>`
         }
     }
 

@@ -1341,6 +1341,11 @@ input::placeholder {
 	left: 0;
 	font-size: 28px;
 	color: var(--global-color-neutral-xx-dark);
+	z-index: 2;
+}
+
+.c-your-scoreColor {
+	color: var(--global-color-alpha);
 }
 
 .c-rank{
