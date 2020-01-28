@@ -36,15 +36,17 @@ const ShowHighScores = function (data) {
     player2Name = localStorage.getItem('Player2');
     playerScore = localStorage.getItem('Score');
 
-    if (player2Name == ""){
-        scoreListPlayer += `<li value="${position}" class="c-your-score">${playerName}</li>`
-        scoreListScore += `<li class="c-your-score">${playerScore}</li>`
-    }
-    else{
-        scoreListPlayer += `<li value="${position}" class="c-your-score">${playerName}</li>`
-        scoreListScore += `<li class="c-your-score">${playerScore}</li>`
-        scoreListPlayer += `<li value="${parseInt(position) + 1}">${player2Name}</li>`
-        scoreListScore += `<li>${playerScore}</li>`
+    if (parseInt(position) > 10){
+        if (player2Name == ""){
+            scoreListPlayer += `<li value="${position}" class="c-your-score">${playerName}</li>`
+            scoreListScore += `<li class="c-your-score">${playerScore}</li>`
+        }
+        else{
+            scoreListPlayer += `<li value="${position}" class="c-your-score">${playerName}</li>`
+            scoreListScore += `<li class="c-your-score">${playerScore}</li>`
+            scoreListPlayer += `<li value="${parseInt(position) + 1}">${player2Name}</li>`
+            scoreListScore += `<li>${playerScore}</li>`
+        }
     }
 
     scoreList[0].innerHTML = scoreListPlayer;
