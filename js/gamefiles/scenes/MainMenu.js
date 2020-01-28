@@ -21,10 +21,10 @@ var mainMenuState = new Phaser.Class({
 		handleData(`${BASEURI}session/${session}?code=${key}`, setSession);
 		if (mode == 'COOP') {
 			// change video if coop
-			jsVideo.innerHTML = `<source src="../assets/vidCoop.m4v" type="video/mp4">
+			jsVideo.innerHTML = `<source src="./assets/vidCoop.m4v" type="video/mp4">
             Your browser does not support the video tag.`;
 		} else {
-			jsVideo.innerHTML = `<source src="../assets/vid.m4v" type="video/mp4">
+			jsVideo.innerHTML = `<source src="./assets/vid.m4v" type="video/mp4">
             Your browser does not support the video tag.`;
 		}
 		// -------------------------- //
