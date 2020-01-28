@@ -4,7 +4,7 @@
 var speedIncrease = 4; // the rate of increasing
 var increaseValueSpeed = 0.5; // value that we increase with
 var increaseValueDistance = 0.05; // value that we increase with
-var waitquestion = 7; // question time out
+var waitquestion = 10; // question time out
 var DriveScore = 5; // score for driving
 var scoreCoin = 10; // score when you pickup something
 var maxhearts = 3; // max hearts in a game

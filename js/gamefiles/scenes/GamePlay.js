@@ -428,9 +428,6 @@ let hitObstacle = function(car, obstacle){
         jsGamePlay.classList.add('hide');
         jsGameQuestion.classList.remove('hide');
         gameOver = true;
-        questionTimer = waitquestion;
-        timeQuestion();
-        //sleep(5000).then(() => {answer = true;});
     }
     else{ // disable yout haert
         PowerUpheart = false;
@@ -439,20 +436,6 @@ let hitObstacle = function(car, obstacle){
 
     
 }
-const timeQuestion = function(){
-    if (!answer){
-        questionTimer--;
-        console.log(questionTimer);
-        if (questionTimer == 0){
-            answer = true;
-        }
-        else{
-            setTimeout(timeQuestion, 1000);
-        }
-       
-    }
-    
-  }
 // -------------------------- //
 // user with pickup
 // -------------------------- //

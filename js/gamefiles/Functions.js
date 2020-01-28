@@ -99,8 +99,10 @@ const showQuestion = function (data) {
   ans = shuffle(ans);
   let question = questionsFiltered[getRandomInt(questionsFiltered.length)];
   CurrentQuestion = question;
+  questionTimer = waitquestion;
   console.log(question);
   jsGameQuestion.innerHTML = `
+  <h1 class="c-timer">${questionTimer}</h1>
   <h1>Beantwoord deze vraag om verder te spelen:</h1>
   <br>
   <br>
@@ -112,6 +114,20 @@ const showQuestion = function (data) {
     <li>${question.answers[ans[3]].answerText}</li>
   </ul>
   `;
+  timeQuestion();
+}
+const timeQuestion = function(){
+  if (!answer){
+      document.querySelector('.c-timer').innerHTML = questionTimer;
+      if (questionTimer == 0){
+          answer = true;
+      }
+      else{
+          setTimeout(timeQuestion, 1000);
+          questionTimer--;
+      }
+     
+  }
   
 }
 
