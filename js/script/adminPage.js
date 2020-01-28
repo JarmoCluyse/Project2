@@ -112,18 +112,27 @@ const showQuestions = function (data) {
 	</li>
 	<div class="c-answerlist">
 		<ul class="c-list__question-answers o-list">
-			<div class="c-answers">	
-				<li class="c-list__answers">${element.answers[0].answerText}</li>
-				<li class="c-list__answers">${element.answers[1].answerText}</li>
-			</div>
+			<div class="c-answers">	`;
+	var i;
+	for (i = 0; i < element.answers.length; i++) {
+		if (i==2){
+			htmlString+= `</div>
 
-			<div class="c-answers">	
-				<li class="c-list__answers">${element.answers[2].answerText}</li>
-				<li class="c-list__answers">${element.answers[3].answerText}</li>
-			</div>
-		</ul>
-	</div>`
-	});
+			<div class="c-answers">	`;
+		}
+  		if (element.answers[i].isCorrect){
+			htmlString+=`<li class="c-list__answers c-correct">${element.answers[i].answerText}</li>`;
+		  }
+		else{
+			htmlString+=`<li class="c-list__answers">${element.answers[i].answerText}</li>`;
+		  }
+		  if (i==3){
+			htmlString+= `</div>
+			</ul>
+		</div>`;
+		}
+	}
+});
 	listElement.innerHTML = htmlString;
 
 
@@ -146,27 +155,29 @@ const showQuestions = function (data) {
 	})
 };
 
+
+// load the dropdown with all possible values (get all subjects from the database)
 const preloadDropDown = function(data){
 	mainDropDown = document.getElementById('select');
+
+	// fill in the default value to 'alle vragen'
 	mainDropDown.innerHTML = `<option value="all">(Alle vragen)</option>`;
+
+	// on change show the questions with a certain subject
 	mainDropDown.addEventListener('change', function(){
 		showQuestions(null);
 	});
 
 	foundSubjects = []
 
+
+	// add all subjects to the dropdown
 	data.forEach(element =>{
 		if (!foundSubjects.includes(element.subject)){
 			foundSubjects.push(element.subject);
 			mainDropDown.innerHTML += `<option value="${element.subject}">${element.subject}</option>`;
 		}
 	});
-	
-	// foundSubjects.forEach(element => {
-	// 	mainDropDown.innerHTML += `<option value="${element}">${element}</option>`;
-	// });
-
-
 };
 
 // confirmation popup 'are you sure you want to delete this question?'
@@ -420,10 +431,6 @@ const fillDropDowns = function(elementId){
 const addSubjectToDropDown = function(){
 	// get the new subject from the input
 	newSubject = document.getElementById('newDropDownValue');
-
-	// add the option to the dropdownlists
-	// subjectSelect.innerHTML += `<option value="${newSubject.value}">${newSubject.value}</option>`;
-
 	
 	// go to add question page
 	showAddQuestionPage(newSubject.value);
