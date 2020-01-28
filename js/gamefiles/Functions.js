@@ -115,12 +115,16 @@ const showQuestion = function (data) {
   <br>
   <h1>${question.questionText}</h1>
   <ul class="o-list">
-    <li>${question.answers[ans[0]].answerText}</li>
-    <li>${question.answers[ans[1]].answerText}</li>
-    <li>${question.answers[ans[2]].answerText}</li>
-    <li>${question.answers[ans[3]].answerText}</li>
+    <li id='${question.answers[ans[0]].answerId}'>${question.answers[ans[0]].answerText}</li>
+    <li id='${question.answers[ans[1]].answerId}'>${question.answers[ans[1]].answerText}</li>
+    <li id='${question.answers[ans[2]].answerId}'>${question.answers[ans[2]].answerText}</li>
+    <li id='${question.answers[ans[3]].answerId}'>${question.answers[ans[3]].answerText}</li>
   </ul>
   `;
+  answerIds.push(question.answers[ans[0]].answerId);
+  answerIds.push(question.answers[ans[1]].answerId);
+  answerIds.push(question.answers[ans[2]].answerId);
+  answerIds.push(question.answers[ans[3]].answerId);
   timeQuestion();
 }
 const timeQuestion = function(){

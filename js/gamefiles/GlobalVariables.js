@@ -83,6 +83,8 @@ var heartsCounter = 0;
 //------------------------------- //
 // Question
 //------------------------------- //
+var answerIds = [];
+var Questioning = false;
 var CurrentQuestion;
 var ShuffledAnswers;
 //------------------------------- //
@@ -109,7 +111,7 @@ var scoreupdating = false
 //------------------------------- //
 // testing
 //------------------------------- //
-var testing = true;
+var testing = false;
 //------------------------------- //
 // Default values 
 //------------------------------- //
