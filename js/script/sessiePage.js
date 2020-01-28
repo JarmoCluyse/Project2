@@ -140,6 +140,7 @@ const deletedSession = function(data){
 const showSessionIdPage = function(){
     newSessionPage.style.display = 'none';
     newSessionIdCard.style.display = 'flex';
+    newId.innerHTML = "&nbsp;&nbsp;&nbsp;" + id;
 
 };
 
@@ -168,7 +169,8 @@ const init = function(){
 	}
 	else{
 		window.location.href = "loginpage.html";
-	}
+    }
+    newId = document.querySelector('.c-session-new-sessionId');
     sortSelect = document.getElementById("sortSelect");
     deleteTitle = document.getElementById("js-deleteTitle");
     newSessionName = document.getElementById("newSessionName");
