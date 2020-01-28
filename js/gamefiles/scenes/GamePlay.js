@@ -368,6 +368,7 @@ let moveCar = function(e) { // if an arrowkey is pressed
 // -------------------------- //
 // user with obstacle
 // -------------------------- //
+let animate = false;
 let hitObstacle = function(car, obstacle){
     // sound hit a car
     HitMusic.play();
@@ -386,10 +387,37 @@ let hitObstacle = function(car, obstacle){
     }
     else{ // disable yout haert
         PowerUpheart = false;
-        jsheart.style.opacity = 0.4;
+        animate = true;
+        animateHeart();
+        //jsheart.style.opacity = 0.4;
+        this.scene.pause();
+        setTimeout(resume, 1500);
+
     }
 
-    
+}
+
+let solid = true;
+let animateHeart = function(){
+    if (animate){
+        if (!solid){
+            jsheart.style.opacity = 1;
+            solid = true;
+        }
+        else{
+            jsheart.style.opacity = 0.4;
+            solid = false;
+        }
+        setTimeout(animateHeart, 100);
+    }
+    else{
+        jsheart.style.opacity = 0.4;
+    }
+}
+let resume = function(){
+    animate = false;
+    game.scene.resume('GamePlay');
+    jsheart.style.opacity = 0.4;
 }
 // -------------------------- //
 // user with pickup
