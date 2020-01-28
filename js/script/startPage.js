@@ -50,11 +50,6 @@ const removePlayer2 = function() {
 // dropdown for the selected gamemode
 const dropdownFunction = function() {
 	// check the dropdown value a first time
-	console.log("fak m'n leven")
-	dropdownSelect.innerHTML = "";
-	dropdownSelect.innerHTML += `<option value="SP">Alleen</option>
-								 <option value="COOP">Samen spelen</option>`
-
 	dropdownSelectValue = dropdownSelect.options[dropdownSelect.selectedIndex].value;
 	
 
