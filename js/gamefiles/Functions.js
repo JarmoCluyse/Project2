@@ -87,6 +87,7 @@ var DecorationX = function () {
 var getQuestions = function () {
 	handleData(`${BASEURI}questions?code=${key}`, showQuestion)
 };
+
 const showQuestion = function (data) {
   s = JSON.parse(localStorage.getItem('SessionObject'));
   var questionsFiltered = data;
@@ -121,12 +122,14 @@ const showQuestion = function (data) {
     <li id='${question.answers[ans[3]].answerId}'>${question.answers[ans[3]].answerText}</li>
   </ul>
   `;
+  answerIds = [];
   answerIds.push(question.answers[ans[0]].answerId);
   answerIds.push(question.answers[ans[1]].answerId);
   answerIds.push(question.answers[ans[2]].answerId);
   answerIds.push(question.answers[ans[3]].answerId);
   timeQuestion();
 }
+
 const timeQuestion = function(){
   if (!answer){
       document.querySelector('.c-timer').innerHTML = questionTimer;

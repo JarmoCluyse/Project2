@@ -87,6 +87,7 @@ var answerIds = [];
 var Questioning = false;
 var CurrentQuestion;
 var ShuffledAnswers;
+var currentAnswer = 4;
 //------------------------------- //
 // game variables
 //------------------------------- //
@@ -125,9 +126,11 @@ if (typeof increase === 'undefined' || !increase) {
 }
 if (typeof player === 'undefined' || !player) {
   player = "anoniem"; //default value
+  localStorage.setItem('Player', player)
 }
 if (typeof player2 === 'undefined' || !player2) {
   player2 = "anoniem"; //default value
+  localStorage.setItem('Player2', player2)
 }
 if (typeof mode === 'undefined' || !mode) {
   mode = "SP"; //default value

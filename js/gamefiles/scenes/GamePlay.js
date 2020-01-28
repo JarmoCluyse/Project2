@@ -241,16 +241,7 @@ var gamePlayState = new Phaser.Class({
             }          
         }
         if(answer){ // give player 2 s to stand on mat after timer runs out
-            sleep(2000).then(() => {
-                if(answer){
-                    gameDone = true;
-                    answer = false;
-                    jsGamePlay.classList.add('hide')
-                    jsGameQuestion.classList.add('hide');
-                    game.scene.stop('GamePlay');
-                    game.scene.start('GameOver');
-                }
-            });
+            answerQuetion();
         }
     }
 });
@@ -337,80 +328,10 @@ let moveCar = function(e) { // if an arrowkey is pressed
     // -------------------------- //
     // game over => question
     // -------------------------- //
-    else if (gameStarted && gameOver && !gameDone && answer) { // if you don't have a haert
-        if (e.key == "ArrowLeft"){
-          if(CurrentQuestion.answers[ShuffledAnswers[0]].isCorrect){ // answer correct show game => play along
-            jsGamePlay.classList.remove('hide');
-            jsGameQuestion.classList.add('hide');
-            gameOver = false;
-            answer = false;
-            questionsAnswered ++; // Count the correct answered questions
-          }
-          else{ // stop game go to highscores
-            gameDone = true;
-            answer = false;
-            jsGamePlay.classList.add('hide')
-            jsGameQuestion.classList.add('hide');
-            game.scene.stop('GamePlay');
-            game.scene.start('GameOver');
-          }     
-        }
-        if (e.key == "ArrowUp"){
-          if(CurrentQuestion.answers[ShuffledAnswers[1]].isCorrect){ // answer correct show game => play along
-            jsGamePlay.classList.remove('hide');
-            jsGameQuestion.classList.add('hide');
-            gameOver = false;
-            answer = false;
-            questionsAnswered ++; // Count the correct answered questions
-          }
-          else{ // stop game go to highscores
-            gameDone = true;
-            answer = false;
-            jsGamePlay.classList.add('hide')
-            jsGameQuestion.classList.add('hide');
-            game.scene.stop('GamePlay');
-            game.scene.start('GameOver');
-          } 
-        }
-        if (e.key == "ArrowDown"){
-          if(CurrentQuestion.answers[ShuffledAnswers[2]].isCorrect){ // answer correct show game => play along
-            jsGamePlay.classList.remove('hide');
-            jsGameQuestion.classList.add('hide');
-            gameOver = false;
-            answer = false;
-            questionsAnswered ++; // Count the correct answered questions 
-          }
-          else{ // stop game go to highscores
-            gameDone = true;
-            answer = false;
-            jsGamePlay.classList.add('hide')
-            jsGameQuestion.classList.add('hide');
-            game.scene.stop('GamePlay');
-            game.scene.start('GameOver');
-          } 
-        }
-        if (e.key == "ArrowRight"){
-          if(CurrentQuestion.answers[ShuffledAnswers[3]].isCorrect){ // answer correct show game => play along
-            jsGamePlay.classList.remove('hide');
-            jsGameQuestion.classList.add('hide');
-            gameOver = false;
-            answer = false;
-            questionsAnswered ++; // Count the correct answered questions
-          }
-          else{ // stop game go to highscores
-            gameDone = true;
-            answer = false;
-            jsGamePlay.classList.add('hide')
-            jsGameQuestion.classList.add('hide');
-            game.scene.stop('GamePlay');
-            game.scene.start('GameOver');
-          } 
-        }
-        jsGameQuestion.innerHTML = ``;
-      }
-      else if (Questioning){
+    else if (gameStarted && gameOver && !gameDone && Questioning) { // if you don't have a haert
         if (e.key == "ArrowLeft"){
             console.log(answerIds[0]);
+            currentAnswer = 0;
             document.getElementById(answerIds[0]).classList.add('c-selected');
             document.getElementById(answerIds[1]).classList.remove('c-selected');
             document.getElementById(answerIds[2]).classList.remove('c-selected');
@@ -418,6 +339,7 @@ let moveCar = function(e) { // if an arrowkey is pressed
           }
           if (e.key == "ArrowUp"){
             console.log(answerIds[1]);
+            currentAnswer = 1;
             document.getElementById(answerIds[0]).classList.remove('c-selected');
             document.getElementById(answerIds[1]).classList.add('c-selected');
             document.getElementById(answerIds[2]).classList.remove('c-selected');
@@ -425,6 +347,7 @@ let moveCar = function(e) { // if an arrowkey is pressed
           }
           if (e.key == "ArrowDown"){
             console.log(answerIds[2]);
+            currentAnswer = 2;
             document.getElementById(answerIds[0]).classList.remove('c-selected');
             document.getElementById(answerIds[1]).classList.remove('c-selected');
             document.getElementById(answerIds[2]).classList.add('c-selected');
@@ -432,6 +355,7 @@ let moveCar = function(e) { // if an arrowkey is pressed
           }
           if (e.key == "ArrowRight"){
             console.log(answerIds[3]);
+            currentAnswer = 3;
             document.getElementById(answerIds[0]).classList.remove('c-selected');
             document.getElementById(answerIds[1]).classList.remove('c-selected');
             document.getElementById(answerIds[2]).classList.remove('c-selected');
@@ -672,4 +596,26 @@ let increasing = function(){
         }
         waitIncrease ++;
     }
+}
+
+let answerQuetion = function () {
+    console.log(currentAnswer);
+    if(CurrentQuestion.answers[ShuffledAnswers[currentAnswer]].isCorrect){ // answer correct show game => play along
+        jsGamePlay.classList.remove('hide');
+        jsGameQuestion.classList.add('hide');
+        gameOver = false;
+        answer = false;
+        Questioning = false;
+        questionsAnswered ++; // Count the correct answered questions
+        currentAnswer = 4;
+      }
+      else{ // stop game go to highscores
+        gameDone = true;
+        answer = false;
+        jsGamePlay.classList.add('hide')
+        jsGameQuestion.classList.add('hide');
+        game.scene.stop('GamePlay');
+        game.scene.start('GameOver');
+      } 
+      jsGameQuestion.innerHTML = ``; 
 }
