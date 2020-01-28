@@ -3,7 +3,7 @@
 //------------------------------- //
 var speedIncrease = 4; // the rate of increasing
 var increaseValueSpeed = 0.5; // value that we increase with
-var increaseValueDistance = 0.05; // value that we increase with
+var increaseValueDistance = 1; // value that we increase with
 var waitquestion = 10; // question time out
 var DriveScore = 5; // score for driving
 var scoreCoin = 10; // score when you pickup something
@@ -105,7 +105,7 @@ for (var keys in ColorList) {
 }
 var questionTimer = 10;
 var inTopTen = false;
-var oneBeforYou = 0;
+var oneBeforYou = 1000000;
 var firstPlace = false;
 var scoreupdating = false
 //var timeQuestion = false;

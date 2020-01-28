@@ -127,9 +127,7 @@ var gamePlayState = new Phaser.Class({
 
             
             if (counter >= distance){         
-                if (!PowerUpCoin){
-                    console.log("set auto's");
-                    
+                if (!PowerUpCoin){                   
                     setcars();
                 }
                 if (PowerUpCoin) {
@@ -330,7 +328,6 @@ let moveCar = function(e) { // if an arrowkey is pressed
     // -------------------------- //
     else if (gameStarted && gameOver && !gameDone && Questioning) { // if you don't have a haert
         if (e.key == "ArrowLeft"){
-            console.log(answerIds[0]);
             currentAnswer = 0;
             document.getElementById(answerIds[0]).classList.add('c-selected');
             document.getElementById(answerIds[1]).classList.remove('c-selected');
@@ -338,7 +335,6 @@ let moveCar = function(e) { // if an arrowkey is pressed
             document.getElementById(answerIds[3]).classList.remove('c-selected');
           }
           if (e.key == "ArrowUp"){
-            console.log(answerIds[1]);
             currentAnswer = 1;
             document.getElementById(answerIds[0]).classList.remove('c-selected');
             document.getElementById(answerIds[1]).classList.add('c-selected');
@@ -346,7 +342,6 @@ let moveCar = function(e) { // if an arrowkey is pressed
             document.getElementById(answerIds[3]).classList.remove('c-selected');
           }
           if (e.key == "ArrowDown"){
-            console.log(answerIds[2]);
             currentAnswer = 2;
             document.getElementById(answerIds[0]).classList.remove('c-selected');
             document.getElementById(answerIds[1]).classList.remove('c-selected');
@@ -354,7 +349,6 @@ let moveCar = function(e) { // if an arrowkey is pressed
             document.getElementById(answerIds[3]).classList.remove('c-selected');
           }
           if (e.key == "ArrowRight"){
-            console.log(answerIds[3]);
             currentAnswer = 3;
             document.getElementById(answerIds[0]).classList.remove('c-selected');
             document.getElementById(answerIds[1]).classList.remove('c-selected');
@@ -590,8 +584,7 @@ let increasing = function(){
     if (increase){
         if (waitIncrease >= speedIncrease){ //delay
             speed += increaseValueSpeed; // increase speed
-            distance -= increaseValueSpeed; // decrease distance
-            
+            distance -= increaseValueDistance; // decrease distance           
             waitIncrease = 0;
         }
         waitIncrease ++;
@@ -599,7 +592,6 @@ let increasing = function(){
 }
 
 let answerQuetion = function () {
-    console.log(currentAnswer);
     if (currentAnswer < 4) {
         if(CurrentQuestion.answers[ShuffledAnswers[currentAnswer]].isCorrect){ // answer correct show game => play along
             jsGamePlay.classList.remove('hide');
