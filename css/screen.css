@@ -1083,6 +1083,10 @@ input::placeholder {
 }
 
 
+.c-your-score{
+	margin-top: calc(var(--global-baseline) * 4);
+}
+
 
 .c-session-card-title {
 	margin-top: calc(var(--global-baseline) * 2);

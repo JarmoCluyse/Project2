@@ -31,6 +31,8 @@ const ShowHighScores = function (data) {
         scoreListPlayer += `<li>${leaderboard[i].player}</li>`
         scoreListScore += `<li>${leaderboard[i].score}</li>`
     }
+    scoreListPlayer += `<li value="69" class="c-your-score"   ">little timmy</li>`
+    scoreListScore += `<li class="c-your-score" >69</li>`
     scoreList[0].innerHTML = scoreListPlayer;
     scoreList[1].innerHTML = scoreListScore;
     scoreListPlayer = ""
