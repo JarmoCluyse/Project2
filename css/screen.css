@@ -1302,7 +1302,7 @@ input::placeholder {
 .c-number-one{
 	position: relative;
 	height: 200px;
-	width: 150px;
+	width: 200px;
 	display: flex;
 	justify-content: center;
 	background-color: #FFD700;
@@ -1312,7 +1312,7 @@ input::placeholder {
 .c-number-two{
 	position: relative;
 	height: 133px;
-	width: 150px;
+	width: 200px;
 	display: flex;
 	justify-content: center;
 	background-color: #C0C0C0;
@@ -1324,7 +1324,7 @@ input::placeholder {
 .c-number-three{
 	position: relative;
 	height: 100px;
-	width: 150px;
+	width: 200px;
 	display: flex;
 	justify-content: center;
 	background-color: #CD7F32;
@@ -1336,7 +1336,7 @@ input::placeholder {
 .c-person{
 	display: flex;
 	justify-content: center;
-	width: 150px;
+	width: 200px;
 	position: absolute;
 	top: -40px;
 	left: 0;
