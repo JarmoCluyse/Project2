@@ -28,9 +28,10 @@
 	--global-color-neutral-xxx-dark: #35374d;
 	--global-color-neutral-xxxx-dark: #20223a;
 
-	--global-color-answer1: #0356fc;
-	--global-color-answer2: #18b557;
-	--global-color-answer3: #8618b5;
+	--global-color-answer1:#e40000;
+	--global-color-answer2: #009247;
+	--global-color-answer3: #2c2c2c;
+	--global-color-answer4: #3232b1;
 
 
 	/* global page settings */
@@ -1426,16 +1427,16 @@ input::placeholder {
 }
 
 .c-gameQuestion li:nth-of-type(1){
-	background-color: var(--global-color-alpha)
+	background-color: var(--global-color-answer1)
 }
 .c-gameQuestion li:nth-of-type(2){
-	background-color: var(--global-color-answer1);
-}
-.c-gameQuestion li:nth-of-type(3){
 	background-color: var(--global-color-answer2);
 }
-.c-gameQuestion li:nth-of-type(4){
+.c-gameQuestion li:nth-of-type(3){
 	background-color: var(--global-color-answer3);
+}
+.c-gameQuestion li:nth-of-type(4){
+	background-color: var(--global-color-answer4);
 }
 
 .c-lanes li{
@@ -1510,7 +1511,7 @@ input::placeholder {
 	display: block;
 }
 .c-leaderboard-currentplayer{
-	color: var(--global-color-answer1);
+	color: var(--global-color-alpha);
 }
 .c-phaser {
     display: flex;
