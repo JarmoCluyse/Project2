@@ -1,4 +1,3 @@
-
 // start the game and send all filled in data with it
 const startGame = function() {
 	// add all variables to the localstorage
@@ -35,15 +34,12 @@ const getDOMContent = function() {
 };
 
 const enableValidation = function() {
-	
 	// add an eventlistener to the startgame button
 	startGameButton.addEventListener('click', function() {
-
 		// call the startgame function
 		localStorage.setItem("Mode", dropdownSelect.options[dropdownSelect.selectedIndex].value);
         startGame();
 
-		// radioChecked = 0;
 	});
 };
 

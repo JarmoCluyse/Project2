@@ -1085,6 +1085,10 @@ input::placeholder {
 }
 
 
+.c-your-score{
+	margin-top: calc(var(--global-baseline) * 4);
+}
+
 
 .c-session-card-title {
 	margin-top: calc(var(--global-baseline) * 2);
@@ -1337,6 +1341,11 @@ input::placeholder {
 	left: 0;
 	font-size: 28px;
 	color: var(--global-color-neutral-xx-dark);
+	z-index: 2;
+}
+
+.c-your-scoreColor {
+	color: var(--global-color-alpha);
 }
 
 .c-rank{
