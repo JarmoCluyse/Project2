@@ -600,22 +600,32 @@ let increasing = function(){
 
 let answerQuetion = function () {
     console.log(currentAnswer);
-    if(CurrentQuestion.answers[ShuffledAnswers[currentAnswer]].isCorrect){ // answer correct show game => play along
-        jsGamePlay.classList.remove('hide');
-        jsGameQuestion.classList.add('hide');
-        gameOver = false;
-        answer = false;
-        Questioning = false;
-        questionsAnswered ++; // Count the correct answered questions
-        currentAnswer = 4;
-      }
-      else{ // stop game go to highscores
+    if (currentAnswer < 4) {
+        if(CurrentQuestion.answers[ShuffledAnswers[currentAnswer]].isCorrect){ // answer correct show game => play along
+            jsGamePlay.classList.remove('hide');
+            jsGameQuestion.classList.add('hide');
+            gameOver = false;
+            answer = false;
+            Questioning = false;
+            questionsAnswered ++; // Count the correct answered questions
+            currentAnswer = 4;
+          }
+          else{ // stop game go to highscores
+            gameDone = true;
+            answer = false;
+            jsGamePlay.classList.add('hide')
+            jsGameQuestion.classList.add('hide');
+            game.scene.stop('GamePlay');
+            game.scene.start('GameOver');
+          } 
+    }
+    else{ // stop game go to highscores
         gameDone = true;
         answer = false;
         jsGamePlay.classList.add('hide')
         jsGameQuestion.classList.add('hide');
         game.scene.stop('GamePlay');
         game.scene.start('GameOver');
-      } 
-      jsGameQuestion.innerHTML = ``; 
+    }
+    jsGameQuestion.innerHTML = ``; 
 }
