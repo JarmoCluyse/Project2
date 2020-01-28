@@ -24,7 +24,6 @@ var gamePlayState = new Phaser.Class({
         jsGameQuestion.classList.add("hide");
         jsGameStart.classList.add('hide');
         jsGamePlay.classList.remove('hide');
-        jsGameEnd.classList.add('hide');
         // -------------------------- //
         // Creates an objects
         // -------------------------- //
@@ -65,6 +64,12 @@ var gamePlayState = new Phaser.Class({
         jsmagnet.style.opacity = 0.4;
         // set the speed to the beginspeed
         speed = BeginSpeed;
+        if(mode == 'SP'){
+            distance = 200;
+        }
+        if(mode == 'COOP'){
+            distance = 100;
+        }
 
         // place the powerups for testing
         if(testing){
@@ -119,8 +124,12 @@ var gamePlayState = new Phaser.Class({
             // -------------------------- //
             // delay for placement car
             // -------------------------- //
+
+            
             if (counter >= distance){         
                 if (!PowerUpCoin){
+                    console.log("set auto's");
+                    
                     setcars();
                 }
                 if (PowerUpCoin) {
@@ -642,8 +651,8 @@ let getRandomobstakels = function() {
 let increasing = function(){
     if (increase){
         if (waitIncrease >= speedIncrease){ //delay
-            speed += increaseValue; // increase speed
-            distance -= 0.025; // decrease distance
+            speed += increaseValueSpeed; // increase speed
+            distance -= increaseValueSpeed; // decrease distance
             
             waitIncrease = 0;
         }

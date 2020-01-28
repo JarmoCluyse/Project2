@@ -2,7 +2,8 @@
 // Things to Edit
 //------------------------------- //
 var speedIncrease = 4; // the rate of increasing
-var increaseValue = 0.5; // value that we increase with
+var increaseValueSpeed = 0.5; // value that we increase with
+var increaseValueDistance = 0.05; // value that we increase with
 var waitquestion = 7; // question time out
 var DriveScore = 5; // score for driving
 var scoreCoin = 10; // score when you pickup something
@@ -47,7 +48,6 @@ var jsSplashTitle = document.querySelector(".js-splashTitle");
 var jsScore = document.querySelector(".js-score") // score html
 var jsGamePlay = document.querySelector(".js-gamePlay") // game html
 var jsGameStart = document.querySelector(".js-gameStart") // gamestart html
-var jsGameEnd = document.querySelector(".js-gameEnd") // gamestart html
 var jsGameQuestion = document.querySelector(".js-gameQuestion") // gamestart html
 var jschest = document.querySelector(".js-chest") // gamestart html
 var jsmagnet = document.querySelector(".js-magnet") // gamestart html
@@ -89,7 +89,7 @@ var ShuffledAnswers;
 // game variables
 //------------------------------- //
 var speed = 5; // current speed of the game
-var distance = 100;
+var distance = 150
 var lanes;
 var counter = 0;
 var score = 0; // score of the game

@@ -20,28 +20,15 @@ var shuffle = function(array) { // shuffle a list
       return array;
 }
 var placeScore = function () { // update the score
-  jsScore.innerHTML = `score: ${score}`
+  jsScore.innerHTML = `Score: ${score}`
 }
 function keyListener(e){ // listen to keypress
   e.preventDefault(); // prevent the arrows from scrolling
-  if(!gameStarted && !gameDone && !gameOver && e.key != "f"){ // when game hasn't started
+  if(!gameStarted && !gameDone && !gameOver){ // when game hasn't started
     gameStarted = true; // start the game
     startEvent = e;
     game.scene.stop('MainMenu'); // stop this screen
     game.scene.start('GamePlay'); // start the game
-  }
-  else if (gameStarted && gameOver && gameDone && e.key != "f") { // when game is done
-        game.scene.stop('GameOver');
-        game.scene.start('MainMenu');
-        score = 0; // put score back to 0
-        questionsAnswered = 0
-        distance = 3000;
-        heartsCounter = 0;
-        placeScore(); // update the score
-        // variables back to false
-        gameStarted = false;
-        gameOver = false;
-        gameDone = false;
   }
 
 }
@@ -133,8 +120,39 @@ var sleep = (milliseconds) => {
 }
 
 const getHighscores = function(){
-  handleData(`${BASEURI}games?code=${key}`, showHighscores, "GET",null)
+  handleData(`${BASEURI}highscores/score/10?code=${key}`, showHighscores, "GET",null)
   if (loopHighscores){
     setTimeout(getHighscores, 20000);
   }
+}
+const gamePosted = function(){
+	console.log("Game saved to db");
+	loopHighscores = 0;
+	getHighscores();
+}
+// -------------------------- //
+// show highscores
+// -------------------------- //
+const showHighscores = function(data){
+	// console.log(data);
+	// data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
+	// var leaderboard = data.slice(0, 10);
+	let scoreList = document.getElementById("highscoreList");
+	let str = "";
+	let inserted = false;
+	let count = 0;
+	data.forEach(element => {
+		if(score > element.score && !inserted){
+			str += `<li class="c-leaderboard-currentplayer">${player}:&nbsp;${score}</li>`;
+			str += `<li>${element.player}:&nbsp;${element.score}</li>`;
+			inserted = true;
+			count += 2;
+		}
+		else if (count < 10){
+			str+= `<li>${element.player}:&nbsp;${element.score}</li>`; 
+			count++;
+    }		
+  });
+	scoreList.innerHTML = str;
+
 }
