@@ -1405,6 +1405,17 @@ input::placeholder {
 	width: 50vh;
 	height: 50vh;
 }
+
+.c-gameQuestion {
+	position: relative;
+}
+
+.c-timer{
+	position: absolute;
+	top: 100px;
+	font-size: 40px;
+}
+
 .c-gameQuestion ul {
 	display: flex;
 }
@@ -1830,7 +1841,13 @@ input::placeholder {
 	justify-content: space-evenly;
 }
 
-.c-side-vid{
+.c-side-vid-right{
+	font-size: 24px;
+	width: 250px;
+	display: flex;
+}
+
+.c-side-vid-left{
 	font-size: 24px;
 	width: 250px;
 	display: flex;
@@ -1845,6 +1862,7 @@ input::placeholder {
 	margin-left: calc(var(--global-baseline) * 4);
 	display: flex;
 	align-self: center;
+	justify-content: center;
 	margin-right: -25px;
 }
 

@@ -21,7 +21,14 @@ var shuffle = function(array) { // shuffle a list
 }
 var placeScore = function () { // update the score
   jsScore.innerHTML = `Score: ${score}`
+  if (score > oneBeforYou && !firstPlace){
+    handleData(`${BASEURI}highscores/score/10?code=${key}`, showHighscores, "GET",null)
+  }
+  if (inTopTen && !scoreupdating){
+    document.querySelector('.c-leaderboard-currentplayer').innerHTML = `${player}:&nbsp;${score}`;
+  }
 }
+
 function keyListener(e){ // listen to keypress
   e.preventDefault(); // prevent the arrows from scrolling
   if(!gameStarted && !gameDone && !gameOver){ // when game hasn't started
@@ -99,8 +106,10 @@ const showQuestion = function (data) {
   ans = shuffle(ans);
   let question = questionsFiltered[getRandomInt(questionsFiltered.length)];
   CurrentQuestion = question;
+  questionTimer = waitquestion;
   console.log(question);
   jsGameQuestion.innerHTML = `
+  <h1 class="c-timer">${questionTimer}</h1>
   <h1>Beantwoord deze vraag om verder te spelen:</h1>
   <br>
   <br>
@@ -112,6 +121,20 @@ const showQuestion = function (data) {
     <li>${question.answers[ans[3]].answerText}</li>
   </ul>
   `;
+  timeQuestion();
+}
+const timeQuestion = function(){
+  if (!answer){
+      document.querySelector('.c-timer').innerHTML = questionTimer;
+      if (questionTimer == 0){
+          answer = true;
+      }
+      else{
+          setTimeout(timeQuestion, 1000);
+          questionTimer--;
+      }
+     
+  }
   
 }
 
@@ -139,23 +162,33 @@ const gamePosted = function(data){
 const showHighscores = function(data){
 	// console.log(data);
 	// data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
-	// var leaderboard = data.slice(0, 10);
+  // var leaderboard = data.slice(0, 10);
+  scoreupdating = true
 	let scoreList = document.getElementById("highscoreList");
 	let str = "";
 	let inserted = false;
 	let count = 0;
 	data.forEach(element => {
 		if(score > element.score && !inserted){
-			str += `<li class="c-leaderboard-currentplayer">${player}:&nbsp;${score}</li>`;
-			str += `<li>${element.player}:&nbsp;${element.score}</li>`;
-			inserted = true;
+      str += `<li class="c-leaderboard-currentplayer">${player}:&nbsp;${score}</li>`;
+      if(count < 9){
+        str += `<li>${element.player}:&nbsp;${element.score}</li>`;
+      }
+      inTopTen = true;
+      inserted = true;
+      if(count == 0){
+        firstPlace = true;
+      }
 			count += 2;
 		}
 		else if (count < 10){
-			str+= `<li>${element.player}:&nbsp;${element.score}</li>`; 
+      str+= `<li>${element.player}:&nbsp;${element.score}</li>`;
+      if(!inserted){
+        oneBeforYou = element.score;
+      }
 			count++;
     }		
   });
-	scoreList.innerHTML = str;
-
+  scoreList.innerHTML = str;
+  scoreupdating = false;
 }
