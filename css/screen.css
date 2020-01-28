@@ -1438,6 +1438,7 @@ input::placeholder {
 	font-weight: bolder;
 	font-size: 36px;
 	padding: calc(var(--global-baseline)*5) calc(var(--global-baseline)*8);
+	border: 5px solid white;
 }
 
 .c-gameQuestion li:nth-of-type(1){
