@@ -112,18 +112,27 @@ const showQuestions = function (data) {
 	</li>
 	<div class="c-answerlist">
 		<ul class="c-list__question-answers o-list">
-			<div class="c-answers">	
-				<li class="c-list__answers">${element.answers[0].answerText}</li>
-				<li class="c-list__answers">${element.answers[1].answerText}</li>
-			</div>
+			<div class="c-answers">	`;
+	var i;
+	for (i = 0; i < element.answers.length; i++) {
+		if (i==2){
+			htmlString+= `</div>
 
-			<div class="c-answers">	
-				<li class="c-list__answers">${element.answers[2].answerText}</li>
-				<li class="c-list__answers">${element.answers[3].answerText}</li>
-			</div>
-		</ul>
-	</div>`
-	});
+			<div class="c-answers">	`;
+		}
+  		if (element.answers[i].isCorrect){
+			htmlString+=`<li class="c-list__answers c-correct">${element.answers[i].answerText}</li>`;
+		  }
+		else{
+			htmlString+=`<li class="c-list__answers">${element.answers[i].answerText}</li>`;
+		  }
+		  if (i==3){
+			htmlString+= `</div>
+			</ul>
+		</div>`;
+		}
+	}
+});
 	listElement.innerHTML = htmlString;
 
 

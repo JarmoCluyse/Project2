@@ -101,6 +101,10 @@ for (var keys in ColorList) {
   Colors.push(ColorList[keys])
 }
 var questionTimer = 10;
+var inTopTen = false;
+var oneBeforYou = 0;
+var firstPlace = false;
+var scoreupdating = false
 //var timeQuestion = false;
 //------------------------------- //
 // testing
