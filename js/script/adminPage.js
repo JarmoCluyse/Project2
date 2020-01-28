@@ -155,27 +155,29 @@ const showQuestions = function (data) {
 	})
 };
 
+
+// load the dropdown with all possible values (get all subjects from the database)
 const preloadDropDown = function(data){
 	mainDropDown = document.getElementById('select');
+
+	// fill in the default value to 'alle vragen'
 	mainDropDown.innerHTML = `<option value="all">(Alle vragen)</option>`;
+
+	// on change show the questions with a certain subject
 	mainDropDown.addEventListener('change', function(){
 		showQuestions(null);
 	});
 
 	foundSubjects = []
 
+
+	// add all subjects to the dropdown
 	data.forEach(element =>{
 		if (!foundSubjects.includes(element.subject)){
 			foundSubjects.push(element.subject);
 			mainDropDown.innerHTML += `<option value="${element.subject}">${element.subject}</option>`;
 		}
 	});
-	
-	// foundSubjects.forEach(element => {
-	// 	mainDropDown.innerHTML += `<option value="${element}">${element}</option>`;
-	// });
-
-
 };
 
 // confirmation popup 'are you sure you want to delete this question?'
@@ -429,10 +431,6 @@ const fillDropDowns = function(elementId){
 const addSubjectToDropDown = function(){
 	// get the new subject from the input
 	newSubject = document.getElementById('newDropDownValue');
-
-	// add the option to the dropdownlists
-	// subjectSelect.innerHTML += `<option value="${newSubject.value}">${newSubject.value}</option>`;
-
 	
 	// go to add question page
 	showAddQuestionPage(newSubject.value);
