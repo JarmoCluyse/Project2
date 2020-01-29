@@ -227,10 +227,16 @@ const init = function(){
 	createAccountButton = document.querySelector('.js-createAccount');
 	loginCard = document.querySelector('.c-login-card');
 	passError = document.querySelector('.c-passDontMatch');
+	forgotPassword = document.getElementById('forgotPass');
 
 	// go back to the loginscreen if you are on the createaccount screen
 	goBackToLoginButton.addEventListener('click', function(){
 		showLoginPage();
+	});
+
+
+	forgotPassword.addEventListener('click', function(){
+		window.alert('Als u uw wachtwoord vergeten bent gelieve een mail te sturen naar thomas.debie@student.howest.be')
 	});
 
 	// create an account

@@ -928,7 +928,7 @@ input::placeholder {
 	font-size: 28px;
 	line-height: var(--global-whitespace);
 	color: var(--global-color-alpha-light);
-	margin-bottom: var(--global-baseline);
+	margin-bottom: 0;
 	margin-right: calc(var(--global-baseline) * 3);
 	padding-left: calc(var(--global-baseline) * 4);
 	display: flex;
@@ -2367,6 +2367,15 @@ input::placeholder {
 	.c-new-account-card {
 		width: auto;
 	}
+}
+
+
+.c-session-id-subtitle{
+	color: var(--global-color-alpha-light);
+	display: flex;
+	justify-content: center;
+	margin-bottom: var(--global-baseline);
+	margin-top: 0;
 }
 
 .c-session-newId {
