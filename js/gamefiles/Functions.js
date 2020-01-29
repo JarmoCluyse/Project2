@@ -108,9 +108,11 @@ const showQuestion = function (data) {
         return obj.teacherEmail === s.teacherEmail;
         });
     }
-    questionsFiltered = questionsFiltered.filter(obj => {
-      return obj.subject === s.forcedSubject;
-      });
+    if (s.forcedSubject != "all"){
+      questionsFiltered = questionsFiltered.filter(obj => {
+        return obj.subject === s.forcedSubject;
+        });
+    }
   }
   let ans = [0,1,2, 3];
   ShuffledAnswers = ans;
