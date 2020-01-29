@@ -7,13 +7,13 @@ const handleData = function (url, callback, method = 'GET', body = null) {
       if (!response.ok) {
         throw Error(`Probleem bij de fetch(). Status Code: ${response.status}`);
       } else {
-        console.info('Er is een response teruggekomen van de server');
+        //console.info('Er is een response teruggekomen van de server');
         return response.json();
       }
     })
     .then(function (jsonObject) {
-      console.info('json object is aangemaakt');
-      console.info('verwerken data');
+      //console.info('json object is aangemaakt');
+      //console.info('verwerken data');
       callback(jsonObject);
     })
     .catch(function (error) {
@@ -27,8 +27,8 @@ const sendData = function (url, callback, method, body) {
     body: JSON.stringify(body),
   })
   .then(function (jsonObject) {
-    console.log(jsonObject);
-    console.info('Response received');
+    //console.log(jsonObject);
+    //console.info('Response received');
     callback(jsonObject);
   })
   .catch(function (error) {
@@ -45,7 +45,7 @@ const idGenerator = function (type = "S") {
     //   id += "G";
     // }
     id += Math.random().toString(36).substr(2, 6);
-    console.log(id);
+    //console.log(id);
     return id;
 
 }
@@ -64,13 +64,13 @@ const logIn = function (email, password, callback) {
     if (!response.ok) {
       return JSON.parse(`{"userEmail": "undefined"}`);
     } else {
-      console.info('Er is een response teruggekomen van de server');
+      //console.info('Er is een response teruggekomen van de server');
       return response.json();
     }
   })
   .then(function (jsonObject) {
-    console.info('json object is aangemaakt');
-    console.info('verwerken data');
+    //console.info('json object is aangemaakt');
+    //console.info('verwerken data');
     callback(jsonObject);
   })
   // .catch(function (error) {
@@ -80,7 +80,6 @@ const logIn = function (email, password, callback) {
 
 const logOut = function(token, callback) {
   const proceed = function(data){
-    console.log(data);
     if (data.ok){
       localStorage.removeItem('LoginToken');
       callback(data);
