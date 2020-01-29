@@ -97,7 +97,12 @@ const fillSessionDropdown = function(data){
     sessionDropdown.innerHTML = "";
 
     data.forEach(element=>{
-        sessionDropdown.innerHTML += `<option value="${element.sessionId}">${element.sessionId} - ${element.beschrijving}</option>`;    
+        if (element.beschrijving != ""){
+            sessionDropdown.innerHTML += `<option value="${element.sessionId}">${element.sessionId} - ${element.beschrijving}</option>`;    
+        }
+        else{
+            sessionDropdown.innerHTML += `<option value="${element.sessionId}">${element.sessionId}</option>`; 
+        }
     });
     handleData(`${BASEURI}games/${data[0].sessionId}?code=${key}`, showSessionResults, "GET",null);
 };
