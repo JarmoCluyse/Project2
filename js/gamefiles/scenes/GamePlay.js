@@ -729,16 +729,16 @@ let increasing = function(){
 let answerQuetion = function () {
     if (currentAnswer < 4) {
         if(CurrentQuestion.answers[ShuffledAnswers[currentAnswer]].isCorrect){ // answer correct show game => play along
-            jsGameQuestion.innerHTML = `<img src="./assets/right.png" alt="rightorwrong"  width="600" height="600"></img>`;
             if(!soundplayed){
+                jsGameQuestion.innerHTML = `<img src="./assets/right.png" alt="rightorwrong"  width="600" height="600"></img>`;
                 CorrectMusic.play();
                 soundplayed = true;
                 setTimeout(continueAfterQuestion, 1000);
             }
           }
           else{ // stop game go to highscores  wrong answer
-            jsGameQuestion.innerHTML = `<img src="./assets/wrong.png" alt="rightorwrong"  width="600" height="600"></img>`;
             if (!soundplayed){
+                jsGameQuestion.innerHTML = `<img src="./assets/wrong.png" alt="rightorwrong"  width="600" height="600"></img>`;
                 PowerOffMusic.play();
                 soundplayed = true;
                 setTimeout(gameOverAfterQuestion, 1000);
@@ -746,8 +746,12 @@ let answerQuetion = function () {
           } 
     }
     else{ // stop game go to highscores  not answered
-        jsGameQuestion.innerHTML = `<img src="./assets/wrong.png" alt="rightorwrong"  width="600" height="600"></img>`;
-        setTimeout(gameOverAfterQuestion, 1000);
+        if (!soundplayed){
+            jsGameQuestion.innerHTML = `<img src="./assets/wrong.png" alt="rightorwrong"  width="600" height="600"></img>`;
+            PowerOffMusic.play();
+            soundplayed = true;
+            setTimeout(gameOverAfterQuestion, 1000);
+        }
     }
     
 }
