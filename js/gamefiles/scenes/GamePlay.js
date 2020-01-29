@@ -11,7 +11,6 @@ var gamePlayState = new Phaser.Class({
     },
 
     create: function() {
-        console.log("scene: GamePlay");
         // -------------------------- //
         // Create objects
         // -------------------------- //
@@ -195,7 +194,6 @@ var gamePlayState = new Phaser.Class({
             for (i = 0; i < decorations.children.entries.length; i++) { // move each decoration down
                 if (decorations.children.entries[i].y >= 950){ // if item out of sight => delete
                     decorations.remove(decorations.children.entries[i], true);
-                    //console.log(pickups.children.entries.length);
                     i--;
                 }
                 else {
@@ -206,7 +204,6 @@ var gamePlayState = new Phaser.Class({
             for (i = 0; i < PowerUpCoins.children.entries.length; i++) { // move each chest down
                 if (PowerUpCoins.children.entries[i].y >= 950){ // if item out of sight => delete
                     PowerUpCoins.remove(PowerUpCoins.children.entries[i], true);
-                    //console.log(pickups.children.entries.length);
                     i--;
                 }
                 else {
@@ -217,7 +214,6 @@ var gamePlayState = new Phaser.Class({
             for (i = 0; i < PowerUpMagnets.children.entries.length; i++) { // move each magnet down
                 if (PowerUpMagnets.children.entries[i].y >= 950){ // if item out of sight => delete
                     PowerUpMagnets.remove(PowerUpMagnets.children.entries[i], true);
-                    //console.log(pickups.children.entries.length);
                     i--;
                 }
                 else {
@@ -228,7 +224,6 @@ var gamePlayState = new Phaser.Class({
             for (i = 0; i < PowerUphearts.children.entries.length; i++) { // move each heart down
                 if (PowerUphearts.children.entries[i].y >= 950){ // if item out of sight => delete
                     PowerUphearts.remove(PowerUphearts.children.entries[i], true);
-                    //console.log(pickups.children.entries.length);
                     i--;
                 }
                 else {
@@ -255,13 +250,6 @@ let moveCar = function(e) { // if an arrowkey is pressed
     // -------------------------- //
     if (!gameOver) {
         e.preventDefault(); //prevent scrolling
-        // -------------------------- //
-        // Debugging
-        // -------------------------- //
-        // console.log('move');
-        // console.log(e);
-        // console.log(car);
-        // console.log(obstacles);
         // -------------------------- //
         // Move the car
         // -------------------------- //
@@ -454,7 +442,6 @@ let animatechest = function(){
     else {  // after time revert to normal
         PowerUpCoin = false;
         distance = oldDistance;
-        console.log(distance);
         jschest.style.opacity = .4;
         PowerOffMusic.play(); // play sound
 

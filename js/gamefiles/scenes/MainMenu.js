@@ -12,8 +12,6 @@ var mainMenuState = new Phaser.Class({
 		// in seperate file Preloads
 	},
 	create: function() {
-		// log the current scene
-		console.log('MainMenu');
 		// -------------------------- //
 		// make front page
 		// -------------------------- //
@@ -54,6 +52,5 @@ myGame.scenes.push(mainMenuState);
 // Listen to session
 // -------------------------- //
 setSession = function(data) {
-	console.log(data);
 	localStorage.setItem('SessionObject', JSON.stringify(data));
 };

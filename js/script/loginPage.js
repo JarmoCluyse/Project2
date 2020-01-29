@@ -182,7 +182,6 @@ const registerCallback = function(data){
 };
 
 const loggedIn = function(data){//This function is run when a result is returned from the server while logging in
-	console.log(data);
 	if(data.userEmail != "undefined"){
 		localStorage.setItem("LoginToken", JSON.stringify(data));
 
@@ -213,9 +212,7 @@ const checkCallback = function(data){//This function checks if the logintoken st
 
 
 const init = function(){
-	console.log('Script geladen! 👍')
 	token = JSON.parse(localStorage.getItem("LoginToken"));
-	console.log(token);
 	if (token != null){
 		sendData(`${BASEURI}login/token?code=${key}`, checkCallback, "POST", token);
 	}

@@ -5,7 +5,6 @@ const startGame = function() {
 	// localStorage.setItem("Distance", document.getElementById('obstacleSlider').value);
 	localStorage.setItem("Player", document.getElementById('Name1').value);
 	localStorage.setItem("Player2", document.getElementById('Name2').value);
-	console.log(document.getElementById('Name1').value);
 	
 	// check if the checkbox to increase speed over time is checked
 	if (document.getElementById("checkbox1").checked){
@@ -28,7 +27,6 @@ const startGame = function() {
 };
 
 const getDOMContent = function() {
-    console.log('formValidation geladen! 👍');
 	startGameButton = document.querySelector('.js-play');
 	dropdownSelect = document.querySelector('.js-selectGameMode');
 };

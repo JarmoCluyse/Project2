@@ -1,12 +1,6 @@
 let id;
 let filteredGames;
 const showSessionResults = function(data){
-    console.log(data);
-    // currentId = sessionDropdown.options[sessionDropdown.selectedIndex].value;
-    // filteredGames = data.filter(obj => {
-    //     return obj.session === currentId;
-    //   });
-    //   console.log(filteredGames);  
     sessionTable = document.querySelector('.c-table');
     sessionTable.innerHTML =    `<tr class="c-table-row">
                                     <th>Naam</th>
@@ -67,7 +61,6 @@ const showNewSessionpage = function(){
     hideMainPage();
 };
 const fillSubjects = function(data){
-    console.log(data);
     sessionSelectSubjectDropdown.innerHTML = `<option value="all">(Alle onderwerpen)</option>`;
     var subjects = data.filter(obj => {
         return obj.teacherEmail === token.userEmail;
@@ -93,7 +86,6 @@ const showSessionMainPage = function(){
 };
 
 const fillSessionDropdown = function(data){
-    console.log(data);
     sessionDropdown.innerHTML = "";
 
     data.forEach(element=>{
@@ -104,7 +96,6 @@ const fillSessionDropdown = function(data){
 
 
 const hideMainPage = function(){
-    console.log("yep")
     accountButton.style.display = "none";
     accountButton.pointerEvents = "none";
     sessionMainPage.pointerEvents = 'none';
@@ -133,7 +124,6 @@ const deleteSession = function(){
 };
 
 const deletedSession = function(data){
-    console.log("deleted");
     location.reload();
 };
 
@@ -161,9 +151,7 @@ const checkCallbackSessie = function(data){//This function checks if the loginto
 	
 };
 const init = function(){
-    console.log('Script geladen! 👍')
     token = JSON.parse(localStorage.getItem("LoginToken"));
-	console.log(token);
 	if (token != null){
 		sendData(`${BASEURI}login/token?code=${key}`, checkCallbackSessie, "POST", token);
 	}
@@ -237,12 +225,9 @@ const init = function(){
 
     createNewSessionButton.addEventListener('click', function(){
         selectedSessionSubject = sessionSelectSubjectDropdown.options[sessionSelectSubjectDropdown.selectedIndex].value;
-
-        console.log(selectedSessionSubject);
         id = idGenerator();
         postTxt = `{"teacheremail": "${token.userEmail}", "forcedsubject": "${selectedSessionSubject}", "beschrijving": "${newSessionName.value}", "teacherquestionsonly": ${!checkboxSession.checked}, "sessionid": "${id}" }`;
         postjson = JSON.parse(postTxt);
-        console.log(postjson);
         sendData(`${BASEURI}session?code=${key}`, showSessionIdPage,'POST', postjson);
 
     });
@@ -261,8 +246,6 @@ const init = function(){
 
     sessionDropdown.addEventListener('change', function(){
         handleData(`${BASEURI}games/${sessionDropdown.value}?code=${key}`, showSessionResults, "GET",null);
-        console.log(sessionDropdown.options[sessionDropdown.selectedIndex].value); 
-
     });
     sortSelect.addEventListener('change', function(){
         sortGames(sortSelect.value);

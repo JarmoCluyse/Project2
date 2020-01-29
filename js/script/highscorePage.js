@@ -12,14 +12,11 @@ const getHighscores = function(){
 // show the highscores
 // -------------------------- //
 const ShowHighScores = function (data) {
-    console.log(data);
     // sort the list
  	data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
     // make the leaderbord 
     var leaders = data.slice(0, 3);
     var leaderboard = data.slice(3, 10);
-    console.log(leaders);
-    console.log(leaderboard);
     let scoreList = document.querySelectorAll(".js-list");
     position = localStorage.getItem('Position');
     playerName = localStorage.getItem('Player');
@@ -105,7 +102,6 @@ const ShowHighScores = function (data) {
 
 
 const init = function(){
-    console.log('Script geladen! 👍')
     cameFromGame = localStorage.getItem('CameFromGame');
     localStorage.setItem('CameFromGame', 'false');
     sessionButton = document.getElementById('sessions');

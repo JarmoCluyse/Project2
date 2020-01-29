@@ -86,7 +86,6 @@ const sliderFunction = function() {
 
 
 const init = function() {
-	console.log('Script geladen! 👍');
 	player2 = document.querySelector('.c-player2');
 	gameIdAvailable = document.querySelector('.c-gameIdAvailable');
 	codeInputBox = document.querySelector('.c-hasGameId');

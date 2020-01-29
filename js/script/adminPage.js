@@ -38,7 +38,6 @@ const addQuestion = function () {
 	// all the variables are put into a json format
 	jsontext = `{"questiontext": "${questionBox.value}", "subject": "${subjectBox.value}", "teacheremail": "${token.userEmail}", "answers": [{"answertext": "${answer1.value}", "iscorrect": ${cb1.checked}}, {"answertext": "${answer2.value}", "iscorrect": ${cb2.checked}}, {"answertext": "${answer3.value}", "iscorrect": ${cb3.checked}}, {"answertext": "${answer4.value}", "iscorrect": ${cb4.checked}}]}`;
 	json = JSON.parse(jsontext);
-	console.log(json);
 	// send the jsonfile to the database
 	sendData(`${BASEURI}question?code=${key}`, questionPosted, "POST", json);
 };
@@ -57,9 +56,6 @@ const updateQuestion = function () {
 	editing.answers[1].isCorrect = cb2.checked;
 	editing.answers[2].isCorrect = cb3.checked;
 	editing.answers[3].isCorrect = cb4.checked;
-	console.log(editing);
-	//json = JSON.parse(editing);
-	//console.log(json);
 	// send all data to the database
 	sendData(`${BASEURI}question?code=${key}`, questionPosted, "PUT", editing);
 	return false;
@@ -67,7 +63,6 @@ const updateQuestion = function () {
 
 // after sending a question to the database reload the page so all new questions are also loaded in
 const questionPosted = function () {
-	console.log("question posted");
 	// this reloads the page completely
 	location.reload();
 };
@@ -82,7 +77,6 @@ const showQuestions = function (data) {
 		  })
 		  questionsObject = questionsTeacher;
 		  preloadDropDown(questionsTeacher);
-		  console.log(questionsTeacher);
 	}
 	if (mainDropDown.value != 'all'){
 		var filteredQuestions = questionsObject.filter(obj => {
@@ -202,14 +196,12 @@ const deleteQuestionConfirmation = function (qid, qText) {
 		mainCard.style.pointerEvents = 'auto';
 		// hide the deletecard
 		deleteCard.style.display = 'none';
-		console.log(qid);
 		// run through all questions till the question id matches, then delete said question
 		for (var q in questionsObject) {
 			if (questionsObject[q].questionId == qid) {
 				deleting = questionsObject[q];
 			}
 		}
-		console.log(deleting);
 		deleteQuestion();
 	});
 
@@ -319,14 +311,12 @@ const showEditQuestionPage = function (qid) {
 	// fill the dropdowns with all the subjects
 	fillDropDowns("dropDownForEditCard");
 	let counter = 0;
-	console.log(qid);
 	// run through all the questions till the id matches and display this info
 	for (var q in questionsObject) {
 		if (questionsObject[q].questionId == qid) {
 			editing = questionsObject[q];
 		}
 	}
-	console.log(editing);
 	// make the maincard go more to the background
 	mainCard.style.opacity = 0.8;
 	mainCard.style.pointerEvents = 'none';
@@ -477,9 +467,7 @@ const checkCallbackAdmin = function(data){//This function checks if the logintok
 	
 };
 const init = function () {
-	console.log('Script geladen! 👍');
 	token = JSON.parse(localStorage.getItem("LoginToken"));
-	console.log(token);
 	if (token != null){
 		sendData(`${BASEURI}login/token?code=${key}`, checkCallbackAdmin, "POST", token);
 	}

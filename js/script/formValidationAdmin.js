@@ -183,7 +183,6 @@ const checkValidityAdd = function(){
 
 
 const getDOM = function() {
-	console.log('formValidation geladen! 👍');
     checkbox.input = document.querySelectorAll('.js-checkbox');
 	checkboxEdit.input = document.querySelectorAll('.js-checkboxEdit');
     submitQuestion = document.querySelector('.js-addQuestion');
