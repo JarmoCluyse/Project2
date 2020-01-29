@@ -20,7 +20,8 @@ var mainMenuState = new Phaser.Class({
 		if (mode == 'COOP') {
 			// change video if coop
 			jsVideo.innerHTML = `<source src="./assets/vidCoop.m4v" type="video/mp4">
-            Your browser does not support the video tag.`;
+			Your browser does not support the video tag.`;
+			document.getElementById('jsReviveIcon').classList.remove('hide');
 		} else {
 			jsVideo.innerHTML = `<source src="./assets/vid.m4v" type="video/mp4">
             Your browser does not support the video tag.`;
