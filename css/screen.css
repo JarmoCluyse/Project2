@@ -2358,6 +2358,14 @@ input::placeholder {
 	}
 }
 
+.c-session-id-subtitle{
+	color: var(--global-color-alpha-light);
+	display: flex;
+	justify-content: center;
+	margin-bottom: var(--global-baseline);
+	margin-top: 0;
+}
+
 @media(min-width: 1024px){
 	.c-login-card{
 		width: auto;
@@ -2368,14 +2376,6 @@ input::placeholder {
 	}
 }
 
-
-.c-session-id-subtitle{
-	color: var(--global-color-alpha-light);
-	display: flex;
-	justify-content: center;
-	margin-bottom: var(--global-baseline);
-	margin-top: 0;
-}
 
 .c-session-newId {
 	margin-bottom: calc(var(--global-baseline));
