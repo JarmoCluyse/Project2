@@ -1299,6 +1299,7 @@ input::placeholder {
 
 .c-score-top-ten{
 	list-style: none;
+	margin-left: var(--global-whitespace-l);
 }
 
 .c-number-one{
