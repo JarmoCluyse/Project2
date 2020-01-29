@@ -95,6 +95,7 @@ var soundplayed = false;
 //------------------------------- //
 // game variables
 //------------------------------- //
+var CoopOnePlayerRemaining = false;
 var paused = false;
 var speed = 5; // current speed of the game
 var distance = 150

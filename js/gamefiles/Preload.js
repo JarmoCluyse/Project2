@@ -34,6 +34,7 @@ var preloadState = new Phaser.Class({
     // Preload PowerUps
     // -------------------------- //
     this.load.image('heart', 'assets/heart.png');
+    this.load.image('reviveHeart', 'assets/reviveHeart.png');
     this.load.image('chest', 'assets/chest.png');
     this.load.image('magnet', 'assets/magnet.png');
     // -------------------------- //

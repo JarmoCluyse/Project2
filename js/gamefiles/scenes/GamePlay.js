@@ -32,6 +32,7 @@ var gamePlayState = new Phaser.Class({
         PowerUpCoins = this.physics.add.group();
         PowerUpMagnets = this.physics.add.group();
         PowerUphearts = this.physics.add.group();
+        PowerUpRevives = this.physics.add.group();
         // -------------------------- //
         // Add sounds
         // -------------------------- //
@@ -86,13 +87,16 @@ var gamePlayState = new Phaser.Class({
         this.physics.add.overlap(car, PowerUpCoins, hitPowerUpCoin, null, this);
         this.physics.add.overlap(car, PowerUpMagnets, hitPowerUpMagnet, null, this);
         this.physics.add.overlap(car, PowerUphearts, hitPowerUpHeart, null, this);
+        this.physics.add.overlap(car, PowerUpRevives, hitPowerUpRevive, null, this);
         // powerup
         this.physics.add.collider(PowerUpCoins, obstacles, hitPowerUpObstacle, null, this);
         this.physics.add.collider(PowerUpMagnets, obstacles, hitPowerUpObstacle, null, this);
         this.physics.add.collider(PowerUphearts, obstacles, hitPowerUpObstacle, null, this);
+        this.physics.add.collider(PowerUpRevives, obstacles, hitPowerUpObstacle, null, this);
         this.physics.add.collider(PowerUpCoins, pickups, hitPowerUpObstacle, null, this);
         this.physics.add.collider(PowerUpMagnets, pickups, hitPowerUpObstacle, null, this);
         this.physics.add.collider(PowerUphearts, pickups, hitPowerUpObstacle, null, this);
+        this.physics.add.collider(PowerUpRevives, pickups, hitPowerUpObstacle, null, this);
         // decoration
         this.physics.add.collider(decorations, decorations, DecorationHit, null, this);
         // user 2 in COOP
@@ -103,6 +107,7 @@ var gamePlayState = new Phaser.Class({
             this.physics.add.overlap(car2, PowerUpCoins, hitPowerUpCoin, null, this);
             this.physics.add.overlap(car2, PowerUpMagnets, hitPowerUpMagnet, null, this);
             this.physics.add.overlap(car2, PowerUphearts, hitPowerUpHeart, null, this);
+            this.physics.add.overlap(car2, PowerUpRevives, hitPowerUpRevive, null, this);
         }
         // -------------------------- //
         // Callbacks for arrow key presses
@@ -183,9 +188,15 @@ var gamePlayState = new Phaser.Class({
                         if(mode == 'COOP'){ // in coop move to the nearest car
                             if (pickups.children.entries[i].x > 400){
                                 xdiff = (car2.x -pickups.children.entries[i].x)
+                                if (car2.x >= 2000){
+                                    xdiff = (car.x -pickups.children.entries[i].x)
+                                }
                             }
                             if (pickups.children.entries[i].x < 400){
                                 xdiff = (car.x -pickups.children.entries[i].x)
+                                if (car.x >= 2000){
+                                    xdiff = (car2.x -pickups.children.entries[i].x)
+                                }
                             }
                         }
                         if ( xdiff > (Math.random() * 5  + 8) ){ // move random to right
@@ -244,6 +255,16 @@ var gamePlayState = new Phaser.Class({
                     PowerUphearts.children.entries[i].y += speed;
                 }
 
+            }
+            for (i = 0; i < PowerUpRevives.children.entries.length; i++) { // move each heart down
+                if (PowerUpRevives.children.entries[i].y >= 950){ // if item out of sight => delete
+                    PowerUpRevives.remove(PowerUpRevives.children.entries[i], true);
+                    i--;
+                }
+                else {
+                    PowerUpRevives.children.entries[i].y += speed;
+                }
+
             }          
         }
         if(answer){ // give player 2 s to stand on mat after timer runs out
@@ -268,7 +289,7 @@ let moveCar = function(e) { // if an arrowkey is pressed
         // Move the car
         // -------------------------- //
         if (e.key == "ArrowLeft"){
-            if (car.x != 250){
+            if (car.x != 250  && car.x != 2000){
                 car.x = 250; // move the car
                 noLaneChanges++; // count how many lane changes
                 score++; // add movement to score
@@ -276,7 +297,7 @@ let moveCar = function(e) { // if an arrowkey is pressed
             
         }
         if (e.key == "ArrowUp"){
-            if (car.x != 350){
+            if (car.x != 350 && car.x != 2000){
                 car.x = 350; // move the car
                 noLaneChanges++; // count how many lane changes
                 score++; // add movement to score
@@ -291,7 +312,7 @@ let moveCar = function(e) { // if an arrowkey is pressed
                 }
             }
             if(mode == 'COOP'){ // in coop move car2
-                if (car2.x != 450){
+                if (car2.x != 450 && car2.x != 2000){
                     car2.x = 450; // move the car
                     noLaneChangesP2++; // count how many lane changes
                     score++; // add movement to score
@@ -308,7 +329,7 @@ let moveCar = function(e) { // if an arrowkey is pressed
                 }
             }
             if(mode == 'COOP'){
-                if (car2.x != 550){ // in coop move car2
+                if (car2.x != 550 && car2.x != 2000){ // in coop move car2
                     car2.x = 550; // move the car
                     noLaneChangesP2++; // count how many lane changes
                     score++; // add movement to score
@@ -372,7 +393,7 @@ let hitObstacle = function(car, obstacle){
     for (i = pickups.children.entries.length; i >= 0; i--) { // remove all coins
         pickups.remove(pickups.children.entries[i], true);
     }
-    if (!PowerUpheart){ // if you don't have a haert give a question
+    if (!PowerUpheart && mode == 'SP'){ // if you don't have a haert give a question
         getQuestions()
         Questioning = true;
         soundplayed = false;
@@ -380,6 +401,20 @@ let hitObstacle = function(car, obstacle){
         jsGameQuestion.classList.remove('hide');
         gameOver = true;
     }
+    else if (!PowerUpheart){
+        if (CoopOnePlayerRemaining){
+            getQuestions()
+            Questioning = true;
+            soundplayed = false;
+            jsGamePlay.classList.add('hide');
+            jsGameQuestion.classList.remove('hide');
+            gameOver = true;}
+            else{
+                car.x = 2000;
+                CoopOnePlayerRemaining = true;
+            }
+        }
+        
     else{ // disable yout haert
         PowerUpheart = false;
         animate = true;
@@ -503,6 +538,23 @@ let hitPowerUpHeart = function(car, powerUp){
         heartsCounter ++;
     }  
 }
+
+//revive
+let hitPowerUpRevive = function(hitCar, powerUp){
+    for (i = obstacles.children.entries.length; i >= 0; i--) { // remove all obstacles
+        obstacles.remove(obstacles.children.entries[i], true);
+    }
+    PowerUpMusic.play(); // play power up sound
+    powerUp.disableBody(true, true);//remove the powerup
+    if (car.x == 2000){
+        car.x = 250; // move the car
+    }
+    if (car2.x == 2000){
+        car2.x = 550; // move the car
+    }
+    CoopOnePlayerRemaining = false;
+
+}
 // -------------------------- //
 // powerup with obstacle
 // -------------------------- //
@@ -537,6 +589,14 @@ let setcars = function(){
     let power = getRandomInt(100)
     let powerarr = [250,350,450, 550];
     powerarr = shuffle(powerarr);
+    let revivearr = []
+    if(car.x >= 2000){
+        revivearr = [450, 550];
+    }
+    else {
+        revivearr = [250,350];
+    }
+    revivearr = shuffle(revivearr);
     if (power <= 5 && power > 0){
         if(!PowerUpCoin) {
             PowerUpCoins.create(powerarr[0],-50, 'chest').setScale(.08); 
@@ -544,13 +604,16 @@ let setcars = function(){
     }
     if (power <= 10 && power > 5){
         if(!PowerUpMagnet) {
-            PowerUpMagnets.create(powerarr[0],0, 'magnet').setScale(.08);
+            PowerUpMagnets.create(powerarr[0],-50, 'magnet').setScale(.08);
         }
     }
     if (power <= 15 && power > 10){
         if(!PowerUpheart && heartsCounter < maxhearts) {
-            PowerUphearts.create(powerarr[0],-100, 'heart').setScale(.006);
+            PowerUphearts.create(powerarr[0],-50, 'heart').setScale(.006);
         }
+    }
+    if (CoopOnePlayerRemaining && power <=30 && power >15){
+        PowerUpRevives.create(revivearr[0],-50, 'reviveHeart').setScale(.006);
     }
     // -------------------------- //
     // shuffle lists
