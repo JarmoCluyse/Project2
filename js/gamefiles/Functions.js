@@ -20,7 +20,8 @@ var shuffle = function(array) { // shuffle a list
       return array;
 }
 var placeScore = function () { // update the score
-  jsScore.innerHTML = `Score: ${score}`
+  jsScore.innerHTML = `Score: ${score}`;
+  jsCoins.innerHTML = `Muntjes: ${coinsCollected}`;
   if (score > oneBeforYou && !firstPlace){
     handleData(`${BASEURI}highscores/score/10?code=${key}`, showHighscores, "GET",null)
   }

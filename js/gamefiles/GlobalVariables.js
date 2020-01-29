@@ -46,6 +46,7 @@ var jsVideo = document.getElementById("js-video");
 var jsMainCard = document.querySelector(".js-mainCard");
 var jsSplashTitle = document.querySelector(".js-splashTitle");
 var jsScore = document.querySelector(".js-score") // score html
+var jsCoins = document.querySelector(".js-coins") // score html
 var jsGamePlay = document.querySelector(".js-gamePlay") // game html
 var jsGameStart = document.querySelector(".js-gameStart") // gamestart html
 var jsGameQuestion = document.querySelector(".js-gameQuestion") // gamestart html
