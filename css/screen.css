@@ -458,7 +458,7 @@ input::placeholder {
 
 @media (min-width: 768px){
 	.c-background-img-mainpage{
-		background-image: url('/assets/roadBackground.png'), url('/assets/roadBackground.png'), url('/assets/background.png');
+		background-image: url('../assets/roadBackground.png'), url('../assets/roadBackground.png'), url('../assets/background.png');
 		background-repeat: repeat-y, repeat-y, repeat;
 		background-position: left, right, center;
 		background-size: 450px, 450px, 500px;
@@ -468,7 +468,7 @@ input::placeholder {
 }
 
 .c-background-img{
-	background-image: url('/assets/background.png');
+	background-image: url('../assets/background.png');
 	background-repeat: repeat;
 	background-size: 300px;
 	background-color: var(--global-html-backgroundColor);
