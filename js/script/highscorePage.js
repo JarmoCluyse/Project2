@@ -12,7 +12,6 @@ const getHighscores = function(){
 // show the highscores
 // -------------------------- //
 const ShowHighScores = function (data) {
-    console.log(data);
     // sort the list
  	data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
     // make the leaderbord 
@@ -111,7 +110,6 @@ const ShowHighScores = function (data) {
 
 
 const init = function(){
-    console.log('Script geladen! 👍')
     cameFromGame = localStorage.getItem('CameFromGame');
     localStorage.setItem('CameFromGame', 'false');
     sessionButton = document.getElementById('sessions');

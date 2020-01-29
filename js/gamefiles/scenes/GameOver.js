@@ -11,8 +11,6 @@ var mainMenuState = new Phaser.Class({
 		// in seperate file Preloads
 	},
 	create: function() {
-		// log the current scene
-		console.log('scene: GameOver');
 		// -------------------------- //
 		// Send to database
 		// -------------------------- //
@@ -37,7 +35,5 @@ const postGame = function(played, langechanges){
 	localStorage.setItem('Score', score)
 	jsontext = `{"player": "${played}", "subject": "${questionsSubject}", "mode": "${mode}", "score": "${score}", "coinscollected": "${coinsCollected}", "questionsanswered": "${questionsAnswered}", "numberoflanechanges": "${langechanges}", "session": "${session}"}`;
 	json = JSON.parse(jsontext);
-	// console.log(json);
-	// console.log(jsontext);
 	handleData(`${BASEURI}game?code=${key}`, gamePosted, "POST", JSON.stringify(json));
 }

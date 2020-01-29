@@ -46,7 +46,6 @@ var preloadState = new Phaser.Class({
     this.load.audio('HitMusic', 'assets/crash.wav');
     },
     create: function() {
-        console.log("Preload");
         game.scene.start('MainMenu');
     },
     update: function() {

@@ -111,7 +111,6 @@ const showQuestion = function (data) {
     questionsFiltered = questionsFiltered.filter(obj => {
       return obj.subject === s.forcedSubject;
       });
-    console.log(questionsFiltered);
   }
   let ans = [0,1,2, 3];
   ShuffledAnswers = ans;
@@ -119,7 +118,6 @@ const showQuestion = function (data) {
   let question = questionsFiltered[getRandomInt(questionsFiltered.length)];
   CurrentQuestion = question;
   questionTimer = waitquestion;
-  console.log(question);
   jsGameQuestion.innerHTML = `
   <h1 class="c-timer">${questionTimer}</h1>
   <h1>Beantwoord deze vraag om verder te spelen:</h1>
@@ -174,8 +172,6 @@ const getHighscores = function(){
 }
 const gamePosted = function(data){
   localStorage.setItem("Position", JSON.stringify(data));
-  console.log("Game saved to db");
-  console.log(data);
 	loopHighscores = 0;
   getHighscores();
   localStorage.setItem('CameFromGame', 'true');
@@ -185,9 +181,6 @@ const gamePosted = function(data){
 // show highscores
 // -------------------------- //
 const showHighscores = function(data){
-	// console.log(data);
-	// data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
-  // var leaderboard = data.slice(0, 10);
   scoreupdating = true
 	let scoreList = document.getElementById("highscoreList");
 	let str = "";
@@ -209,9 +202,7 @@ const showHighscores = function(data){
 		else if (count < 10){
       str+= `<li>${element.player}:&nbsp;${element.score}</li>`;
       if(!inserted){
-        oneBeforYou = element.score;
-        console.log(oneBeforYou);
-        
+        oneBeforYou = element.score;        
       }
 			count++;
     }		
