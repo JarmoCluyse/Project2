@@ -87,7 +87,6 @@ html {
 	box-sizing: border-box;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background-color: var(--global-html-backgroundColor);
 	height: 100vh;
 	width: 100vw;
 }
@@ -472,7 +471,8 @@ input::placeholder {
 	background-image: url('../assets/background.png');
 	background-repeat: repeat;
 	background-size: 300px;
-	background-color: var(--global-html-backgroundColor);
+	background-attachment: fixed;
+	
 }
 
 
@@ -2296,6 +2296,10 @@ input::placeholder {
 .c-button__question{
 	display: flex;
 	justify-content: center;
+}
+
+.c-button__question-margin{
+	margin-top: calc(var(--global-baseline) * 6);
 }
 
 @media(min-width: 768px){
