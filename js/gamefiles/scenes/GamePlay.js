@@ -38,7 +38,9 @@ var gamePlayState = new Phaser.Class({
         // -------------------------- //
         coinMusic = this.sound.add('coinMusic');
         PowerUpMusic = this.sound.add('PowerUpMusic');
+        PowerOffMusic = this.sound.add('PowerOffMusic');
         HitMusic = this.sound.add('HitMusic');
+        CorrectMusic = this.sound.add('correctMusic');
         // -------------------------- //
         // Set the background + users
         // -------------------------- //
@@ -70,7 +72,6 @@ var gamePlayState = new Phaser.Class({
         if(mode == 'COOP'){
             distance = 100;
         }
-
         // place the powerups for testing
         if(testing){
             PowerUphearts.create(150,-100, 'heart').setScale(.006);
@@ -124,12 +125,8 @@ var gamePlayState = new Phaser.Class({
             // -------------------------- //
             // delay for placement car
             // -------------------------- //
-
-            
             if (counter >= distance){         
-                if (!PowerUpCoin){
-                    console.log("set auto's");
-                    
+                if (!PowerUpCoin){                   
                     setcars();
                 }
                 if (PowerUpCoin) {
@@ -137,13 +134,13 @@ var gamePlayState = new Phaser.Class({
                 }
                 counter = 0; // counter back to 0
             }
-            counter ++;  // each update 60/s add 1 to counter
+            counter ++;  // each update 50/s add 1 to counter
             // -------------------------- //
             // Place Decorations
             // -------------------------- //
             placeDecorations();
             // -------------------------- //
-            // Move down
+            // Move down obstacles, pickuos, powerupps and decoration
             // -------------------------- //
             this.background1.tilePositionY -= speed
             for (i = 0; i < obstacles.children.entries.length; i++) { // move each obstacle down
@@ -241,16 +238,7 @@ var gamePlayState = new Phaser.Class({
             }          
         }
         if(answer){ // give player 2 s to stand on mat after timer runs out
-            sleep(2000).then(() => {
-                if(answer){
-                    gameDone = true;
-                    answer = false;
-                    jsGamePlay.classList.add('hide')
-                    jsGameQuestion.classList.add('hide');
-                    game.scene.stop('GamePlay');
-                    game.scene.start('GameOver');
-                }
-            });
+            answerQuetion();
         }
     }
 });
@@ -337,101 +325,30 @@ let moveCar = function(e) { // if an arrowkey is pressed
     // -------------------------- //
     // game over => question
     // -------------------------- //
-    else if (gameStarted && gameOver && !gameDone && answer) { // if you don't have a haert
-        if (e.key == "ArrowLeft"){
-          if(CurrentQuestion.answers[ShuffledAnswers[0]].isCorrect){ // answer correct show game => play along
-            jsGamePlay.classList.remove('hide');
-            jsGameQuestion.classList.add('hide');
-            gameOver = false;
-            answer = false;
-            questionsAnswered ++; // Count the correct answered questions
-          }
-          else{ // stop game go to highscores
-            gameDone = true;
-            answer = false;
-            jsGamePlay.classList.add('hide')
-            jsGameQuestion.classList.add('hide');
-            game.scene.stop('GamePlay');
-            game.scene.start('GameOver');
-          }     
-        }
-        if (e.key == "ArrowUp"){
-          if(CurrentQuestion.answers[ShuffledAnswers[1]].isCorrect){ // answer correct show game => play along
-            jsGamePlay.classList.remove('hide');
-            jsGameQuestion.classList.add('hide');
-            gameOver = false;
-            answer = false;
-            questionsAnswered ++; // Count the correct answered questions
-          }
-          else{ // stop game go to highscores
-            gameDone = true;
-            answer = false;
-            jsGamePlay.classList.add('hide')
-            jsGameQuestion.classList.add('hide');
-            game.scene.stop('GamePlay');
-            game.scene.start('GameOver');
-          } 
-        }
-        if (e.key == "ArrowDown"){
-          if(CurrentQuestion.answers[ShuffledAnswers[2]].isCorrect){ // answer correct show game => play along
-            jsGamePlay.classList.remove('hide');
-            jsGameQuestion.classList.add('hide');
-            gameOver = false;
-            answer = false;
-            questionsAnswered ++; // Count the correct answered questions 
-          }
-          else{ // stop game go to highscores
-            gameDone = true;
-            answer = false;
-            jsGamePlay.classList.add('hide')
-            jsGameQuestion.classList.add('hide');
-            game.scene.stop('GamePlay');
-            game.scene.start('GameOver');
-          } 
-        }
-        if (e.key == "ArrowRight"){
-          if(CurrentQuestion.answers[ShuffledAnswers[3]].isCorrect){ // answer correct show game => play along
-            jsGamePlay.classList.remove('hide');
-            jsGameQuestion.classList.add('hide');
-            gameOver = false;
-            answer = false;
-            questionsAnswered ++; // Count the correct answered questions
-          }
-          else{ // stop game go to highscores
-            gameDone = true;
-            answer = false;
-            jsGamePlay.classList.add('hide')
-            jsGameQuestion.classList.add('hide');
-            game.scene.stop('GamePlay');
-            game.scene.start('GameOver');
-          } 
-        }
-        jsGameQuestion.innerHTML = ``;
-      }
-      else if (Questioning){
-        if (e.key == "ArrowLeft"){
-            console.log(answerIds[0]);
+    else if (gameStarted && gameOver && !gameDone && Questioning) { // if you don't have a haert
+        if (e.key == "ArrowLeft"){ // make selected visable
+            currentAnswer = 0;
             document.getElementById(answerIds[0]).classList.add('c-selected');
             document.getElementById(answerIds[1]).classList.remove('c-selected');
             document.getElementById(answerIds[2]).classList.remove('c-selected');
             document.getElementById(answerIds[3]).classList.remove('c-selected');
           }
           if (e.key == "ArrowUp"){
-            console.log(answerIds[1]);
+            currentAnswer = 1;
             document.getElementById(answerIds[0]).classList.remove('c-selected');
             document.getElementById(answerIds[1]).classList.add('c-selected');
             document.getElementById(answerIds[2]).classList.remove('c-selected');
             document.getElementById(answerIds[3]).classList.remove('c-selected');
           }
           if (e.key == "ArrowDown"){
-            console.log(answerIds[2]);
+            currentAnswer = 2;
             document.getElementById(answerIds[0]).classList.remove('c-selected');
             document.getElementById(answerIds[1]).classList.remove('c-selected');
             document.getElementById(answerIds[2]).classList.add('c-selected');
             document.getElementById(answerIds[3]).classList.remove('c-selected');
           }
           if (e.key == "ArrowRight"){
-            console.log(answerIds[3]);
+            currentAnswer = 3;
             document.getElementById(answerIds[0]).classList.remove('c-selected');
             document.getElementById(answerIds[1]).classList.remove('c-selected');
             document.getElementById(answerIds[2]).classList.remove('c-selected');
@@ -456,16 +373,45 @@ let hitObstacle = function(car, obstacle){
     if (!PowerUpheart){ // if you don't have a haert give a question
         getQuestions()
         Questioning = true;
+        soundplayed = false;
         jsGamePlay.classList.add('hide');
         jsGameQuestion.classList.remove('hide');
         gameOver = true;
     }
     else{ // disable yout haert
         PowerUpheart = false;
-        jsheart.style.opacity = 0.4;
+        animate = true;
+        animateHeart();
+        //jsheart.style.opacity = 0.4;
+        this.scene.pause();
+        setTimeout(resume, 1500);
+
     }
 
-    
+}
+// blink if heart is out
+let animateHeart = function(){
+    if (animate){
+        if (!solid){
+            jsheart.style.opacity = 1;
+            solid = true;
+        }
+        else{
+            jsheart.style.opacity = 0.4;
+            solid = false;
+        }
+        setTimeout(animateHeart, 100);
+    }
+    else{
+        jsheart.style.opacity = 0.4;
+        PowerOffMusic.play();
+    }
+}
+// resume game
+let resume = function(){
+    animate = false;
+    game.scene.resume('GamePlay');
+    jsheart.style.opacity = 0.4;
 }
 // -------------------------- //
 // user with pickup
@@ -475,7 +421,6 @@ let hitPickup = function(car, pickup){
     pickup.disableBody(true, true);//remove the pickup from the screen
     score += scoreCoin; // update score
     coinsCollected++;
-
 }
 // -------------------------- //
 // user with chest
@@ -485,12 +430,35 @@ let hitPowerUpCoin = function(car, powerUp){
     powerUp.disableBody(true, true);//remove the powerup
     PowerUpCoin = true; // bool for only placing coins
     jschest.style.opacity = 1; // make chest icon more visable
-    let oldDistance = distance; //remember old distance => coins closer
+    oldDistance = distance; //remember old distance => coins closer
     distance = 10
     for (i = obstacles.children.entries.length; i >= 0; i--) { // remove all cars
         obstacles.remove(obstacles.children.entries[i], true);
     }
-    sleep(5000).then(() => {PowerUpCoin = false; distance = oldDistance; jschest.style.opacity = .4;}); // after time revert to normal
+    countAnimatechest = 0;
+    sleep(1800).then(() => {animatechest()});
+}
+// animate going out
+let animatechest = function(){
+    if (countAnimatechest < 10){
+        if (countAnimatechest%2 == 0){  
+            jschest.style.opacity = .4;
+            setTimeout(animatechest, 200);
+        }
+        else{
+            jschest.style.opacity = 1;
+            setTimeout(animatechest, 500);
+        }
+        countAnimatechest ++;
+    }
+    else {  // after time revert to normal
+        PowerUpCoin = false;
+        distance = oldDistance;
+        console.log(distance);
+        jschest.style.opacity = .4;
+        PowerOffMusic.play(); // play sound
+
+    }
 }
 // -------------------------- //
 // user with magnet
@@ -500,7 +468,27 @@ let hitPowerUpMagnet = function(car, powerUp){
     powerUp.disableBody(true, true);//remove the powerup
     PowerUpMagnet = true; // bool to let coins come to you
     jsmagnet.style.opacity = 1; // visable
-    sleep(20000).then(() => {PowerUpMagnet = false; jsmagnet.style.opacity = .4;}); // revert back to normal
+    countAnimateMagnet = 0
+    sleep(18000).then(() => {animateMagnet()});
+}
+// animate going out
+let animateMagnet = function(){
+    if (countAnimateMagnet < 10){
+        if (countAnimateMagnet%2 == 0){  
+            jsmagnet.style.opacity = .4;
+            setTimeout(animateMagnet, 200);
+        }
+        else{
+            jsmagnet.style.opacity = 1;
+            setTimeout(animateMagnet, 500);
+        }
+        countAnimateMagnet ++;
+    }
+    else { // revert back to normal
+        PowerUpMagnet = false;
+        jsmagnet.style.opacity = .4;
+        PowerOffMusic.play(); // play sound
+    }
 }
 // -------------------------- //
 // user with haert
@@ -512,8 +500,7 @@ let hitPowerUpHeart = function(car, powerUp){
         PowerUpheart = true; // one extra life
         jsheart.style.opacity = 1;
         heartsCounter ++;
-    }
-   
+    }  
 }
 // -------------------------- //
 // powerup with obstacle
@@ -666,10 +653,58 @@ let increasing = function(){
     if (increase){
         if (waitIncrease >= speedIncrease){ //delay
             speed += increaseValueSpeed; // increase speed
-            distance -= increaseValueSpeed; // decrease distance
-            
+            distance -= increaseValueDistance; // decrease distance           
             waitIncrease = 0;
         }
         waitIncrease ++;
     }
+}
+// -------------------------- //
+// answer the question
+// -------------------------- //
+let answerQuetion = function () {
+    if (currentAnswer < 4) {
+        if(CurrentQuestion.answers[ShuffledAnswers[currentAnswer]].isCorrect){ // answer correct show game => play along
+            jsGameQuestion.innerHTML = `<img src="./assets/right.png" alt="rightorwrong"  width="600" height="600"></img>`;
+            if(!soundplayed){
+                CorrectMusic.play();
+                soundplayed = true;
+                setTimeout(continueAfterQuestion, 1000);
+            }
+          }
+          else{ // stop game go to highscores  wrong answer
+            jsGameQuestion.innerHTML = `<img src="./assets/wrong.png" alt="rightorwrong"  width="600" height="600"></img>`;
+            if (!soundplayed){
+                PowerOffMusic.play();
+                soundplayed = true;
+                setTimeout(gameOverAfterQuestion, 1000);
+            }
+          } 
+    }
+    else{ // stop game go to highscores  not answered
+        jsGameQuestion.innerHTML = `<img src="./assets/wrong.png" alt="rightorwrong"  width="600" height="600"></img>`;
+        setTimeout(gameOverAfterQuestion, 1000);
+    }
+    
+}
+// wright answer
+let continueAfterQuestion = function(){
+    jsGamePlay.classList.remove('hide');
+            jsGameQuestion.classList.add('hide');
+            gameOver = false;
+            answer = false;
+            Questioning = false;
+            questionsAnswered ++; // Count the correct answered questions
+            currentAnswer = 4;
+            jsGameQuestion.innerHTML = ``; 
+}
+// wrong answer
+let gameOverAfterQuestion = function(){
+    gameDone = true;
+            answer = false;
+            jsGamePlay.classList.add('hide')
+            jsGameQuestion.classList.add('hide');
+            game.scene.stop('GamePlay');
+            game.scene.start('GameOver');
+            jsGameQuestion.innerHTML = ``; 
 }

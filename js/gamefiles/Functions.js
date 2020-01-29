@@ -28,7 +28,9 @@ var placeScore = function () { // update the score
     document.querySelector('.c-leaderboard-currentplayer').innerHTML = `${player}:&nbsp;${score}`;
   }
 }
-
+//------------------------------- //
+// go to next scene
+//------------------------------- //
 function keyListener(e){ // listen to keypress
   e.preventDefault(); // prevent the arrows from scrolling
   if(!gameStarted && !gameDone && !gameOver){ // when game hasn't started
@@ -39,7 +41,9 @@ function keyListener(e){ // listen to keypress
   }
 
 }
-
+//------------------------------- //
+// place decorations
+//------------------------------- //
 var placeDecorations = function () {
   let placeDeco = getRandomInt(100)
   if (placeDeco > 85){
@@ -74,6 +78,9 @@ var placeDecorations = function () {
       }
   }
 }
+//------------------------------- //
+// place the item random left or right
+//------------------------------- //
 var DecorationX = function () {
   let LeftOrRight = getRandomInt(2)
   if (LeftOrRight == 0) {
@@ -83,10 +90,15 @@ var DecorationX = function () {
     return getRandomInt(150) + 650
   }
 }
-
+//------------------------------- //
+// get the questions of the database
+//------------------------------- //
 var getQuestions = function () {
 	handleData(`${BASEURI}questions?code=${key}`, showQuestion)
 };
+//------------------------------- //
+// make question visable
+//------------------------------- //
 const showQuestion = function (data) {
   s = JSON.parse(localStorage.getItem('SessionObject'));
   var questionsFiltered = data;
@@ -121,12 +133,16 @@ const showQuestion = function (data) {
     <li id='${question.answers[ans[3]].answerId}'>${question.answers[ans[3]].answerText}</li>
   </ul>
   `;
+  answerIds = [];
   answerIds.push(question.answers[ans[0]].answerId);
   answerIds.push(question.answers[ans[1]].answerId);
   answerIds.push(question.answers[ans[2]].answerId);
   answerIds.push(question.answers[ans[3]].answerId);
   timeQuestion();
 }
+//------------------------------- //
+// make timer visable
+//------------------------------- //
 const timeQuestion = function(){
   if (!answer){
       document.querySelector('.c-timer').innerHTML = questionTimer;
@@ -141,11 +157,15 @@ const timeQuestion = function(){
   }
   
 }
-
+//------------------------------- //
+// function to have a delay
+//------------------------------- //
 var sleep = (milliseconds) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
-
+//------------------------------- //
+// get the highscores out of the database
+//------------------------------- //
 const getHighscores = function(){
   handleData(`${BASEURI}highscores/score/10?code=${key}`, showHighscores, "GET",null)
   if (loopHighscores){
@@ -158,6 +178,7 @@ const gamePosted = function(data){
   console.log(data);
 	loopHighscores = 0;
   getHighscores();
+  localStorage.setItem('CameFromGame', 'true');
   window.location.href = "highscorepage.html";
 }
 // -------------------------- //
@@ -189,6 +210,8 @@ const showHighscores = function(data){
       str+= `<li>${element.player}:&nbsp;${element.score}</li>`;
       if(!inserted){
         oneBeforYou = element.score;
+        console.log(oneBeforYou);
+        
       }
 			count++;
     }		

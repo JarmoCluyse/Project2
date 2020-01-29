@@ -6,7 +6,8 @@ const loggedOut = function(data){
 // -------------------------- //
 const getHighscores = function(){
     handleData(`${BASEURI}highscores/score/10?code=${key}`, ShowHighScores, "GET",null)
-  }
+};
+
 // -------------------------- //
 // show the highscores
 // -------------------------- //
@@ -26,11 +27,11 @@ const ShowHighScores = function (data) {
     playerScore = localStorage.getItem('Score');
     scoreListPlayer = "";
     scoreListScore = "";
+
     for (let i = 0; i < leaders.length; i++) {
         if (parseInt(position) <= 3){
             if (i == parseInt(position)-1){
                 if (/\s/.test(leaders[i].player)) {
-                    console.log('added underscore')
                     document.querySelector(`.js-person-${i+1}`).innerHTML = leaders[i].player.replace(/ /g, "&nbsp;");
                 }
                 else {
@@ -42,7 +43,6 @@ const ShowHighScores = function (data) {
             }
             else{
                 if (/\s/.test(leaders[i].player)) {
-                    console.log('added underscore')
                     document.querySelector(`.js-person-${i+1}`).innerHTML = leaders[i].player.replace(/ /g, "&nbsp;");
                 }
                 else {
@@ -63,9 +63,10 @@ const ShowHighScores = function (data) {
             document.querySelector(`.js-score-${i+1}`).innerHTML = leaders[i].score;
         }
     }
+
     for (let i = 0; i < leaderboard.length; i++) {
         if (parseInt(position) > 3 && parseInt(position) < 10){
-            if (i == parseInt(position)-1){
+            if (i == parseInt(position)-4){
                 scoreListPlayer += `<li class="c-your-scoreColor">${leaderboard[i].player}</li>`
                 scoreListScore += `<li class="c-your-scoreColor">${leaderboard[i].score}</li>`
             }
@@ -80,16 +81,18 @@ const ShowHighScores = function (data) {
         }
     }
 
-    if (parseInt(position) > 10){
-        if (mode == "COOP"){
-            scoreListPlayer += `<li value="${position}" class="c-your-score c-your-scoreColor">${playerName}</li>`
-            scoreListScore += `<li class="c-your-score c-your-scoreColor">${playerScore}</li>`
-        }
-        else{
-            scoreListPlayer += `<li value="${position}" class="c-your-score c-your-scoreColor">${playerName}</li>`
-            scoreListScore += `<li class="c-your-score c-your-scoreColor">${playerScore}</li>`
-            scoreListPlayer += `<li class="c-your-scoreColor" value="${parseInt(position) + 1}">${player2Name}</li>`
-            scoreListScore += `<li class="c-your-scoreColor">${playerScore}</li>`
+    if (cameFromGame == "true"){
+        if (parseInt(position) > 10){
+            if (mode == "SP"){
+                scoreListPlayer += `<li value="${position}" class="c-your-score c-your-scoreColor">${playerName}</li>`
+                scoreListScore += `<li class="c-your-score c-your-scoreColor">${playerScore}</li>`
+            }
+            else{
+                scoreListPlayer += `<li value="${position}" class="c-your-score c-your-scoreColor">${playerName}</li>`
+                scoreListScore += `<li class="c-your-score c-your-scoreColor">${playerScore}</li>`
+                scoreListPlayer += `<li class="c-your-scoreColor" value="${parseInt(position) + 1}">${player2Name}</li>`
+                scoreListScore += `<li class="c-your-scoreColor">${playerScore}</li>`
+            }
         }
     }
 
@@ -97,16 +100,20 @@ const ShowHighScores = function (data) {
     scoreList[1].innerHTML = scoreListScore;
     scoreListPlayer = ""
     scoreListScore = ""
+    localStorage.removeItem('Position');
 }
 
 
 const init = function(){
     console.log('Script geladen! 👍')
+    cameFromGame = localStorage.getItem('CameFromGame');
+    localStorage.setItem('CameFromGame', 'false');
     sessionButton = document.getElementById('sessions');
     settingsButton = document.getElementById('settings');
     logoutButton = document.getElementById('logout');
     gameButton = document.getElementById('game');
     startNewGameButton = document.getElementById('newgame');
+
 
     startNewGameButton.addEventListener('click', function(){
         window.location.href = 'index.html';
@@ -127,6 +134,9 @@ const init = function(){
     gameButton.addEventListener('click', function(){
         window.location.href = 'index.html';
     });
+    if (cameFromGame == 'true'){
+        document.querySelector('.c-dropbtn').classList.add('hide');
+    }
     getHighscores();
 };
 

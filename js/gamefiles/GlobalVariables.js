@@ -3,7 +3,7 @@
 //------------------------------- //
 var speedIncrease = 4; // the rate of increasing
 var increaseValueSpeed = 0.5; // value that we increase with
-var increaseValueDistance = 0.05; // value that we increase with
+var increaseValueDistance = 1; // value that we increase with
 var waitquestion = 10; // question time out
 var DriveScore = 5; // score for driving
 var scoreCoin = 10; // score when you pickup something
@@ -58,6 +58,8 @@ var jsheart = document.querySelector(".js-heart") // gamestart html
 var coinMusic;
 var HitMusic;
 var PowerUpMusic;
+var PowerOffMusic;
+var CorrectMusic;
 //------------------------------- //
 // groups
 //------------------------------- //
@@ -87,6 +89,8 @@ var answerIds = [];
 var Questioning = false;
 var CurrentQuestion;
 var ShuffledAnswers;
+var currentAnswer = 4;
+var soundplayed = false;
 //------------------------------- //
 // game variables
 //------------------------------- //
@@ -97,6 +101,7 @@ var counter = 0;
 var score = 0; // score of the game
 var waitIncrease = 0; // variable to count the waiting
 var loopHighscores = 1;
+var oldDistance;
 // list of colors
 var Colors = [];
 for (var keys in ColorList) {
@@ -104,14 +109,18 @@ for (var keys in ColorList) {
 }
 var questionTimer = 10;
 var inTopTen = false;
-var oneBeforYou = 0;
+var oneBeforYou = 100000;
 var firstPlace = false;
 var scoreupdating = false
+var animate = false;
+var solid = true;
+var countAnimatechest;
+var countAnimateMagnet;
 //var timeQuestion = false;
 //------------------------------- //
 // testing
 //------------------------------- //
-var testing = false;
+var testing = true;
 //------------------------------- //
 // Default values 
 //------------------------------- //
@@ -125,9 +134,11 @@ if (typeof increase === 'undefined' || !increase) {
 }
 if (typeof player === 'undefined' || !player) {
   player = "anoniem"; //default value
+  localStorage.setItem('Player', player)
 }
 if (typeof player2 === 'undefined' || !player2) {
   player2 = "anoniem"; //default value
+  localStorage.setItem('Player2', player2)
 }
 if (typeof mode === 'undefined' || !mode) {
   mode = "SP"; //default value
