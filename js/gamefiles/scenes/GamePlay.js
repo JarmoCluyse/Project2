@@ -64,12 +64,12 @@ var gamePlayState = new Phaser.Class({
         jschest.style.opacity = 0.4;
         jsmagnet.style.opacity = 0.4;
         // set the speed to the beginspeed
-        speed = BeginSpeed;
+        speed = BeginSpeed + 3;
         if(mode == 'SP'){
-            distance = 200;
+            distance = 220 - BeginSpeed * 10;
         }
         if(mode == 'COOP'){
-            distance = 100;
+            distance = 220 - BeginSpeed * 10;
         }
         // place the powerups for testing
         if(testing){

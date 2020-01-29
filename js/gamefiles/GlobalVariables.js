@@ -97,7 +97,7 @@ var soundplayed = false;
 //------------------------------- //
 var paused = false;
 var speed = 5; // current speed of the game
-var distance = 150
+var distance = 150 ;
 var lanes;
 var counter = 0;
 var score = 0; // score of the game
