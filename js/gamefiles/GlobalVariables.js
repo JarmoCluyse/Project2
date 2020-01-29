@@ -105,6 +105,7 @@ var score = 0; // score of the game
 var waitIncrease = 0; // variable to count the waiting
 var loopHighscores = 1;
 var oldDistance;
+var askForUpdate = false;
 // list of colors
 var Colors = [];
 for (var keys in ColorList) {

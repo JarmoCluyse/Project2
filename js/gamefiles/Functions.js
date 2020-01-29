@@ -23,7 +23,10 @@ var placeScore = function () { // update the score
   jsScore.innerHTML = `Score: ${score}`;
   jsCoins.innerHTML = `Muntjes: ${coinsCollected}`;
   if (score > oneBeforYou && !firstPlace){
-    handleData(`${BASEURI}highscores/score/10?code=${key}`, showHighscores, "GET",null)
+    if(!askForUpdate){
+      handleData(`${BASEURI}highscores/score/10?code=${key}`, showHighscores, "GET",null)
+      askForUpdate = true
+    }
   }
   if (inTopTen && !scoreupdating){
     document.querySelector('.c-leaderboard-currentplayer').innerHTML = `${player}:&nbsp;${score}`;
@@ -212,4 +215,5 @@ const showHighscores = function(data){
   });
   scoreList.innerHTML = str;
   scoreupdating = false;
+  askForUpdate = false;
 }
