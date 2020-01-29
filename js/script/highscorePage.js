@@ -5,7 +5,7 @@ const loggedOut = function(data){
 // getting the highscore
 // -------------------------- //
 const getHighscores = function(){
-    handleData(`${BASEURI}highscores/score/10?code=${key}`, ShowHighScores, "GET",null)
+    handleData(`${BASEURI}highscores/score/500?code=${key}`, ShowHighScores, "GET",null)
 };
 
 // -------------------------- //
@@ -17,7 +17,13 @@ const ShowHighScores = function (data) {
  	data.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
     // make the leaderbord 
     var leaders = data.slice(0, 3);
-    var leaderboard = data.slice(3, 10);
+    if (cameFromGame == 'true'){
+        var leaderboard = data.slice(3, 10);
+    }
+    else{
+        var leaderboard = data.slice(3, data.length);
+        
+    }
     console.log(leaders);
     console.log(leaderboard);
     let scoreList = document.querySelectorAll(".js-list");
