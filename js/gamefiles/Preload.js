@@ -41,6 +41,8 @@ var preloadState = new Phaser.Class({
     // -------------------------- //
     this.load.audio('coinMusic', 'assets/coin.wav');
     this.load.audio('PowerUpMusic', 'assets/powerup.wav');
+    this.load.audio('PowerOffMusic', 'assets/powerupoff.wav');
+    this.load.audio('correctMusic', 'assets/correct.wav');
     this.load.audio('HitMusic', 'assets/crash.wav');
     },
     create: function() {
