@@ -112,6 +112,20 @@ var gamePlayState = new Phaser.Class({
         this.input.keyboard.on('keydown-DOWN', moveCar);
         this.input.keyboard.on('keydown-LEFT', moveCar);
         this.input.keyboard.on('keydown-SPACE', moveCar);
+        document.body.addEventListener("keyup", function(e){
+            if(e.keyCode == 32){
+                if (!paused){
+                    console.log("2");
+                    game.scene.pause('GamePlay');
+                    paused = true;
+                }
+                else{
+                    console.log("3");
+                    game.scene.resume('GamePlay');
+                    paused = false;
+                }
+            }
+        });
     
     },
 
