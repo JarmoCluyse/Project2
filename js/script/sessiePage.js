@@ -1,6 +1,7 @@
 let id;
 let filteredGames;
 const showSessionResults = function(data){
+    filteredGames = data;
     sessionTable = document.querySelector('.c-table');
     sessionTable.innerHTML =    `<tr class="c-table-row">
                                     <th>Naam</th>
