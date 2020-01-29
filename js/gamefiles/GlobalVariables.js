@@ -109,7 +109,7 @@ for (var keys in ColorList) {
 }
 var questionTimer = 10;
 var inTopTen = false;
-var oneBeforYou = 1000000;
+var oneBeforYou = 100000;
 var firstPlace = false;
 var scoreupdating = false
 var animate = false;
