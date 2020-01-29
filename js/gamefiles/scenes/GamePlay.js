@@ -38,7 +38,9 @@ var gamePlayState = new Phaser.Class({
         // -------------------------- //
         coinMusic = this.sound.add('coinMusic');
         PowerUpMusic = this.sound.add('PowerUpMusic');
+        PowerOffMusic = this.sound.add('PowerOffMusic');
         HitMusic = this.sound.add('HitMusic');
+        CorrectMusic = this.sound.add('correctMusic');
         // -------------------------- //
         // Set the background + users
         // -------------------------- //
@@ -129,7 +131,6 @@ var gamePlayState = new Phaser.Class({
             if (counter >= distance){         
                 if (!PowerUpCoin){
                     console.log("set auto's");
-                    
                     setcars();
                 }
                 if (PowerUpCoin) {
@@ -380,16 +381,44 @@ let hitObstacle = function(car, obstacle){
     if (!PowerUpheart){ // if you don't have a haert give a question
         getQuestions()
         Questioning = true;
+        soundplayed = false;
         jsGamePlay.classList.add('hide');
         jsGameQuestion.classList.remove('hide');
         gameOver = true;
     }
     else{ // disable yout haert
         PowerUpheart = false;
-        jsheart.style.opacity = 0.4;
+        animate = true;
+        animateHeart();
+        //jsheart.style.opacity = 0.4;
+        this.scene.pause();
+        setTimeout(resume, 1500);
+
     }
 
-    
+}
+let animateHeart = function(){
+    if (animate){
+        if (!solid){
+            jsheart.style.opacity = 1;
+            solid = true;
+        }
+        else{
+            jsheart.style.opacity = 0.4;
+            solid = false;
+        }
+        setTimeout(animateHeart, 100);
+    }
+    else{
+        jsheart.style.opacity = 0.4;
+        PowerOffMusic.play();
+    }
+}
+
+let resume = function(){
+    animate = false;
+    game.scene.resume('GamePlay');
+    jsheart.style.opacity = 0.4;
 }
 // -------------------------- //
 // user with pickup
@@ -409,12 +438,34 @@ let hitPowerUpCoin = function(car, powerUp){
     powerUp.disableBody(true, true);//remove the powerup
     PowerUpCoin = true; // bool for only placing coins
     jschest.style.opacity = 1; // make chest icon more visable
-    let oldDistance = distance; //remember old distance => coins closer
+    oldDistance = distance; //remember old distance => coins closer
     distance = 10
     for (i = obstacles.children.entries.length; i >= 0; i--) { // remove all cars
         obstacles.remove(obstacles.children.entries[i], true);
     }
-    sleep(5000).then(() => {PowerUpCoin = false; distance = oldDistance; jschest.style.opacity = .4;}); // after time revert to normal
+    countAnimatechest = 0;
+    sleep(1800).then(() => {animatechest()}); // after time revert to normal
+}
+let animatechest = function(){
+    if (countAnimatechest < 10){
+        if (countAnimatechest%2 == 0){  
+            jschest.style.opacity = .4;
+            setTimeout(animatechest, 200);
+        }
+        else{
+            jschest.style.opacity = 1;
+            setTimeout(animatechest, 500);
+        }
+        countAnimatechest ++;
+    }
+    else {
+        PowerUpCoin = false;
+        distance = oldDistance;
+        console.log(distance);
+        jschest.style.opacity = .4;
+        PowerOffMusic.play();
+
+    }
 }
 // -------------------------- //
 // user with magnet
@@ -424,7 +475,26 @@ let hitPowerUpMagnet = function(car, powerUp){
     powerUp.disableBody(true, true);//remove the powerup
     PowerUpMagnet = true; // bool to let coins come to you
     jsmagnet.style.opacity = 1; // visable
-    sleep(20000).then(() => {PowerUpMagnet = false; jsmagnet.style.opacity = .4;}); // revert back to normal
+    countAnimateMagnet = 0
+    sleep(18000).then(() => {animateMagnet()}); // revert back to normal
+}
+let animateMagnet = function(){
+    if (countAnimateMagnet < 10){
+        if (countAnimateMagnet%2 == 0){  
+            jsmagnet.style.opacity = .4;
+            setTimeout(animateMagnet, 200);
+        }
+        else{
+            jsmagnet.style.opacity = 1;
+            setTimeout(animateMagnet, 500);
+        }
+        countAnimateMagnet ++;
+    }
+    else {
+        PowerUpMagnet = false;
+        jsmagnet.style.opacity = .4;
+        PowerOffMusic.play();
+    }
 }
 // -------------------------- //
 // user with haert
@@ -602,30 +672,45 @@ let answerQuetion = function () {
     console.log(currentAnswer);
     if (currentAnswer < 4) {
         if(CurrentQuestion.answers[ShuffledAnswers[currentAnswer]].isCorrect){ // answer correct show game => play along
-            jsGamePlay.classList.remove('hide');
+            jsGameQuestion.innerHTML = `<img src="./assets/right.png" alt="rightorwrong"  width="600" height="600"></img>`;
+            if(!soundplayed){
+                CorrectMusic.play();
+                soundplayed = true;
+            }
+            setTimeout(continueAfterQuestion, 1000);
+          }
+          else{ // stop game go to highscores
+            jsGameQuestion.innerHTML = `<img src="./assets/wrong.png" alt="rightorwrong"  width="600" height="600"></img>`;
+            if (!soundplayed){
+                PowerOffMusic.play();
+                soundplayed = true;
+            }
+            setTimeout(gameOverAfterQuestion, 1000);
+          } 
+    }
+    else{ // stop game go to highscores
+        jsGameQuestion.innerHTML = `<img src="./assets/wrong.png" alt="rightorwrong"  width="600" height="600"></img>`;
+        setTimeout(gameOverAfterQuestion, 1000);
+    }
+    
+}
+
+let continueAfterQuestion = function(){
+    jsGamePlay.classList.remove('hide');
             jsGameQuestion.classList.add('hide');
             gameOver = false;
             answer = false;
             Questioning = false;
             questionsAnswered ++; // Count the correct answered questions
             currentAnswer = 4;
-          }
-          else{ // stop game go to highscores
-            gameDone = true;
+            jsGameQuestion.innerHTML = ``; 
+}
+let gameOverAfterQuestion = function(){
+    gameDone = true;
             answer = false;
             jsGamePlay.classList.add('hide')
             jsGameQuestion.classList.add('hide');
             game.scene.stop('GamePlay');
             game.scene.start('GameOver');
-          } 
-    }
-    else{ // stop game go to highscores
-        gameDone = true;
-        answer = false;
-        jsGamePlay.classList.add('hide')
-        jsGameQuestion.classList.add('hide');
-        game.scene.stop('GamePlay');
-        game.scene.start('GameOver');
-    }
-    jsGameQuestion.innerHTML = ``; 
+            jsGameQuestion.innerHTML = ``; 
 }
