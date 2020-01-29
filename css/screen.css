@@ -2325,6 +2325,10 @@ input::placeholder {
 	padding-bottom: calc(var(--global-baseline) * 3);
 }
 
+.c-teacher{
+	padding-bottom: calc(var(--global-baseline) * 1);
+}
+
 .c-login-card {
 	display: block;
 }
