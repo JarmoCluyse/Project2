@@ -100,9 +100,14 @@ const init = function() {
 	outputCar = document.querySelector('.js-outputCar');
 	outputObstacle = document.querySelector('.js-outputObstacle');
 	teacherButton = document.getElementById('teacher');
+	highscoreButton = document.getElementById('showHighScores');
 
 	teacherButton.addEventListener('click', function(){
 		window.location.href = 'loginpage.html';
+	});
+
+	highscoreButton.addEventListener('click', function(){
+		window.location.href = 'highscorepage.html';
 	});
 
 	sliderFunction();
