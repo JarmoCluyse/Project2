@@ -717,7 +717,7 @@ let increasing = function(){
     if (increase){
         if (waitIncrease >= speedIncrease){ //delay
             speed += increaseValueSpeed; // increase speed
-            distance -= increaseValueDistance * 2; // decrease distance           
+            distance -= increaseValueDistance; // decrease distance           
             waitIncrease = 0;
         }
         waitIncrease ++;
