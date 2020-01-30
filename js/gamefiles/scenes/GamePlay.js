@@ -612,7 +612,7 @@ let setcars = function(){
             PowerUphearts.create(powerarr[0],-50, 'heart').setScale(.006);
         }
     }
-    if (CoopOnePlayerRemaining && power <=30 && power >15){
+    if (CoopOnePlayerRemaining && power <= 50 && power >15){
         PowerUpRevives.create(revivearr[0],-50, 'reviveHeart').setScale(.006);
     }
     // -------------------------- //
@@ -717,7 +717,7 @@ let increasing = function(){
     if (increase){
         if (waitIncrease >= speedIncrease){ //delay
             speed += increaseValueSpeed; // increase speed
-            distance -= increaseValueDistance; // decrease distance           
+            distance -= increaseValueDistance * 2; // decrease distance           
             waitIncrease = 0;
         }
         waitIncrease ++;
